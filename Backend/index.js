@@ -16,14 +16,14 @@ app.use(cors({
     credentials: true,
 }));
 
-
+const adminRouter = require('./routes/admin');
 const loginRouter = require('./routes/login');
 const hrRouter = require("./routes/hr");
 
 
 app.use("/auth", loginRouter);
 app.use("/hr", hrRouter);
-
+app.use("/admin", adminRouter);
 
 const PORT = process.env.PORT || 3000;
 
