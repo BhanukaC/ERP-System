@@ -1,5 +1,5 @@
 {
-  "name": "erp-system-backend",
+  "name": "backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BhanukaC/ERP-System-Backend.git"
+    "url": "git+https://github.com/BhanukaC/ERP-System.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BhanukaC/ERP-System-Backend/issues"
+    "url": "https://github.com/BhanukaC/ERP-System/issues"
   },
-  "homepage": "https://github.com/BhanukaC/ERP-System-Backend#readme",
+  "homepage": "https://github.com/BhanukaC/ERP-System#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
