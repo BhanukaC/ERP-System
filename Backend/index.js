@@ -15,7 +15,9 @@ app.use(cors({
     method: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
 }));
+const purchaseRouter = require("./routes/purchase");
 
+app.use("/purchase", purchaseRouter);
 
 const loginRouter = require('./routes/login');
 const hrRouter = require("./routes/hr");
