@@ -1,0 +1,11 @@
+Admin - 0
+cashier -1
+hrManger -2
+purchaseManager -3
+warehouseOperator-4
+accountant -5
+
+
+P-pending
+D-Delivered
+C-cancel
