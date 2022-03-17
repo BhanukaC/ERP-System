@@ -15,15 +15,34 @@ app.use(cors({
     method: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
 }));
+const purchaseRouter = require("./routes/purchase");
+
 
 const adminRouter = require('./routes/admin');
+
+app.use("/purchase", purchaseRouter);
+
+
 const loginRouter = require('./routes/login');
 const hrRouter = require("./routes/hr");
+
+const salesRouter = require("./routes/sale");
+
+const inventoryRouter = require("./routes/inventory");
+
 
 
 app.use("/auth", loginRouter);
 app.use("/hr", hrRouter);
+
 app.use("/admin", adminRouter);
+
+
+app.use("/sales", salesRouter);
+
+app.use("/inventory", inventoryRouter);
+
+
 
 const PORT = process.env.PORT || 3000;
 
