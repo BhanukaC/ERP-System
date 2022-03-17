@@ -19,10 +19,12 @@ app.use(cors({
 
 const loginRouter = require('./routes/login');
 const hrRouter = require("./routes/hr");
+const inventoryRouter = require("./routes/inventory");
 
 
 app.use("/auth", loginRouter);
 app.use("/hr", hrRouter);
+app.use("/inventory", inventoryRouter);
 
 
 const PORT = process.env.PORT || 3000;
