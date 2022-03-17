@@ -19,10 +19,12 @@ app.use(cors({
 
 const loginRouter = require('./routes/login');
 const hrRouter = require("./routes/hr");
+const salesRouter = require("./routes/sale");
 
 
 app.use("/auth", loginRouter);
 app.use("/hr", hrRouter);
+app.use("/sales", salesRouter);
 
 
 const PORT = process.env.PORT || 3000;
