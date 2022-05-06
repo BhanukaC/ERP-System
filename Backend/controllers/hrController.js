@@ -452,8 +452,8 @@ exports.calculateSalaryController = async (req, res) => {
                 for (let i = 0; i < result.length; i++) {
                     const basicSalary = result[i].basicSalary;
                     const consolidatedSalary = basicSalary + addInsentiive + dataAllowance + travellingAllowance;
-                    const EPF = consolidatedSalary * 8 / 100;
-                    const ETF = consolidatedSalary * 3 / 100;
+                    const EPF = basicSalary * 8 / 100;
+                    const ETF = basicSalary * 3 / 100;
                     const EID = result[i].EID;
 
 
