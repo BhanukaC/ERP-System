@@ -1,130 +1,106 @@
-import * as React from "react";
-import Paper from "@mui/material/Paper";
+import "./table.scss";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
-const columns = [
-  { id: "name", label: "Name", minWidth: 170 },
-  { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
-  {
-    id: "population",
-    label: "Population",
-    minWidth: 170,
-    align: "right",
-    format: (value) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "size",
-    label: "Size\u00a0(km\u00b2)",
-    minWidth: 170,
-    align: "right",
-    format: (value) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "density",
-    label: "Density",
-    minWidth: 170,
-    align: "right",
-    format: (value) => value.toFixed(2),
-  },
-];
-
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
-}
-
-const rows = [
-  createData("India", "IN", 1324171354, 3287263),
-  createData("China", "CN", 1403500365, 9596961),
-  createData("Italy", "IT", 60483973, 301340),
-  createData("United States", "US", 327167434, 9833520),
-  createData("Canada", "CA", 37602103, 9984670),
-  createData("Australia", "AU", 25475400, 7692024),
-  createData("Germany", "DE", 83019200, 357578),
-  createData("Ireland", "IE", 4857000, 70273),
-  createData("Mexico", "MX", 126577691, 1972550),
-  createData("Japan", "JP", 126317000, 377973),
-  createData("France", "FR", 67022000, 640679),
-  createData("United Kingdom", "GB", 67545757, 242495),
-  createData("Russia", "RU", 146793744, 17098246),
-  createData("Nigeria", "NG", 200962417, 923768),
-  createData("Brazil", "BR", 210147125, 8515767),
-];
-
-export default function CustomTable() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-
+const List = () => {
+  const rows = [
+    {
+      id: 1143155,
+      product: "Acer Nitro 5",
+      img: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
+      customer: "John Smith",
+      date: "1 March",
+      amount: 785,
+      method: "Cash on Delivery",
+      status: "Approved",
+    },
+    {
+      id: 2235235,
+      product: "Playstation 5",
+      img: "https://m.media-amazon.com/images/I/31JaiPXYI8L._AC_UY327_FMwebp_QL65_.jpg",
+      customer: "Michael Doe",
+      date: "1 March",
+      amount: 900,
+      method: "Online Payment",
+      status: "Pending",
+    },
+    {
+      id: 2342353,
+      product: "Redragon S101",
+      img: "https://m.media-amazon.com/images/I/71kr3WAj1FL._AC_UY327_FMwebp_QL65_.jpg",
+      customer: "John Smith",
+      date: "1 March",
+      amount: 35,
+      method: "Cash on Delivery",
+      status: "Pending",
+    },
+    {
+      id: 2357741,
+      product: "Razer Blade 15",
+      img: "https://m.media-amazon.com/images/I/71wF7YDIQkL._AC_UY327_FMwebp_QL65_.jpg",
+      customer: "Jane Smith",
+      date: "1 March",
+      amount: 920,
+      method: "Online",
+      status: "Approved",
+    },
+    {
+      id: 2342355,
+      product: "ASUS ROG Strix",
+      img: "https://m.media-amazon.com/images/I/81hH5vK-MCL._AC_UY327_FMwebp_QL65_.jpg",
+      customer: "Harold Carol",
+      date: "1 March",
+      amount: 2000,
+      method: "Online",
+      status: "Pending",
+    },
+  ];
   return (
-    <Paper
-      sx={{
-        flexGrow: 1,
-        overflow: "hidden",
-        width: window.innerWidth - 240,
-        float: "right",
-      }}
-    >
-      <TableContainer sx={{ maxHeight: window.innerHeight - 200 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
+    <TableContainer component={Paper} className="table">
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell className="tableCell">CID</TableCell>
+            <TableCell className="tableCell">accountNo</TableCell>
+            <TableCell className="tableCell">bankName</TableCell>
+            <TableCell className="tableCell">branchCode</TableCell>
+            <TableCell className="tableCell">customerName</TableCell>
+            <TableCell className="tableCell">deliveryTerm</TableCell>
+            <TableCell className="tableCell">email</TableCell>
+            <TableCell className="tableCell">no</TableCell>
+            <TableCell className="tableCell">paymentTerm</TableCell>
+            <TableCell className="tableCell">returnTerm</TableCell>
+            <TableCell className="tableCell">street</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell className="tableCell">{row.id}</TableCell>
+              <TableCell className="tableCell">
+                <div className="cellWrapper">
+                  <img src={row.img} alt="" className="image" />
+                  {row.product}
+                </div>
+              </TableCell>
+              <TableCell className="tableCell">{row.customer}</TableCell>
+              <TableCell className="tableCell">{row.date}</TableCell>
+              <TableCell className="tableCell">{row.amount}</TableCell>
+              <TableCell className="tableCell">{row.method}</TableCell>
+              <TableCell className="tableCell">
+                <span className={`status ${row.status}`}>{row.status}</span>
+              </TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Paper>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
-}
+};
+
+export default List;
