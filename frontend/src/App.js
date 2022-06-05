@@ -5,11 +5,14 @@ import Single from "./pages/single/Single";
 import New from "./pages/new/new";
 import AddEmployee from "./pages/hr/employeee/add/add"
 import ViewAllEmployees from "./pages/hr/employeee/viewAll/viewAll";
+import AddCustomer from "./pages/sales/customer/add/add"
+import ViewAllCustomer from "./pages/sales/viewAll/viewAll"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
+
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -26,6 +29,13 @@ function App() {
               <Route path="employee">
                 <Route path="add" element={<AddEmployee />} />
                 <Route path="viewall" element={<ViewAllEmployees />} />
+              </Route>
+            </Route>
+
+            <Route path="sales">
+              <Route path="customer">
+                <Route path="add" element={<AddCustomer />} />
+                <Route path="viewAll" element={<ViewAllCustomer />} />
               </Route>
             </Route>
 
