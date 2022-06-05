@@ -26,15 +26,19 @@ const Datatable = () => {
   };
 
   useEffect(() => {
-    // console.log(Cookies.get("access-token"));
-    axios.get("http://localhost:5000/sales/Customer/getAll").then((res) => {
-      // console.log(res.data);
-      let dt = res.data.map((d) => {
-        return { id: d.CID, ...d };
+    axios
+      .get("http://localhost:5000/sales/Customer/getAll", {
+        withCredentials: true,
+        credentials: "include",
+      })
+      .then((res) => {
+        console.log(res);
+        let dt = res.data.map((d) => {
+          return { id: d.CID, ...d };
+        });
+        setData(dt);
+        console.log(dt);
       });
-      setData(dt);
-      console.log(dt);
-    });
   }, [""]);
 
   const actionColumn = [
