@@ -4,6 +4,10 @@ import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/new";
 import AddEmployee from "./pages/hr/employeee/add/add"
+import AddProduct from "./pages/purchase/add_product/add_product";
+import AddCategory from "./pages/purchase/add_category/add_category";
+import AddSubCategory from "./pages/purchase/add_sub_category/add_sub_category";
+
 import ViewAllEmployees from "./pages/hr/employeee/viewAll/viewAll";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
@@ -21,6 +25,15 @@ function App() {
           <Route path="/">
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
+
+            <Route path="purchase">
+              <Route path="product"> 
+                <Route path="add" element={<AddProduct />} />
+                <Route path="addcat" element={<AddCategory />} />
+                <Route path="addsubcat" element={<AddSubCategory />} />
+              </Route>
+             
+            </Route>
 
             <Route path="hr">
               <Route path="employee">
