@@ -32,7 +32,7 @@ const Datatable = () => {
         credentials: "include",
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         let dt = res.data.map((d) => {
           return { id: d.CID, ...d };
         });

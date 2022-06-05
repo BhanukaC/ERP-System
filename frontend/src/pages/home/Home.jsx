@@ -20,7 +20,7 @@ const Home = () => {
         { withCredentials: true, credentials: "include" }
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       });
   }, [""]);
 
