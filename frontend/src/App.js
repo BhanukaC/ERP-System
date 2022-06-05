@@ -3,6 +3,8 @@ import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/new";
+import AddEmployee from "./pages/hr/employeee/add/add"
+import ViewAllEmployees from "./pages/hr/employeee/viewAll/viewAll";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -19,6 +21,14 @@ function App() {
           <Route path="/">
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
+
+            <Route path="hr">
+              <Route path="employee">
+                <Route path="add" element={<AddEmployee />} />
+                <Route path="viewall" element={<ViewAllEmployees />} />
+              </Route>
+            </Route>
+
             <Route path="users">
               <Route index element={<List />} />
               <Route path=":userId" element={<Single />} />
