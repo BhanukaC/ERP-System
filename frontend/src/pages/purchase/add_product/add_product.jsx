@@ -26,9 +26,25 @@ const AddProduct = () => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:5000/hr/employee/add",
+        "http://localhost:5000/purchase/product/add",
         {
-         
+          PID: pid,
+          PName: pname,
+          sellingPrice: sellp,
+          EANCode: eancode,
+          UnitOfMeasure:unit ,
+          HSNCode: hsncode,
+          shortDescription: shortdep,
+          longDescription: longdep,
+          Height: height,
+          Length: length,
+          Weight: weight,
+          buyingPrice: buyingp,
+          NoOfItems: 200000,
+          CatID:catid,
+          SubCatID:subcatid, 
+
+
         },
         {
           withCredentials: true,

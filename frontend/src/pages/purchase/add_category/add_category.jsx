@@ -13,7 +13,7 @@ const AddCategory = () => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:5000/hr/employee/add",
+        "http://localhost:5000/purchase/category/add",
         {
          
         },
