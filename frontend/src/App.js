@@ -7,11 +7,14 @@ import AddEmployee from "./pages/hr/employeee/add/add"
 import ViewAllEmployees from "./pages/hr/employeee/viewAll/viewAll";
 import AddCustomer from "./pages/sales/customer/add/add"
 import ViewAllCustomer from "./pages/sales/viewAll/viewAll"
+import AddSalesReturnOrder from "./pages/sales/salesReturnOrder/add/add"
+import ViewAllSalesReturnOrders from "./pages/sales/salesReturnOrder/add/viewAll/viewAll";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
+
 
 
 function App() {
@@ -36,6 +39,10 @@ function App() {
               <Route path="customer">
                 <Route path="add" element={<AddCustomer />} />
                 <Route path="viewAll" element={<ViewAllCustomer />} />
+              </Route>
+              <Route path="salesReturnOrder">
+              <Route path="add" element={<AddSalesReturnOrder />} />
+              <Route path="viewAll" element={<ViewAllSalesReturnOrders />} />
               </Route>
             </Route>
 

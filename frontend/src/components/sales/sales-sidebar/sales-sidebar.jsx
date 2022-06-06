@@ -46,14 +46,18 @@ const Sidebar = () => {
             <span>View Sales Order</span>
           </li>
           <p className="title">SALES RETURN ORDER</p>
-          <li>
-            <FormatListBulletedIcon className="icon" />
-            <span>Add Sales Return Order</span>
-          </li>
-          <li>
-            <DocumentScannerIcon className="icon" />
-            <span>View Sales Return Order</span>
-          </li>
+          <Link to="/sales/salesReturnOrder/add" style={{ textDecoration: "none" }}>
+            <li>
+              <FormatListBulletedIcon className="icon" />
+              <span>Add Sales Return Order</span>
+            </li>
+          </Link>
+          <Link to="/sales/salesReturnOrder/viewall" style={{ textDecoration: "none" }}>
+            <li>
+              <DocumentScannerIcon className="icon" />
+              <span>View Sales Return Order Details</span>
+            </li>
+          </Link>
           <p className="title">USER</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
