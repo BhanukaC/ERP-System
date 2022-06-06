@@ -9,6 +9,7 @@ import AddCategory from "./pages/purchase/add_category/add_category";
 import AddSubCategory from "./pages/purchase/add_sub_category/add_sub_category";
 import Viewproduct from "./pages/purchase/view_product/view_product";
 import EditCategory from "./pages/purchase/edit_category/edit_category";
+import Addsupplier from "./pages/purchase/add_supplier/add_supplier";
 import EditsubCategory from "./pages/purchase/edit_sub_category/edit_sub_category";
 import ViewAllEmployees from "./pages/hr/employeee/viewAll/viewAll";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -36,9 +37,8 @@ function App() {
                 <Route path="viewproduct" element={<Viewproduct />} />
                 <Route path="editcat" element={<EditCategory />} />
                 <Route path="editsubcat" element={<EditsubCategory />} />
-
-              </Route>
-             
+                </Route>
+                <Route path="addsupplier" element={<Addsupplier />} />
             </Route>
 
             <Route path="hr">

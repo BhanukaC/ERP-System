@@ -70,7 +70,7 @@ const Sidebar = () => {
           </Link>
 
           <p className="title">SUPPLIER</p>
-          <Link to="/purchase/add_supplier" style={{ textDecoration: "none" }}>
+          <Link to="/purchase/addsupplier" style={{ textDecoration: "none" }}>
           <li>
             <PersonAddIcon className="icon" />
             <span>Add Supplier</span>

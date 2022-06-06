@@ -15,9 +15,12 @@ const AddSubCategory = () => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:5000/hr/employee/add",
+        "http://localhost:5000/purchase/subCategory/add",
         {
-         
+          SCID:subcatID ,
+          catID:catId,
+          subCategoryName : subcatName,
+          discount : discount,
         },
         {
           withCredentials: true,
@@ -25,7 +28,7 @@ const AddSubCategory = () => {
         }
       )
       .then((res) => {
-        alert(res);
+        alert("sub category added successfully");
         console.log(res);
       });
   };

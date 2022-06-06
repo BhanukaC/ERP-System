@@ -15,7 +15,9 @@ const AddCategory = () => {
       .post(
         "http://localhost:5000/purchase/category/add",
         {
-         
+          catID: catID,
+          categoryName:catName,
+          
         },
         {
           withCredentials: true,
@@ -23,7 +25,7 @@ const AddCategory = () => {
         }
       )
       .then((res) => {
-        alert(res);
+        alert("Category added Successfully");
         console.log(res);
       });
   };
@@ -62,7 +64,7 @@ const AddCategory = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Add Product</button>
+              <button onClick={submitForm}>Add Category</button>
             </form>
           </div>
         </div>
