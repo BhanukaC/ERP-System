@@ -34,10 +34,10 @@ const Sidebar = () => {
             </li>
           </Link>
 
-          <Link to="/purchase/view_product" style={{ textDecoration: "none" }}>
+          <Link to="/purchase/product/viewproduct" style={{ textDecoration: "none" }}>
             <li>
               <PreviewIcon className="icon" />
-              <span>View product quantity</span>
+              <span>View product</span>
             </li>
           </Link>
 
@@ -48,7 +48,7 @@ const Sidebar = () => {
           </li>
           </Link>
 
-          <Link to="/purchase/edit_category" style={{ textDecoration: "none" }}>
+          <Link to="/purchase/product/editcat" style={{ textDecoration: "none" }}>
           <li>
             <EditIcon className="icon" />
             <span>Edit Category</span>

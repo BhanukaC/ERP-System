@@ -7,7 +7,8 @@ import AddEmployee from "./pages/hr/employeee/add/add"
 import AddProduct from "./pages/purchase/add_product/add_product";
 import AddCategory from "./pages/purchase/add_category/add_category";
 import AddSubCategory from "./pages/purchase/add_sub_category/add_sub_category";
-
+import Viewproduct from "./pages/purchase/view_product/view_product";
+import EditCategory from "./pages/purchase/edit_category/edit_category";
 import ViewAllEmployees from "./pages/hr/employeee/viewAll/viewAll";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
@@ -31,6 +32,8 @@ function App() {
                 <Route path="add" element={<AddProduct />} />
                 <Route path="addcat" element={<AddCategory />} />
                 <Route path="addsubcat" element={<AddSubCategory />} />
+                <Route path="viewproduct" element={<Viewproduct />} />
+                <Route path="editcat" element={<EditCategory />} />
               </Route>
              
             </Route>
