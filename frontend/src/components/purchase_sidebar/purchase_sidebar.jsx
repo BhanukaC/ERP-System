@@ -62,7 +62,7 @@ const Sidebar = () => {
           </li>
           </Link>
 
-          <Link to="/purchase/edit_sub_category" style={{ textDecoration: "none" }}>
+          <Link to="/purchase/product/editsubcat" style={{ textDecoration: "none" }}>
           <li>
             <EditIcon className="icon" />
             <span>Edit Sub Category</span>
