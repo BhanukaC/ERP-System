@@ -6,9 +6,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
-
-import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
@@ -87,15 +84,7 @@ const Sidebar = () => {
             <PreviewIcon className="icon" />
             <span>View Purchase Order</span>
           </li>
-          <p className="title">SERVICE</p>
-          <li>
-            <PsychologyOutlinedIcon className="icon" />
-            <span>Logs</span>
-          </li>
-          <li>
-            <SettingsApplicationsIcon className="icon" />
-            <span>Settings</span>
-          </li>
+          
           <p className="title">USER</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
