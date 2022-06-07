@@ -24,17 +24,17 @@ const AddCustomer = () => {
       .post(
         "http://localhost:5000/sales/Customer/add",
         {
-            customerName:"RashmiPaboda4",
-            paymentTerm:"monthly",
-            returnTerm:"once a year",
-            deliveryTerm:"574",
-            no:"1",
-            street:"colombo road",
-            town:"katubedda",
-            branchCode:"453",
-            accountNo:"12345",
-            bankName:"Commercial",
-            email:"rashmipaboda2@gmail.com"
+            customerName:customerName,
+            paymentTerm:paymentTerm,
+            returnTerm:returnTerm,
+            deliveryTerm:deliveryTerm,
+            no:no,
+            street:street,
+            town:town,
+            branchCode:branchCode,
+            accountNo:accountNo,
+            bankName:bankName,
+            email:email,
         },
         {
           withCredentials: true,
@@ -42,10 +42,16 @@ const AddCustomer = () => {
         }
       )
       .then((res) => {
-        alert(res);
-        console.log(res);
+        if(res.data=="Customer Added"){
+          alert("Customer added");
+        }else{
+          alert("Error");
+        }
+        //
+        //console.log(res.data);
       });
   };
+
 
   return (
     <div className="new">
@@ -170,7 +176,7 @@ const AddCustomer = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Send</button>
+              <button onClick={submitForm}>Add customer</button>
             </form>
           </div>
         </div>

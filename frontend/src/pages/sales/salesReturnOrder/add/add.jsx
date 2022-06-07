@@ -24,17 +24,17 @@ const AddSalesReturnOrder = () => {
       .post(
         "http://localhost:5000/sales/salesReturnOrder/add",
         {
-        salesReturnOrderID: 15,
-        initiateDate: "2022-03-14T18:30:00.000Z",
-        reason: "wrong goods",
-        status: "D",
-        WID: 1,
-        total: 54003.6,
-        CID: 1,
-        CDAID: 1,
-        CCID: 1,
-        finishDate: "2022-03-15T18:30:00.000Z",
-        salesOrderID: 3
+        salesReturnOrderID: salesReturnOrderID,
+        initiateDate: initiateDate,
+        reason: reason,
+        status: status,
+        WID: WID,
+        total: total,
+        CID: CID,
+        CDAID: CDAID,
+        CCID: CCID,
+        finishDate: finishDate,
+        salesOrderID:salesOrderID ,
         },
         {
           withCredentials: true,
@@ -42,8 +42,13 @@ const AddSalesReturnOrder = () => {
         }
       )
       .then((res) => {
-        alert(res);
-        console.log(res);
+        if(res.data=="Sales Return Order Added"){
+          alert("Sales Return Order added");
+        }else{
+          alert("Error");
+        }
+        //
+        //console.log(res.data);
       });
   };
 
@@ -170,7 +175,7 @@ const AddSalesReturnOrder = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Send</button>
+              <button onClick={submitForm}>Return Order Add</button>
             </form>
           </div>
         </div>
