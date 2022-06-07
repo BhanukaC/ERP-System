@@ -1,10 +1,12 @@
-import "./add.scss";
-import { useState } from "react";
+import "./edit.scss";
+import { useState, useEffect } from "react";
 import Navbar from "../../../../components/navbar/Navbar";
 import Sidebar from "../../../../components/hr/sidebar/Sidebar";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+import moment from "moment";
 
-const AddEmployee = () => {
+const EditEmployee = () => {
   const [dob, setDob] = useState("");
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
@@ -20,6 +22,41 @@ const AddEmployee = () => {
   const [department, setDepartment] = useState("");
   const [basicSalary, setBasicSalary] = useState(0);
   const [dailyWage, setDailyWage] = useState(0);
+
+  const { EID } = useParams();
+  console.log(EID);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/hr/employee/getSingle/" + EID, {
+        withCredentials: true,
+        credentials: "include",
+      })
+      .then((res) => {
+        setDob(
+          moment(res.data[0].DOB).add(1, "days").utc().format("YYYY-MM-DD")
+        );
+
+        setFname(res.data[0].fName);
+        setLname(res.data[0].lName);
+        setBankName(res.data[0].bankName);
+        setAccountNo(res.data[0].accountNo);
+        setBranchCode(res.data[0].branchCode);
+        setBranchName(res.data[0].branchName);
+        setNIC(res.data[0].NIC);
+        setPassportNo(res.data[0].passportNo);
+        setgender(res.data[0].gender);
+        if (res.data[0].basicSalary > 0) {
+          setWorkerType("0");
+        } else {
+          setWorkerType("1");
+        }
+        setDesignation(res.data[0].designation);
+        setDepartment(res.data[0].department);
+        setBasicSalary(res.data[0].basicSalary);
+        setDailyWage(res.data[0].dailyWage);
+      });
+  }, [""]);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -66,28 +103,13 @@ const AddEmployee = () => {
       }
 
       axios
-        .post("http://localhost:5000/hr/employee/add", data, {
+        .put("http://localhost:5000/hr/employee/update/" + EID, data, {
           withCredentials: true,
           credentials: "include",
         })
         .then((res) => {
-          if (res.data === "Employee Added") {
-            alert("Employee Added");
-            setDob("");
-            setFname("");
-            setLname("");
-            setBankName("");
-            setAccountNo("");
-            setBranchCode("");
-            setBranchName("");
-            setNIC("");
-            setPassportNo("");
-            setgender("");
-            setWorkerType("");
-            setDesignation("");
-            setDepartment("");
-            setBasicSalary(0);
-            setDailyWage(0);
+          if (res.data === "Employee details Updated") {
+            alert("Employee details Updated");
           } else {
             alert("Sorry,Try again");
           }
@@ -101,7 +123,7 @@ const AddEmployee = () => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Add Employee</h1>
+          <h1>Update Employee</h1>
         </div>
         <div className="bottom">
           <div className="right">
@@ -300,4 +322,4 @@ const AddEmployee = () => {
   );
 };
 
-export default AddEmployee;
+export default EditEmployee;
