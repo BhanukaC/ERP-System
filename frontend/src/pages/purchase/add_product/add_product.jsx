@@ -5,7 +5,7 @@ import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
 
 const AddProduct = () => {
-  const [pid, setpid] = useState("");
+  
   const [pname, setpname] = useState("");
   const [sellp, setsellp] = useState(0);
   const [eancode, seteancode] = useState("");
@@ -73,16 +73,7 @@ const AddProduct = () => {
           <div className="right">
             <form>
 
-              <div className="formInput">
-                <label>Product ID</label>
-                <input
-                  type="text"
-                  value={pid}
-                  onChange={(e) => {
-                    setpid(e.target.value);
-                  }}
-                />
-              </div>
+              
               <div className="formInput">
                 <label>Product Name</label>
                 <input

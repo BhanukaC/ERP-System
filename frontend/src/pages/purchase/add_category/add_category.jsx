@@ -5,7 +5,7 @@ import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
 
 const AddCategory = () => {
-  const [catID, setcatID] = useState("");
+  
   const [catName, setcatName] = useState("");
   
 
@@ -15,7 +15,7 @@ const AddCategory = () => {
       .post(
         "http://localhost:5000/purchase/category/add",
         {
-          catID: catID,
+          
           categoryName:catName,
           
         },
@@ -25,8 +25,13 @@ const AddCategory = () => {
         }
       )
       .then((res) => {
-        alert("Category added Successfully");
-        console.log(res);
+        if(res.data=="category Added"){
+          alert("Category Added");
+        }else{
+          alert("Error");
+        }
+        //
+        //console.log(res.data);
       });
   };
 
@@ -42,16 +47,7 @@ const AddCategory = () => {
           <div className="right">
             <form>
 
-              <div className="formInput">
-                <label>Category ID</label>
-                <input
-                  type="text"
-                  value={catID}
-                  onChange={(e) => {
-                    setcatID(e.target.value);
-                  }}
-                />
-              </div>
+              
               <div className="formInput">
                 <label>Category Name</label>
                 <input

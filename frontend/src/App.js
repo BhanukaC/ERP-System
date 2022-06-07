@@ -4,6 +4,7 @@ import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/new";
 import AddEmployee from "./pages/hr/employeee/add/add"
+
 import AddProduct from "./pages/purchase/add_product/add_product";
 import AddCategory from "./pages/purchase/add_category/add_category";
 import AddSubCategory from "./pages/purchase/add_sub_category/add_sub_category";
@@ -11,6 +12,7 @@ import Viewproduct from "./pages/purchase/view_product/view_product";
 import EditCategory from "./pages/purchase/edit_category/edit_category";
 import Addsupplier from "./pages/purchase/add_supplier/add_supplier";
 import EditsubCategory from "./pages/purchase/edit_sub_category/edit_sub_category";
+import Purchasehome from "./pages/purchase/home_purchase/home_purchase";
 import ViewAllEmployees from "./pages/hr/employeee/viewAll/viewAll";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
@@ -30,6 +32,7 @@ function App() {
             <Route path="login" element={<Login />} />
 
             <Route path="purchase">
+            <Route path="home" element={<Purchasehome />} />
               <Route path="product"> 
                 <Route path="add" element={<AddProduct />} />
                 <Route path="addcat" element={<AddCategory />} />

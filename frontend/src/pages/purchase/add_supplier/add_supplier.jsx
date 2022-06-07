@@ -5,7 +5,7 @@ import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
 
 const Addsupplier = () => {
-  const [sid, setsid] = useState("");
+  
   const [sname, setsname] = useState("");
   const [payterm, setpayterm] = useState("");
   const [no, setno] = useState("");
@@ -24,7 +24,7 @@ const Addsupplier = () => {
       .post(
         "http://localhost:5000/purchase/supplier/add",
         {
-          SID : sid,
+         
           sName: sname,
           paymentTerm : payterm,
           no : no,
@@ -43,8 +43,13 @@ const Addsupplier = () => {
         }
       )
       .then((res) => {
-        alert("Supplier added Successfully");
-        console.log(res);
+        if(res.data=="OK"){
+          alert("Product added");
+        }else{
+          alert("Error");
+        }
+        //
+        //console.log(res.data);
       });
   };
 
@@ -60,16 +65,7 @@ const Addsupplier = () => {
           <div className="right">
             <form>
 
-              <div className="formInput">
-                <label>Supplier ID</label>
-                <input
-                  type="text"
-                  value={sid}
-                  onChange={(e) => {
-                    setsid(e.target.value);
-                  }}
-                />
-              </div>
+              
               <div className="formInput">
                 <label>Supplier Name</label>
                 <input
