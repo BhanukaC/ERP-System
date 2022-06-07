@@ -16,6 +16,7 @@ const Addsupplier = () => {
   const [delterm, setdelterm] = useState("");
   const [email, setemail] = useState("");
   
+  
 
 
   const submitForm = (e) => {
