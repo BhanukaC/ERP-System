@@ -9,11 +9,11 @@ const userColumns = [
   { field: "salesOrderID", headerName: "Sales Order ID",  width: 100},
   { field: "orderDate", headerName: "Order Date", width: 200 },
   { field: "deliveredDate", headerName: "Delivered Date", width: 200},
-  { field: "status", headerName: "Status", width: 200 },
   { field: "total", headerName: "total", width: 100 },
   { field: "CID", headerName: "Customer ID", width: 100},
   { field: "deliveryCharge", headerName: "Delivery Charge", width: 100},
   { field: "netTotal", headerName: "Net Total", width: 100},
+  { field: "status", headerName: "Status", width: 200 },
 ];
 
 const SalesOrderTable = () => {

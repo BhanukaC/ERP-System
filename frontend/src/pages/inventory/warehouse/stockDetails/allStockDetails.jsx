@@ -1,22 +1,18 @@
 import "../../tablePage.scss";
 import Navbar from "../../../../components/navbar/Navbar";
 import InventorySidebar from "../../../../components/inventory/inventorySidebar/inventorySidebar";
-import SalesOrderDataTable from "../../../../components/inventory/orderDataTable/salesOrderDataTable";
+import AllStockTable from "../../../../components/inventory/stockTable/allStockTable";
 
-import { useParams } from "react-router-dom";
-
-const SalesOrderData = () => {
-    const {id}=useParams();
-    console.log(id);
+const AllStockDetails = () => {
   return (
     <div className="list">
       <InventorySidebar />
       <div className="listContainer">
         <Navbar />
-        <SalesOrderDataTable id={id}/>
+        <AllStockTable />
       </div>
     </div>
   );
 };
 
-export default SalesOrderData;
+export default AllStockDetails;

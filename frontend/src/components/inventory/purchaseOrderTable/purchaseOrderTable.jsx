@@ -8,12 +8,12 @@ import axios from "axios";
 const userColumns = [
   { field: "purchaseOrderID", headerName: "Purchase Order ID",  width: 100},
   { field: "orderDate", headerName: "Order Date", width: 200 },
-  { field: "status", headerName: "Status", width: 200 },
   { field: "total", headerName: "Net Total", width: 100 },
   { field: "SID", headerName: "Supplier ID", width: 100},
   { field: "SCID", headerName: "SCID", width: 100},
   { field: "WID", headerName: "Warehouse ID", width: 100},
   { field: "deliveredDate", headerName: "DeliveredDate", width: 200},
+  { field: "status", headerName: "Status", width: 100 },
 ];
 
 const PurchaseOrderTable = () => {
@@ -37,8 +37,24 @@ const PurchaseOrderTable = () => {
 
   const actionColumn = [
     {
+      field: "change",
+      headerName: "Change Status",
+      width: 150,
+      renderCell: (params) => {
+        const reLink= "/inventory/order/purchaseOrderData/"+params.row.purchaseOrderID;
+        return (
+          <div className="cellAction">
+            <Link to={reLink} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Change</div>
+            </Link>
+          </div>
+        );
+      },
+    },
+    {
+      field: "order",
       headerName: "Order Details",
-      width: 200,
+      width: 150,
       renderCell: (params) => {
         const reLink= "/inventory/order/purchaseOrderData/"+params.row.purchaseOrderID;
         return (
@@ -51,6 +67,7 @@ const PurchaseOrderTable = () => {
       },
     },
   ];
+
   return (
     <div className="datatable">
       <div className="datatableTitle">

@@ -6,26 +6,26 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "ID", headerName: "ID",  width: 100},
+  { field: "WID", headerName: "Warehouse ID",  width: 200},
   { field: "PID", headerName: "Product ID", width: 200 },
   { field: "qty", headerName: "Quantity", width: 200 },
   { field: "qualityLevel", headerName: "Quality Level", width: 200 },
 
 ];
 
-const StockTable = (props) => {
+const AllStockTable = (props) => {
   const [data, setData] = useState({});
   // console.log("props",props);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/inventory/stockLevelForWarehouse/get/"+props.id, {
+      .get("http://localhost:5000/inventory/stockLevel/getAll/", {
         withCredentials: true,
         credentials: "include",
       })
       .then((res) => {
         let dt = res.data.map((d) => {
-          return { id: d.ID, ...d };
+          return { id: d.WID, ...d };
         });
         setData(dt);
         // console.log(dt);
@@ -68,4 +68,4 @@ const StockTable = (props) => {
   );
 };
 
-export default StockTable;
+export default AllStockTable;

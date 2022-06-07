@@ -1,4 +1,4 @@
-import "./stockDetails.scss";
+import "../../tablePage.scss";
 import Navbar from "../../../../components/navbar/Navbar";
 import InventorySidebar from "../../../../components/inventory/inventorySidebar/inventorySidebar";
 import StockTable from "../../../../components/inventory/stockTable/stockTable";

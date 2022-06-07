@@ -8,6 +8,8 @@ import AssignmentReturnIcon from '@mui/icons-material/AssignmentReturn';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../../context/darkModeContext";
 import { useContext } from "react";
@@ -80,6 +82,19 @@ const InventorySidebar = () => {
             <li>
               <LibraryBooksIcon className="icon" />
               <span>Inventory Reports</span>
+            </li>
+          </Link>
+          <p className="title">USER</p>
+          <Link to="/users" style={{ textDecoration: "none" }}>
+            <li>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Profile</span>
+            </li>
+          </Link>
+          <Link to="/users" style={{ textDecoration: "none" }}>
+            <li>
+              <ExitToAppIcon className="icon" />
+              <span>Logout</span>
             </li>
           </Link>
         </ul>

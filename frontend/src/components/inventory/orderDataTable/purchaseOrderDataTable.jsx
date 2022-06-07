@@ -1,7 +1,6 @@
 import "../table.scss";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { DataGrid } from "@mui/x-data-grid";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -34,21 +33,6 @@ const PurchaseOrderDataTable = (props) => {
       });
   }, [""]);
 
-  const actionColumn = [
-    {
-      headerName: "Order Details",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <Link to=" " style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
-          </div>
-        );
-      },
-    },
-  ];
   return (
     <div className="datatable">
       <div className="datatableTitle">
@@ -61,7 +45,7 @@ const PurchaseOrderDataTable = (props) => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={userColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
       />

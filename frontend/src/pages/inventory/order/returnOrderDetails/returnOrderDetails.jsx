@@ -1,4 +1,4 @@
-import "./returnOrderDetails.scss";
+import "../../tablePage.scss";
 import Navbar from "../../../../components/navbar/Navbar";
 import InventorySidebar from "../../../../components/inventory/inventorySidebar/inventorySidebar";
 import ReturnOrderTable from "../../../../components/inventory/returnOrderTable/returnOrderTable";
