@@ -40,9 +40,10 @@ const ReturnOrderTable = () => {
       headerName: "Order Details",
       width: 200,
       renderCell: (params) => {
+        const reLink= "/inventory/order/returnOrderData/"+params.row.salesReturnOrderID;
         return (
           <div className="cellAction">
-            <Link to="../inventory/stockTable/stockTable" style={{ textDecoration: "none" }}>
+            <Link to={reLink} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
           </div>

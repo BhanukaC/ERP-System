@@ -12,6 +12,8 @@ import SalesOrderDetails from "./pages/inventory/order/salesOrderDetails/salesOr
 import ReturnOrderDetails from "./pages/inventory/order/returnOrderDetails/returnOrderDetails";
 import InventoryDashboard from "./pages/inventory/dashboard/dashboard";
 import PurchaseOrderData from "./pages/inventory/order/orderData/purchaseOrderData";
+import ReturnOrderData from "./pages/inventory/order/orderData/ReturnOrderData";
+import SalesOrderData from "./pages/inventory/order/orderData/salesOrderData";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -40,6 +42,8 @@ function App() {
                 <Route path="returnOrderDetails" element={<ReturnOrderDetails />} />
                 <Route path="salesOrderDetails" element={<SalesOrderDetails />} />
                 <Route path="purchaseOrderData/:id" element={<PurchaseOrderData />} />
+                <Route path="salesOrderData/:id" element={<SalesOrderData />} />
+                <Route path="returnOrderData/:id" element={<ReturnOrderData />} />
               </Route>
 
               <Route path="inventoryDashboard" element={<InventoryDashboard />} />

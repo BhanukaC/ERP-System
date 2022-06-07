@@ -1,11 +1,11 @@
 import "./orderData.scss";
 import Navbar from "../../../../components/navbar/Navbar";
 import InventorySidebar from "../../../../components/inventory/inventorySidebar/inventorySidebar";
-import SalesOrderDataTable from "../../../../components/inventory/orderDataTable/salesOrderDataTable";
+import ReturnOrderDataTable from "../../../../components/inventory/orderDataTable/returnOrderDataTable";
 
 import { useParams } from "react-router-dom";
 
-const SalesOrderData = () => {
+const ReturnOrderData = () => {
     const {id}=useParams();
     console.log(id);
   return (
@@ -13,10 +13,10 @@ const SalesOrderData = () => {
       <InventorySidebar />
       <div className="listContainer">
         <Navbar />
-        <SalesOrderDataTable id={id}/>
+        <ReturnOrderDataTable id={id}/>
       </div>
     </div>
   );
 };
 
-export default SalesOrderData;
+export default ReturnOrderData;
