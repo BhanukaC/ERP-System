@@ -23,6 +23,7 @@ function App() {
             <Route path="login" element={<Login />} />
 
             <Route path="hr">
+              <Route index element={<AddEmployee />} />
               <Route path="employee">
                 <Route path="add" element={<AddEmployee />} />
                 <Route path="viewall" element={<ViewAllEmployees />} />
