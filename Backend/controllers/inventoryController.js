@@ -3,7 +3,7 @@ const query = require("../helpers/mysqlPromise");
 const today = require("../helpers/today");
 const _ = require("underscore");
 
-
+//update warehouse details
 exports.warehouseUpdateController = async (req, res) => {
     const id = req.params.id;
     const { no, street, town } = req.body;
@@ -19,6 +19,7 @@ exports.warehouseUpdateController = async (req, res) => {
     });
 };
 
+//get a single warehouse details
 exports.getSingleWarehouseController = async (req, res) => {
     const id = req.params.id;
     db.query("select WID,ManagerName,no,street,town from Warehouse where WID=?", [id], (err, result) => {
@@ -33,6 +34,7 @@ exports.getSingleWarehouseController = async (req, res) => {
     });
 };
 
+//get all warehouse details
 exports.getAllWarehouseController = async (req, res) => {
     db.query("select WID,ManagerName,no,street,town from Warehouse", (err, result) => {
         if (err) {
