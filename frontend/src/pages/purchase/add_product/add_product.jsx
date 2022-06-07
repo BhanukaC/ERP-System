@@ -222,7 +222,7 @@ const AddProduct = () => {
               <div className="formInput">
                 <label>No Of Items</label>
                 <input
-                  type="text"
+                  type="number"
                   value={noitems}
                   onChange={(e) => {
                     setnoitems(e.target.value);
