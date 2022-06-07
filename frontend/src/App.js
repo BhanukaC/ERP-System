@@ -27,6 +27,7 @@ function App() {
               <Route path="employee">
                 <Route path="add" element={<AddEmployee />} />
                 <Route path="viewall" element={<ViewAllEmployees />} />
+                <Route path="edit/:id" element={<ViewAllEmployees />} />
               </Route>
             </Route>
 
