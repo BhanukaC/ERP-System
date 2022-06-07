@@ -28,7 +28,6 @@ const AddProduct = () => {
       .post(
         "http://localhost:5000/purchase/product/add",
         {
-          PID: pid,
           PName: pname,
           sellingPrice: sellp,
           EANCode: eancode,
@@ -52,8 +51,13 @@ const AddProduct = () => {
         }
       )
       .then((res) => {
-        alert(res);
-        console.log(res);
+        if(res.data=="product Added"){
+          alert("Product added");
+        }else{
+          alert("Error");
+        }
+        //
+        //console.log(res.data);
       });
   };
 
