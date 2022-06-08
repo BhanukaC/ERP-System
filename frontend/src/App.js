@@ -11,6 +11,7 @@ import AddSubCategory from "./pages/purchase/add_sub_category/add_sub_category";
 import Viewproduct from "./pages/purchase/view_product/view_product";
 import EditCategory from "./pages/purchase/edit_category/edit_category";
 import Addsupplier from "./pages/purchase/add_supplier/add_supplier";
+import EditSuppler from "./pages/purchase/edit_supplier/edit_supplier";
 import EditsubCategory from "./pages/purchase/edit_sub_category/edit_sub_category";
 import Purchasehome from "./pages/purchase/home_purchase/home_purchase";
 import ViewAllEmployees from "./pages/hr/employeee/viewAll/viewAll";
@@ -32,7 +33,7 @@ function App() {
             <Route path="login" element={<Login />} />
 
             <Route path="purchase">
-            <Route path="home" element={<Purchasehome />} />
+            <Route path="home" element={<Purchasehome/>} />
               <Route path="product"> 
                 <Route path="add" element={<AddProduct />} />
                 <Route path="addcat" element={<AddCategory />} />
@@ -42,6 +43,8 @@ function App() {
                 <Route path="editsubcat" element={<EditsubCategory />} />
                 </Route>
                 <Route path="addsupplier" element={<Addsupplier />} />
+                <Route path="editsupplier" element={<EditSuppler />} />
+                
             </Route>
 
             <Route path="hr">

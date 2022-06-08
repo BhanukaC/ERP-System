@@ -73,6 +73,13 @@ const Sidebar = () => {
             <span>Add Supplier</span>
           </li>
           </Link>
+
+          <Link to="/purchase/editsupplier" style={{ textDecoration: "none" }}>
+          <li>
+            <EditIcon className="icon" />
+            <span>Edit Supplier</span>
+          </li>
+          </Link>
           
           <p className="title">PURCHASE ORDER</p>
           <li>

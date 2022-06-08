@@ -44,8 +44,8 @@ const Addsupplier = () => {
         }
       )
       .then((res) => {
-        if(res.data=="OK"){
-          alert("Product added");
+        if(res.data== "supplier Added"){
+          alert("Supplier added");
         }else{
           alert("Error");
         }
