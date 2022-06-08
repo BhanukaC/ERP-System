@@ -1,5 +1,5 @@
 import "./Datatable.scss";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -10,7 +10,7 @@ const userColumns = [
   { field: "no", headerName: "No" },
   { field: "street", headerName: "Street" },
   { field: "town", headerName: "Town" },
-  { field: "UID", headerName: "UID" }
+  { field: "UID", headerName: "UID" },
 ];
 
 const Datatable = () => {
@@ -60,15 +60,20 @@ const Datatable = () => {
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">
-        Warehouses
-      </div>
+      <div className="datatableTitle">Warehouses</div>
       <DataGrid
         className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
+        components={{ Toolbar: GridToolbar }}
+        componentsProps={{
+          toolbar: {
+            showQuickFilter: true,
+            quickFilterProps: { debounceMs: 500 },
+          },
+        }}
       />
     </div>
   );
