@@ -13,7 +13,14 @@ const AddSubCategory = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    axios
+    if(
+      subcatName === ""
+    )
+    {
+      alert("Please fill the required fields");
+    }
+    else{
+      axios
       .post(
         "http://localhost:5000/purchase/subCategory/add",
         {
@@ -36,6 +43,8 @@ const AddSubCategory = () => {
         //
         //console.log(res.data);
       });
+    }
+    
   };
 
   return (
@@ -76,7 +85,8 @@ const AddSubCategory = () => {
               <div className="formInput">
                 <label>Discount</label>
                 <input
-                  type="text"
+                  type="number"
+                  step="any"
                   value={discount}
                   onChange={(e) => {
                     setdiscount(e.target.value);

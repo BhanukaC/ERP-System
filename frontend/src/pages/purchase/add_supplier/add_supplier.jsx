@@ -21,7 +21,14 @@ const Addsupplier = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    axios
+    if(
+      sname === ""
+    )
+    {
+      alert("Please fill the required fields");
+    }
+    else{
+      axios
       .post(
         "http://localhost:5000/purchase/supplier/add",
         {
@@ -52,6 +59,9 @@ const Addsupplier = () => {
         //
         //console.log(res.data);
       });
+
+    }
+    
   };
 
   return (

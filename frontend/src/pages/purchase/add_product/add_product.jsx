@@ -169,7 +169,8 @@ const AddProduct = () => {
               <div className="formInput">
                 <label>Height</label>
                 <input
-                  type="text"
+                  type="number"
+                  step="any"
                   value={height}
                   onChange={(e) => {
                     setheight(e.target.value);
@@ -180,7 +181,8 @@ const AddProduct = () => {
               <div className="formInput">
                 <label>Length</label>
                 <input
-                  type="text"
+                  type="number"
+                  step="any"
                   value={length}
                   onChange={(e) => {
                     setlength(e.target.value);
@@ -191,7 +193,8 @@ const AddProduct = () => {
               <div className="formInput">
                 <label>Weight</label>
                 <input
-                  type="text"
+                  type="number"
+                  step="any"
                   value={weight}
                   onChange={(e) => {
                     setweight(e.target.value);
@@ -202,7 +205,8 @@ const AddProduct = () => {
               <div className="formInput">
                 <label>Buying Price</label>
                 <input
-                  type="text"
+                 type="number"
+                 step="any"
                   value={buyingp}
                   onChange={(e) => {
                     setbuyingp(e.target.value);
