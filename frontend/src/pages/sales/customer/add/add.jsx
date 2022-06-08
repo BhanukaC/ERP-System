@@ -20,10 +20,23 @@ const AddCustomer = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    axios
-      .post(
-        "http://localhost:5000/sales/Customer/add",
-        {
+    if (
+      customerName === "" ||
+      paymentTerm === "" ||
+      returnTerm === "" ||
+      deliveryTerm === "" ||
+      no === "" ||
+      street === "" ||
+      town === "" ||
+      branchCode === "" ||
+      accountNo === "" ||
+      bankName === "" ||
+      email === "" 
+     ) 
+     {
+      alert("Please fill all required fields");
+    } else {
+      let data = {
             customerName:customerName,
             paymentTerm:paymentTerm,
             returnTerm:returnTerm,
@@ -35,21 +48,35 @@ const AddCustomer = () => {
             accountNo:accountNo,
             bankName:bankName,
             email:email,
-        },
+      };
+    axios
+      .post("http://localhost:5000/sales/Customer/add",data ,
         {
           withCredentials: true,
           credentials: "include",
+        })
+        .then((res) => {
+          if(res.data=="Customer Added"){
+            alert("Customer added");
+            setCustomerName("");
+            setPaymentMethod("");
+            setReturnTerm("");
+            setDeliveryTerm();
+            setNo();
+            setStreet("");
+            setTown("");
+            setBranchCode();           
+            setAccountNumber();
+            setBankName("");
+            setEmail("");
         }
-      )
-      .then((res) => {
-        if(res.data=="Customer Added"){
-          alert("Customer added");
-        }else{
+      else{
           alert("Error");
         }
         //
         //console.log(res.data);
       });
+    }
   };
 
 
