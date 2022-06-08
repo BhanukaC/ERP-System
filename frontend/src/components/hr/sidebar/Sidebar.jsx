@@ -39,36 +39,52 @@ const Sidebar = () => {
               <span>View All</span>
             </li>
           </Link>
-          <li>
-            <CreditCardIcon className="icon" />
-            <span>Orders</span>
-          </li>
-          <li>
-            <LocalShippingIcon className="icon" />
-            <span>Delivery</span>
-          </li>
-          <p className="title">USEFUL</p>
-          <li>
-            <InsertChartIcon className="icon" />
-            <span>Stats</span>
-          </li>
-          <li>
-            <NotificationsNoneIcon className="icon" />
-            <span>Notifications</span>
-          </li>
-          <p className="title">SERVICE</p>
-          <li>
-            <SettingsSystemDaydreamOutlinedIcon className="icon" />
-            <span>System Health</span>
-          </li>
-          <li>
-            <PsychologyOutlinedIcon className="icon" />
-            <span>Logs</span>
-          </li>
-          <li>
-            <SettingsApplicationsIcon className="icon" />
-            <span>Settings</span>
-          </li>
+          <Link to="/hr/dependent/add" style={{ textDecoration: "none" }}>
+            <li>
+              <AddIcon className="icon" />
+              <span>Add Dependent</span>
+            </li>
+          </Link>
+
+          <p className="title">OT</p>
+          <Link to="/hr/otType/add" style={{ textDecoration: "none" }}>
+            <li>
+              <AddIcon className="icon" />
+              <span>Add OT Type</span>
+            </li>
+          </Link>
+          <Link to="/hr/otType/viewall" style={{ textDecoration: "none" }}>
+            <li>
+              <PreviewIcon className="icon" />
+              <span>View All OT Types</span>
+            </li>
+          </Link>
+          <Link to="/hr/otRecord/add" style={{ textDecoration: "none" }}>
+            <li>
+              <AddIcon className="icon" />
+              <span>Add OT Record</span>
+            </li>
+          </Link>
+          <Link to="/hr/otRecord/viewall" style={{ textDecoration: "none" }}>
+            <li>
+              <PreviewIcon className="icon" />
+              <span>View All OT Records</span>
+            </li>
+          </Link>
+          <p className="title">Advance Payment</p>
+          <Link to="/hr/advance/add" style={{ textDecoration: "none" }}>
+            <li>
+              <AddIcon className="icon" />
+              <span>Give Advance Payment</span>
+            </li>
+          </Link>
+          <Link to="/hr/advance/viewall" style={{ textDecoration: "none" }}>
+            <li>
+              <PreviewIcon className="icon" />
+              <span>View All Advance Payments</span>
+            </li>
+          </Link>
+
           <p className="title">USER</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />

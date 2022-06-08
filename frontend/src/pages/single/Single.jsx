@@ -3,8 +3,11 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Chart from "../../components/chart/Chart";
 import List from "../../components/table/Table";
+import { useParams } from "react-router-dom";
 
 const Single = () => {
+  const { userId } = useParams();
+  console.log(userId);
   return (
     <div className="single">
       <Sidebar />
@@ -48,8 +51,8 @@ const Single = () => {
           </div>
         </div>
         <div className="bottom">
-        <h1 className="title">Last Transactions</h1>
-          <List/>
+          <h1 className="title">Last Transactions</h1>
+          <List />
         </div>
       </div>
     </div>
