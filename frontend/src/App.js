@@ -15,6 +15,7 @@ import InventoryDashboard from "./pages/inventory/dashboard/dashboard";
 import PurchaseOrderData from "./pages/inventory/order/orderData/purchaseOrderData";
 import ReturnOrderData from "./pages/inventory/order/orderData/ReturnOrderData";
 import SalesOrderData from "./pages/inventory/order/orderData/salesOrderData";
+import ChangeQualityLevel from "./pages/inventory/qualityLevel/qualityLevel";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -33,10 +34,12 @@ function App() {
             <Route path="login" element={<Login />} />
 
             <Route path="inventory">
+              <Route index element={<InventoryDashboard />} />
               <Route path="warehouse">
                 <Route path="warehouseDetails" element={<WarehouseDetails />} />
                 <Route path="stockDetails/:id" element={<StockDetails />} />
                 <Route path="stockDetails" element={<AllStockDetails />} />
+                <Route path="changeQualityLevel" element={<ChangeQualityLevel />} />
               </Route>
 
               <Route path="order">
@@ -47,10 +50,6 @@ function App() {
                 <Route path="salesOrderData/:id" element={<SalesOrderData />} />
                 <Route path="returnOrderData/:id" element={<ReturnOrderData />} />
               </Route>
-
-              <Route path="inventoryDashboard" element={<InventoryDashboard />} />
-
-
             </Route>
 
             <Route path="hr">

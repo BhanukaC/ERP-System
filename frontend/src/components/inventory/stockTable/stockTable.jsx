@@ -32,21 +32,21 @@ const StockTable = (props) => {
   }, [""]);
 
  
-  const actionColumn = [
+  /*const actionColumn = [
     {
       headerName: "Change Quality Level",
       width: 200,
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link to="/inventory/warehouse/changeQualityLevel" style={{ textDecoration: "none" }}>
               <div className="viewButton">Change</div>
             </Link>
           </div>
         );
       },
     },
-  ];
+  ];*/
   return (
     <div className="datatable">
       <div className="datatableTitle">
@@ -55,7 +55,7 @@ const StockTable = (props) => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={userColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
         components={{ Toolbar: GridToolbar }}

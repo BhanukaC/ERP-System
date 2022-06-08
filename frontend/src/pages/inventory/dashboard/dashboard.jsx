@@ -1,10 +1,7 @@
 import "./dashboard.scss";
-import Sidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
+import InventorySidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
 import Navbar from "../../../components/navbar/Navbar";
-import Widget from "../../../components/widget/Widget";
-import Featured from "../../../components/featured/Featured";
-import Chart from "../../../components/chart/Chart";
-import Table from "../../../components/table/Table";
+import AllStockTable from "../../../components/inventory/stockTable/allStockTable";
 import axios from "axios";
 import { useEffect } from "react";
 
@@ -26,22 +23,12 @@ const InventoryDashboard = () => {
 
   return (
     <div className="home">
-      <Sidebar />
+      <InventorySidebar />
       <div className="homeContainer">
         <Navbar />
-        <div className="widgets">
-          <Widget type="user" />
-          <Widget type="order" />
-          <Widget type="earning" />
-          <Widget type="balance" />
-        </div>
-        <div className="charts">
-          <Featured />
-          <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
-        </div>
         <div className="listContainer">
-          <div className="listTitle">Latest Transactions</div>
-          <Table />
+            <div className="listTitle">Latest Transactions</div>
+          <AllStockTable />
         </div>
       </div>
     </div>

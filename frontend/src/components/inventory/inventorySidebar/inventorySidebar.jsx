@@ -7,9 +7,9 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import AssignmentReturnIcon from '@mui/icons-material/AssignmentReturn';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../../context/darkModeContext";
 import { useContext } from "react";
@@ -27,7 +27,7 @@ const InventorySidebar = () => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <Link to="/inventory/inventoryDashboard" style={{ textDecoration: "none" }}>
+          <Link to="/inventory" style={{ textDecoration: "none" }}>
           <div className="sec">
           <li>
             <DashboardIcon className="icon" />
@@ -81,12 +81,12 @@ const InventorySidebar = () => {
                <span>Internal Shipment Details</span>
              </li>
           </Link>
-          <p className="title">REPORT</p>
-          <Link to=" " style={{ textDecoration: "none" }}>
-            <li>
-              <LibraryBooksIcon className="icon" />
-              <span>Inventory Reports</span>
-            </li>
+          <p className="title">QUALITY LEVEL</p>
+          <Link to="/inventory/warehouse/changeQualityLevel " style={{ textDecoration: "none" }}>
+             <li>
+              <ChangeCircleIcon className="icon" />
+               <span>Change Quality Level</span>
+             </li>
           </Link>
           <p className="title">USER</p>
           <Link to=" " style={{ textDecoration: "none" }}>
