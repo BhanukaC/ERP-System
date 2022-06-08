@@ -7,61 +7,41 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 
 const EditOtType = () => {
-  const [EID, setEID] = useState("");
-  const [dependentName, setDependentName] = useState("");
-  const [dob, setDob] = useState("");
-  const [contactNo, setContactNo] = useState("");
-  const [relationship, setRelationship] = useState("");
-  const [gender, setgender] = useState("");
+  const [OtType, setOtType] = useState("");
+  const [payPerHour, setPayPerHour] = useState(0);
 
-  const { DID } = useParams();
+  const { otID } = useParams();
   useEffect(() => {
     axios
-      .get("http://localhost:5000/hr/dependent/getSingle/" + DID, {
+      .get("http://localhost:5000/hr/otType/getSingle/" + otID, {
         withCredentials: true,
         credentials: "include",
       })
       .then((res) => {
-        setDob(
-          moment(res.data[0].DOB).add(1, "days").utc().format("YYYY-MM-DD")
-        );
-        setEID(res.data[0].EID);
-        setDependentName(res.data[0].name);
-        setgender(res.data[0].gender);
-        setContactNo(res.data[0].contactNo);
-        setRelationship(res.data[0].relationship);
+        console.log(res.data);
+        setOtType(res.data[0].type);
+        setPayPerHour(res.data[0].payPerHour);
       });
   }, [""]);
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (
-      EID === "" ||
-      dependentName === "" ||
-      dob === "" ||
-      contactNo === "" ||
-      relationship === "" ||
-      gender === ""
-    ) {
+    if (OtType === "" || payPerHour === 0) {
       alert("Please fill all required fields");
     } else {
       let data = {
-        EID: EID,
-        name: dependentName,
-        contactNo: contactNo,
-        DOB: dob,
-        gender: gender,
-        relationship: relationship,
+        type: OtType,
+        payPerHour: payPerHour,
       };
 
       axios
-        .put("http://localhost:5000/hr/dependent/update/" + DID, data, {
+        .put("http://localhost:5000/hr/otType/update/" + otID, data, {
           withCredentials: true,
           credentials: "include",
         })
         .then((res) => {
-          if (res.data === "Dependent details Updated") {
-            alert("Dependent details Updated");
+          if (res.data === "OT Type Updated") {
+            alert("OT Type Updated");
           } else {
             alert("Sorry,Try again");
           }
@@ -75,86 +55,35 @@ const EditOtType = () => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Add Dependent</h1>
+          <h1>Update OT Type</h1>
         </div>
         <div className="bottom">
           <div className="right">
             <form>
               <div className="formInput">
-                <label>EID*</label>
+                <label>OT Type*</label>
                 <input
                   type="text"
-                  value={EID}
+                  value={OtType}
                   onChange={(e) => {
-                    setEID(e.target.value);
+                    setOtType(e.target.value);
                   }}
-                  disabled
                 />
               </div>
-
               <div className="formInput">
-                <label>Dependent Name*</label>
+                <label>Pay Per Hour*</label>
                 <input
-                  type="text"
-                  value={dependentName}
+                  type="number"
+                  step="any"
+                  value={payPerHour}
                   onChange={(e) => {
-                    setDependentName(e.target.value);
+                    setPayPerHour(e.target.value);
                   }}
                 />
-              </div>
-
-              <div className="formInput">
-                <label>Date of Birth*</label>
-                <input
-                  type="date"
-                  value={dob}
-                  onChange={(e) => {
-                    setDob(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="formInput">
-                <label>Contact Number*</label>
-                <input
-                  type="text"
-                  value={contactNo}
-                  onChange={(e) => {
-                    setContactNo(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="formInput">
-                <label>Relationship*</label>
-                <input
-                  type="text"
-                  value={relationship}
-                  onChange={(e) => {
-                    setRelationship(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="formInput">
-                <label>Gender*</label>
-
-                <select
-                  value={gender}
-                  onChange={(e) => {
-                    setgender(e.target.value);
-                  }}
-                >
-                  <option value="" disabled selected>
-                    select gender
-                  </option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Send</button>
+              <button onClick={submitForm}>Update</button>
             </form>
           </div>
         </div>

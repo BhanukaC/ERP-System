@@ -75,7 +75,7 @@ const EditDependent = () => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Add Dependent</h1>
+          <h1>Update Dependent</h1>
         </div>
         <div className="bottom">
           <div className="right">
@@ -154,7 +154,7 @@ const EditDependent = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Send</button>
+              <button onClick={submitForm}>Update</button>
             </form>
           </div>
         </div>

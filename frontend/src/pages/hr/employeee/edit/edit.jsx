@@ -313,7 +313,7 @@ const EditEmployee = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Send</button>
+              <button onClick={submitForm}>Update</button>
             </form>
           </div>
         </div>

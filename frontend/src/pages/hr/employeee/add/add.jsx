@@ -291,7 +291,7 @@ const AddEmployee = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Send</button>
+              <button onClick={submitForm}>Add</button>
             </form>
           </div>
         </div>

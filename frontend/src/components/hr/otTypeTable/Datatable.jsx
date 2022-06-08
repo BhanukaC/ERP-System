@@ -6,26 +6,17 @@ import axios from "axios";
 import moment from "moment";
 
 const userColumns = [
-  { field: "DID", headerName: "DID" },
-  { field: "EID", headerName: "EID", width: 100 },
-  { field: "name", headerName: "Name" },
-  { field: "contactNo", headerName: "contact No" },
-  { field: "birth", headerName: "Date of Birth", width: 100 },
-  { field: "gender", headerName: "Gender" },
-  { field: "relationship", headerName: "Relationship" },
+  { field: "otID", headerName: "otID" },
+  { field: "type", headerName: "Type", width: 100 },
+  { field: "payPerHour", headerName: "Pay Per Hour" },
 ];
 
 const Datatable = (props) => {
-  const EID = props.EID;
   const [data, setData] = useState({});
-
-  // const handleDelete = (CID) => {
-  //   setData(data.filter((item) => item.id !== CID));
-  // };
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/hr/dependent/getAll/" + EID, {
+      .get("http://localhost:5000/hr/otType/getAll", {
         withCredentials: true,
         credentials: "include",
       })
@@ -33,13 +24,11 @@ const Datatable = (props) => {
         // console.log(res);
         let dt = res.data.map((d) => {
           return {
-            id: d.DID,
-            birth: moment(d.DOB).add(1, "days").utc().format("YYYY/MM/DD"),
+            id: d.otID,
             ...d,
           };
         });
         setData(dt);
-        // console.log(dt);
       });
   }, [""]);
 
@@ -49,7 +38,7 @@ const Datatable = (props) => {
       headerName: "Action",
       width: 100,
       renderCell: (params) => {
-        const reLink = "/hr/dependent/edit/" + params.row.DID;
+        const reLink = "/hr/otType/edit/" + params.row.otID;
         return (
           <div className="cellAction">
             <Link to={reLink} style={{ textDecoration: "none" }}>
@@ -62,9 +51,7 @@ const Datatable = (props) => {
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">
-        All Dependents For Employee(EID-{EID})
-      </div>
+      <div className="datatableTitle">All OT Types</div>
       <DataGrid
         className="datagrid"
         rows={data}
