@@ -91,20 +91,20 @@ function App() {
                 <Route path="returnOrderData/:id" element={<ReturnOrderData />} />
               </Route>
 
+            </Route>
+
             <Route path="purchase">
-            <Route path="home" element={<Purchasehome/>} />
-              <Route path="product"> 
+              <Route index element={<Purchasehome />} />
+              <Route path="product">
                 <Route path="add" element={<AddProduct />} />
                 <Route path="addcat" element={<AddCategory />} />
                 <Route path="addsubcat" element={<AddSubCategory />} />
                 <Route path="viewproduct" element={<Viewproduct />} />
                 <Route path="editcat" element={<EditCategory />} />
                 <Route path="editsubcat" element={<EditsubCategory />} />
-                </Route>
-                <Route path="addsupplier" element={<Addsupplier />} />
-                <Route path="editsupplier" element={<EditSuppler />} />
-                
-
+              </Route>
+              <Route path="addsupplier" element={<Addsupplier />} />
+              <Route path="editsupplier" element={<EditSuppler />} />
             </Route>
 
             <Route path="hr">
@@ -137,39 +137,24 @@ function App() {
             </Route>
 
             <Route path="sales">
+              <Route index element={<AddCustomer />} />
               <Route path="customer">
                 <Route path="add" element={<AddCustomer />} />
                 <Route path="viewAll" element={<ViewAllCustomer />} />
               </Route>
               <Route path="salesReturnOrder">
-              <Route path="add" element={<AddSalesReturnOrder />} />
-              <Route path="viewAll" element={<ViewAllSalesReturnOrders />} />
+                <Route path="add" element={<AddSalesReturnOrder />} />
+                <Route path="viewAll" element={<ViewAllSalesReturnOrders />} />
               </Route>
             </Route>
 
             <Route path="admin">
+              <Route index element={<AddUser />} />
               <Route path="adduser" element={<AddUser />} />
               <Route path="viewAll" element={<ViewAllUsers />} />
-              <Route path="viewwarehouses" element={<ViewAllWarehouses/>} />
+              <Route path="viewwarehouses" element={<ViewAllWarehouses />} />
             </Route>
 
-            <Route path="users">
-              <Route index element={<List />} />
-              <Route path=":userId" element={<Single />} />
-              <Route
-                path="new"
-                element={<New inputs={userInputs} title="Add New User" />}
-              />
-            </Route>
-
-            <Route path="products">
-              <Route index element={<List />} />
-              <Route path=":productId" element={<Single />} />
-              <Route
-                path="new"
-                element={<New inputs={productInputs} title="Add New Product" />}
-              />
-            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
