@@ -39,14 +39,18 @@ const Sidebar = () => {
               <span>View All</span>
             </li>
           </Link>
-          <li>
-            <CreditCardIcon className="icon" />
-            <span>Orders</span>
-          </li>
-          <li>
-            <LocalShippingIcon className="icon" />
-            <span>Delivery</span>
-          </li>
+          <Link to="/hr/dependent/add" style={{ textDecoration: "none" }}>
+            <li>
+              <AddIcon className="icon" />
+              <span>Add Dependent</span>
+            </li>
+          </Link>
+          <Link to="/hr/employee/viewall" style={{ textDecoration: "none" }}>
+            <li>
+              <PreviewIcon className="icon" />
+              <span>View All Dependents</span>
+            </li>
+          </Link>
           <p className="title">USEFUL</p>
           <li>
             <InsertChartIcon className="icon" />
