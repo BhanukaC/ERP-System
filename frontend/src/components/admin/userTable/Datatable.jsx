@@ -6,9 +6,9 @@ import axios from "axios";
 
 const userColumns = [
   { field: "UID", headerName: "UID" },
+  { field: "userName", headerName: "User Name" },
   { field: "acessLevel", headerName: "Acess Level" },
   { field: "email", headerName: "Email" },
-  
 ];
 
 const Datatable = () => {
@@ -60,7 +60,7 @@ const Datatable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Users
-      <Link to="../../../admin/adduser" className="link">
+        <Link to="../../../admin/adduser" className="link">
           Add New
         </Link>
       </div>
