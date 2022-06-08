@@ -20,10 +20,22 @@ const AddSalesReturnOrder = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    axios
-      .post(
-        "http://localhost:5000/sales/salesReturnOrder/add",
-        {
+    if (
+      salesReturnOrderID === "" ||
+      initiateDate === "" ||
+      reason === "" ||
+      status === "" ||
+      WID === "" ||
+      total === "" ||
+      CID === "" ||
+      CDAID === "" ||
+      CCID === "" ||
+      finishDate === "" ||
+      salesOrderID === "" 
+    ) {
+      alert("Please fill all required fields");
+    } else {
+      let data = {
         salesReturnOrderID: salesReturnOrderID,
         initiateDate: initiateDate,
         reason: reason,
@@ -35,21 +47,37 @@ const AddSalesReturnOrder = () => {
         CCID: CCID,
         finishDate: finishDate,
         salesOrderID:salesOrderID ,
-        },
+      };
+    axios
+      .post("http://localhost:5000/sales/salesReturnOrder/add", data ,
         {
           withCredentials: true,
           credentials: "include",
+        })
+        .then((res) => {
+          if(res.data=="Sales Return Order Added"){
+            alert("Sales Return Order added");
+
+            setSalesReturnOrderID();
+            setInitiateDate("");
+            setReason("");
+            setStatus("");
+            setWID();
+            setTotal();
+            setCID();
+            setCDAID();
+            setCCID();
+            setFinishDate("");
+            setSalesOrderID();
+      
         }
-      )
-      .then((res) => {
-        if(res.data=="Sales Return Order Added"){
-          alert("Sales Return Order added");
-        }else{
+        else{
           alert("Error");
         }
         //
         //console.log(res.data);
       });
+    }
   };
 
   return (
