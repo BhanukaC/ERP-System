@@ -1,4 +1,4 @@
-import Sidebar from "../../components/sidebar/Sidebar";
+import Sidebar from "../../components/purchase_sidebar/purchase_sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./home.scss";
 import Widget from "../../components/widget/Widget";
