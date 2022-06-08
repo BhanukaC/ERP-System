@@ -12,8 +12,6 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 
 import AddUser from "./pages/admin/adduser/adduser";
-import DeleteUser from "./pages/admin/deleteuser/deleteuser";
-import UpdateUser from "./pages/admin/updateuser/updateuser";
 import ViewAllUsers from "./pages/admin/viewAll/viewAll";
 import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
 
@@ -37,10 +35,8 @@ function App() {
 
             <Route path="admin">
               <Route path="adduser" element={<AddUser />} />
-              <Route path="deleteuser" element={<DeleteUser />} />
-              <Route path="updateuser" element={<UpdateUser />} />
               <Route path="viewAll" element={<ViewAllUsers />} />
-              <Route path="viewallwarehouses" element={<ViewAllWarehouses/>} />
+              <Route path="viewwarehouses" element={<ViewAllWarehouses/>} />
             </Route>
 
             <Route path="users">

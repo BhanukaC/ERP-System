@@ -5,10 +5,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "UID", headerName: "UID" },
-  { field: "acessLevel", headerName: "Acess Level" },
-  { field: "email", headerName: "Email" },
-  
+  { field: "WID", headerName: "WID" },
+  { field: "ManagerName", headerName: "Manager Name" },
+  { field: "no", headerName: "No" },
+  { field: "street", headerName: "Street" },
+  { field: "town", headerName: "Town" },
+  { field: "UID", headerName: "UID" }
 ];
 
 const Datatable = () => {
@@ -20,7 +22,7 @@ const Datatable = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admin/getAllUserData", {
+      .get("http://localhost:5000/admin/Warehouse/getAll", {
         withCredentials: true,
         credentials: "include",
       })
@@ -59,10 +61,7 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Users
-      <Link to="../../../admin/adduser" className="link">
-          Add New
-        </Link>
+        Warehouses
       </div>
       <DataGrid
         className="datagrid"
