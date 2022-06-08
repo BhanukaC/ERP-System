@@ -54,11 +54,12 @@ const Datatable = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 400,
+      width: 600,
       renderCell: (params) => {
         const reLink = "/hr/employee/edit/" + params.row.EID;
         const reLink2 = "/hr/dependent/viewall/" + params.row.EID;
         const reLink3 = "/hr/OtRecord/viewall/" + params.row.EID;
+        const reLink4 = "/hr/advance/viewall/" + params.row.EID;
         return (
           <div className="cellAction">
             <Link to={reLink} style={{ textDecoration: "none" }}>
@@ -69,6 +70,9 @@ const Datatable = () => {
             </Link>
             <Link to={reLink3} style={{ textDecoration: "none" }}>
               <div className="viewButton">View OT Records</div>
+            </Link>
+            <Link to={reLink4} style={{ textDecoration: "none" }}>
+              <div className="viewButton">View Advance Records</div>
             </Link>
             {/* <div
               className="deleteButton"

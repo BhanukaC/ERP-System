@@ -1,7 +1,7 @@
 import "./viewAll.scss";
 import Navbar from "../../../../components/navbar/Navbar";
 import Sidebar from "../../../../components/hr/sidebar/Sidebar";
-import Datatable from "../../../../components/hr/otRecordTable/Datatable";
+import Datatable from "../../../../components/hr/advanceTable/Datatable";
 
 const ViewAllAdvance = () => {
   //console.log(EID);
