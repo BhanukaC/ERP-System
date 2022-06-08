@@ -46,15 +46,31 @@ const Sidebar = () => {
             </li>
           </Link>
 
-          <p className="title">USEFUL</p>
-          <li>
-            <InsertChartIcon className="icon" />
-            <span>Stats</span>
-          </li>
-          <li>
-            <NotificationsNoneIcon className="icon" />
-            <span>Notifications</span>
-          </li>
+          <p className="title">OT</p>
+          <Link to="/hr/otType/add" style={{ textDecoration: "none" }}>
+            <li>
+              <AddIcon className="icon" />
+              <span>Add OT Type</span>
+            </li>
+          </Link>
+          <Link to="/hr/employee/viewall" style={{ textDecoration: "none" }}>
+            <li>
+              <PreviewIcon className="icon" />
+              <span>View All OT Types</span>
+            </li>
+          </Link>
+          <Link to="/hr/dependent/add" style={{ textDecoration: "none" }}>
+            <li>
+              <AddIcon className="icon" />
+              <span>Add OT Record</span>
+            </li>
+          </Link>
+          <Link to="/hr/employee/viewall" style={{ textDecoration: "none" }}>
+            <li>
+              <PreviewIcon className="icon" />
+              <span>View All OT Records</span>
+            </li>
+          </Link>
           <p className="title">SERVICE</p>
           <li>
             <SettingsSystemDaydreamOutlinedIcon className="icon" />
