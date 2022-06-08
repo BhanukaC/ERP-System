@@ -3,7 +3,7 @@ const query = require("../helpers/mysqlPromise");
 const today = require("../helpers/today");
 const _ = require("underscore");
 
-
+//update warehouse details
 exports.warehouseUpdateController = async (req, res) => {
     const id = req.params.id;
     const { no, street, town } = req.body;
@@ -19,6 +19,7 @@ exports.warehouseUpdateController = async (req, res) => {
     });
 };
 
+//get a single warehouse details
 exports.getSingleWarehouseController = async (req, res) => {
     const id = req.params.id;
     db.query("select WID,ManagerName,no,street,town from Warehouse where WID=?", [id], (err, result) => {
@@ -33,6 +34,7 @@ exports.getSingleWarehouseController = async (req, res) => {
     });
 };
 
+//get all warehouse details
 exports.getAllWarehouseController = async (req, res) => {
     db.query("select WID,ManagerName,no,street,town from Warehouse", (err, result) => {
         if (err) {
@@ -46,7 +48,45 @@ exports.getAllWarehouseController = async (req, res) => {
     });
 };
 
-//update status a purchase order
+//get a single purchase order
+exports.getSinglePurchaseOrderController = async (req, res) => {
+    const id = req.params.id;
+    db.query("select * from purchaseOrder where purchaseOrderID=?", [id], (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a purchase order(purchaseOrderID-" + id + ")"], (err, response) => { });
+            res.json(result);
+        }
+    });
+}
+
+//view all purchase orders
+exports.getAllPurchaseOrderController = async (req, res) => {
+    db.query("select * from purchaseOrder ", (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view all purchase orders"], (err, response) => { });
+            res.json(result);
+        }
+    });
+}
+
+//get purchase order data
+exports.getSinglePurchaseOrderDataController = async (req, res) => {
+    const id = req.params.id;
+    db.query("select * from purchaseOrderData where purchaseOrderID=?", [id], (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a purchaseorderData(purchaseOrderID-" + id + ")"], (err, response) => { });
+            res.json(result);
+        }
+    });
+}
+
+//update status and of a purchase order
 exports.purchaseOrderUpdateController = async (req, res) => {
     const { purchaseOrderID, WID, status, reason } = req.body;
     let response;
@@ -125,6 +165,44 @@ exports.purchaseOrderUpdateController = async (req, res) => {
     });
 }
 
+//get a single sales order
+exports.getSingleSalesOrderController = async (req, res) => {
+    const id = req.params.id;
+    db.query("select * from SalesOrder where salesOrderID=?", [id], (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a sales order(salesOrderID-" + id + ")"], (err, response) => { });
+            res.json(result);
+        }
+    });
+}
+
+//view all sales orders
+exports.getAllSalesOrderController = async (req, res) => {
+    db.query("select * from SalesOrder ", (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view all sales orders"], (err, response) => { });
+            res.json(result);
+        }
+    });
+}
+
+//get sales order data
+exports.getSingleSalesOrderDataController = async (req, res) => {
+    const id = req.params.id;
+    db.query("select * from salesOrderData where salesOrderID=?", [id], (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a SalesOrderData(salesOrderID-" + id + ")"], (err, response) => { });
+            res.json(result);
+        }
+    });
+}
+
 //update status a sales order
 exports.salesOrderUpdateController = async (req, res) => {
     const { salesOrderID, WID } = req.body;
@@ -175,6 +253,43 @@ exports.salesOrderUpdateController = async (req, res) => {
 
 }
 
+//get a sales return order
+exports.getSingleSalesReturnOrderController = async (req, res) => {
+    const id = req.params.id;
+    db.query("select * from SalesReturnOrder where salesReturnOrderID=?", [id], (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a sales return order(salesReturnOrderID-" + id + ")"], (err, response) => { });
+            res.json(result);
+        }
+    });
+}
+
+//view all sales return orders
+exports.getAllSalesReturnOrderController = async (req, res) => {
+    db.query("select * from SalesReturnOrder ", (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view all sales Return orders"], (err, response) => { });
+            res.json(result);
+        }
+    });
+}
+
+//get sales return order data
+exports.getSingleSalesReturnOrderDataController = async (req, res) => {
+    const id = req.params.id;
+    db.query("select * from salesReturnOrderData where salesReturnOrderID=?", [id], (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a salesReturnOrderData(salesReturnOrderID-" + id + ")"], (err, response) => { });
+            res.json(result);
+        }
+    });
+}
 
 //update status a sales Return order
 exports.salesReturnOrderUpdateController = async (req, res) => {
@@ -226,7 +341,7 @@ exports.salesReturnOrderUpdateController = async (req, res) => {
     });
 }
 
-//add Internal shipment
+//add Internal shipment-send
 exports.addInternalShipmentController = async (req, res) => {
     const { FromWID, TOWID, items } = req.body;
     const products = [];
@@ -286,7 +401,7 @@ exports.addInternalShipmentController = async (req, res) => {
     });
 }
 
-//update status of a Internal shipment
+//update status of a Internal shipment-recieve
 exports.internalShipmentUpdateController = async (req, res) => {
     const { internalShipmentID, WID } = req.body;
     let response;
@@ -334,124 +449,9 @@ exports.internalShipmentUpdateController = async (req, res) => {
     });
 }
 
-//track stock level
 
 
-//views purchase order
-exports.getSinglePurchaseOrderController = async (req, res) => {
-    const id = req.params.id;
-    db.query("select * from purchaseOrder where purchaseOrderID=?", [id], (err, result) => {
-        if (err) {
-            res.json({ error: err });
-        } else {
-            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a purchase order(purchaseOrderID-" + id + ")"], (err, response) => { });
-            res.json(result);
-        }
-    });
-}
-
-exports.getAllPurchaseOrderController = async (req, res) => {
-    db.query("select * from purchaseOrder ", (err, result) => {
-        if (err) {
-            res.json({ error: err });
-        } else {
-            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view all purchase orders"], (err, response) => { });
-            res.json(result);
-        }
-    });
-}
-
-
-exports.getSinglePurchaseOrderDataController = async (req, res) => {
-    const id = req.params.id;
-    db.query("select * from purchaseOrderData where purchaseOrderID=?", [id], (err, result) => {
-        if (err) {
-            res.json({ error: err });
-        } else {
-            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a purchaseorderData(purchaseOrderID-" + id + ")"], (err, response) => { });
-            res.json(result);
-        }
-    });
-}
-
-//views sales order
-
-exports.getSingleSalesOrderController = async (req, res) => {
-    const id = req.params.id;
-    db.query("select * from SalesOrder where salesOrderID=?", [id], (err, result) => {
-        if (err) {
-            res.json({ error: err });
-        } else {
-            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a sales order(salesOrderID-" + id + ")"], (err, response) => { });
-            res.json(result);
-        }
-    });
-}
-
-exports.getAllSalesOrderController = async (req, res) => {
-    db.query("select * from SalesOrder ", (err, result) => {
-        if (err) {
-            res.json({ error: err });
-        } else {
-            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view all sales orders"], (err, response) => { });
-            res.json(result);
-        }
-    });
-}
-
-
-exports.getSingleSalesOrderDataController = async (req, res) => {
-    const id = req.params.id;
-    db.query("select * from salesOrderData where salesOrderID=?", [id], (err, result) => {
-        if (err) {
-            res.json({ error: err });
-        } else {
-            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a SalesOrderData(salesOrderID-" + id + ")"], (err, response) => { });
-            res.json(result);
-        }
-    });
-}
-
-//views sales return order
-
-exports.getSingleSalesReturnOrderController = async (req, res) => {
-    const id = req.params.id;
-    db.query("select * from SalesReturnOrder where salesReturnOrderID=?", [id], (err, result) => {
-        if (err) {
-            res.json({ error: err });
-        } else {
-            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a sales return order(salesReturnOrderID-" + id + ")"], (err, response) => { });
-            res.json(result);
-        }
-    });
-}
-
-exports.getAllSalesReturnOrderController = async (req, res) => {
-    db.query("select * from SalesReturnOrder ", (err, result) => {
-        if (err) {
-            res.json({ error: err });
-        } else {
-            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view all sales Return orders"], (err, response) => { });
-            res.json(result);
-        }
-    });
-}
-
-
-exports.getSingleSalesReturnOrderDataController = async (req, res) => {
-    const id = req.params.id;
-    db.query("select * from salesReturnOrderData where salesReturnOrderID=?", [id], (err, result) => {
-        if (err) {
-            res.json({ error: err });
-        } else {
-            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a salesReturnOrderData(salesReturnOrderID-" + id + ")"], (err, response) => { });
-            res.json(result);
-        }
-    });
-}
-
-//views Internal Shipment
-
+//get single internal shipment
 exports.getSingleInternalShipmentController = async (req, res) => {
     const id = req.params.id;
     db.query("select * from internalShipment where internalShipmentID=?", [id], (err, result) => {
@@ -464,6 +464,7 @@ exports.getSingleInternalShipmentController = async (req, res) => {
     });
 }
 
+//view Internal Shipment
 exports.getAllInternalShipmentToReceiveController = async (req, res) => {
     const id = req.params.id;
     db.query("select * from internalShipment where TOWID=?", [id], (err, result) => {
@@ -488,7 +489,7 @@ exports.getAllInternalShipmentToSendController = async (req, res) => {
     });
 }
 
-
+//get single internal shipment data
 exports.getSingleInternalShipmentDataController = async (req, res) => {
     const id = req.params.id;
     db.query("select * from internalShipmentData where internalShipmentID=?", [id], (err, result) => {
@@ -501,6 +502,7 @@ exports.getSingleInternalShipmentDataController = async (req, res) => {
     });
 }
 
+//get stock level
 exports.getAllStockLevelController = async (req, res) => {
     db.query("select * from stock", (err, result) => {
         if (err) {
@@ -512,6 +514,7 @@ exports.getAllStockLevelController = async (req, res) => {
     });
 }
 
+//get stock level of a warehouse
 exports.getAllStockLevelForWareHouseController = async (req, res) => {
     const id = req.params.id;
     db.query("select * from stock where WID=?", [id], (err, result) => {
@@ -524,14 +527,15 @@ exports.getAllStockLevelForWareHouseController = async (req, res) => {
     });
 }
 
+//change quality level
 exports.changeQualityLevelController = async (req, res) => {
-    const { ID, qualityLevel, qty } = req.body;
-    db.query("select * from stock where ID=? ", [ID], (err, result) => {
+    const { PID, WID, qualityLevel, qty } = req.body;
+    db.query("select * from stock where PID=? and WID=? ", [PID, WID], (err, result) => {
         if (err) {
             res.json({ error: err });
             return;
         } else {
-            db.query("update stock set qty=? where ID=?", [result[0].qty - qty, ID], (err, result1) => {
+            db.query("update stock set qty=? where ID=?", [result[0].qty - qty, result[0].ID], (err, result1) => {
 
                 if (err) {
                     res.json({ error: err });
@@ -546,13 +550,12 @@ exports.changeQualityLevelController = async (req, res) => {
 
                                 db.query("insert into stock(PID,qty,qualityLevel,WID) values(?,?,?,?)", [result[0].PID, qty, qualityLevel, result[0].WID], (err, result) => {
                                     db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Cahnged Quality level of stocks(ID-" + result.insertId + ")"], (err, response) => { });
-                                    res.json("Cahnged Quality level of stocks");
+                                    res.json("Changed Quality level of stocks");
                                 });
                             } else {
-
                                 db.query("update stock set qty=? where ID=?", [result1[0].qty + qty, result1[0].ID], (err, result) => {
                                     db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Cahnged Quality level of stocks(ID-" + result1[0].ID + ")"], (err, response) => { });
-                                    res.json("Cahnged Quality level of stocks");
+                                    res.json("Changed Quality level of stocks");
                                 });
                             }
                         }

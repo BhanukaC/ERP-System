@@ -1,33 +1,34 @@
 import "./datatable.scss";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 
 const userColumns = [
   { field: "EID", headerName: "EID" },
-  { field: "DOB", headerName: "DOB" },
-  { field: "fName", headerName: "fName" },
-  { field: "lName", headerName: "lName" },
-  { field: "bankName", headerName: "bankNamee", width: 150 },
-  { field: "accountNo", headerName: "accountNo" },
-  { field: "branchCode", headerName: "branchCode" },
-  { field: "branchName", headerName: "branchName" },
+  { field: "birth", headerName: "Date of Birth", width: 100 },
+  { field: "fName", headerName: "First Name" },
+  { field: "lName", headerName: "Last Name" },
+  { field: "bankName", headerName: "Bank Namee", width: 100 },
+  { field: "accountNo", headerName: "Account No" },
+  { field: "branchCode", headerName: "Branch Code" },
+  { field: "branchName", headerName: "Branch Name" },
   { field: "NIC", headerName: "NIC" },
-  { field: "passportNo", headerName: "passportNo" },
-  { field: "gender", headerName: "gender" },
-  { field: "designation", headerName: "designation" },
-  { field: "department", headerName: "department" },
-  { field: "basicSalary", headerName: "basicSalary" },
-  { field: "dailyWage", headerName: "dailyWage" },
+  { field: "passportNo", headerName: "Passport No" },
+  { field: "gender", headerName: "Gender" },
+  { field: "designation", headerName: "Designation" },
+  { field: "department", headerName: "Department" },
+  { field: "basicSalary", headerName: "Basic Salary" },
+  { field: "dailyWage", headerName: "Daily Wage" },
 ];
 
 const Datatable = () => {
   const [data, setData] = useState({});
 
-  const handleDelete = (CID) => {
-    setData(data.filter((item) => item.id !== CID));
-  };
+  // const handleDelete = (CID) => {
+  //   setData(data.filter((item) => item.id !== CID));
+  // };
 
   useEffect(() => {
     axios
@@ -38,7 +39,11 @@ const Datatable = () => {
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {
-          return { id: d.EID, ...d };
+          return {
+            id: d.EID,
+            birth: moment(d.DOB).add(1, "days").utc().format("YYYY/MM/DD"),
+            ...d,
+          };
         });
         setData(dt);
         // console.log(dt);
@@ -49,19 +54,32 @@ const Datatable = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 600,
       renderCell: (params) => {
+        const reLink = "/hr/employee/edit/" + params.row.EID;
+        const reLink2 = "/hr/dependent/viewall/" + params.row.EID;
+        const reLink3 = "/hr/OtRecord/viewall/" + params.row.EID;
+        const reLink4 = "/hr/advance/viewall/" + params.row.EID;
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+            <Link to={reLink} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Edit</div>
             </Link>
-            <div
+            <Link to={reLink2} style={{ textDecoration: "none" }}>
+              <div className="viewButton">View Dependents</div>
+            </Link>
+            <Link to={reLink3} style={{ textDecoration: "none" }}>
+              <div className="viewButton">View OT Records</div>
+            </Link>
+            <Link to={reLink4} style={{ textDecoration: "none" }}>
+              <div className="viewButton">View Advance Records</div>
+            </Link>
+            {/* <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.CID)}
             >
               Delete
-            </div>
+            </div> */}
           </div>
         );
       },
@@ -69,18 +87,20 @@ const Datatable = () => {
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">
-        Add New User
-        <Link to="/users/new" className="link">
-          Add New
-        </Link>
-      </div>
+      <div className="datatableTitle">All Employees</div>
       <DataGrid
         className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
+        components={{ Toolbar: GridToolbar }}
+        componentsProps={{
+          toolbar: {
+            showQuickFilter: true,
+            quickFilterProps: { debounceMs: 500 },
+          },
+        }}
       />
     </div>
   );
