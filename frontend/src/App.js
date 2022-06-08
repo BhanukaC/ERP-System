@@ -15,6 +15,12 @@ import EditSuppler from "./pages/purchase/edit_supplier/edit_supplier";
 import EditsubCategory from "./pages/purchase/edit_sub_category/edit_sub_category";
 import Purchasehome from "./pages/purchase/home_purchase/home_purchase";
 import ViewAllEmployees from "./pages/hr/employeee/viewAll/viewAll";
+
+import AddCustomer from "./pages/sales/customer/add/add"
+import ViewAllCustomer from "./pages/sales/viewAll/viewAll"
+import AddSalesReturnOrder from "./pages/sales/salesReturnOrder/add/add"
+import ViewAllSalesReturnOrders from "./pages/sales/salesReturnOrder/add/viewAll/viewAll";
+
 import EditEmployee from "./pages/hr/employeee/edit/edit";
 import AddDependent from "./pages/hr/dependent/add/add";
 import ViewAllDependents from "./pages/hr/dependent/viewAll/viewAll";
@@ -28,11 +34,14 @@ import ViewAllOtRecordForEmployee from "./pages/hr/otRecord/viewAllForEmployee/v
 import AddAdvance from "./pages/hr/advance/add/add";
 import ViewAllAdvance from "./pages/hr/advance/viewAll/viewAll";
 import ViewAllAdvanceForEmployee from "./pages/hr/advance/viewAllForEmployee/viewAll";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
+
+
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -86,6 +95,17 @@ function App() {
                 <Route path="add" element={<AddAdvance />} />
                 <Route path="viewall/" element={<ViewAllAdvance />} />
                 <Route path="viewall/:EID" element={<ViewAllAdvanceForEmployee />} />
+              </Route>
+            </Route>
+
+            <Route path="sales">
+              <Route path="customer">
+                <Route path="add" element={<AddCustomer />} />
+                <Route path="viewAll" element={<ViewAllCustomer />} />
+              </Route>
+              <Route path="salesReturnOrder">
+              <Route path="add" element={<AddSalesReturnOrder />} />
+              <Route path="viewAll" element={<ViewAllSalesReturnOrders />} />
               </Route>
             </Route>
 
