@@ -7,7 +7,7 @@ import axios from "axios";
 const ChangeQualityLevel = () => {
   const [PID, setPID] = useState("");
   const [WID, setWID] = useState("");
-  const [qty, setQty] = useState("");
+  const [qty, setQty] = useState(0);
   const [qualityLevel, setQualityLevel] = useState("");
 
   const submitForm = (e) => {
@@ -18,7 +18,7 @@ const ChangeQualityLevel = () => {
       {
         PID: PID,
         WID: WID,
-        qty: qty,
+        qty: parseFloat(qty),
         qualityLevel: qualityLevel,
        },
 
