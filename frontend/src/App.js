@@ -38,7 +38,7 @@ function App() {
               <Route path="changeQualityLevel" element={<ChangeQualityLevel />} />
               <Route path="warehouse">
                 <Route path="warehousedetails" element={<WarehouseDetails />} />
-                <Route path="editDetails/:id" element={<EditWarehouseDetails />} />
+                <Route path="editDetails/:WID" element={<EditWarehouseDetails />} />
                 <Route path="stockDetails/:id" element={<StockDetails />} />
               </Route>
 

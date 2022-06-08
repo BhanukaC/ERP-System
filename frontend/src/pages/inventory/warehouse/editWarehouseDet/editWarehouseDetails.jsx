@@ -1,10 +1,9 @@
 import "../../form.scss";
 import Navbar from "../../../../components/navbar/Navbar";
 import InventorySidebar from "../../../../components/inventory/inventorySidebar/inventorySidebar";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
 
 const EditWarehouseDetails = () => {
   const [no, setNo] = useState("");
@@ -29,37 +28,31 @@ const EditWarehouseDetails = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if(
-      no === "" ||
-      street === "" ||
-      town === ""
-      )
-      {
-        alert("Fill the required fields");
-      }
-      else
-      {
-        let data = {
-          no:no,
-          stret:street,
-          town:town,
-        };
-  
-        axios
-          .put("http://localhost:5000/inventory/Warehouse/update/" + WID, data, {
-            withCredentials: true,
-            credentials: "include",
-          })
-          .then((res) => {
-            if (res.data === "update Warehouse Details") {
-              alert("Warehouse details Updated");
-            } else {
-              alert("Try again");
-            }
-          });
-      }
-    };
-  
+    if (no === "" || street === "" || town === "") {
+      alert("Fill the required fields");
+    } else {
+      let data = {
+        no: no,
+        street: street,
+        town: town,
+      };
+
+      axios
+        .put("http://localhost:5000/inventory/Warehouse/update/" + WID, data, {
+          withCredentials: true,
+          credentials: "include",
+        })
+        .then((res) => {
+          console.log(res.data);
+          if (res.data === "update Warehouse Details") {
+            alert("Warehouse details Updated");
+          } else {
+            alert("Try again");
+          }
+        });
+    }
+  };
+
   return (
     <div className="new">
       <InventorySidebar />
