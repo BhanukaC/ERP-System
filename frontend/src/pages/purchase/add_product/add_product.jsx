@@ -26,6 +26,8 @@ const AddProduct = () => {
     e.preventDefault();
     if(
       pname === ""||
+      sellp===""||
+      buyingp===""||
       catid===""||
       subcatid===""
     )
@@ -48,7 +50,7 @@ const AddProduct = () => {
           Length: length,
           Weight: weight,
           buyingPrice: buyingp,
-          NoOfItems: 200000,
+          NoOfItems:noitems ,
           CatID:catid,
           SubCatID:subcatid, 
 
@@ -60,6 +62,7 @@ const AddProduct = () => {
         }
       )
       .then((res) => {
+        console.log(res);
         if(res.data=="product Added"){
           alert("Product added");
         }else{
@@ -99,7 +102,8 @@ const AddProduct = () => {
               <div className="formInput">
                 <label>Selling Price</label>
                 <input
-                  type="text"
+                  type="number"
+                  step="any"
                   value={sellp}
                   onChange={(e) => {
                     setsellp(e.target.value);
