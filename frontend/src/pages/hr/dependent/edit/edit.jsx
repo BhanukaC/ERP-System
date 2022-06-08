@@ -6,29 +6,18 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 
-const EditEmployee = () => {
+const EditDependent = () => {
+  const [EID, setEID] = useState("");
+  const [dependentName, setDependentName] = useState("");
   const [dob, setDob] = useState("");
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
-  const [bankName, setBankName] = useState("");
-  const [accountNo, setAccountNo] = useState("");
-  const [branchCode, setBranchCode] = useState("");
-  const [branchName, setBranchName] = useState("");
-  const [NIC, setNIC] = useState("");
-  const [passportNo, setPassportNo] = useState("");
+  const [contactNo, setContactNo] = useState("");
+  const [relationship, setRelationship] = useState("");
   const [gender, setgender] = useState("");
-  const [workerType, setWorkerType] = useState("");
-  const [designation, setDesignation] = useState("");
-  const [department, setDepartment] = useState("");
-  const [basicSalary, setBasicSalary] = useState(0);
-  const [dailyWage, setDailyWage] = useState(0);
 
-  const { EID } = useParams();
-  console.log(EID);
-
+  const { DID } = useParams();
   useEffect(() => {
     axios
-      .get("http://localhost:5000/hr/employee/getSingle/" + EID, {
+      .get("http://localhost:5000/hr/dependent/getSingle/" + DID, {
         withCredentials: true,
         credentials: "include",
       })
@@ -36,80 +25,43 @@ const EditEmployee = () => {
         setDob(
           moment(res.data[0].DOB).add(1, "days").utc().format("YYYY-MM-DD")
         );
-
-        setFname(res.data[0].fName);
-        setLname(res.data[0].lName);
-        setBankName(res.data[0].bankName);
-        setAccountNo(res.data[0].accountNo);
-        setBranchCode(res.data[0].branchCode);
-        setBranchName(res.data[0].branchName);
-        setNIC(res.data[0].NIC);
-        setPassportNo(res.data[0].passportNo);
+        setEID(res.data[0].EID);
+        setDependentName(res.data[0].name);
         setgender(res.data[0].gender);
-        if (res.data[0].basicSalary > 0) {
-          setWorkerType("0");
-        } else {
-          setWorkerType("1");
-        }
-        setDesignation(res.data[0].designation);
-        setDepartment(res.data[0].department);
-        setBasicSalary(res.data[0].basicSalary);
-        setDailyWage(res.data[0].dailyWage);
+        setContactNo(res.data[0].contactNo);
+        setRelationship(res.data[0].relationship);
       });
   }, [""]);
 
   const submitForm = (e) => {
     e.preventDefault();
     if (
+      EID === "" ||
+      dependentName === "" ||
       dob === "" ||
-      fname === "" ||
-      lname === "" ||
-      bankName === "" ||
-      accountNo === "" ||
-      accountNo === "" ||
-      branchCode === "" ||
-      NIC === "" ||
-      gender === "" ||
-      designation === "" ||
-      department === "" ||
-      workerType === "" ||
-      (basicSalary === 0 && dailyWage === 0)
+      contactNo === "" ||
+      relationship === "" ||
+      gender === ""
     ) {
       alert("Please fill all required fields");
     } else {
       let data = {
+        EID: EID,
+        name: dependentName,
+        contactNo: contactNo,
         DOB: dob,
-        fName: fname,
-        lName: lname,
-        bankName: bankName,
-        accountNo: accountNo,
-        branchCode: branchCode,
-        branchName: branchName,
-        NIC: NIC,
         gender: gender,
-        designation: designation,
-        department: department,
+        relationship: relationship,
       };
 
-      if (workerType === "0") {
-        data = { basicSalary: basicSalary, ...data };
-      }
-      if (workerType === "1") {
-        data = { dailyWage: dailyWage, ...data };
-      }
-
-      if (passportNo !== "") {
-        data = { passportNo: passportNo, ...data };
-      }
-
       axios
-        .put("http://localhost:5000/hr/employee/update/" + EID, data, {
+        .put("http://localhost:5000/hr/dependent/update/" + DID, data, {
           withCredentials: true,
           credentials: "include",
         })
         .then((res) => {
-          if (res.data === "Employee details Updated") {
-            alert("Employee details Updated");
+          if (res.data === "Dependent details Updated") {
+            alert("Dependent details Updated");
           } else {
             alert("Sorry,Try again");
           }
@@ -123,28 +75,30 @@ const EditEmployee = () => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Update Employee</h1>
+          <h1>Add Dependent</h1>
         </div>
         <div className="bottom">
           <div className="right">
             <form>
               <div className="formInput">
-                <label>First Name*</label>
+                <label>EID*</label>
                 <input
                   type="text"
-                  value={fname}
+                  value={EID}
                   onChange={(e) => {
-                    setFname(e.target.value);
+                    setEID(e.target.value);
                   }}
+                  disabled
                 />
               </div>
+
               <div className="formInput">
-                <label>Last Name*</label>
+                <label>Dependent Name*</label>
                 <input
                   type="text"
-                  value={lname}
+                  value={dependentName}
                   onChange={(e) => {
-                    setLname(e.target.value);
+                    setDependentName(e.target.value);
                   }}
                 />
               </div>
@@ -161,67 +115,23 @@ const EditEmployee = () => {
               </div>
 
               <div className="formInput">
-                <label>Bank Name*</label>
+                <label>Contact Number*</label>
                 <input
                   type="text"
-                  value={bankName}
+                  value={contactNo}
                   onChange={(e) => {
-                    setBankName(e.target.value);
+                    setContactNo(e.target.value);
                   }}
                 />
               </div>
 
               <div className="formInput">
-                <label>Account Number*</label>
-                <input
-                  type="number"
-                  value={accountNo}
-                  onChange={(e) => {
-                    setAccountNo(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="formInput">
-                <label>Branch Name*</label>
+                <label>Relationship*</label>
                 <input
                   type="text"
-                  value={branchName}
+                  value={relationship}
                   onChange={(e) => {
-                    setBranchName(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="formInput">
-                <label>Branch Code*</label>
-                <input
-                  type="number"
-                  value={branchCode}
-                  onChange={(e) => {
-                    setBranchCode(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="formInput">
-                <label>NIC Number*</label>
-                <input
-                  type="text"
-                  value={NIC}
-                  onChange={(e) => {
-                    setNIC(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="formInput">
-                <label>Passport Number</label>
-                <input
-                  type="text"
-                  value={passportNo}
-                  onChange={(e) => {
-                    setPassportNo(e.target.value);
+                    setRelationship(e.target.value);
                   }}
                 />
               </div>
@@ -243,75 +153,6 @@ const EditEmployee = () => {
                 </select>
               </div>
 
-              <div className="formInput">
-                <label>Select worker Type*</label>
-
-                <select
-                  value={workerType}
-                  onChange={(e) => {
-                    setWorkerType(e.target.value);
-                  }}
-                >
-                  <option value="" disabled selected>
-                    select Worker Type
-                  </option>
-                  <option value="0">Shop and Office</option>
-                  <option value="1">Daily Wage</option>
-                </select>
-              </div>
-
-              {workerType === "0" ? (
-                <div className="formInput">
-                  <label>Basic Salary*</label>
-                  <input
-                    type="text"
-                    value={basicSalary}
-                    onChange={(e) => {
-                      setBasicSalary(e.target.value);
-                    }}
-                  />
-                </div>
-              ) : (
-                ""
-              )}
-
-              {workerType === "1" ? (
-                <div className="formInput">
-                  <label>Daily Wage*</label>
-                  <input
-                    type="text"
-                    value={dailyWage}
-                    onChange={(e) => {
-                      setDailyWage(e.target.value);
-                    }}
-                  />
-                </div>
-              ) : (
-                ""
-              )}
-
-              <div className="formInput">
-                <label>Department*</label>
-                <input
-                  type="text"
-                  value={department}
-                  onChange={(e) => {
-                    setDepartment(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="formInput">
-                <label>Designation*</label>
-                <input
-                  type="text"
-                  value={designation}
-                  onChange={(e) => {
-                    setDesignation(e.target.value);
-                  }}
-                />
-              </div>
-
               <div className="break"></div>
               <button onClick={submitForm}>Send</button>
             </form>
@@ -322,4 +163,4 @@ const EditEmployee = () => {
   );
 };
 
-export default EditEmployee;
+export default EditDependent;

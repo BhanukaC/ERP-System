@@ -8,6 +8,7 @@ import ViewAllEmployees from "./pages/hr/employeee/viewAll/viewAll";
 import EditEmployee from "./pages/hr/employeee/edit/edit";
 import AddDependent from "./pages/hr/dependent/add/add";
 import ViewAllDependents from "./pages/hr/dependent/viewAll/viewAll";
+import EditDependent from "./pages/hr/dependent/edit/edit";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -35,7 +36,7 @@ function App() {
               <Route path="dependent">
                 <Route path="add" element={<AddDependent />} />
                 <Route path="viewall/:EID" element={<ViewAllDependents />} />
-                {/* <Route path="edit/:EID" element={<EditEmployee />} /> */}
+                <Route path="edit/:DID" element={<EditDependent />} />
               </Route>
             </Route>
 

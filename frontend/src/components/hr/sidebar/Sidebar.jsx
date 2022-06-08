@@ -45,12 +45,7 @@ const Sidebar = () => {
               <span>Add Dependent</span>
             </li>
           </Link>
-          <Link to="/hr/employee/viewall" style={{ textDecoration: "none" }}>
-            <li>
-              <PreviewIcon className="icon" />
-              <span>View All Dependents</span>
-            </li>
-          </Link>
+
           <p className="title">USEFUL</p>
           <li>
             <InsertChartIcon className="icon" />

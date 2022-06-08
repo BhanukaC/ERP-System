@@ -49,7 +49,7 @@ const Datatable = (props) => {
       headerName: "Action",
       width: 100,
       renderCell: (params) => {
-        const reLink = "/hr/employee/edit/" + params.row.DID;
+        const reLink = "/hr/dependent/edit/" + params.row.DID;
         return (
           <div className="cellAction">
             <Link to={reLink} style={{ textDecoration: "none" }}>
@@ -63,7 +63,7 @@ const Datatable = (props) => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        All Employees
+        All Dependents For Employee(EID-{EID})
         <Link to="/users/new" className="link">
           Add New
         </Link>
