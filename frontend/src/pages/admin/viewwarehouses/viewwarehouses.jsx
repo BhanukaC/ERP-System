@@ -1,9 +1,9 @@
-import "./viewAll.scss";
+import "./viewwarehouses.scss";
 import Navbar from "../../../components/navbar/Navbar";
 import Admin_sidebar from "../../../components/admin/admin_sidebar/Admin_sidebar";
-import Datatable from "../../../components/admin/userTable/Datatable";
+import Datatable from "../../../components/admin/warehouseTable/Datatable";
 
-const ViewAllUsers = () => {
+const ViewWarehouses = () => {
   return (
     <div className="list">
       <Admin_sidebar />
@@ -15,4 +15,4 @@ const ViewAllUsers = () => {
   );
 };
 
-export default ViewAllUsers;
+export default ViewWarehouses;

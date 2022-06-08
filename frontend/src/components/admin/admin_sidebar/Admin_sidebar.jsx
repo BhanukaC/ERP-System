@@ -53,6 +53,12 @@ const Sidebar = () => {
               <span>All Users</span>
             </li>
           </Link>
+          <Link to="/admin/viewwarehouses" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>All Warehouses</span>
+            </li>
+          </Link>
           
         </ul>
       </div>

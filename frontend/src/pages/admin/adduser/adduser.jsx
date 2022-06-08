@@ -5,6 +5,9 @@ import axios from "axios";
 import Admin_sidebar from "../../../components/admin/admin_sidebar/Admin_sidebar";
 
 const AddUser = () => {
+
+  const [UID, setUID] = useState(0);
+
   const [userName, setUserName] = useState("");
   const [acessLevel, setAcessLevel] = useState(0);
   const [email, setEmail] = useState("");
@@ -15,9 +18,9 @@ const AddUser = () => {
       .post(
         "http://localhost:5000/admin/register",
         {
-          username: "Ishan",
-          acessLevel: 2,
-          email: "ishan@gmail.com"
+          username: userName,
+          acessLevel: acessLevel,
+          email: email
         }
         
       )
@@ -38,6 +41,18 @@ const AddUser = () => {
         <div className="bottom">
           <div className="right">
             <form>
+
+            <div className="formInput">
+                <label>UID</label>
+                <input
+                  type="number"
+                  value={UID}
+                  onChange={(e) => {
+                    setUID(e.target.value);
+                  }}
+                />
+              </div>
+
               <div className="formInput">
                 <label>User Name</label>
                 <input

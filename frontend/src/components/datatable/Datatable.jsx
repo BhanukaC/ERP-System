@@ -66,9 +66,9 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
+        Add new user
         <Link to="/users/new" className="link">
-          Add New
+          Add User
         </Link>
       </div>
       <DataGrid

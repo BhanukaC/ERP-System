@@ -15,6 +15,7 @@ import AddUser from "./pages/admin/adduser/adduser";
 import DeleteUser from "./pages/admin/deleteuser/deleteuser";
 import UpdateUser from "./pages/admin/updateuser/updateuser";
 import ViewAllUsers from "./pages/admin/viewAll/viewAll";
+import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -39,6 +40,7 @@ function App() {
               <Route path="deleteuser" element={<DeleteUser />} />
               <Route path="updateuser" element={<UpdateUser />} />
               <Route path="viewAll" element={<ViewAllUsers />} />
+              <Route path="viewallwarehouses" element={<ViewAllWarehouses/>} />
             </Route>
 
             <Route path="users">
