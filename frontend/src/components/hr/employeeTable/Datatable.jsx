@@ -26,9 +26,9 @@ const userColumns = [
 const Datatable = () => {
   const [data, setData] = useState({});
 
-  const handleDelete = (CID) => {
-    setData(data.filter((item) => item.id !== CID));
-  };
+  // const handleDelete = (CID) => {
+  //   setData(data.filter((item) => item.id !== CID));
+  // };
 
   useEffect(() => {
     axios
@@ -54,10 +54,11 @@ const Datatable = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 400,
       renderCell: (params) => {
         const reLink = "/hr/employee/edit/" + params.row.EID;
         const reLink2 = "/hr/dependent/viewall/" + params.row.EID;
+        const reLink3 = "/hr/OtRecord/viewall/" + params.row.EID;
         return (
           <div className="cellAction">
             <Link to={reLink} style={{ textDecoration: "none" }}>
@@ -65,6 +66,9 @@ const Datatable = () => {
             </Link>
             <Link to={reLink2} style={{ textDecoration: "none" }}>
               <div className="viewButton">View Dependents</div>
+            </Link>
+            <Link to={reLink3} style={{ textDecoration: "none" }}>
+              <div className="viewButton">View OT Records</div>
             </Link>
             {/* <div
               className="deleteButton"

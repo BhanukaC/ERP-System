@@ -1,18 +1,16 @@
 import "./viewAll.scss";
 import Navbar from "../../../../components/navbar/Navbar";
 import Sidebar from "../../../../components/hr/sidebar/Sidebar";
-import Datatable from "../../../../components/hr/dependentTable/Datatable";
-import { useParams } from "react-router-dom";
+import Datatable from "../../../../components/hr/otRecordTable/Datatable";
 
 const ViewAllOtRecords = () => {
-  const { EID } = useParams();
   //console.log(EID);
   return (
     <div className="list">
       <Sidebar />
       <div className="listContainer">
         <Navbar />
-        <Datatable EID={EID} />
+        <Datatable />
       </div>
     </div>
   );
