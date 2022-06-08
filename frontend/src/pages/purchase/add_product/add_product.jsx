@@ -24,7 +24,16 @@ const AddProduct = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    axios
+    if(
+      pname === ""||
+      catid===""||
+      subcatid===""
+    )
+    {
+      alert("Please fill the required fields");
+    }
+    else{
+      axios
       .post(
         "http://localhost:5000/purchase/product/add",
         {
@@ -59,6 +68,8 @@ const AddProduct = () => {
         //
         //console.log(res.data);
       });
+    }
+    
   };
 
   return (

@@ -11,7 +11,14 @@ const AddCategory = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    axios
+    if(
+      catName === ""
+    )
+    {
+      alert("Please fill the required fields");
+    }
+    else{
+      axios
       .post(
         "http://localhost:5000/purchase/category/add",
         {
@@ -33,6 +40,9 @@ const AddCategory = () => {
         //
         //console.log(res.data);
       });
+      
+    }
+    
   };
 
   return (
