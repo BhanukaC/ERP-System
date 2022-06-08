@@ -15,6 +15,9 @@ import EditOtType from "./pages/hr/otTypes/edit/edit";
 import AddOtRecord from "./pages/hr/otRecord/add/add";
 import ViewAllOtRecords from "./pages/hr/otRecord/viewAll/viewAll";
 import ViewAllOtRecordForEmployee from "./pages/hr/otRecord/viewAllForEmployee/viewAll";
+import AddAdvance from "./pages/hr/advance/add/add";
+import ViewAllAdvance from "./pages/hr/advance/viewAll/viewAll";
+import ViewAllAdvanceForEmployee from "./pages/hr/advance/viewAllForEmployee/viewAll";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -53,6 +56,11 @@ function App() {
                 <Route path="add" element={<AddOtRecord />} />
                 <Route path="viewall/" element={<ViewAllOtRecords />} />
                 <Route path="viewall/:EID" element={<ViewAllOtRecordForEmployee />} />
+              </Route>
+              <Route path="advance">
+                <Route path="add" element={<AddAdvance />} />
+                <Route path="viewall/" element={<ViewAllAdvance />} />
+                <Route path="viewall/:EID" element={<ViewAllAdvanceForEmployee />} />
               </Route>
             </Route>
 

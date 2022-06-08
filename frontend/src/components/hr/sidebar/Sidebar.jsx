@@ -71,19 +71,20 @@ const Sidebar = () => {
               <span>View All OT Records</span>
             </li>
           </Link>
-          <p className="title">SERVICE</p>
-          <li>
-            <SettingsSystemDaydreamOutlinedIcon className="icon" />
-            <span>System Health</span>
-          </li>
-          <li>
-            <PsychologyOutlinedIcon className="icon" />
-            <span>Logs</span>
-          </li>
-          <li>
-            <SettingsApplicationsIcon className="icon" />
-            <span>Settings</span>
-          </li>
+          <p className="title">Advance Payment</p>
+          <Link to="/hr/advance/add" style={{ textDecoration: "none" }}>
+            <li>
+              <AddIcon className="icon" />
+              <span>Give Advance Payment</span>
+            </li>
+          </Link>
+          <Link to="/hr/advance/viewall" style={{ textDecoration: "none" }}>
+            <li>
+              <PreviewIcon className="icon" />
+              <span>View All Advance Payments</span>
+            </li>
+          </Link>
+
           <p className="title">USER</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
