@@ -3,7 +3,7 @@ import Navbar from "../../../../components/navbar/Navbar";
 import InventorySidebar from "../../../../components/inventory/inventorySidebar/inventorySidebar";
 import PurchaseOrderTable from "../../../../components/inventory/purchaseOrderTable/purchaseOrderTable";
 
-const PurchaseOrderDetails = () => {
+const ShipmentDetails = () => {
   return (
     <div className="list">
       <InventorySidebar />
@@ -15,4 +15,4 @@ const PurchaseOrderDetails = () => {
   );
 };
 
-export default PurchaseOrderDetails;
+export default ShipmentDetails;

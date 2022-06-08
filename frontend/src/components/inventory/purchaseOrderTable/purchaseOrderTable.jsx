@@ -1,6 +1,5 @@
 import "../table.scss";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -72,10 +71,6 @@ const PurchaseOrderTable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Purchase Orders
-        <div className="search">
-          <input type="text" placeholder="Search" />
-          <SearchOutlinedIcon />
-        </div>
       </div>
       <DataGrid
         className="datagrid"
@@ -83,6 +78,13 @@ const PurchaseOrderTable = () => {
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
+        components={{ Toolbar: GridToolbar }}
+        componentsProps={{
+          toolbar: {
+            showQuickFilter: true,
+            quickFilterProps: { debounceMs: 500 },
+          },
+        }}
       />
     </div>
   );

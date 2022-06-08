@@ -40,9 +40,9 @@ function App() {
               </Route>
 
               <Route path="order">
-                <Route path="purchaseOrderDetails" element={<PurchaseOrderDetails />} />
-                <Route path="returnOrderDetails" element={<ReturnOrderDetails />} />
-                <Route path="salesOrderDetails" element={<SalesOrderDetails />} />
+                <Route path="purchaseOrders" element={<PurchaseOrderDetails />} />
+                <Route path="returnOrders" element={<ReturnOrderDetails />} />
+                <Route path="salesOrders" element={<SalesOrderDetails />} />
                 <Route path="purchaseOrderData/:id" element={<PurchaseOrderData />} />
                 <Route path="salesOrderData/:id" element={<SalesOrderData />} />
                 <Route path="returnOrderData/:id" element={<ReturnOrderData />} />

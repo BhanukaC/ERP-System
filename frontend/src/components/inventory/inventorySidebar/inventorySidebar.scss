@@ -2,7 +2,7 @@
     flex: 1;
     border-right: 0.5px solid rgb(230, 227, 227);
     min-height: 100vh;
-    background-color: white;
+    background-color:  #00004d;
   
     .top {
       height: 50px;
@@ -33,36 +33,38 @@
         .title {
           font-size: 10px;
           font-weight: bold;
-          color: #999;
+          color: #fff;
           margin-top: 15px;
           margin-bottom: 5px;
         }
-  
+
         li {
           display: flex;
           align-items: center;
           padding: 5px;
           cursor: pointer;
-  
+
           &:hover {
-            background-color: #ece8ff;
+           background-color: #ece8ff;
+           color: #000;
           }
+  
   
           .icon {
             font-size: 18px;
-            color: #7451f8;
+            color: #999;
           }
   
           span{
               font-size: 13px;
               font-weight: 600;
-              color: #888;
+              color: #999;
               margin-left: 10px;
           }
         }
+       
       }
-    }
-  
+  }
     .bottom{
         display: flex;
         align-items: center;

@@ -28,10 +28,12 @@ const InventorySidebar = () => {
         <ul>
           <p className="title">MAIN</p>
           <Link to="/inventory/inventoryDashboard" style={{ textDecoration: "none" }}>
+          <div className="sec">
           <li>
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li>
+          </div>
           </Link>
           <p className="title">WAREHOUSE</p>
           <Link to="/inventory/warehouse/warehouseDetails" style={{ textDecoration: "none" }}>
@@ -48,50 +50,52 @@ const InventorySidebar = () => {
           </Link>
           
           <p className="title">ORDERS</p>
-          <Link to="/inventory/order/purchaseOrderDetails" style={{ textDecoration: "none" }}>
+          <Link to="/inventory/order/purchaseOrders" style={{ textDecoration: "none" }}>
             <li>
               <BusinessCenterIcon className="icon" />
               <span>Purchase</span>
             </li>
           </Link>
-          <Link to="/inventory/order/salesOrderDetails" style={{ textDecoration: "none" }}>
+          <Link to="/inventory/order/salesOrders" style={{ textDecoration: "none" }}>
             <li>
               <ShoppingBasketIcon className="icon" />
               <span>Sales</span>
             </li>
           </Link>
-          <Link to="/inventory/order/returnOrderDetails" style={{ textDecoration: "none" }}>
+          <Link to="/inventory/order/returnOrders" style={{ textDecoration: "none" }}>
             <li>
               <AssignmentReturnIcon className="icon" />
               <span>Sales Return</span>
             </li>
           </Link>
           <p className="title">INTERNAL SHIPMENTS</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <Link to=" " style={{ textDecoration: "none" }}>
             <li>
               <AddBoxIcon className="icon" />
               <span>Add Internal Shipment</span>
             </li>
-            <li>
+          </Link>
+          <Link to=" " style={{ textDecoration: "none" }}>
+             <li>
               <LocalShippingIcon className="icon" />
-              <span>Internal Shipment Details</span>
-            </li>
+               <span>Internal Shipment Details</span>
+             </li>
           </Link>
           <p className="title">REPORT</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <Link to=" " style={{ textDecoration: "none" }}>
             <li>
               <LibraryBooksIcon className="icon" />
               <span>Inventory Reports</span>
             </li>
           </Link>
           <p className="title">USER</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <Link to=" " style={{ textDecoration: "none" }}>
             <li>
               <AccountCircleOutlinedIcon className="icon" />
               <span>Profile</span>
             </li>
           </Link>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <Link to=" " style={{ textDecoration: "none" }}>
             <li>
               <ExitToAppIcon className="icon" />
               <span>Logout</span>

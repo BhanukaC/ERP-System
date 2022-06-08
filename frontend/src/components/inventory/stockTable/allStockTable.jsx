@@ -1,6 +1,5 @@
 import "../table.scss";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -52,10 +51,6 @@ const AllStockTable = (props) => {
     <div className="datatable">
       <div className="datatableTitle">
         Stock Details
-        <div className="search">
-          <input type="text" placeholder="Search Warehouse" />
-          <SearchOutlinedIcon />
-        </div>
       </div>
       <DataGrid
         className="datagrid"
@@ -63,6 +58,13 @@ const AllStockTable = (props) => {
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
+        components={{ Toolbar: GridToolbar }}
+        componentsProps={{
+          toolbar: {
+            showQuickFilter: true,
+            quickFilterProps: { debounceMs: 500 },
+          },
+        }}
       />
     </div>
   );
