@@ -56,6 +56,10 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 
 
+import AddUser from "./pages/admin/adduser/adduser";
+import ViewAllUsers from "./pages/admin/viewAll/viewAll";
+import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
+
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -141,6 +145,12 @@ function App() {
               <Route path="add" element={<AddSalesReturnOrder />} />
               <Route path="viewAll" element={<ViewAllSalesReturnOrders />} />
               </Route>
+            </Route>
+
+            <Route path="admin">
+              <Route path="adduser" element={<AddUser />} />
+              <Route path="viewAll" element={<ViewAllUsers />} />
+              <Route path="viewwarehouses" element={<ViewAllWarehouses/>} />
             </Route>
 
             <Route path="users">
