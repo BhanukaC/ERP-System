@@ -9,28 +9,39 @@ const AddUser = () => {
   const [acessLevel, setAcessLevel] = useState("");
   const [email, setEmail] = useState("");
 
+  function ValidateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      return true;
+    }
+    return false;
+  }
+
   const submitForm = (e) => {
     e.preventDefault();
-    axios
-      .post(
-        "http://localhost:5000/admin/register",
-        {
-          username: userName,
-          acessLevel: acessLevel,
-          email: email,
-        },
-        {
-          withCredentials: true,
-          credentials: "include",
-        }
-      )
-      .then((res) => {
-        if (res.data === "User Registered") {
-          alert("User Registered");
-        } else {
-          alert("Error");
-        }
-      });
+    if (ValidateEmail(email)) {
+      axios
+        .post(
+          "http://localhost:5000/admin/register",
+          {
+            username: userName,
+            acessLevel: acessLevel,
+            email: email,
+          },
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
+        .then((res) => {
+          if (res.data === "User Registered") {
+            alert("User Registered");
+          } else {
+            alert("Error");
+          }
+        });
+    } else {
+      alert("Wrong Email");
+    }
   };
 
   return (
