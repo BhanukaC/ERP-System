@@ -5,11 +5,8 @@ import axios from "axios";
 import Admin_sidebar from "../../../components/admin/admin_sidebar/Admin_sidebar";
 
 const AddUser = () => {
-
-  const [UID, setUID] = useState(0);
-
   const [userName, setUserName] = useState("");
-  const [acessLevel, setAcessLevel] = useState(0);
+  const [acessLevel, setAcessLevel] = useState("");
   const [email, setEmail] = useState("");
 
   const submitForm = (e) => {
@@ -20,13 +17,19 @@ const AddUser = () => {
         {
           username: userName,
           acessLevel: acessLevel,
-          email: email
+          email: email,
+        },
+        {
+          withCredentials: true,
+          credentials: "include",
         }
-        
       )
       .then((res) => {
-        alert(res);
-        console.log(res);
+        if (res.data === "User Registered") {
+          alert("User Registered");
+        } else {
+          alert("Error");
+        }
       });
   };
 
@@ -41,18 +44,6 @@ const AddUser = () => {
         <div className="bottom">
           <div className="right">
             <form>
-
-            <div className="formInput">
-                <label>UID</label>
-                <input
-                  type="number"
-                  value={UID}
-                  onChange={(e) => {
-                    setUID(e.target.value);
-                  }}
-                />
-              </div>
-
               <div className="formInput">
                 <label>User Name</label>
                 <input
@@ -67,7 +58,7 @@ const AddUser = () => {
               <div className="formInput">
                 <label>Email</label>
                 <input
-                  type="text"
+                  type="email"
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
@@ -76,19 +67,25 @@ const AddUser = () => {
               </div>
               <br></br>
 
-              
-              <div className="dropdown">
-              <label for="acess-level">Choose acess level: </label>
-              <select name="acess-level" id="acess-level">
-                <option value="1"
-                onChange={(e) => {
-                  setAcessLevel(e.target.value);
-                }}
-                >Admin</option>
-                <option value="2">Dave</option>
-                <option value="3">Pumpernickel</option>
-                <option value="4">Reeses</option>
-              </select>
+              <div className="formInput">
+                <label>acessLevel</label>
+
+                <select
+                  value={acessLevel}
+                  onChange={(e) => {
+                    setAcessLevel(e.target.value);
+                  }}
+                >
+                  <option value="" disabled selected>
+                    select Access Level
+                  </option>
+                  <option value="0">Admin</option>
+                  <option value="1">cashier</option>
+                  <option value="2">HR Manger</option>
+                  <option value="3">Purchase Manager</option>
+                  <option value="4">Warehouse Operator</option>
+                  <option value="5">Accountant</option>
+                </select>
               </div>
 
               <div className="break"></div>
