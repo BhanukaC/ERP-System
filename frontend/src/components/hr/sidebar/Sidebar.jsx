@@ -59,13 +59,13 @@ const Sidebar = () => {
               <span>View All OT Types</span>
             </li>
           </Link>
-          <Link to="/hr/dependent/add" style={{ textDecoration: "none" }}>
+          <Link to="/hr/otRecord/add" style={{ textDecoration: "none" }}>
             <li>
               <AddIcon className="icon" />
               <span>Add OT Record</span>
             </li>
           </Link>
-          <Link to="/hr/employee/viewall" style={{ textDecoration: "none" }}>
+          <Link to="/hr/otRecord/viewall" style={{ textDecoration: "none" }}>
             <li>
               <PreviewIcon className="icon" />
               <span>View All OT Records</span>

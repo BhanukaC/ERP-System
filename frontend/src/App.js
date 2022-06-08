@@ -12,6 +12,9 @@ import EditDependent from "./pages/hr/dependent/edit/edit";
 import AddOtType from "./pages/hr/otTypes/add/add";
 import ViewAllOtTypes from "./pages/hr/otTypes/viewAll/viewAll";
 import EditOtType from "./pages/hr/otTypes/edit/edit";
+import AddOtRecord from "./pages/hr/otRecord/add/add";
+import ViewAllOtRecords from "./pages/hr/otRecord/viewAll/viewAll";
+import ViewAllOtRecordForEmployee from "./pages/hr/otRecord/viewAllForEmployee/viewAll";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -45,6 +48,11 @@ function App() {
                 <Route path="add" element={<AddOtType />} />
                 <Route path="viewall/" element={<ViewAllOtTypes />} />
                 <Route path="edit/:otID" element={<EditOtType />} />
+              </Route>
+              <Route path="otRecord">
+                <Route path="add" element={<AddOtRecord />} />
+                <Route path="viewall/" element={<ViewAllOtRecords />} />
+                <Route path="viewall/:EID" element={<ViewAllOtRecordForEmployee />} />
               </Route>
             </Route>
 
