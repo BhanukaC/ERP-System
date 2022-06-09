@@ -529,13 +529,13 @@ exports.getAllStockLevelForWareHouseController = async (req, res) => {
 
 //change quality level
 exports.changeQualityLevelController = async (req, res) => {
-    const { PID,WID, qualityLevel, qty } = req.body;
-    db.query("select * from stock where PID=? and WID=? ", [PID,WID], (err, result) => {
+    const { PID, WID, qualityLevel, qty } = req.body;
+    db.query("select * from stock where PID=? and WID=? ", [PID, WID], (err, result) => {
         if (err) {
             res.json({ error: err });
             return;
         } else {
-            db.query("update stock set qty=? where ID=?", [result[0].qty - qty,result[0].ID], (err, result1) => {
+            db.query("update stock set qty=? where ID=?", [result[0].qty - qty, result[0].ID], (err, result1) => {
 
                 if (err) {
                     res.json({ error: err });
@@ -553,7 +553,6 @@ exports.changeQualityLevelController = async (req, res) => {
                                     res.json("Cahnged Quality level of stocks");
                                 });
                             } else {
-
                                 db.query("update stock set qty=? where ID=?", [result1[0].qty + qty, result1[0].ID], (err, result) => {
                                     db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Cahnged Quality level of stocks(ID-" + result1[0].ID + ")"], (err, response) => { });
                                     res.json("Cahnged Quality level of stocks");
