@@ -6,13 +6,13 @@ import axios from "axios";
 
 const userColumns = [
   { field: "salesReturnOrderID", headerName: "Sales Return Order ID",  width: 100},
+  { field: "WID", headerName: "Warehouse ID", width: 100},
   { field: "initiateDate", headerName: "Order Date", width: 200 },
   { field: "finishDate", headerName: "Finish Date", width: 200 },
   { field: "reason", headerName: "Reason for Returning", width: 200 },
   { field: "total", headerName: "Net Total", width: 100},
   { field: "CID", headerName: "Customer ID", width: 100},
   { field: "salesOrderID", headerName: "Sales Order ID", width: 100},
-  { field: "WID", headerName: "Warehouse ID", width: 100},
 ];
 
 const ReturnOrderTable = () => {

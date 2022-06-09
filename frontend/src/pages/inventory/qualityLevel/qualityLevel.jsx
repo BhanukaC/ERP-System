@@ -87,13 +87,17 @@ const ChangeQualityLevel = () => {
               </div>
               <div className="formInput">
                 <label>New Quality Level</label>
-                <input
-                  type="text"
+                <select
                   value={qualityLevel}
                   onChange={(e) => {
                     setQualityLevel(e.target.value);
                   }}
-                />
+                >
+                  <option value="" disabled selected> select Quality Level Level </option>
+                  <option value="A">Level A</option>
+                  <option value="B">Level B</option>
+                  <option value="C">Level C</option>
+                </select>
               </div>
               <div className="break"></div>
               <button onClick={submitForm}>Submit</button>

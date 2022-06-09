@@ -6,6 +6,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const EditWarehouseDetails = () => {
+  const [ManagerName, setManagerName] = useState("");
   const [no, setNo] = useState("");
   const [street, setStreet] = useState("");
   const [town, setTown] = useState("");
@@ -20,6 +21,7 @@ const EditWarehouseDetails = () => {
         credentials: "include",
       })
       .then((res) => {
+        setManagerName(res.data[0].ManagerName)
         setNo(res.data[0].no);
         setStreet(res.data[0].street);
         setTown(res.data[0].town);
@@ -28,10 +30,11 @@ const EditWarehouseDetails = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (no === "" || street === "" || town === "") {
+    if (ManagerName=== "" || no === "" || street === "" || town === "") {
       alert("Fill the required fields");
     } else {
       let data = {
+        ManagerName: ManagerName,
         no: no,
         street: street,
         town: town,
@@ -64,6 +67,16 @@ const EditWarehouseDetails = () => {
         <div className="bottom">
           <div className="right">
             <form>
+            <div className="formInput">
+                <label>Name of the Manager</label>
+                <input
+                  type="text"
+                  value={ManagerName}
+                  onChange={(e) => {
+                    setManagerName(e.target.value);
+                  }}
+                />
+              </div>
               <div className="formInput">
                 <label>No</label>
                 <input

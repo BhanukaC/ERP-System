@@ -6,8 +6,8 @@ const _ = require("underscore");
 //update warehouse details
 exports.warehouseUpdateController = async (req, res) => {
     const id = req.params.id;
-    const { no, street, town } = req.body;
-    db.query("update Warehouse set no=?,street=?,town=? where WID=?", [no, street, town, id], (err, result) => {
+    const { ManagerName, no, street, town } = req.body;
+    db.query("update Warehouse set ManagerName=?, no=?,street=?,town=? where WID=?", [ManagerName, no, street, town, id], (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
