@@ -4,7 +4,7 @@ import Navbar from "../../../components/navbar/Navbar";
 import InventorySidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
 import axios from "axios";
 
-const ChangeQualityLevel = () => {
+const EditWarehouseDetails = () => {
   const [PID, setPID] = useState("");
   const [WID, setWID] = useState("");
   const [qty, setQty] = useState(0);
@@ -105,4 +105,4 @@ const ChangeQualityLevel = () => {
   );
 };
 
-export default ChangeQualityLevel;
+export default EditWarehouseDetails;
