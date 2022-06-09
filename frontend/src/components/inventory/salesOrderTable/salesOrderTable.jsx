@@ -36,29 +36,18 @@ const SalesOrderTable = () => {
 
   const actionColumn = [
     {
-      field: "change",
-      headerName: "Change Status",
-      width: 150,
+      headerName: " ",
+      width: 300,
       renderCell: (params) => {
-        const reLink= " "+params.row.purchaseOrderID;
+        const reLink1= " "+params.row.salesOrderID;
+        const reLink2= "/inventory/order/salesOrderData/"+params.row.salesOrderID;
         return (
           <div className="cellAction">
-            <Link to={reLink} style={{ textDecoration: "none" }}>
-              <div className="viewButton">Change</div>
+            <Link to={reLink1} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Change Status</div>
             </Link>
-          </div>
-        );
-      },
-    },
-    {
-      headerName: "Order Details",
-      width: 200,
-      renderCell: (params) => {
-        const reLink= "/inventory/order/salesOrderData/"+params.row.salesOrderID;
-        return (
-          <div className="cellAction">
-            <Link to={reLink} style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+            <Link to={reLink2} style={{ textDecoration: "none" }}>
+              <div className="viewButton">View Order Details</div>
             </Link>
           </div>
         );

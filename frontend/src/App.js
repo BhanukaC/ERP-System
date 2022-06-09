@@ -15,6 +15,7 @@ import PurchaseOrderData from "./pages/inventory/order/orderData/purchaseOrderDa
 import ReturnOrderData from "./pages/inventory/order/orderData/ReturnOrderData";
 import SalesOrderData from "./pages/inventory/order/orderData/salesOrderData";
 import ChangeQualityLevel from "./pages/inventory/qualityLevel/qualityLevel";
+import EditWarehouseDetails from "./pages/inventory/warehouse/editWarehouseDet/editWarehouseDetails";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -37,7 +38,7 @@ function App() {
               <Route path="changeQualityLevel" element={<ChangeQualityLevel />} />
               <Route path="warehouse">
                 <Route path="warehousedetails" element={<WarehouseDetails />} />
-                <Route path="edit" element={<WarehouseDetails />} />
+                <Route path="editDetails/:id" element={<EditWarehouseDetails />} />
                 <Route path="stockDetails/:id" element={<StockDetails />} />
               </Route>
 

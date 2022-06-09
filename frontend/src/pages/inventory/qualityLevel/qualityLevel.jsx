@@ -96,7 +96,7 @@ const ChangeQualityLevel = () => {
                 />
               </div>
               <div className="break"></div>
-              <button onClick={submitForm}>Send</button>
+              <button onClick={submitForm}>Submit</button>
             </form>
           </div>
         </div>

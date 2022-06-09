@@ -1,102 +1,108 @@
-import "../form.scss";
-import { useState } from "react";
-import Navbar from "../../../components/navbar/Navbar";
-import InventorySidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
+import "../../form.scss";
+import Navbar from "../../../../components/navbar/Navbar";
+import InventorySidebar from "../../../../components/inventory/inventorySidebar/inventorySidebar";
+import { useState,useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+
 
 const EditWarehouseDetails = () => {
-  const [PID, setPID] = useState("");
-  const [WID, setWID] = useState("");
-  const [qty, setQty] = useState(0);
-  const [qualityLevel, setQualityLevel] = useState("");
+  const [no, setNo] = useState("");
+  const [street, setStreet] = useState("");
+  const [town, setTown] = useState("");
+
+  const { WID } = useParams();
+  console.log(WID);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/inventory/Warehouse/getSingle/" + WID, {
+        withCredentials: true,
+        credentials: "include",
+      })
+      .then((res) => {
+        setNo(res.data[0].no);
+        setStreet(res.data[0].street);
+        setTown(res.data[0].town);
+      });
+  }, [""]);
 
   const submitForm = (e) => {
     e.preventDefault();
     if(
-      PID === " " ||
-      WID === " " ||
-      qty === " " ||
-      qty === 0 ||
-      qualityLevel === " "
+      no === "" ||
+      street === "" ||
+      town === ""
       )
       {
         alert("Fill the required fields");
       }
-      else{
-    axios
-      .post(
-        "http://localhost:5000/inventory/changeQualityLevel/add",
-        {
-          PID: PID,
-          WID: WID,
-          qty: parseFloat(qty),
-          qualityLevel: qualityLevel,
-        },
-        {
-          withCredentials: true,
-          credentials: "include",
-        }
-      )
-      .then((res) => {
-        alert("Quality Level Changed");
-        console.log(res);
-      });
-    }
-  };
-
+      else
+      {
+        let data = {
+          no:no,
+          stret:street,
+          town:town,
+        };
+  
+        axios
+          .put("http://localhost:5000/inventory/Warehouse/update/" + WID, data, {
+            withCredentials: true,
+            credentials: "include",
+          })
+          .then((res) => {
+            if (res.data === "update Warehouse Details") {
+              alert("Warehouse details Updated");
+            } else {
+              alert("Try again");
+            }
+          });
+      }
+    };
+  
   return (
     <div className="new">
       <InventorySidebar />
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Change Quality Level</h1>
+          <h1>Edit Warehouse Details</h1>
         </div>
         <div className="bottom">
           <div className="right">
             <form>
-            <div className="formInput">
-                <label>Warehouse ID</label>
-                <input
-                  type="number"
-                  value={WID}
-                  onChange={(e) => {
-                    setWID(e.target.value);
-                  }}
-                />
-              </div>
               <div className="formInput">
-                <label>Product ID</label>
-                <input
-                  type="number"
-                  value={PID}
-                  onChange={(e) => {
-                    setPID(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
-                <label>Quantity to be changed</label>
-                <input
-                  type="number"
-                  value={qty}
-                  onChange={(e) => {
-                    setQty(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
-                <label>New Quality Level</label>
+                <label>No</label>
                 <input
                   type="text"
-                  value={qualityLevel}
+                  value={no}
                   onChange={(e) => {
-                    setQualityLevel(e.target.value);
+                    setNo(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="formInput">
+                <label>Street</label>
+                <input
+                  type="text"
+                  value={street}
+                  onChange={(e) => {
+                    setStreet(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="formInput">
+                <label>Town</label>
+                <input
+                  type="text"
+                  value={town}
+                  onChange={(e) => {
+                    setTown(e.target.value);
                   }}
                 />
               </div>
               <div className="break"></div>
-              <button onClick={submitForm}>Send</button>
+              <button onClick={submitForm}>Submit</button>
             </form>
           </div>
         </div>

@@ -5,10 +5,10 @@ import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
 const userColumns = [
-  { field: "WID", headerName: "Warehouse ID",  width: 200},
+  { field: "WID", headerName: "Warehouse ID",  width: 100},
   //{ field: "town", headerName: "Branch", width: 200 },
   { field: "ManagerName", headerName: "Name of the Manager", width: 200 },
-  { field: "no", headerName: "No", width: 200 },
+  { field: "no", headerName: "No", width: 100 },
   { field: "street", headerName: "Street", width: 200},
   { field: "town", headerName: "Town", width: 200},
 ];
@@ -34,15 +34,18 @@ const WarehouseTable = () => {
 
   const actionColumn = [
     {
-      headerName: "Stock Details",
-      width: 200,
+      headerName: "",
+      width: 350,
       renderCell: (params) => {
-        const reLink="/inventory/warehouse/stockDetails/"+params.row.WID;
+        const reLink1="/inventory/warehouse/stockDetails/"+params.row.WID;
+        const reLink2="/inventory/warehouse/editDetails/"+params.row.WID;
         return (
           <div className="cellAction">
-           
-            <Link to={reLink} style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+            <Link to={reLink1} style={{ textDecoration: "none" }}>
+              <div className="viewButton">View Stock Details</div>
+            </Link>
+            <Link to={reLink2} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Edit Warehouse Details</div>
             </Link>
           </div>
         );
