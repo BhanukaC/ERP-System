@@ -26,10 +26,7 @@ const InventoryDashboard = () => {
       <InventorySidebar />
       <div className="homeContainer">
         <Navbar />
-        <div className="listContainer">
-            <div className="listTitle">Latest Transactions</div>
-          <AllStockTable />
-        </div>
+        <AllStockTable />
       </div>
     </div>
   );

@@ -26,12 +26,12 @@ const InventorySidebar = () => {
       <hr />
       <div className="center">
         <ul>
-          <p className="title">MAIN</p>
+          <p className="title">STOCK</p>
           <Link to="/inventory" style={{ textDecoration: "none" }}>
           <div className="sec">
           <li>
             <DashboardIcon className="icon" />
-            <span>Dashboard</span>
+            <span>Stock Details</span>
           </li>
           </div>
           </Link>
@@ -42,13 +42,6 @@ const InventorySidebar = () => {
               <span>Warehouse Details</span>
             </li>
           </Link>
-          <Link to="/inventory/warehouse/stockDetails" style={{ textDecoration: "none" }}>
-            <li>
-              <StoreIcon className="icon" />
-              <span>Stock Details</span>
-            </li>
-          </Link>
-          
           <p className="title">ORDERS</p>
           <Link to="/inventory/order/purchaseOrders" style={{ textDecoration: "none" }}>
             <li>

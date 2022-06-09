@@ -12,7 +12,7 @@ const userColumns = [
   { field: "CID", headerName: "Customer ID", width: 100},
   { field: "deliveryCharge", headerName: "Delivery Charge", width: 100},
   { field: "netTotal", headerName: "Net Total", width: 100},
-  { field: "status", headerName: "Status", width: 200 },
+  { field: "status", headerName: "Status", width: 100 },
 ];
 
 const SalesOrderTable = () => {
@@ -35,6 +35,21 @@ const SalesOrderTable = () => {
   }, [""]);
 
   const actionColumn = [
+    {
+      field: "change",
+      headerName: "Change Status",
+      width: 150,
+      renderCell: (params) => {
+        const reLink= " "+params.row.purchaseOrderID;
+        return (
+          <div className="cellAction">
+            <Link to={reLink} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Change</div>
+            </Link>
+          </div>
+        );
+      },
+    },
     {
       headerName: "Order Details",
       width: 200,

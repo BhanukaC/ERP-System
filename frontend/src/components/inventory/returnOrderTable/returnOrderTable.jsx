@@ -36,6 +36,21 @@ const ReturnOrderTable = () => {
 
   const actionColumn = [
     {
+      field: "change",
+      headerName: "Change Status",
+      width: 150,
+      renderCell: (params) => {
+        const reLink= " "+params.row.purchaseOrderID;
+        return (
+          <div className="cellAction">
+            <Link to={reLink} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Change</div>
+            </Link>
+          </div>
+        );
+      },
+    },
+    {
       headerName: "Order Details",
       width: 200,
       renderCell: (params) => {
@@ -49,6 +64,7 @@ const ReturnOrderTable = () => {
         );
       },
     },
+
   ];
   return (
     <div className="datatable">
