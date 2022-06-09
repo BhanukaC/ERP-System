@@ -1,4 +1,4 @@
-import "./qualityLevel.scss";
+import "../form.scss";
 import { useState } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import InventorySidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
@@ -12,16 +12,26 @@ const ChangeQualityLevel = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
+    if(
+      PID === " " ||
+      WID === " " ||
+      qty === " " ||
+      qty === 0 ||
+      qualityLevel === " "
+      )
+      {
+        alert("Fill the required fields");
+      }
+      else{
     axios
       .post(
         "http://localhost:5000/inventory/changeQualityLevel/add",
-      {
-        PID: PID,
-        WID: WID,
-        qty: parseFloat(qty),
-        qualityLevel: qualityLevel,
-       },
-
+        {
+          PID: PID,
+          WID: WID,
+          qty: parseFloat(qty),
+          qualityLevel: qualityLevel,
+        },
         {
           withCredentials: true,
           credentials: "include",
@@ -31,6 +41,7 @@ const ChangeQualityLevel = () => {
         alert("Quality Level Changed");
         console.log(res);
       });
+    }
   };
 
   return (

@@ -7,7 +7,6 @@ import AddEmployee from "./pages/hr/employeee/add/add"
 import ViewAllEmployees from "./pages/hr/employeee/viewAll/viewAll";
 import WarehouseDetails from "./pages/inventory/warehouse/warehouseDetails/warehouseDetails";
 import StockDetails from "./pages/inventory/warehouse/stockDetails/stockDetails";
-import AllStockDetails from "./pages/inventory/warehouse/stockDetails/allStockDetails";
 import PurchaseOrderDetails from "./pages/inventory/order/purchaseOrderDetails/purchaseOrderDetails";
 import SalesOrderDetails from "./pages/inventory/order/salesOrderDetails/salesOrderDetails";
 import ReturnOrderDetails from "./pages/inventory/order/returnOrderDetails/returnOrderDetails";
@@ -35,11 +34,11 @@ function App() {
 
             <Route path="inventory">
               <Route index element={<InventoryDashboard />} />
+              <Route path="changeQualityLevel" element={<ChangeQualityLevel />} />
               <Route path="warehouse">
-                <Route path="warehouseDetails" element={<WarehouseDetails />} />
+                <Route path="warehousedetails" element={<WarehouseDetails />} />
+                <Route path="edit" element={<WarehouseDetails />} />
                 <Route path="stockDetails/:id" element={<StockDetails />} />
-                <Route path="stockDetails" element={<AllStockDetails />} />
-                <Route path="changeQualityLevel" element={<ChangeQualityLevel />} />
               </Route>
 
               <Route path="order">

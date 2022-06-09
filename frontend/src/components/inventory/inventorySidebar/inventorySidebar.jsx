@@ -30,7 +30,7 @@ const InventorySidebar = () => {
           <Link to="/inventory" style={{ textDecoration: "none" }}>
           <div className="sec">
           <li>
-            <DashboardIcon className="icon" />
+            <StoreIcon className="icon" />
             <span>Stock Details</span>
           </li>
           </div>
@@ -40,6 +40,12 @@ const InventorySidebar = () => {
             <li>
               <WarehouseIcon className="icon" />
               <span>Warehouse Details</span>
+            </li>
+          </Link>
+          <Link to="/inventory/warehouse/warehouseDetails" style={{ textDecoration: "none" }}>
+            <li>
+              <WarehouseIcon className="icon" />
+              <span>Edit Warehouse Details</span>
             </li>
           </Link>
           <p className="title">ORDERS</p>
@@ -75,7 +81,7 @@ const InventorySidebar = () => {
              </li>
           </Link>
           <p className="title">QUALITY LEVEL</p>
-          <Link to="/inventory/warehouse/changeQualityLevel " style={{ textDecoration: "none" }}>
+          <Link to="/inventory/changeQualityLevel " style={{ textDecoration: "none" }}>
              <li>
               <ChangeCircleIcon className="icon" />
                <span>Change Quality Level</span>
