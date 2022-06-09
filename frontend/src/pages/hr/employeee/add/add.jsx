@@ -36,7 +36,8 @@ const AddEmployee = () => {
       designation === "" ||
       department === "" ||
       workerType === "" ||
-      (basicSalary === 0 && dailyWage === 0)
+      (basicSalary === 0 && dailyWage === 0) ||
+      NIC.length !== 10
     ) {
       alert("Please fill all required fields");
     } else {
