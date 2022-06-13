@@ -6,7 +6,6 @@ import axios from "axios";
 
 const AddSalesReturnOrder = () => {
   const [salesReturnOrderID, setSalesReturnOrderID] = useState("");
-  const [initiateDate, setInitiateDate] = useState("");
   const [reason, setReason] = useState("");
   const [status, setStatus] = useState("");
   const [WID, setWID] = useState("");
@@ -14,7 +13,6 @@ const AddSalesReturnOrder = () => {
   const [CID, setCID] = useState("");
   const [CDAID, setCDAID] = useState("");
   const [CCID, setCCID] = useState("");
-  const [finishDate, setFinishDate] = useState("");
   const [salesOrderID, setSalesOrderID] = useState("");
  
 
@@ -22,7 +20,6 @@ const AddSalesReturnOrder = () => {
     e.preventDefault();
     if (
       salesReturnOrderID === "" ||
-      initiateDate === "" ||
       reason === "" ||
       status === "" ||
       WID === "" ||
@@ -30,14 +27,12 @@ const AddSalesReturnOrder = () => {
       CID === "" ||
       CDAID === "" ||
       CCID === "" ||
-      finishDate === "" ||
       salesOrderID === "" 
     ) {
       alert("Please fill all required fields");
     } else {
       let data = {
         salesReturnOrderID: salesReturnOrderID,
-        initiateDate: initiateDate,
         reason: reason,
         status: status,
         WID: WID,
@@ -45,7 +40,6 @@ const AddSalesReturnOrder = () => {
         CID: CID,
         CDAID: CDAID,
         CCID: CCID,
-        finishDate: finishDate,
         salesOrderID:salesOrderID ,
       };
     axios
@@ -59,7 +53,6 @@ const AddSalesReturnOrder = () => {
             alert("Sales Return Order added");
 
             setSalesReturnOrderID();
-            setInitiateDate("");
             setReason("");
             setStatus("");
             setWID();
@@ -67,7 +60,6 @@ const AddSalesReturnOrder = () => {
             setCID();
             setCDAID();
             setCCID();
-            setFinishDate("");
             setSalesOrderID();
       
         }
@@ -98,16 +90,6 @@ const AddSalesReturnOrder = () => {
                   value={salesReturnOrderID}
                   onChange={(e) => {
                     setSalesReturnOrderID(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
-                <label>Initiate Date</label>
-                <input
-                  type="text"
-                  value={initiateDate}
-                  onChange={(e) => {
-                    setInitiateDate(e.target.value);
                   }}
                 />
               </div>
@@ -178,16 +160,6 @@ const AddSalesReturnOrder = () => {
                   value={CCID}
                   onChange={(e) => {
                     setCCID(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
-                <label>Finish Date</label>
-                <input
-                  type="text"
-                  value={finishDate}
-                  onChange={(e) => {
-                    setFinishDate(e.target.value);
                   }}
                 />
               </div>

@@ -81,8 +81,8 @@ const EditCustomer = () => {
       })
       
       .then((res) => {
-          if (res.data === "Customer details Updated") {
-            alert("Customer details Updated");
+          if (res.data === "customer updated") {
+            alert("customer updated");
           } else {
             alert("Sorry,Try again");
           }
