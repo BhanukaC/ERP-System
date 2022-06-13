@@ -49,18 +49,19 @@ const Datatable = () => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
+        const reLink = "/sales/customer/edit/" + params.row.CID;
         return (
           <div className="cellAction">
-            <div className="deleteButton"
-              onClick={() => handleDelete(params.row.CID)}
-            >
-              Edit
-            </div>
+             <Link to={reLink} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Edit</div>
+            </Link>
           </div>
         );
       },
     },
   ];
+
+  
   return (
     <div className="datatable">
       <DataGrid

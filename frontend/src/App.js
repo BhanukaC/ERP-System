@@ -30,6 +30,7 @@ import EditWarehouseDetails from "./pages/inventory/warehouse/editWarehouseDet/e
 
 
 import AddCustomer from "./pages/sales/customer/add/add"
+import EditCustomer from "./pages/sales/customer/edit/edit";
 import ViewAllCustomer from "./pages/sales/viewAll/viewAll"
 import AddSalesReturnOrder from "./pages/sales/salesReturnOrder/add/add"
 import ViewAllSalesReturnOrders from "./pages/sales/salesReturnOrder/add/viewAll/viewAll";
@@ -141,6 +142,7 @@ function App() {
               <Route path="customer">
                 <Route path="add" element={<AddCustomer />} />
                 <Route path="viewAll" element={<ViewAllCustomer />} />
+                <Route path="edit/:CID" element={<EditCustomer />} />
               </Route>
               <Route path="salesReturnOrder">
                 <Route path="add" element={<AddSalesReturnOrder />} />
