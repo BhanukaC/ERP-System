@@ -5,17 +5,15 @@ import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
 const userColumns = [
-  { field: "salesReturnOrderID", headerName: "SalesReturnOrderID", width: 150 },
-  { field: "initiateDate", headerName: "InitiateDate", width: 210 },
-  { field: "reason", headerName: "Reason", width: 110 },
-  { field: "status", headerName: "Status", width: 70 },
-  { field: "WID", headerName: "WID" , width: 70 },
-  { field: "total", headerName: "Total" , width: 90},
+  { field: "salesReturnOrderID", headerName: "salesReturnOrderID", width: 150 },
   { field: "CID", headerName: "CID", width: 50 },
-  { field: "CDAID", headerName: "CDAID", width: 60 },
-  { field: "CCID", headerName: "CCID", width: 60  },
-  { field: "finishDate", headerName: "FinishDate", width: 90  },
-  { field: "salesOrderID", headerName: "SalesOrderID", width: 110  },
+  { field: "CDAID", headerName: "CDAID", width: 120 },
+  { field: "CCID", headerName: "CCID", width: 120 },
+  { field: "WID", headerName: "WID", width: 120 },
+  { field: "reason", headerName: "reason", width: 120  },
+  { field: "salesOrderID", headerName: "salesOrderID" },
+  { field: "items", headerName: "items" , width: 100},
+ 
   
 ];
 
@@ -35,7 +33,7 @@ const Datatable = () => {
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {
-          return { id: d.CID, ...d };
+          return { id: d.salesReturnOrderID, ...d };
         });
         setData(dt);
         // console.log(dt);
@@ -48,18 +46,19 @@ const Datatable = () => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
+        const reLink = "/sales/customer/edit/" + params.row.salesReturnOrderID;
         return (
           <div className="cellAction">
-            <div className="deleteButton"
-              onClick={() => handleDelete(params.row.CID)}
-            >
-              Edit
-            </div>
+             <Link to={reLink} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Edit</div>
+            </Link>
           </div>
         );
       },
     },
   ];
+
+  
   return (
     <div className="datatable">
       <DataGrid

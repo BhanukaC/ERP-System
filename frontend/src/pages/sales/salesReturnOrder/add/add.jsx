@@ -7,9 +7,8 @@ import axios from "axios";
 const AddSalesReturnOrder = () => {
   const [salesReturnOrderID, setSalesReturnOrderID] = useState("");
   const [reason, setReason] = useState("");
-  const [status, setStatus] = useState("");
   const [WID, setWID] = useState("");
-  const [total, setTotal] = useState("");
+  const [items, setItems] = useState("");
   const [CID, setCID] = useState("");
   const [CDAID, setCDAID] = useState("");
   const [CCID, setCCID] = useState("");
@@ -21,9 +20,8 @@ const AddSalesReturnOrder = () => {
     if (
       salesReturnOrderID === "" ||
       reason === "" ||
-      status === "" ||
       WID === "" ||
-      total === "" ||
+      items === ""||
       CID === "" ||
       CDAID === "" ||
       CCID === "" ||
@@ -34,9 +32,8 @@ const AddSalesReturnOrder = () => {
       let data = {
         salesReturnOrderID: salesReturnOrderID,
         reason: reason,
-        status: status,
         WID: WID,
-        total: total,
+        items:items,
         CID: CID,
         CDAID: CDAID,
         CCID: CCID,
@@ -54,9 +51,8 @@ const AddSalesReturnOrder = () => {
 
             setSalesReturnOrderID();
             setReason("");
-            setStatus("");
             setWID();
-            setTotal();
+            setItems("");
             setCID();
             setCDAID();
             setCCID();
@@ -104,16 +100,6 @@ const AddSalesReturnOrder = () => {
                 />
               </div>
               <div className="formInput">
-                <label>Status</label>
-                <input
-                  type="text"
-                  value={status}
-                  onChange={(e) => {
-                    setStatus(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
                 <label>WID</label>
                 <input
                   type="text"
@@ -124,12 +110,12 @@ const AddSalesReturnOrder = () => {
                 />
               </div>
               <div className="formInput">
-                <label>total</label>
+                <label>Items</label>
                 <input
                   type="text"
-                  value={total}
+                  value={items}
                   onChange={(e) => {
-                    setTotal(e.target.value);
+                    setItems(e.target.value);
                   }}
                 />
               </div>

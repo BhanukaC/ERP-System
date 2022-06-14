@@ -29,11 +29,11 @@ import ChangeQualityLevel from "./pages/inventory/qualityLevel/qualityLevel";
 import EditWarehouseDetails from "./pages/inventory/warehouse/editWarehouseDet/editWarehouseDetails";
 
 
-import AddCustomer from "./pages/sales/customer/add/add"
+import AddCustomer from "./pages/sales/customer/add/add";
 import EditCustomer from "./pages/sales/customer/edit/edit";
-import ViewAllCustomer from "./pages/sales/viewAll/viewAll"
-import AddSalesReturnOrder from "./pages/sales/salesReturnOrder/add/add"
-import ViewAllSalesReturnOrders from "./pages/sales/salesReturnOrder/add/viewAll/viewAll";
+import ViewAllCustomer from "./pages/sales/viewAll/viewAll";
+import AddSalesReturnOrder from "./pages/sales/salesReturnOrder/add/add";
+import ViewAllSalesReturnOrders from "./pages/sales/salesReturnOrder/add/viewAll/viewAll"; 
 
 import EditEmployee from "./pages/hr/employeee/edit/edit";
 import AddDependent from "./pages/hr/dependent/add/add";
