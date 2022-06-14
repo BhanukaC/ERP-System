@@ -34,6 +34,7 @@ import EditCustomer from "./pages/sales/customer/edit/edit";
 import ViewAllCustomer from "./pages/sales/viewAll/viewAll";
 import AddSalesReturnOrder from "./pages/sales/salesReturnOrder/add/add";
 import ViewAllSalesReturnOrders from "./pages/sales/salesReturnOrder/add/viewAll/viewAll"; 
+import ViewAllSalesOrders from "./pages/sales/salesOrder/viewAll/viewAll";
 
 import EditEmployee from "./pages/hr/employeee/edit/edit";
 import AddDependent from "./pages/hr/dependent/add/add";
@@ -143,6 +144,10 @@ function App() {
                 <Route path="add" element={<AddCustomer />} />
                 <Route path="viewAll" element={<ViewAllCustomer />} />
                 <Route path="edit/:CID" element={<EditCustomer />} />
+              </Route>
+              <Route path="salesOrder">
+                
+                <Route path="viewAll" element={<ViewAllSalesOrders />} />
               </Route>
               <Route path="salesReturnOrder">
                 <Route path="add" element={<AddSalesReturnOrder />} />

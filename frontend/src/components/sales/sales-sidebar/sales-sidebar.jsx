@@ -41,10 +41,12 @@ const Sidebar = () => {
             <FormatListNumberedIcon className="icon" />
             <span>Add Sales Order</span>
           </li>
-          <li>
-            <SpeakerNotesIcon className="icon" />
-            <span>View Sales Order</span>
-          </li>
+          <Link to="/sales/salesOrder/viewall" style={{ textDecoration: "none" }}>
+            <li>
+              <DocumentScannerIcon className="icon" />
+              <span>View Sales Return Order Details</span>
+            </li>
+          </Link>
           <p className="title">SALES RETURN ORDER</p>
           <Link to="/sales/salesReturnOrder/add" style={{ textDecoration: "none" }}>
             <li>
