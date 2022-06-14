@@ -52,8 +52,8 @@ export default function Login() {
         { withCredentials: true, credentials: "include" }
       )
       .then((res) => {
-        if (res.data === "Logged In") {
-          switch (user.acessLevel) {
+        if (res.data.message === "Logged In") {
+          switch (res.data.accessLevel) {
             case 0:
               window.location = "/admin";
               break;

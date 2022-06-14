@@ -25,7 +25,7 @@ exports.loginController = async (req, res) => {
                     db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, result[0].UID, result[0].userName, "Logged into the system"], (err, response) => {
 
                     });
-                    res.json("Logged In");
+                    res.json({ message: "Logged In", accessLevel: result[0].acessLevel });
                 }
             });
 
