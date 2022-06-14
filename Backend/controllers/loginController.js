@@ -20,10 +20,10 @@ exports.loginController = async (req, res) => {
                     const accessToken = createTokens(result[0]);
                     res.cookie("access-token", accessToken, {
                         maxAge: 60 * 60 * 24 * 30,
-                        httpOnly: true,
+                        httpOnly: false,
                     });
                     db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, result[0].UID, result[0].userName, "Logged into the system"], (err, response) => {
-                        
+
                     });
                     res.json("Logged In");
                 }

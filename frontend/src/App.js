@@ -1,8 +1,5 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
-import List from "./pages/list/List";
-import Single from "./pages/single/Single";
-import New from "./pages/new/new";
 import AddEmployee from "./pages/hr/employeee/add/add"
 
 import AddProduct from "./pages/purchase/add_product/add_product";
@@ -59,6 +56,7 @@ import { DarkModeContext } from "./context/darkModeContext";
 import AddUser from "./pages/admin/adduser/adduser";
 import ViewAllUsers from "./pages/admin/viewAll/viewAll";
 import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
+import user from "./auth";
 
 
 function App() {
