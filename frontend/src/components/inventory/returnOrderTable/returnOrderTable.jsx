@@ -8,11 +8,12 @@ const userColumns = [
   { field: "salesReturnOrderID", headerName: "Sales Return Order ID",  width: 100},
   { field: "WID", headerName: "Warehouse ID", width: 100},
   { field: "initiateDate", headerName: "Order Date", width: 200 },
-  { field: "finishDate", headerName: "Finish Date", width: 200 },
   { field: "reason", headerName: "Reason for Returning", width: 200 },
   { field: "total", headerName: "Net Total", width: 100},
   { field: "CID", headerName: "Customer ID", width: 100},
   { field: "salesOrderID", headerName: "Sales Order ID", width: 100},
+  { field: "status", headerName: "Status", width: 100 },
+  { field: "finishDate", headerName: "Finish Date", width: 200 },
 ];
 
 const ReturnOrderTable = () => {
@@ -39,8 +40,8 @@ const ReturnOrderTable = () => {
       headerName: " ",
       width: 300,
       renderCell: (params) => {
-        const reLink1= " "+params.row.purchaseOrderID;
-        const reLink2= "/inventory/order/returnOrderData/"+params.row.salesReturnOrderID;
+        const reLink1= "/inventory/order/returnOrders/changeStatus/ "+params.row.salesReturnOrderID;
+        const reLink2= "/inventory/order/returnOrders/orderData/"+params.row.salesReturnOrderID;
         return (
           <div className="cellAction">
             <Link to={reLink1} style={{ textDecoration: "none" }}>

@@ -27,6 +27,9 @@ import ReturnOrderData from "./pages/inventory/order/orderData/ReturnOrderData";
 import SalesOrderData from "./pages/inventory/order/orderData/salesOrderData";
 import ChangeQualityLevel from "./pages/inventory/qualityLevel/qualityLevel";
 import EditWarehouseDetails from "./pages/inventory/warehouse/editWarehouseDet/editWarehouseDetails";
+import ChangeSalesOrderStatus from "./pages/inventory/order/salesOrderDetails/changeSalesStatus";
+import ChangePurchaseOrderStatus from "./pages/inventory/order/purchaseOrderDetails/changePurchaseStatus";
+import ChangeSalesReturnOrderStatus from "./pages/inventory/order/returnOrderDetails/changeSalesReturnStatus";
 
 
 import AddCustomer from "./pages/sales/customer/add/add"
@@ -83,12 +86,24 @@ function App() {
               </Route>
 
               <Route path="order">
-                <Route path="purchaseOrders" element={<PurchaseOrderDetails />} />
-                <Route path="returnOrders" element={<ReturnOrderDetails />} />
-                <Route path="salesOrders" element={<SalesOrderDetails />} />
-                <Route path="purchaseOrderData/:id" element={<PurchaseOrderData />} />
-                <Route path="salesOrderData/:id" element={<SalesOrderData />} />
-                <Route path="returnOrderData/:id" element={<ReturnOrderData />} />
+                <Route path="purchaseOrders" >
+                <Route index element={<PurchaseOrderDetails />} />
+                <Route path="changeStatus/:WID" element={<ChangePurchaseOrderStatus />} />
+                <Route path="orderData/:id" element={<PurchaseOrderData />} />
+                </Route>
+
+                <Route path="returnOrders" >
+                <Route index element={<ReturnOrderDetails />} />
+                <Route path="changeStatus/:WID" element={<ChangeSalesReturnOrderStatus />} />
+                <Route path="orderData/:id" element={<ReturnOrderData />} />
+                </Route>
+
+                <Route path="salesOrders" >
+                <Route index element={<SalesOrderDetails />} />
+                <Route path="changeStatus/:salesOrderID" element={<ChangeSalesOrderStatus />} />
+                <Route path="orderData/:id" element={<SalesOrderData />} />
+                </Route>
+               
               </Route>
 
             </Route>
