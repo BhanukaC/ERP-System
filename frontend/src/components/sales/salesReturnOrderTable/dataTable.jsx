@@ -40,31 +40,13 @@ const Datatable = () => {
       });
   }, [""]);
 
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        const reLink = "/sales/customer/edit/" + params.row.salesReturnOrderID;
-        return (
-          <div className="cellAction">
-             <Link to={reLink} style={{ textDecoration: "none" }}>
-              <div className="viewButton">Edit</div>
-            </Link>
-          </div>
-        );
-      },
-    },
-  ];
-
   
   return (
     <div className="datatable">
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={userColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
         components={{ Toolbar: GridToolbar }}
