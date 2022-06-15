@@ -58,6 +58,7 @@ import ViewAllUsers from "./pages/admin/viewAll/viewAll";
 import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
 import user from "./auth";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import LogOut from "./pages/logout/logout";
 
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
         <Routes>
           <Route path="/">
             <Route index element={<Login />} />
+            <Route path="logout" element={<LogOut />} />
 
 
 
