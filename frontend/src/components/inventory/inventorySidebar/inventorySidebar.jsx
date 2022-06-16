@@ -75,7 +75,7 @@ const InventorySidebar = () => {
             </li>
           </Link>
           <p className="title">INTERNAL SHIPMENTS</p>
-          <Link to=" " style={{ textDecoration: "none" }}>
+          <Link to="internalShipments/add" style={{ textDecoration: "none" }}>
             <li>
               <AddBoxIcon className="icon" />
               <span>Add Internal Shipment</span>

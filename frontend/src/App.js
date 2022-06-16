@@ -62,6 +62,7 @@ import { DarkModeContext } from "./context/darkModeContext";
 import AddUser from "./pages/admin/adduser/adduser";
 import ViewAllUsers from "./pages/admin/viewAll/viewAll";
 import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
+import AddInternalShipments from "./pages/inventory/internalShipment/addShipment";
 
 
 function App() {
@@ -87,23 +88,32 @@ function App() {
 
               <Route path="order">
                 <Route path="purchaseOrders" >
-                <Route index element={<PurchaseOrderDetails />} />
-                <Route path="changeStatus/:purchaseOrderID" element={<ChangePurchaseOrderStatus />} />
-                <Route path="orderData/:id" element={<PurchaseOrderData />} />
+                  <Route index element={<PurchaseOrderDetails />} />
+                  <Route path="changeStatus/:purchaseOrderID" element={<ChangePurchaseOrderStatus />} />
+                  <Route path="orderData/:id" element={<PurchaseOrderData />} />
                 </Route>
 
                 <Route path="returnOrders" >
-                <Route index element={<ReturnOrderDetails />} />
-                <Route path="changeStatus/:salesReturnOrderID" element={<ChangeSalesReturnOrderStatus />} />
-                <Route path="orderData/:id" element={<ReturnOrderData />} />
+                  <Route index element={<ReturnOrderDetails />} />
+                  <Route path="changeStatus/:salesReturnOrderID" element={<ChangeSalesReturnOrderStatus />} />
+                  <Route path="orderData/:id" element={<ReturnOrderData />} />
                 </Route>
 
                 <Route path="salesOrders" >
-                <Route index element={<SalesOrderDetails />} />
-                <Route path="changeStatus/:salesOrderID" element={<ChangeSalesOrderStatus />} />
-                <Route path="orderData/:id" element={<SalesOrderData />} />
+                  <Route index element={<SalesOrderDetails />} />
+                  <Route path="changeStatus/:salesOrderID" element={<ChangeSalesOrderStatus />} />
+                  <Route path="orderData/:id" element={<SalesOrderData />} />
                 </Route>
-               
+
+
+
+              </Route>
+
+              <Route path="internalShipments" >
+                {/* <Route index element={<SalesOrderDetails />} />
+                  <Route path="changeStatus/:salesOrderID" element={<ChangeSalesOrderStatus />} />
+                  <Route path="orderData/:id" element={<SalesOrderData />} /> */}
+                <Route path="add" element={<AddInternalShipments />} />
               </Route>
 
             </Route>
