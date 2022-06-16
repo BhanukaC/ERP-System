@@ -42,32 +42,39 @@ const Suppliertable = () => {
   }, [""]);
 
   const actionColumn = [
-    {field: "action",
-    headerName: "Action",
-    width: 200,
-    renderCell: (params) => {
-      const upLink = "/purchase/updatesupplier/"+params.row.SID;
-      return (
-        <div className="cellAction">
-          <Link to= {upLink} style= {{textDecoration : "none"}}>
-            <div className="viewButton">Edit</div>
+    {
+      field: "action",
+      headerName: "Action",
+      width: 600,
+      renderCell: (params) => {
+        const Link1 = "/purchase/updatesupplier/" + params.row.SID;
+        const Link2 = "/purchase/viewsuplocation/"+params.row.SID;
+        const Link3 = "/purchase/viewcontactno/"+params.row.SID;
+        
+        
+        return (
+          <div className="cellAction">
+            <Link to={Link1} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Edit</div>
             </Link>
-          
-        </div>
+
+            <Link to={Link3} style={{ textDecoration: "none" }}>
+              <div className="viewButton">view Contact No</div>
+            </Link>
+            
+           <Link to={Link2} style={{ textDecoration: "none" }}>
+              <div className="viewButton">view Store Locations</div>
+            </Link>
+            
+            
+          </div>
         );
       },
     },
   ];
-
-  
   return (
     <div className="datatable">
-      <div className="datatableTitle">
-        Supplier
-        <Link to="/purchase/addsupplier" className="link">
-          Add New Suppplier
-        </Link>
-      </div>
+      <div className="datatableTitle">All Employees</div>
       <DataGrid
         className="datagrid"
         rows={data}
@@ -85,5 +92,4 @@ const Suppliertable = () => {
     </div>
   );
 };
-
 export default Suppliertable;

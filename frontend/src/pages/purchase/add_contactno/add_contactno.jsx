@@ -1,47 +1,43 @@
+import "./add_contactno.scss";
 import { useState } from "react";
-import Navbar from "../../../../components/navbar/Navbar";
+import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
 
-const AddStoreLocations = () => {
+const AddContactNo = () => {
   const [SID, setSID] = useState("");
-  const [no, setno] = useState("");
-  const [country,setcountry] = useState("");
-  const [town, settown] = useState("");
-  const [street, setstreet] = useState("");
+  const [contactNumber, setcontactNumber] = useState("");
   
+  
+
   const submitForm = (e) => {
     e.preventDefault();
     if (
       SID === "" ||
-      no === "" ||
-      country === "" 
+      contactNumber === "" 
+     
       
     ) {
       alert("Please fill all required fields");
     } else {
       let data = {
         SID: SID,
-        no: no,
-        country: country,
-        town: town,
-        street: street,
-       
+        contactNumber : contactNumber,
+        
+        
       };
 
       axios
-        .post("http://localhost:5000/purchase/supplier/storeLocation/add", data, {
+        .post("http://localhost:5000/purchase/supplier/contactNumber/add", data, {
           withCredentials: true,
           credentials: "include",
         })
         .then((res) => {
-          if (res.data === "supplier Store Location Added") {
-            alert("supplier Store Location Added");
+          if (res.data === "supplier Contact Number Added") {
+            alert("Supplier Contact Number Added");
             setSID("");
-            setno("");
-            setcountry("");
-            settown("");
-            setstreet("");
+            setcontactNumber("");
+            
             
           } else {
             alert("Sorry,Try again");
@@ -59,7 +55,10 @@ const AddStoreLocations = () => {
           credentials: "include",
         }
       );
-      
+      if (res.data.length === 0) {
+        alert("SID not found");
+      } 
+    }
   };
 
   return (
@@ -68,7 +67,7 @@ const AddStoreLocations = () => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Add Supplier Store Location</h1>
+          <h1>Add Supplier Contact NO</h1>
         </div>
         <div className="bottom">
           <div className="right">
@@ -85,53 +84,25 @@ const AddStoreLocations = () => {
                 />
               </div>
               <div className="formInput">
-                <label>No</label>
+                <label>Contact Number</label>
                 <input
                   type="text"
                   
-                  value={no}
+                  value={contactNumber}
                   onChange={(e) => {
-                    setno(e.target.value);
+                    setcontactNumber(e.target.value);
                   }}
                 />
               </div>
-              <div className="formInput">
-                <label>Street</label>
-                <input
-                  type="text"
-                  value={street}
-                  onChange={(e) => {
-                    setstreet(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="formInput">
-                <label>Town</label>
-                <input
-                  type="text"
-                  value={town}
-                  onChange={(e) => {
-                    settown(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="formInput">
-                <label>Country</label>
-                <input
-                  type="text"
-                  value={country}
-                  onChange={(e) => {
-                    setcountry(e.target.value);
-                  }}
-                />
-              </div>
+              
 
              
 
+             
               
-                 
+
+              
+
               <div className="break"></div>
               <button onClick={submitForm}>Add</button>
             </form>
@@ -141,5 +112,5 @@ const AddStoreLocations = () => {
     </div>
   );
 };
-}
-export default AddStoreLocations;
+
+export default AddContactNo;

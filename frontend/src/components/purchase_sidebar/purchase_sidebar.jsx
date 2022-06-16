@@ -7,6 +7,8 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import AddLocationIcon from '@mui/icons-material/AddLocation';
+import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import {useContext } from "react";
@@ -74,12 +76,31 @@ const Sidebar = () => {
           </li>
           </Link>
 
+          <Link to="/purchase/addcontactno" style={{ textDecoration: "none" }}>
+          <li>
+            < AddIcCallIcon className="icon" />
+            <span>Add Supplier Contact No</span>
+          </li>
+          </Link>
+
+
+
+
+          <Link to="/purchase/addlocation" style={{ textDecoration: "none" }}>
+          <li>
+            <AddLocationIcon className="icon" />
+            <span>Add Supplier Store Loation</span>
+          </li>
+          </Link>
+
           <Link to="/purchase/editsupplier" style={{ textDecoration: "none" }}>
           <li>
             <EditIcon className="icon" />
             <span>Edit Supplier</span>
           </li>
           </Link>
+
+          
           
           <p className="title">PURCHASE ORDER</p>
           <li>

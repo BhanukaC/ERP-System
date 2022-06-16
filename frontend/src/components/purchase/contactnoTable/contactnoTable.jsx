@@ -1,5 +1,4 @@
-
-import "./storeLocationTable.scss";
+import "./contactnoTable.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -7,12 +6,10 @@ import axios from "axios";
 import moment from "moment";
 
 const userColumns = [
-  { field: "SSLID", headerName: "Supplier Location ID" },
+  { field: "SCID", headerName: "Supplier Contact ID" },
   { field: "SID", headerName: "Supplier ID" },
-  { field: "no", headerName: "No" },
-  { field: "street", headerName: "Street" },
-  { field: "town", headerName: "Town" },
-  { field: "country", headerName: "Country" },
+  { field: "contactNumber", headerName: "Contact Number" },
+  
   
   
 ];
@@ -25,7 +22,7 @@ const Datatable = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/purchase/supplier/storeLocation/getAll/" + SID, {
+      .get("http://localhost:5000/purchase/supplier/contactNumber/getAll/" + SID, {
         withCredentials: true,
         credentials: "include",
       })
@@ -33,7 +30,7 @@ const Datatable = (props) => {
        
         let dt = res.data.map((d) => {
           return {
-            id: d.SSLID,
+            id: d.SCID,
            
             ...d,
           };
@@ -47,7 +44,7 @@ const Datatable = (props) => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        All Store Locations For Supplier (SID-{SID})
+        All Contact Numbers For Supplier (SID-{SID})
       </div>
       <DataGrid
         className="datagrid"

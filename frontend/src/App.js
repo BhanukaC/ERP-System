@@ -18,6 +18,9 @@ import UpdateCategory from "./pages/purchase/update_category/update_category";
 import UpdatesubCategory from "./pages/purchase/update_sub_category/update_sub_category";
 import Updatesupplier from "./pages/purchase/update_supplier/update_supplier";
 import ViewStoreLocations from "./pages/purchase/view_store_location/view_store_location";
+import AddStoreLocation from "./pages/purchase/add_location/add_location";
+import AddContactNo from "./pages/purchase/add_contactno/add_contactno";
+import ViewContactNo from "./pages/purchase/viewContactno/viewContactno";
 
 
 
@@ -119,8 +122,14 @@ function App() {
               </Route>
               <Route path="addsupplier" element={<Addsupplier />} />
               <Route path="editsupplier" element={<EditSuppler />} />
+              <Route path="addlocation" element={<AddStoreLocation />} />
               <Route path="updatesupplier/:SID" element={<Updatesupplier />} />
               <Route path="viewsuplocation/:SID" element={< ViewStoreLocations/>} />
+              <Route path="addcontactno" element={<  AddContactNo/>} />
+              <Route path="viewcontactno/:SID" element={<   ViewContactNo/>} />
+
+             
+              
 
 
             </Route>
