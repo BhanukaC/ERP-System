@@ -10,6 +10,8 @@ const AddSalesReturnOrder = () => {
   const [WID, setWID] = useState("");
   const [items, setItems] = useState("");
   const [CID, setCID] = useState("");
+  const [initiateDate, setInitiateDate] = useState("");
+  const [finishDate, setFinishDate] = useState("");
   const [CDAID, setCDAID] = useState("");
   const [CCID, setCCID] = useState("");
   const [salesOrderID, setSalesOrderID] = useState("");
@@ -25,6 +27,8 @@ const AddSalesReturnOrder = () => {
       CID === "" ||
       CDAID === "" ||
       CCID === "" ||
+      initiateDate === "" ||
+      finishDate === "" ||
       salesOrderID === "" 
     ) {
       alert("Please fill all required fields");
@@ -37,6 +41,8 @@ const AddSalesReturnOrder = () => {
         CID: CID,
         CDAID: CDAID,
         CCID: CCID,
+        initiateDate:initiateDate,
+        finishDate:finishDate,
         salesOrderID:salesOrderID ,
       };
     axios
@@ -56,6 +62,8 @@ const AddSalesReturnOrder = () => {
             setCID();
             setCDAID();
             setCCID();
+            setInitiateDate();
+            setFinishDate();
             setSalesOrderID();
       
         }
@@ -79,13 +87,23 @@ const AddSalesReturnOrder = () => {
         <div className="bottom">
           <div className="right">
             <form>
-              <div className="formInput">
-                <label>Sales Return Order ID</label>
+            <div className="formInput">
+                <label>CID</label>
                 <input
                   type="text"
-                  value={salesReturnOrderID}
+                  value={CID}
                   onChange={(e) => {
-                    setSalesReturnOrderID(e.target.value);
+                    setCID(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="formInput">
+                <label>Sales Order ID</label>
+                <input
+                  type="text"
+                  value={salesOrderID}
+                  onChange={(e) => {
+                    setSalesOrderID(e.target.value);
                   }}
                 />
               </div>
@@ -120,16 +138,6 @@ const AddSalesReturnOrder = () => {
                 />
               </div>
               <div className="formInput">
-                <label>CID</label>
-                <input
-                  type="text"
-                  value={CID}
-                  onChange={(e) => {
-                    setCID(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
                 <label>CDAID</label>
                 <input
                   type="text"
@@ -150,12 +158,22 @@ const AddSalesReturnOrder = () => {
                 />
               </div>
               <div className="formInput">
-                <label>Sales Order ID</label>
+                <label>Initiate Date</label>
                 <input
                   type="text"
-                  value={salesOrderID}
+                  value={initiateDate}
                   onChange={(e) => {
-                    setSalesOrderID(e.target.value);
+                    setInitiateDate(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="formInput">
+                <label>Finish Date</label>
+                <input
+                  type="text"
+                  value={finishDate}
+                  onChange={(e) => {
+                    setFinishDate(e.target.value);
                   }}
                 />
               </div>

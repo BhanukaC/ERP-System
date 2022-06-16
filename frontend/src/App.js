@@ -32,6 +32,8 @@ import EditWarehouseDetails from "./pages/inventory/warehouse/editWarehouseDet/e
 import AddCustomer from "./pages/sales/customer/add/add";
 import EditCustomer from "./pages/sales/customer/edit/edit";
 import ViewAllCustomer from "./pages/sales/viewAll/viewAll";
+import AddCustomerContactNumber from "./pages/sales/customerContactNumber/add/add";
+import ViewAllCustomerContactDetails from "./pages/sales/customerContactNumber/viewAll/viewAll";
 import AddSalesReturnOrder from "./pages/sales/salesReturnOrder/add/add";
 import ViewAllSalesReturnOrders from "./pages/sales/salesReturnOrder/add/viewAll/viewAll"; 
 import ViewAllSalesOrders from "./pages/sales/salesOrder/viewAll/viewAll";
@@ -152,6 +154,11 @@ function App() {
               <Route path="salesReturnOrder">
                 <Route path="add" element={<AddSalesReturnOrder />} />
                 <Route path="viewAll" element={<ViewAllSalesReturnOrders />} />
+              </Route>
+              <Route path="customerContactNumber">
+                <Route path="add" element={<AddCustomerContactNumber />} />
+                <Route path="viewAll" element={<ViewAllCustomerContactDetails />} />
+                <Route path="viewAll/:CID" element={<ViewAllCustomerContactDetails />} />
               </Route>
             </Route>
 

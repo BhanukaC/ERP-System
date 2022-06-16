@@ -36,6 +36,12 @@ const Sidebar = () => {
               <span>View Customer Details</span>
             </li>
           </Link>
+          <Link to="/sales/customerContactNumber/add" style={{ textDecoration: "none" }}>
+            <li>
+              <EventNoteIcon className="icon" />
+              <span>Add Customer Contact Details</span>
+            </li>
+          </Link>
           <p className="title">SALES ORDER</p>
           <li>
             <FormatListNumberedIcon className="icon" />

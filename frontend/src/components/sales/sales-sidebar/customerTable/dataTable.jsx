@@ -47,13 +47,17 @@ const Datatable = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 300,
       renderCell: (params) => {
         const reLink = "/sales/customer/edit/" + params.row.CID;
+        const reLink2 = "/sales/customerContactNumber/viewAll/" + params.row.CID;
         return (
           <div className="cellAction">
              <Link to={reLink} style={{ textDecoration: "none" }}>
               <div className="viewButton">Edit</div>
+            </Link>
+            <Link to={reLink2} style={{ textDecoration: "none" }}>
+              <div className="viewButton">View Customer Contact Details</div>
             </Link>
           </div>
         );
