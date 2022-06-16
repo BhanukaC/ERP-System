@@ -28,7 +28,7 @@ const Datatable = (props) => {
         // console.log(res);
         let dt = res.data.map((d) => {
           return {
-            id: d.CID,
+            id: d.CCID,
             ...d,
           };
         });
@@ -43,7 +43,7 @@ const Datatable = (props) => {
       headerName: "Action",
       width: 100,
       renderCell: (params) => {
-        const reLink2 = "/sales/customerContactNumber/edit/" + params.row.CID;
+        const reLink2 = "/sales/customerContactNumber/edit/" + params.row.CCID;
         return (
           <div className="cellAction">
             <Link to={reLink2} style={{ textDecoration: "none" }}>
