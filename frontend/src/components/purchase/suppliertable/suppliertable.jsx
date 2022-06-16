@@ -42,18 +42,18 @@ const Suppliertable = () => {
   }, [""]);
 
   const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            
-              <div className="viewButton">Edit</div>
-            
-            
-          </div>
+    {field: "action",
+    headerName: "Action",
+    width: 200,
+    renderCell: (params) => {
+      const upLink = "/purchase/updatesupplier/"+params.row.SID;
+      return (
+        <div className="cellAction">
+          <Link to= {upLink} style= {{textDecoration : "none"}}>
+            <div className="viewButton">Edit</div>
+            </Link>
+          
+        </div>
         );
       },
     },

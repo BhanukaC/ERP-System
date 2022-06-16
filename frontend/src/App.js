@@ -14,6 +14,14 @@ import Addsupplier from "./pages/purchase/add_supplier/add_supplier";
 import EditSuppler from "./pages/purchase/edit_supplier/edit_supplier";
 import EditsubCategory from "./pages/purchase/edit_sub_category/edit_sub_category";
 import Purchasehome from "./pages/purchase/home_purchase/home_purchase";
+import UpdateCategory from "./pages/purchase/update_category/update_category";
+import UpdatesubCategory from "./pages/purchase/update_sub_category/update_sub_category";
+import Updatesupplier from "./pages/purchase/update_supplier/update_supplier";
+
+
+
+
+
 import ViewAllEmployees from "./pages/hr/employeee/viewAll/viewAll";
 
 import WarehouseDetails from "./pages/inventory/warehouse/warehouseDetails/warehouseDetails";
@@ -102,9 +110,15 @@ function App() {
                 <Route path="viewproduct" element={<Viewproduct />} />
                 <Route path="editcat" element={<EditCategory />} />
                 <Route path="editsubcat" element={<EditsubCategory />} />
+                <Route path="editsubcat" element={<EditsubCategory />} />
+                <Route path="updatecat/:catID" element={<UpdateCategory />} />
+                <Route path="updatesubcat/:SCID" element={<UpdatesubCategory />} />
+
+
               </Route>
               <Route path="addsupplier" element={<Addsupplier />} />
               <Route path="editsupplier" element={<EditSuppler />} />
+              <Route path="updatesupplier/:SID" element={<Updatesupplier />} />
             </Route>
 
             <Route path="hr">

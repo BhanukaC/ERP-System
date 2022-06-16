@@ -39,11 +39,12 @@ const Categorytable = () => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
+        const upLink = "/purchase/product/updatecat/"+params.row.catID;
         return (
           <div className="cellAction">
-            
+            <Link to= {upLink} style= {{textDecoration : "none"}}>
               <div className="viewButton">Edit</div>
-            
+              </Link>
             
           </div>
         );

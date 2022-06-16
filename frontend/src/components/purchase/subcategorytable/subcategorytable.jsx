@@ -41,11 +41,12 @@ const Subcategorytable = () => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
+        const upLink ="/purchase/product/updatesubcat/"+params.row.SCID;
         return (
           <div className="cellAction">
-            
+            <Link to = {upLink} style = {{textDecoration: "none"}}>
               <div className="viewButton">Edit</div>
-            
+            </Link>
             
           </div>
         );
