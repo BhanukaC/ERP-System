@@ -4,7 +4,7 @@ import Navbar from "../../../components/navbar/Navbar";
 import InventorySidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
 import axios from "axios";
 
-const AddInternalShipments = () => {
+const AddInternalShipmentsPart1 = () => {
   const [PID, setPID] = useState(0);
   const [qty, setQty] = useState(0);
   const [productName, setProductName] = useState("");
@@ -58,6 +58,13 @@ const AddInternalShipments = () => {
     }
   };
 
+  const addInternalShipment = () => {
+    if (list.length !== 0) {
+      localStorage.setItem("InternalShipmentCart", JSON.stringify(list));
+      window.location = "/inventory/internalShipments/add2";
+    }
+  };
+
   return (
     <div className="new">
       <InventorySidebar />
@@ -96,20 +103,47 @@ const AddInternalShipments = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Add</button>
+              <button onClick={submitForm}>Add to cart</button>
             </form>
           </div>
         </div>
         <div className="bottom">
           <div className="right">
-            <h1>Item List</h1>
-            {list.map((item) => {
-              return (
-                <p key={item.PID}>
-                  {item.name} : {item.qty}
-                </p>
-              );
-            })}
+            <h1>Cart</h1>
+            <table style={{ width: "80%", textAlign: "center" }}>
+              <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+              </tr>
+              {list.map((item) => {
+                return (
+                  <tr key={item.PID}>
+                    <td>{item.PID}</td>
+                    <td> {item.name}</td>
+                    <td>{item.qty}</td>
+                  </tr>
+                );
+              })}
+            </table>
+            {list.length !== 0 && (
+              <button
+                style={{
+                  width: "200px",
+                  padding: "10px",
+                  border: "none",
+                  backgroundColor: "#00004d",
+                  color: " white",
+                  fontWeight: "bold",
+                  cursor: " pointer",
+                  marginTop: "30px",
+                  marginLeft: "40%",
+                }}
+                onClick={addInternalShipment}
+              >
+                Issue Internal Shipment
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -117,4 +151,4 @@ const AddInternalShipments = () => {
   );
 };
 
-export default AddInternalShipments;
+export default AddInternalShipmentsPart1;

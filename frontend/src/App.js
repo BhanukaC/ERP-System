@@ -62,8 +62,8 @@ import { DarkModeContext } from "./context/darkModeContext";
 import AddUser from "./pages/admin/adduser/adduser";
 import ViewAllUsers from "./pages/admin/viewAll/viewAll";
 import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
-import AddInternalShipments from "./pages/inventory/internalShipment/addShipment";
-
+import AddInternalShipmentsPart1 from "./pages/inventory/internalShipment/addShipment1";
+import AddInternalShipmentsPart2 from "./pages/inventory/internalShipment/addShipment2";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -107,7 +107,8 @@ function App() {
               </Route>
 
               <Route path="internalShipments" >
-                <Route path="add" element={<AddInternalShipments />} />
+                <Route path="add" element={<AddInternalShipmentsPart1 />} />
+                <Route path="add2" element={<AddInternalShipmentsPart2 />} />
               </Route>
 
             </Route>
