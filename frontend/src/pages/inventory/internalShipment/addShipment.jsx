@@ -96,7 +96,7 @@ const AddInternalShipments = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Submit</button>
+              <button onClick={submitForm}>Add</button>
             </form>
           </div>
         </div>
