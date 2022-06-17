@@ -38,7 +38,8 @@ import ViewCustomerDeliveryAddress from "./pages/sales/customerDeliveryAddress/v
 import ViewAllCustomerContactDetails from "./pages/sales/customerContactNumber/viewAll/viewAll";
 import AddSalesReturnOrder from "./pages/sales/salesReturnOrder/add/add";
 import ViewAllSalesReturnOrders from "./pages/sales/salesReturnOrder/add/viewAll/viewAll"; 
-import AddSalesOrder from "./pages/sales/salesOrder/add/add";
+import AddSalesOrderPart1 from "./pages/sales/salesOrder/add/add";
+import AddSalesOrderPart2 from "./pages/sales/salesOrder/add/add2";
 import ViewAllSalesOrders from "./pages/sales/salesOrder/viewAll/viewAll";
 
 import EditEmployee from "./pages/hr/employeee/edit/edit";
@@ -151,8 +152,14 @@ function App() {
                 <Route path="edit/:CID" element={<EditCustomer />} />
               </Route>
               <Route path="salesOrder">
-               <Route path="add" element={<AddSalesOrder />} />
+               <Route path="add" element={<AddSalesOrderPart1 />} />
+               <Route path="add2" element={<AddSalesOrderPart2 />} />
                 <Route path="viewAll" element={<ViewAllSalesOrders />} />
+              </Route>
+              <Route path="salesOrders">
+               
+               <Route path="add2" element={<AddSalesOrderPart2 />} />
+                
               </Route>
               <Route path="salesReturnOrder">
                 <Route path="add" element={<AddSalesReturnOrder />} />

@@ -58,7 +58,7 @@ const Sidebar = () => {
           <Link to="/sales/salesOrder/viewall" style={{ textDecoration: "none" }}>
             <li>
               <DocumentScannerIcon className="icon" />
-              <span>View Sales Return Order Details</span>
+              <span>View Sales Order Details</span>
             </li>
           </Link>
           <p className="title">SALES RETURN ORDER</p>
