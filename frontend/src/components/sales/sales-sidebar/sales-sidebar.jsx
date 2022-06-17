@@ -49,10 +49,12 @@ const Sidebar = () => {
             </li>
           </Link>
           <p className="title">SALES ORDER</p>
-          <li>
-            <FormatListNumberedIcon className="icon" />
-            <span>Add Sales Order</span>
-          </li>
+          <Link to="/sales/salesOrder/add" style={{ textDecoration: "none" }}>
+            <li>
+              <DocumentScannerIcon className="icon" />
+              <span>Add Sales Order Details</span>
+            </li>
+          </Link>
           <Link to="/sales/salesOrder/viewall" style={{ textDecoration: "none" }}>
             <li>
               <DocumentScannerIcon className="icon" />

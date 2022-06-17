@@ -10,8 +10,6 @@ const AddSalesReturnOrder = () => {
   const [WID, setWID] = useState("");
   const [items, setItems] = useState("");
   const [CID, setCID] = useState("");
-  const [initiateDate, setInitiateDate] = useState("");
-  const [finishDate, setFinishDate] = useState("");
   const [CDAID, setCDAID] = useState("");
   const [CCID, setCCID] = useState("");
   const [salesOrderID, setSalesOrderID] = useState("");
@@ -27,8 +25,6 @@ const AddSalesReturnOrder = () => {
       CID === "" ||
       CDAID === "" ||
       CCID === "" ||
-      initiateDate === "" ||
-      finishDate === "" ||
       salesOrderID === "" 
     ) {
       alert("Please fill all required fields");
@@ -41,8 +37,6 @@ const AddSalesReturnOrder = () => {
         CID: CID,
         CDAID: CDAID,
         CCID: CCID,
-        initiateDate:initiateDate,
-        finishDate:finishDate,
         salesOrderID:salesOrderID ,
       };
     axios
@@ -62,8 +56,6 @@ const AddSalesReturnOrder = () => {
             setCID();
             setCDAID();
             setCCID();
-            setInitiateDate();
-            setFinishDate();
             setSalesOrderID();
       
         }
@@ -157,27 +149,7 @@ const AddSalesReturnOrder = () => {
                   }}
                 />
               </div>
-              <div className="formInput">
-                <label>Initiate Date</label>
-                <input
-                  type="text"
-                  value={initiateDate}
-                  onChange={(e) => {
-                    setInitiateDate(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
-                <label>Finish Date</label>
-                <input
-                  type="text"
-                  value={finishDate}
-                  onChange={(e) => {
-                    setFinishDate(e.target.value);
-                  }}
-                />
-              </div>
-
+              
               <div className="break"></div>
               <button onClick={submitForm}>Return Order Add</button>
             </form>
