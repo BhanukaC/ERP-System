@@ -108,10 +108,15 @@ const Sidebar = () => {
             <span>Add Purchase Order</span>
           </li>
 
+          <Link to="/purchase/vieworders" style={{ textDecoration: "none" }}>
           <li>
-            <PreviewIcon className="icon" />
-            <span>View Purchase Order</span>
+            <EditIcon className="icon" />
+            <span>View Purchase Orders</span>
           </li>
+          </Link>
+
+        
+          
           
           <p className="title">USER</p>
           <li>

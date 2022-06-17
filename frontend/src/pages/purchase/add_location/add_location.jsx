@@ -138,7 +138,7 @@ const AddStoreLocation = () => {
               
 
               <div className="break"></div>
-              <button onClick={submitForm}>Add </button>
+              <button onClick={submitForm}>Add</button>
             </form>
           </div>
         </div>

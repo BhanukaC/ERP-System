@@ -21,6 +21,8 @@ import ViewStoreLocations from "./pages/purchase/view_store_location/view_store_
 import AddStoreLocation from "./pages/purchase/add_location/add_location";
 import AddContactNo from "./pages/purchase/add_contactno/add_contactno";
 import ViewContactNo from "./pages/purchase/viewContactno/viewContactno";
+import ViewPurchaseOrder from "./pages/purchase/view_purchase_order/view_purchase_order";
+import ViewPurchaseOrderData from "./pages/purchase/view_order_data/view_order_data";
 
 
 
@@ -127,12 +129,11 @@ function App() {
               <Route path="viewsuplocation/:SID" element={< ViewStoreLocations/>} />
               <Route path="addcontactno" element={<  AddContactNo/>} />
               <Route path="viewcontactno/:SID" element={<   ViewContactNo/>} />
-
-             
+              <Route path="viewOrders" element={<   ViewPurchaseOrder/>} />
+              <Route path="vieworderdata/:purchaseOrderID" element={<  ViewPurchaseOrderData/>} />
               
 
-
-            </Route>
+               </Route>
 
             <Route path="hr">
               <Route index element={<AddEmployee />} />
