@@ -8,27 +8,50 @@ import user from "../../auth";
 const Profile = () => {
   const [accessLevel, setAccessLevel] = useState("");
   const [email, setEmail] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (true) {
-      alert("Please fill all required fields");
+    if (
+      currentPassword === "" ||
+      newPassword === "" ||
+      confirmPassword === ""
+    ) {
+      alert(
+        "If you need to change password fill 'Current Password' , 'New Password' and 'Confirm New Password'"
+      );
     } else {
-      let data = {};
-
-      axios
-        .post("http://localhost:5000/hr/advance/add", data, {
-          withCredentials: true,
-          credentials: "include",
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.data === "Give an advance") {
-            alert("Give an advance");
-          } else {
-            alert("Sorry,Try again");
-          }
-        });
+      if (newPassword !== confirmPassword) {
+        alert("'New Password' and 'Confirm New Password' must match");
+      } else {
+        axios
+          .post(
+            "http://localhost:5000/auth/changePassword",
+            {
+              oldPassword: currentPassword,
+              newPassword: newPassword,
+            },
+            {
+              withCredentials: true,
+              credentials: "include",
+            }
+          )
+          .then((res) => {
+            console.log(res);
+            if (res.data === "Password changed") {
+              alert("Password changed");
+              window.location.reload();
+            } else {
+              if (res.data.error === "Wrong password") {
+                alert("Recheck your current password");
+              } else {
+                alert("Sorry,Try again");
+              }
+            }
+          });
+      }
     }
   };
 
@@ -94,21 +117,43 @@ const Profile = () => {
 
               <div className="formInput">
                 <label>Current Password</label>
-                <input type="password" value={""} disabled />
+                <input
+                  type="password"
+                  value={currentPassword}
+                  onChange={(e) => {
+                    setCurrentPassword(e.target.value);
+                  }}
+                />
               </div>
 
               <div className="formInput">
                 <label>New Password</label>
-                <input type="password" value={""} disabled />
+                <input
+                  type="password"
+                  value={newPassword}
+                  onChange={(e) => {
+                    setNewPassword(e.target.value);
+                  }}
+                />
               </div>
 
               <div className="formInput">
                 <label>Confirm New Password</label>
-                <input type="password" value={""} disabled />
+                <input
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                  }}
+                />
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Change Password</button>
+              {newPassword !== "" &&
+                currentPassword !== "" &&
+                confirmPassword !== "" && (
+                  <button onClick={submitForm}>Change Password</button>
+                )}
             </form>
           </div>
         </div>
