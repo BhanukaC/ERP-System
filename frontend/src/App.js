@@ -104,15 +104,9 @@ function App() {
                   <Route path="changeStatus/:salesOrderID" element={<ChangeSalesOrderStatus />} />
                   <Route path="orderData/:id" element={<SalesOrderData />} />
                 </Route>
-
-
-
               </Route>
 
               <Route path="internalShipments" >
-                {/* <Route index element={<SalesOrderDetails />} />
-                  <Route path="changeStatus/:salesOrderID" element={<ChangeSalesOrderStatus />} />
-                  <Route path="orderData/:id" element={<SalesOrderData />} /> */}
                 <Route path="add" element={<AddInternalShipments />} />
               </Route>
 

@@ -25,17 +25,25 @@ const SalesOrderData = () => {
     })
   },[""]);
 
-  const formSubmit=(e)=>{
+  const submitButton=(e)=>{
     e.preventDefault();
-    alert("form submit");
-   const  data={WID:WID,salesOrderID:id};
-    axios.get("http://localhost:5000/inventory/salesOrder/getSingle/",data,{
+    //alert("form submit");
+   const data={
+    WID:WID,
+    salesOrderID:id
+  };
+    axios.get("http://localhost:5000/inventory/salesOrder/update/"+ id, data,{
       withCredentials: true,
       credentials: "include",
 
     }).then((res)=>{
-      setWID(res.data[0].WID);
-      setStatus("D");
+      if (res.data === "Sales order Issued") {
+        setWID(res.data[0].WID);
+        setStatus("D");
+        alert("Sales order Issued");
+      } else {
+        alert("Try again");
+      }
     })
   }
 
@@ -57,10 +65,7 @@ const SalesOrderData = () => {
              marginTop: "30px",
              marginLeft:"40%",
       
-        }} onClick={formSubmit
-          
-
-       } >Issue the Order</button>)}
+        }} onClick={submitButton} >Issue the Order</button>)}
         
       </div>
     </div>

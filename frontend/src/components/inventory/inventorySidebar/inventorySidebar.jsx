@@ -1,5 +1,4 @@
 import "./inventorySidebar.scss";
-import DashboardIcon from "@mui/icons-material/Dashboard";
 import WarehouseIcon from "@mui/icons-material/Warehouse";
 import StoreIcon from "@mui/icons-material/Store";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
@@ -35,11 +34,9 @@ const InventorySidebar = () => {
               </li>
             </div>
           </Link>
+
           <p className="title">WAREHOUSE</p>
-          <Link
-            to="/inventory/warehouse/warehouseDetails"
-            style={{ textDecoration: "none" }}
-          >
+          <Link to="/inventory/warehouse/warehouseDetails" style={{ textDecoration: "none" }}>
             <li>
               <WarehouseIcon className="icon" />
               <span>Warehouse Details</span>
@@ -47,35 +44,27 @@ const InventorySidebar = () => {
           </Link>
 
           <p className="title">ORDERS</p>
-          <Link
-            to="/inventory/order/purchaseOrders"
-            style={{ textDecoration: "none" }}
-          >
+          <Link to="/inventory/order/purchaseOrders" style={{ textDecoration: "none" }}>
             <li>
               <BusinessCenterIcon className="icon" />
               <span>Purchase</span>
             </li>
           </Link>
-          <Link
-            to="/inventory/order/salesOrders"
-            style={{ textDecoration: "none" }}
-          >
+          <Link to="/inventory/order/salesOrders" style={{ textDecoration: "none" }}>
             <li>
               <ShoppingBasketIcon className="icon" />
               <span>Sales</span>
             </li>
           </Link>
-          <Link
-            to="/inventory/order/returnOrders"
-            style={{ textDecoration: "none" }}
-          >
+          <Link to="/inventory/order/returnOrders" style={{ textDecoration: "none" }}>
             <li>
               <AssignmentReturnIcon className="icon" />
               <span>Sales Return</span>
             </li>
           </Link>
+
           <p className="title">INTERNAL SHIPMENTS</p>
-          <Link to="internalShipments/add" style={{ textDecoration: "none" }}>
+          <Link to="/inventory/internalShipments/add" style={{ textDecoration: "none" }}>
             <li>
               <AddBoxIcon className="icon" />
               <span>Add Internal Shipment</span>
@@ -87,16 +76,15 @@ const InventorySidebar = () => {
               <span>Internal Shipment Details</span>
             </li>
           </Link>
+
           <p className="title">QUALITY LEVEL</p>
-          <Link
-            to="/inventory/changeQualityLevel "
-            style={{ textDecoration: "none" }}
-          >
+          <Link to="/inventory/changeQualityLevel " style={{ textDecoration: "none" }}>
             <li>
               <ChangeCircleIcon className="icon" />
               <span>Change Quality Level</span>
             </li>
           </Link>
+
           <p className="title">USER</p>
           <Link to=" " style={{ textDecoration: "none" }}>
             <li>
