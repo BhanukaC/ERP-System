@@ -36,7 +36,8 @@ import AddCustomerContactNumber from "./pages/sales/customerContactNumber/add/ad
 import AddCustomerDeliveryAddress from "./pages/sales/customerDeliveryAddress/add/add";
 import ViewCustomerDeliveryAddress from "./pages/sales/customerDeliveryAddress/viewAll/viewAll";
 import ViewAllCustomerContactDetails from "./pages/sales/customerContactNumber/viewAll/viewAll";
-import AddSalesReturnOrder from "./pages/sales/salesReturnOrder/add/add";
+import AddSalesReturnOrderPage1 from "./pages/sales/salesReturnOrder/add/add";
+import AddSalesReturnOrderPage2 from "./pages/sales/salesReturnOrder/add/add2";
 import ViewAllSalesReturnOrders from "./pages/sales/salesReturnOrder/add/viewAll/viewAll"; 
 import AddSalesOrderPart1 from "./pages/sales/salesOrder/add/add";
 import AddSalesOrderPart2 from "./pages/sales/salesOrder/add/add2";
@@ -67,6 +68,8 @@ import { DarkModeContext } from "./context/darkModeContext";
 import AddUser from "./pages/admin/adduser/adduser";
 import ViewAllUsers from "./pages/admin/viewAll/viewAll";
 import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
+import AddSalesReturnOrderPart1 from "./pages/sales/salesReturnOrder/add/add";
+import AddSalesReturnOrderPart2 from "./pages/sales/salesReturnOrder/add/add2";
 
 
 function App() {
@@ -156,14 +159,16 @@ function App() {
                <Route path="add2" element={<AddSalesOrderPart2 />} />
                 <Route path="viewAll" element={<ViewAllSalesOrders />} />
               </Route>
-              <Route path="salesOrders">
-               
-               <Route path="add2" element={<AddSalesOrderPart2 />} />
-                
+              <Route path="salesOrders"> 
+               <Route path="add2" element={<AddSalesOrderPart2 />} />  
               </Route>
               <Route path="salesReturnOrder">
-                <Route path="add" element={<AddSalesReturnOrder />} />
+                <Route path="add" element={<AddSalesReturnOrderPage1 />} />
+                <Route path="add2" element={<AddSalesReturnOrderPage2 />} />
                 <Route path="viewAll" element={<ViewAllSalesReturnOrders />} />
+              </Route>
+              <Route path="salesReturnOrders"> 
+               <Route path="add2" element={<AddSalesReturnOrderPage2 />} />  
               </Route>
               <Route path="customerContactNumber">
                 <Route path="add" element={<AddCustomerContactNumber />} />

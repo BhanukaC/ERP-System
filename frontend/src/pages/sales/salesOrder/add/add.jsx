@@ -67,7 +67,7 @@ const AddSalesOrderPart1 = () => {
     
       return (
         <div className="new">
-          <sales-sidebar />
+          <Sidebar />
           <div className="newContainer">
             <Navbar />
             <div className="top">
