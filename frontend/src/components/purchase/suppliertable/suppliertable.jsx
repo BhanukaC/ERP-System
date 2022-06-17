@@ -74,7 +74,7 @@ const Suppliertable = () => {
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">All Employees</div>
+      <div className="datatableTitle">All Suppliers</div>
       <DataGrid
         className="datagrid"
         rows={data}

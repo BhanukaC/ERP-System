@@ -23,6 +23,8 @@ import AddContactNo from "./pages/purchase/add_contactno/add_contactno";
 import ViewContactNo from "./pages/purchase/viewContactno/viewContactno";
 import ViewPurchaseOrder from "./pages/purchase/view_purchase_order/view_purchase_order";
 import ViewPurchaseOrderData from "./pages/purchase/view_order_data/view_order_data";
+import AddPurchaseOrder1 from "./pages/purchase/purchaseOrder/addPurchaseOrder1";
+import AddPurchaseOrder2 from "./pages/purchase/purchaseOrder/addPurchaseOrder2";
 
 
 
@@ -131,6 +133,8 @@ function App() {
               <Route path="viewcontactno/:SID" element={<   ViewContactNo/>} />
               <Route path="viewOrders" element={<   ViewPurchaseOrder/>} />
               <Route path="vieworderdata/:purchaseOrderID" element={<  ViewPurchaseOrderData/>} />
+              <Route path="order1" element={<AddPurchaseOrder1 />} />
+              <Route path="order2" element={<AddPurchaseOrder2 />} />
               
 
                </Route>
