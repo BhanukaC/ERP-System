@@ -18,11 +18,11 @@ const AddWarehouse = () => {
         .post(
           "http://localhost:5000/admin/Warehouse/add",
           {
-            managername: managerName,
+            ManagerName: managerName,
             no: no,
-            steet: street,
+            street: street,
             town: town,
-            uid: uid
+            UID: uid
           },
           {
             withCredentials: true,
@@ -30,7 +30,8 @@ const AddWarehouse = () => {
           }
         )
         .then((res) => {
-          if (res.data === "User Registered") {
+          console.log(res);
+          if (res.data === "Add a new Warehouse") {
             alert("Warehouse Registered");
           } else {
             alert("Error");

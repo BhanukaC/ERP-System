@@ -44,16 +44,10 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/admin/viewsinglewarehouse" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
-
             <div
-              className="editButton"
-            >
+              className="editButton">
               Edit
             </div>
-
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.CID)}
