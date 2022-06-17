@@ -38,7 +38,11 @@ const AddInternalShipmentsPart2 = () => {
 
   useEffect(() => {
     const li = JSON.parse(localStorage.getItem("InternalShipmentCart"));
+    console.log(li);
     setList(li);
+    if (li === null) {
+      window.location = "/inventory/internalShipments/add";
+    }
     if (li.length === 0) {
       window.location = "/inventory/internalShipments/add";
     }
