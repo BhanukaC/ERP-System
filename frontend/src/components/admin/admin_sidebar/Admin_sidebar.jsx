@@ -2,6 +2,7 @@ import "./Admin_sidebar.scss";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import StoreIcon from "@mui/icons-material/Store";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import InsertChartIcon from "@mui/icons-material/InsertChart";
 import { Link } from "react-router-dom";
 //import { DarkModeContext } from "../../context/darkModeContext";
 import { DarkModeContext } from "../../../context/darkModeContext";
@@ -28,10 +29,11 @@ const Sidebar = () => {
           </Link>
           <Link to="/admin/addwarehouse" style={{ textDecoration: "none" }}>
             <li>
-              <AccountCircleOutlinedIcon className="icon" />
+              <StoreIcon className="icon" />
               <span>Add Warehouse</span>
             </li>
           </Link>
+          <p className="title">VIEW</p>
           <Link to="/admin/viewAll" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
@@ -46,7 +48,7 @@ const Sidebar = () => {
           </Link>
           <Link to="/admin/viewactivity" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <InsertChartIcon className="icon" />
               <span>Activity</span>
             </li>
           </Link>
