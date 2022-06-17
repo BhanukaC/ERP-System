@@ -62,25 +62,26 @@ const Profile = () => {
         credentials: "include",
       })
       .then((res) => {
+        console.log(res);
         setEmail(res.data[0].email);
         switch (parseInt(res.data[0].acessLevel)) {
           case 0:
             setAccessLevel("Admin");
             break;
           case 1:
-            window.location = "Cashier";
+            setAccessLevel("Cashier");
             break;
           case 2:
-            window.location = "Manager";
+            setAccessLevel("HR Manager");
             break;
           case 3:
-            window.location = "Purchase Manager";
+            setAccessLevel("Purchase Manager");
             break;
           case 4:
-            window.location = "Warehouse Operator";
+            setAccessLevel("Warehouse Operator");
             break;
           case 5:
-            window.location = "Accountant";
+            setAccessLevel("Accountant");
             break;
         }
       });
