@@ -5,12 +5,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "ID", headerName: "ID" },
-  { field: "IP", headerName: "IP" },
-  { field: "userId", headerName: "User ID" },
+  { field: "UID", headerName: "UID" },
   { field: "userName", headerName: "User Name" },
-  { field: "time", headerName: "time" },
-  { field: "log", headerName: "log" }
+  { field: "acessLevel", headerName: "Acess Level" },
+  { field: "email", headerName: "Email" },
+  { field: "town", headerName: "Town" },
 ];
 
 const Datatable = () => {
@@ -22,14 +21,14 @@ const Datatable = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admin/getAllActivityData", {
+      .get("http://localhost:5000/admin/getUserData/31", {
         withCredentials: true,
         credentials: "include",
       })
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {
-          return { id: d.ID, ...d };
+          return { id: d.UID, ...d };
         });
         setData(dt);
         // console.log(dt);
@@ -37,31 +36,12 @@ const Datatable = () => {
   }, [""]);
 
   const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <Link to="/admin/viewsingleactivity" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.CID)}
-            >
-              Delete
-            </div>
-          </div>
-        );
-      },
-    },
+    
   ];
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Activity
+        Single User
       </div>
       <DataGrid
         className="datagrid"

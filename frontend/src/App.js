@@ -61,6 +61,9 @@ import ViewAllUsers from "./pages/admin/viewAll/viewAll";
 import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
 import ViewAllActivity from "./pages/admin/viewactivity/viewactivity";
 import AddWarehouse from "./pages/admin/addwarehouse/addwarehouse";
+import ViewSingleUser from "./pages/admin/viewsingleuser/viewsingleuser";
+import ViewSingleWarehouse from "./pages/admin/viewsinglewarehouse/viewsinglewarehouse";
+import ViewSingleActivity from "./pages/admin/viewsingleactivity/viewsingleactivity";
 
 
 function App() {
@@ -157,6 +160,9 @@ function App() {
               <Route path="viewwarehouses" element={<ViewAllWarehouses />} />
               <Route path="viewactivity" element={<ViewAllActivity />} />
               <Route path="addwarehouse" element={<AddWarehouse />} />
+              <Route path="viewsingleuser" element={<ViewSingleUser />} />
+              <Route path="viewsinglewarehouse" element={<ViewSingleWarehouse />} />
+              <Route path="viewsingleactivity" element={<ViewSingleActivity />} />
             </Route>
 
           </Route>

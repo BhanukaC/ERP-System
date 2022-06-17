@@ -22,7 +22,7 @@ const Datatable = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admin/getAllActivityData", {
+      .get("http://localhost:5000/admin/getActivtyData/493", {
         withCredentials: true,
         credentials: "include",
       })
@@ -37,31 +37,12 @@ const Datatable = () => {
   }, [""]);
 
   const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <Link to="/admin/viewsingleactivity" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.CID)}
-            >
-              Delete
-            </div>
-          </div>
-        );
-      },
-    },
+    
   ];
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Activity
+        Single User
       </div>
       <DataGrid
         className="datagrid"
