@@ -26,6 +26,12 @@ const Sidebar = () => {
               <span>Add User</span>
             </li>
           </Link>
+          <Link to="/admin/addwarehouse" style={{ textDecoration: "none" }}>
+            <li>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Add Warehouse</span>
+            </li>
+          </Link>
           <Link to="/admin/viewAll" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
@@ -36,6 +42,12 @@ const Sidebar = () => {
             <li>
               <StoreIcon className="icon" />
               <span>All Warehouses</span>
+            </li>
+          </Link>
+          <Link to="/admin/viewactivity" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Activity</span>
             </li>
           </Link>
           

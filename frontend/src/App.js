@@ -59,6 +59,8 @@ import { DarkModeContext } from "./context/darkModeContext";
 import AddUser from "./pages/admin/adduser/adduser";
 import ViewAllUsers from "./pages/admin/viewAll/viewAll";
 import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
+import ViewAllActivity from "./pages/admin/viewactivity/viewactivity";
+import AddWarehouse from "./pages/admin/addwarehouse/addwarehouse";
 
 
 function App() {
@@ -153,6 +155,8 @@ function App() {
               <Route path="adduser" element={<AddUser />} />
               <Route path="viewAll" element={<ViewAllUsers />} />
               <Route path="viewwarehouses" element={<ViewAllWarehouses />} />
+              <Route path="viewactivity" element={<ViewAllActivity />} />
+              <Route path="addwarehouse" element={<AddWarehouse />} />
             </Route>
 
           </Route>
