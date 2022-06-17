@@ -32,3 +32,40 @@ exports.loginController = async (req, res) => {
         }
     })
 };
+
+
+exports.passwordChangeController = async (req, res) => {
+    const id = req.user.id;
+    const { oldPassword, newPassword } = req.body;
+    db.query("select * from users where UID=?", [id], (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        }
+
+        if (!result[0]) {
+            res.json({ error: "User Doesn't Exist" });
+        } else {
+            const dbPassword = result[0].password;
+            bcrypt.compare(oldPassword, dbPassword).then((response) => {
+                if (!response) {
+                    res.json({ error: "Wrong password" });
+                } else {
+                    bcrypt.hash(newPassword, 10).then((hash) => {
+                        db.query("update users set password=? where UID=?", [hash, id], (err, result2) => {
+                            if (err) {
+                                res.json({ error: err });
+                            } else {
+                                db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Changed Password"], (err, response) => {
+
+                                });
+                                res.json("Password changed");
+                            }
+                        })
+                    });
+                }
+            })
+        }
+
+
+    })
+}
