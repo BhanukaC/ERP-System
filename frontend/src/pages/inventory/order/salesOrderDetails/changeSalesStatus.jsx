@@ -6,11 +6,11 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const ChangeSalesOrderStatus = () => {
-  //const [salesOrderID, setSalesOrderID] = useState("");
+ 
   const [WID, setWID] = useState("");
   const [status, setStatus] = useState("");
 
-  const { salesOrderID} = useParams();
+  const {salesOrderID} = useParams();
   console.log(salesOrderID);
 
   useEffect(() => {
@@ -64,15 +64,24 @@ const ChangeSalesOrderStatus = () => {
         <div className="bottom">
           <div className="right">
             <form>
+
+            <div className="formInput">
+                <label>Sales order Id</label>
+                <input
+                  type="text"
+                  disabled
+                  value={salesOrderID}
+                 
+                />
+              </div>
           
               <div className="formInput">
                 <label>WID</label>
                 <input
                   type="number"
                   value={WID}
-                  onChange={(e) => {
-                    setWID(e.target.value);
-                  }}
+                  disabled
+                  
                 />
               </div>
               <div className="formInput">

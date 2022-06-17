@@ -48,7 +48,7 @@ const SalesOrderTable = () => {
               <div className="viewButton">Change Status</div>
             </Link>
             <Link to={reLink2} style={{ textDecoration: "none" }}>
-              <div className="viewButton">View Order Details</div>
+              <div className="viewButton">View Order</div>
             </Link>
           </div>
         );

@@ -39,7 +39,7 @@ const PurchaseOrderTable = () => {
       headerName: " ",
       width: 300,
       renderCell: (params) => {
-        const reLink1= "/inventory/order/purchaseOrders/changeStatus/ "+params.row.purchaseOrderID;
+        const reLink1= "/inventory/order/purchaseOrders/changeStatus/"+params.row.purchaseOrderID;
         const reLink2= "/inventory/order/purchaseOrders/orderData/"+params.row.purchaseOrderID;
         return (
           <div className="cellAction">

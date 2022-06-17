@@ -6,49 +6,56 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const ChangePurchaseOrderStatus = () => {
-  const [ManagerName, setManagerName] = useState("");
-  const [no, setNo] = useState("");
-  const [street, setStreet] = useState("");
-  const [town, setTown] = useState("");
+   
+  const [WID, setWID] = useState("");
+  const [status, setStatus] = useState("");
+  const [reason, setReason] = useState("");
 
-  const { WID } = useParams();
-  console.log(WID);
+  const {purchaseOrderID} = useParams();
+  console.log(purchaseOrderID);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/inventory/Warehouse/getSingle/" + WID, {
+      .get("http://localhost:5000/inventory/purchaseOrder/getSingle/" + purchaseOrderID, {
         withCredentials: true,
         credentials: "include",
       })
       .then((res) => {
-        setManagerName(res.data[0].ManagerName)
-        setNo(res.data[0].no);
-        setStreet(res.data[0].street);
-        setTown(res.data[0].town);
+        setWID(res.data[0].WID);
+        setStatus(res.data[0].status);
       });
   }, [""]);
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (ManagerName=== "" || no === "" || street === "" || town === "") {
+    if (WID === "" || status === "" || reason ==="") {
       alert("Fill the required fields");
     } else {
-      let data = {
-        ManagerName: ManagerName,
-        no: no,
-        street: street,
-        town: town,
+      let data;
+      if(status==="D"){
+        data= {
+            WID: WID,
+            status: status
+          };
+      }
+      if(status==="C"){
+ data = {
+        WID: WID,
+        status: status,
+        reason:reason,
       };
+      }
+     
 
       axios
-        .put("http://localhost:5000/inventory/Warehouse/update/" + WID, data, {
+        .put("http://localhost:5000/inventory/purchaseOrder/update/" + purchaseOrderID, data, {
           withCredentials: true,
           credentials: "include",
         })
         .then((res) => {
           console.log(res.data);
-          if (res.data === "update Warehouse Details") {
-            alert("Warehouse details Updated");
+          if (res.data === "Sales order Issued") {
+            alert("Sales order Issued");
           } else {
             alert("Try again");
           }
@@ -62,51 +69,60 @@ const ChangePurchaseOrderStatus = () => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Edit Warehouse Details</h1>
+          <h1>Change Order Status</h1>
         </div>
         <div className="bottom">
           <div className="right">
             <form>
+
             <div className="formInput">
-                <label>Name of the Manager</label>
+                <label>Purchase order Id</label>
                 <input
                   type="text"
-                  value={ManagerName}
-                  onChange={(e) => {
-                    setManagerName(e.target.value);
-                  }}
+                  disabled
+                  value={purchaseOrderID}
+                 
+                />
+              </div>
+          
+              <div className="formInput">
+                <label>WID</label>
+                <input
+                  type="number"
+                  value={WID}
+                  disabled
+                  
                 />
               </div>
               <div className="formInput">
-                <label>No</label>
-                <input
-                  type="text"
-                  value={no}
+                <label>Status</label>
+                <select
+                  value={status}
                   onChange={(e) => {
-                    setNo(e.target.value);
+                    setStatus(e.target.value);
                   }}
-                />
+                >
+                  <option value="" disabled selected> Select Status </option>
+                  <option value="D">Delivered</option>
+                  <option value="C">Cancelled</option>
+                </select>
               </div>
-              <div className="formInput">
-                <label>Street</label>
-                <input
-                  type="text"
-                  value={street}
-                  onChange={(e) => {
-                    setStreet(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
-                <label>Town</label>
-                <input
-                  type="text"
-                  value={town}
-                  onChange={(e) => {
-                    setTown(e.target.value);
-                  }}
-                />
-              </div>
+
+              {status === "C" ? (
+                <div className="formInput">
+                  <label>Reason for Returning</label>
+                  <input
+                    type="text"
+                    value={reason}
+                    onChange={(e) => {
+                      setReason(e.target.value);
+                    }}
+                  />
+                </div>
+              ) : (
+                ""
+              )}
+
               <div className="break"></div>
               <button onClick={submitForm}>Submit</button>
             </form>
@@ -116,5 +132,4 @@ const ChangePurchaseOrderStatus = () => {
     </div>
   );
 };
-
 export default ChangePurchaseOrderStatus;

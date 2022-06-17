@@ -41,12 +41,13 @@ const WarehouseTable = () => {
         const reLink2="/inventory/warehouse/editDetails/"+params.row.WID;
         return (
           <div className="cellAction">
+              <Link to={reLink2} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Edit</div>
+            </Link>
             <Link to={reLink1} style={{ textDecoration: "none" }}>
               <div className="viewButton">View Stock Details</div>
             </Link>
-            <Link to={reLink2} style={{ textDecoration: "none" }}>
-              <div className="viewButton">Edit Warehouse Details</div>
-            </Link>
+          
           </div>
         );
       },

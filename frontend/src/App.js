@@ -88,13 +88,13 @@ function App() {
               <Route path="order">
                 <Route path="purchaseOrders" >
                 <Route index element={<PurchaseOrderDetails />} />
-                <Route path="changeStatus/:WID" element={<ChangePurchaseOrderStatus />} />
+                <Route path="changeStatus/:purchaseOrderID" element={<ChangePurchaseOrderStatus />} />
                 <Route path="orderData/:id" element={<PurchaseOrderData />} />
                 </Route>
 
                 <Route path="returnOrders" >
                 <Route index element={<ReturnOrderDetails />} />
-                <Route path="changeStatus/:WID" element={<ChangeSalesReturnOrderStatus />} />
+                <Route path="changeStatus/:salesReturnOrderID" element={<ChangeSalesReturnOrderStatus />} />
                 <Route path="orderData/:id" element={<ReturnOrderData />} />
                 </Route>
 

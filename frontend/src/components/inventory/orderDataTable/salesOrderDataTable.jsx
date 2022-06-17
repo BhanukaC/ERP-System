@@ -33,7 +33,7 @@ const SalesOrderDataTable = (props) => {
   }, [""]);
 
   return (
-    <div className="datatable">
+    <div className="datatable" style={{height:"50%"}}>
       <div className="datatableTitle">
         Sales Order Details
       </div>
@@ -41,8 +41,8 @@ const SalesOrderDataTable = (props) => {
         className="datagrid"
         rows={data}
         columns={userColumns}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
         components={{ Toolbar: GridToolbar }}
         componentsProps={{
           toolbar: {
