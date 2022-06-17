@@ -33,7 +33,7 @@ const PurchaseOrderDataTable = (props) => {
   }, [""]);
 
   return (
-    <div className="datatable">
+    <div className="datatable" style={{height:"50%"}}>
       <div className="datatableTitle">
         Purchase Order Details
       </div>
@@ -41,8 +41,8 @@ const PurchaseOrderDataTable = (props) => {
         className="datagrid"
         rows={data}
         columns={userColumns}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
         components={{ Toolbar: GridToolbar }}
         componentsProps={{
           toolbar: {

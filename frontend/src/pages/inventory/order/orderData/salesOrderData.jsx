@@ -2,7 +2,6 @@ import "../../tablePage.scss";
 import Navbar from "../../../../components/navbar/Navbar";
 import InventorySidebar from "../../../../components/inventory/inventorySidebar/inventorySidebar";
 import SalesOrderDataTable from "../../../../components/inventory/orderDataTable/salesOrderDataTable";
-
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -27,23 +26,19 @@ const SalesOrderData = () => {
 
   const submitButton=(e)=>{
     e.preventDefault();
-    //alert("form submit");
-   const data={
+    alert("form submit");
+   let data={
     WID:WID,
-    salesOrderID:id
+    status:status,
+    salesOrderID:id,
   };
-    axios.get("http://localhost:5000/inventory/salesOrder/update/"+ id, data,{
+    axios.put("http://localhost:5000/inventory/salesOrder/update/", data,{
       withCredentials: true,
       credentials: "include",
 
     }).then((res)=>{
-      if (res.data === "Sales order Issued") {
         setWID(res.data[0].WID);
-        setStatus("D");
-        alert("Sales order Issued");
-      } else {
-        alert("Try again");
-      }
+        setStatus("D"); 
     })
   }
 
@@ -65,7 +60,7 @@ const SalesOrderData = () => {
              marginTop: "30px",
              marginLeft:"40%",
       
-        }} onClick={submitButton} >Issue the Order</button>)}
+        }} onClick={submitButton} >Mark as Issued</button>)}
         
       </div>
     </div>

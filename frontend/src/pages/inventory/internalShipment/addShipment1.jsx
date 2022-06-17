@@ -89,7 +89,8 @@ const AddInternalShipmentsPart1 = () => {
               </div>
               <div className="formInput">
                 <label>Product Name</label>
-                <input type="text" value={productName} disabled />
+                <input type="text" 
+                value={productName} disabled />
               </div>
               <div className="formInput">
                 <label>Quantity</label>
@@ -103,7 +104,7 @@ const AddInternalShipmentsPart1 = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Add to cart</button>
+              <button onClick={submitForm}>Add to Cart</button>
             </form>
           </div>
         </div>
