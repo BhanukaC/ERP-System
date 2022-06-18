@@ -38,8 +38,13 @@ const ReturnOrderData = () => {
       credentials: "include",
 
     }).then((res)=>{
+      if (res.data === "Sales Return order Received") {
+        alert("Sales Return order Received");
         setWID(res.data[0].WID);
         setStatus("D"); 
+      } else {
+        alert("Sorry,Try again");
+      } 
     })
   }
 

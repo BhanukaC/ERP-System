@@ -93,7 +93,7 @@ const ChangeQualityLevel = () => {
                     setQualityLevel(e.target.value);
                   }}
                 >
-                  <option value="" disabled selected> select Quality Level Level </option>
+                  <option value="" disabled selected> select Quality Level </option>
                   <option value="A">Level A</option>
                   <option value="B">Level B</option>
                   <option value="C">Level C</option>

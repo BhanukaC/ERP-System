@@ -26,7 +26,7 @@ const SalesOrderData = () => {
 
   const submitButton=(e)=>{
     e.preventDefault();
-    alert("form submit");
+    //alert("form submit");
    let data={
     WID:WID,
     status:status,
@@ -37,8 +37,13 @@ const SalesOrderData = () => {
       credentials: "include",
 
     }).then((res)=>{
+      if (res.data === "Sales order Issued") {
+        alert("Sales order Issued");
         setWID(res.data[0].WID);
         setStatus("D"); 
+      } else {
+        alert("Sorry,Try again");
+      }
     })
   }
 
