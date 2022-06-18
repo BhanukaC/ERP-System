@@ -6,6 +6,7 @@ import InsertChartIcon from "@mui/icons-material/InsertChart";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
+//import { DarkModeContext } from "../../../context/darkModeContext";
 import { useContext } from "react";
 
 const Finance_Sidebar = () => {
@@ -33,18 +34,7 @@ const Finance_Sidebar = () => {
               <span>Logout</span>
             </li>
           </Link>
-          
         </ul>
-      </div>
-      <div className="bottom">
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "LIGHT" })}
-        ></div>
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "DARK" })}
-        ></div>
       </div>
     </div>
   );

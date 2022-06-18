@@ -46,7 +46,7 @@ const AddWarehouse = () => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Add User</h1>
+          <h1>Add Warehouse</h1>
         </div>
         <div className="bottom">
           <div className="right">
