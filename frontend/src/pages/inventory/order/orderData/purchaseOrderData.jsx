@@ -26,22 +26,10 @@ const PurchaseOrderData = () => {
 
   const submitButton=(e)=>{
     e.preventDefault();
-    alert("form submit");
-   let data={
-    WID:WID,
-    status:status,
-    salesOrderID:id,
-  };
-    axios.put("http://localhost:5000/inventory/purchaseOrder/update/", data,{
-      withCredentials: true,
-      credentials: "include",
-
-    }).then((res)=>{
-        setWID(res.data[0].WID);
-        setStatus("D"); 
-    })
+    window.location = "/inventory/order/purchaseOrders/changeStatus/"+id;
   }
 
+  
   return (
     <div className="list">
       <InventorySidebar />
@@ -60,10 +48,8 @@ const PurchaseOrderData = () => {
              marginTop: "30px",
              marginLeft:"40%",
       
-        }} onClick={submitButton} >Mark as Received / Returned</button>)}
+        }} onClick={submitButton} >Change Status</button>)}
 
-           
-      
       </div>
     </div>
   );

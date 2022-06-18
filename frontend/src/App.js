@@ -27,9 +27,10 @@ import ReturnOrderData from "./pages/inventory/order/orderData/ReturnOrderData";
 import SalesOrderData from "./pages/inventory/order/orderData/salesOrderData";
 import ChangeQualityLevel from "./pages/inventory/qualityLevel/qualityLevel";
 import EditWarehouseDetails from "./pages/inventory/warehouse/editWarehouseDet/editWarehouseDetails";
-import ChangeSalesOrderStatus from "./pages/inventory/order/salesOrderDetails/changeSalesStatus";
 import ChangePurchaseOrderStatus from "./pages/inventory/order/purchaseOrderDetails/changePurchaseStatus";
-import ChangeSalesReturnOrderStatus from "./pages/inventory/order/returnOrderDetails/changeSalesReturnStatus";
+import AddInternalShipmentsPart1 from "./pages/inventory/internalShipment/addShipment1";
+import AddInternalShipmentsPart2 from "./pages/inventory/internalShipment/addShipment2";
+import ShipmentDetails from "./pages/inventory/internalShipment/shipmentDetails";
 
 
 import AddCustomer from "./pages/sales/customer/add/add"
@@ -62,8 +63,7 @@ import { DarkModeContext } from "./context/darkModeContext";
 import AddUser from "./pages/admin/adduser/adduser";
 import ViewAllUsers from "./pages/admin/viewAll/viewAll";
 import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
-import AddInternalShipmentsPart1 from "./pages/inventory/internalShipment/addShipment1";
-import AddInternalShipmentsPart2 from "./pages/inventory/internalShipment/addShipment2";
+
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -95,13 +95,11 @@ function App() {
 
                 <Route path="returnOrders" >
                   <Route index element={<ReturnOrderDetails />} />
-                  <Route path="changeStatus/:salesReturnOrderID" element={<ChangeSalesReturnOrderStatus />} />
                   <Route path="orderData/:id" element={<ReturnOrderData />} />
                 </Route>
 
                 <Route path="salesOrders" >
                   <Route index element={<SalesOrderDetails />} />
-                  <Route path="changeStatus/:salesOrderID" element={<ChangeSalesOrderStatus />} />
                   <Route path="orderData/:id" element={<SalesOrderData />} />
                 </Route>
               </Route>
@@ -109,6 +107,7 @@ function App() {
               <Route path="internalShipments" >
                 <Route path="add" element={<AddInternalShipmentsPart1 />} />
                 <Route path="add2" element={<AddInternalShipmentsPart2 />} />
+                <Route path="details" element={<ShipmentDetails />} />
               </Route>
 
             </Route>

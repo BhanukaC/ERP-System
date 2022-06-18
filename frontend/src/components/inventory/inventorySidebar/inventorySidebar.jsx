@@ -16,10 +16,10 @@ import { useContext } from "react";
 const InventorySidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
   return (
-    <div className="sidebar">
+    <div className="inventorySidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">ABCD</span>
+          <span className="logo">Quick ERP</span>
         </Link>
       </div>
       <hr />
@@ -70,7 +70,7 @@ const InventorySidebar = () => {
               <span>Add Internal Shipment</span>
             </li>
           </Link>
-          <Link to=" " style={{ textDecoration: "none" }}>
+          <Link to="/inventory/internalShipments/details " style={{ textDecoration: "none" }}>
             <li>
               <LocalShippingIcon className="icon" />
               <span>Internal Shipment Details</span>

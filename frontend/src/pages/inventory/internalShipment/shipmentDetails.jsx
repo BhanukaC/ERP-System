@@ -1,7 +1,7 @@
-import "../../tablePage.scss";
-import Navbar from "../../../../components/navbar/Navbar";
-import InventorySidebar from "../../../../components/inventory/inventorySidebar/inventorySidebar";
-import PurchaseOrderTable from "../../../../components/inventory/purchaseOrderTable/purchaseOrderTable";
+import "../tablePage.scss";
+import Navbar from "../../../components/navbar/Navbar";
+import InventorySidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
+import ShipmentTable from "../../../components/inventory/internalShipment/shipmentTable";
 
 const ShipmentDetails = () => {
   return (
@@ -9,7 +9,7 @@ const ShipmentDetails = () => {
       <InventorySidebar />
       <div className="listContainer">
         <Navbar />
-        <PurchaseOrderTable />
+        <ShipmentTable />
       </div>
     </div>
   );

@@ -55,7 +55,7 @@ const WarehouseTable = () => {
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="dataTableTitle">
         Warehouse Details
       </div>
       <DataGrid

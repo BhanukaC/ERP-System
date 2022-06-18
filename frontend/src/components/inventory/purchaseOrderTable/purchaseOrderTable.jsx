@@ -10,7 +10,7 @@ const userColumns = [
   { field: "total", headerName: "Net Total", width: 100 },
   { field: "SID", headerName: "Supplier ID", width: 100},
   { field: "WID", headerName: "Warehouse ID", width: 100},
-  { field: "status", headerName: "Status", width: 100 },
+  { field: "statusMod", headerName: "Status", width: 150 },
   { field: "deliveredDate", headerName: "DeliveredDate", width: 200},
  
 ];
@@ -27,7 +27,19 @@ const PurchaseOrderTable = () => {
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {
-          return { id: d.purchaseOrderID, ...d };
+          let status;
+          switch (d.status) {
+            case "P":
+              status="Pending"
+              break;
+            case "C":
+              status="Cancelled"
+              break;
+            case "D":
+              status="Delivered"
+              break;
+          }
+          return { id: d.purchaseOrderID,statusMod:status, ...d };
         });
         setData(dt);
         // console.log(dt);
@@ -39,13 +51,9 @@ const PurchaseOrderTable = () => {
       headerName: " ",
       width: 300,
       renderCell: (params) => {
-        const reLink1= "/inventory/order/purchaseOrders/changeStatus/"+params.row.purchaseOrderID;
         const reLink2= "/inventory/order/purchaseOrders/orderData/"+params.row.purchaseOrderID;
         return (
           <div className="cellAction">
-            <Link to={reLink1} style={{ textDecoration: "none" }}>
-              <div className="viewButton">Change Status</div>
-            </Link>
             <Link to={reLink2} style={{ textDecoration: "none" }}>
               <div className="viewButton">View Order</div>
             </Link>
@@ -57,7 +65,7 @@ const PurchaseOrderTable = () => {
 
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="dataTableTitle">
         Purchase Orders
       </div>
       <DataGrid

@@ -33,24 +33,9 @@ const AllStockTable = (props) => {
   }, [""]);
 
  
- /* const actionColumn = [
-    {
-      headerName: "Change Quality Level",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <Link to="/inventory/warehouse/changeQualityLevel" style={{ textDecoration: "none" }}>
-              <div className="viewButton">Change</div>
-            </Link>
-          </div>
-        );
-      },
-    },
-  ];*/
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="dataTableTitle">
         Stock Details
       </div>
       <DataGrid

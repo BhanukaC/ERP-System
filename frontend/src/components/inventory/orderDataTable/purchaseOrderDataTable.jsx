@@ -14,11 +14,12 @@ const userColumns = [
 ];
 
 const PurchaseOrderDataTable = (props) => {
+  const purchaseOrderID = props.id;
   const [data, setData] = useState({});
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/inventory/purchaseOrderData/get/"+ props.id,{
+      .get("http://localhost:5000/inventory/purchaseOrderData/get/"+ purchaseOrderID,{
         withCredentials: true,
         credentials: "include",
       })
@@ -34,8 +35,8 @@ const PurchaseOrderDataTable = (props) => {
 
   return (
     <div className="datatable" style={{height:"50%"}}>
-      <div className="datatableTitle">
-        Purchase Order Details
+      <div className="dataTableTitle">
+        Purchase Order Details of (Purchase Order ID-{purchaseOrderID})
       </div>
       <DataGrid
         className="datagrid"

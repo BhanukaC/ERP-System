@@ -12,7 +12,7 @@ const ChangePurchaseOrderStatus = () => {
   const [reason, setReason] = useState("");
 
   const {purchaseOrderID} = useParams();
-  console.log(purchaseOrderID);
+  //console.log(purchaseOrderID);
 
   useEffect(() => {
     axios
@@ -48,15 +48,23 @@ const ChangePurchaseOrderStatus = () => {
      
 
       axios
-        .put("http://localhost:5000/inventory/purchaseOrder/update/" + purchaseOrderID, data, {
+        .put("http://localhost:5000/inventory/purchaseOrder/update/" , data, {
           withCredentials: true,
           credentials: "include",
         })
         .then((res) => {
           console.log(res.data);
-          if (res.data === "Sales order Issued") {
-            alert("Sales order Issued");
-          } else {
+          if (res.data === "Purchase order Received") {
+            setWID(res.data[0].WID);
+            setStatus("D"); 
+            alert("Purchase order Received");
+          } 
+          if (res.data === "Purchase order Returned") {
+            setWID(res.data[0].WID);
+            setStatus("C"); 
+            alert("Purchase order Returned");
+          } 
+          else {
             alert("Try again");
           }
         });

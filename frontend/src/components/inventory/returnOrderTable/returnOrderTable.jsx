@@ -12,7 +12,7 @@ const userColumns = [
   { field: "total", headerName: "Net Total", width: 100},
   { field: "CID", headerName: "Customer ID", width: 100},
   { field: "salesOrderID", headerName: "Sales Order ID", width: 100},
-  { field: "status", headerName: "Status", width: 100 },
+  { field: "statusMod", headerName: "Status", width: 100 },
   { field: "finishDate", headerName: "Finish Date", width: 200 },
 ];
 
@@ -28,7 +28,16 @@ const ReturnOrderTable = () => {
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {
-          return { id: d.salesReturnOrderID, ...d };
+          let status;
+          switch (d.status) {
+            case "P":
+              status="Pending"
+              break;
+            case "D":
+              status="Delivered"
+              break;
+          }
+          return { id: d.salesReturnOrderID,statusMod:status, ...d };
         });
         setData(dt);
         // console.log(dt);
@@ -53,7 +62,7 @@ const ReturnOrderTable = () => {
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="dataTableTitle">
         Sales Return Orders
       </div>
       <DataGrid

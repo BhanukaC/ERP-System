@@ -38,8 +38,12 @@ const ChangeQualityLevel = () => {
         }
       )
       .then((res) => {
-        alert("Quality Level Changed");
-        console.log(res);
+        if (res.data === "Changed Quality level of stocks") {
+          alert("Quality Level Changed");
+          //console.log(res);
+        } else {
+          alert("Try again");
+        }
       });
     }
   };
