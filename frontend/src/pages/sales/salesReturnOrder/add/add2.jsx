@@ -6,10 +6,8 @@ import axios from "axios";
 
 const AddSalesReturnOrderPart2 = () => {
     const [list, setList] = useState([]);
-    const [salesReturnOrderID, setSalesReturnOrderID] = useState("");
     const [reason, setReason] = useState("");
     const [WID, setWID] = useState("");
-    const [items, setItems] = useState("");
     const [CID, setCID] = useState("");
     const [CDAID, setCDAID] = useState("");
     const [CCID, setCCID] = useState("");
@@ -26,14 +24,13 @@ const AddSalesReturnOrderPart2 = () => {
       .post(
         "http://localhost:5000/sales/salesReturnOrder/add",
         {
-            salesReturnOrderID: salesReturnOrderID,
             reason: reason,
             WID: WID,
-            items:items,
             CID: CID,
             CDAID: CDAID,
             CCID: CCID,
             salesOrderID:salesOrderID ,
+            items:items,
         },
         { withCredentials: true, credentials: "include" }
       )
@@ -63,6 +60,27 @@ const AddSalesReturnOrderPart2 = () => {
         <Navbar />
         <div className="top">
           <h1>Add Sales Return Order</h1>
+        </div>
+        <div className="bottom">
+          <div className="right">
+            <h1>Cart</h1>
+            <table style={{ width: "80%", textAlign: "center" }}>
+              <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+              </tr>
+              {list.map((item) => {
+                return (
+                  <tr key={item.PID}>
+                    <td>{item.PID}</td>
+                    <td> {item.name}</td>
+                    <td>{item.qty}</td>
+                  </tr>
+                );
+              })}
+            </table>
+          </div>
         </div>
         <div className="bottom">
           <div className="right">
@@ -104,16 +122,6 @@ const AddSalesReturnOrderPart2 = () => {
                   value={WID}
                   onChange={(e) => {
                     setWID(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
-                <label>Items</label>
-                <input
-                  type="text"
-                  value={items}
-                  onChange={(e) => {
-                    setItems(e.target.value);
                   }}
                 />
               </div>
