@@ -5,10 +5,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "UID", headerName: "UID" },
-  { field: "userName", headerName: "User Name" },
-  { field: "acessLevel", headerName: "Acess Level" },
-  { field: "email", headerName: "Email" },
+  { field: "UID", headerName: "UID", width: 150 },
+  { field: "userName", headerName: "User Name", width: 250 },
+  { field: "acessLevel", headerName: "Acess Level", width: 150 },
+  { field: "email", headerName: "Email", width: 250 },
 ];
 
 const Datatable = () => {
