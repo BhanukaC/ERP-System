@@ -80,10 +80,10 @@ const AddProduct = () => {
       <Sidebar/>
       <div className="newContainer">
         <Navbar />
-        <div className="top">
+        <div className="top1">
           <h1>Add Product</h1>
         </div>
-        <div className="bottom">
+        <div className="bottom1">
           <div className="right">
             <form>
 
@@ -249,7 +249,7 @@ const AddProduct = () => {
                 />
               </div>
 
-              <div className="break"></div>
+              <div className="break1"></div>
               <button onClick={submitForm}>Add Product</button>
             </form>
           </div>

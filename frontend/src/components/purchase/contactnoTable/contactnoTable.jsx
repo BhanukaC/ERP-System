@@ -40,16 +40,35 @@ const Datatable = (props) => {
       });
   }, [""]);
 
+  const actionColumn = [
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      renderCell: (params) => {
+        const upLink = "/purchase/product/updatecat/"+params.row.catID;
+        return (
+          <div className="cellAction">
+            <Link to= {upLink} style= {{textDecoration : "none"}}>
+              <div className="viewButton">Delete</div>
+              </Link>
+            
+          </div>
+        );
+      },
+    },
+  ];
+
   
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="datatableTitle1">
         All Contact Numbers For Supplier (SID-{SID})
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns}
+        columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         components={{ Toolbar: GridToolbar }}

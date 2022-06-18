@@ -48,7 +48,7 @@ const Producttable = () => {
   
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="datatableTitle1">
         Products
         <Link to="/purchase/product/add" className="link">
           Add New Product

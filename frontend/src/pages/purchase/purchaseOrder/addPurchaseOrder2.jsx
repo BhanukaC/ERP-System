@@ -129,7 +129,7 @@ const AddPurchaseOrder2 = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Place Order</button>
+              <button onClick={submitForm}>Add Order Details</button>
             </form>
           </div>
         </div>

@@ -55,7 +55,7 @@ const Subcategorytable = () => {
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="datatableTitle1">
         Sub Category
         <Link to="/purchase/product/addsubcat" className="link">
           Add New Sub Category

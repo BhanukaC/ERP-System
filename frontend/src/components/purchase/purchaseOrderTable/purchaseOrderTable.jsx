@@ -59,7 +59,7 @@ const PurchaseOrderTable = () => {
 
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="datatableTitle1">
         Purchase Orders
       </div>
       <DataGrid

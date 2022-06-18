@@ -53,7 +53,7 @@ const Categorytable = () => {
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="datatableTitle1">
         Category
         <Link to="/purchase/product/addcat" className="link">
           Add New Category
