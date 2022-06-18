@@ -10,11 +10,8 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import { Link } from "react-router-dom";
-import { DarkModeContext } from "../../../context/darkModeContext";
-import { useContext } from "react";
 
-const InventorySidebar = () => {
-  const { dispatch } = useContext(DarkModeContext);
+const sidebar = () => {
   return (
     <div className="inventorySidebar">
       <div className="top">
@@ -100,18 +97,8 @@ const InventorySidebar = () => {
           </Link>
         </ul>
       </div>
-      <div className="bottom">
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "LIGHT" })}
-        ></div>
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "DARK" })}
-        ></div>
-      </div>
     </div>
   );
 };
 
-export default InventorySidebar;
+export default sidebar;
