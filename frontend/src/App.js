@@ -162,7 +162,7 @@ function App() {
               <Route path="edituser" element={<EditUserDetails />} />
             </Route>
 
-            <Route path="finance" element={<ViewAccounts />}></Route>
+            <Route path="account" element={<ViewAccounts />}></Route>
 
           </Route>
         </Routes>

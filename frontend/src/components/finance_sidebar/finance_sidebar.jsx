@@ -1,6 +1,7 @@
 import "./finance_sidebar.scss";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import StoreIcon from "@mui/icons-material/Store";
+import PreviewIcon from "@mui/icons-material/Preview";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -15,13 +16,21 @@ const Finance_Sidebar = () => {
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">ABCD</span>
+          <span className="logo">Quick ERP</span>
         </Link>
       </div>
       <hr />
       <div className="center">
         <ul>
-          <p className="title">Finance Module</p>
+          <p className="title">Accounts</p>
+          <Link to="" style={{ textDecoration: "none" }}>
+            <li>
+              <PreviewIcon className="icon" />
+              <span>View Accounts</span>
+            </li>
+          </Link>
+
+          <p className="title">Profile</p>
           <Link to="" style={{ textDecoration: "none" }}>
             <li>
               <AccountCircleOutlinedIcon className="icon" />
