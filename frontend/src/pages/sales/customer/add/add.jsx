@@ -85,10 +85,10 @@ const AddCustomer = () => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="top">
+        <div className="topPart">
           <h1>Add Customer</h1>
         </div>
-        <div className="bottom">
+        <div className="bottomPart">
           <div className="right">
             <form>
               <div className="formInput">

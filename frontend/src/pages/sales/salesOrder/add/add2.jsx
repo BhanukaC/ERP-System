@@ -55,10 +55,10 @@ const AddSalesOrderPart2 = () => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="top">
+        <div className="topPart">
           <h1>Add Sales Order</h1>
         </div>
-        <div className="bottom">
+        <div className="bottomPart">
           <div className="right">
             <h1>Cart</h1>
             <table style={{ width: "80%", textAlign: "center" }}>
@@ -79,7 +79,7 @@ const AddSalesOrderPart2 = () => {
             </table>
           </div>
         </div>
-        <div className="bottom">
+        <div className="bottomPart">
           <div className="right">
             <form>
             <div className="formInput">
