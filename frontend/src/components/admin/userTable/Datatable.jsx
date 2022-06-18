@@ -43,7 +43,7 @@ const Datatable = () => {
         return (
           <div className="cellAction">
             <div className="editButton">
-              Edit
+              <Link to="../../../admin/edituser" >Edit</Link>
             </div>
             <div
               className="deleteButton"

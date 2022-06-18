@@ -3,6 +3,7 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import StoreIcon from "@mui/icons-material/Store";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Link } from "react-router-dom";
 //import { DarkModeContext } from "../../context/darkModeContext";
 import { DarkModeContext } from "../../../context/darkModeContext";
@@ -50,6 +51,19 @@ const Sidebar = () => {
             <li>
               <InsertChartIcon className="icon" />
               <span>Activity</span>
+            </li>
+          </Link>
+          <p className="title">USER</p>
+          <Link to="" style={{ textDecoration: "none" }}>
+            <li>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Profile</span>
+            </li>
+          </Link>
+          <Link to="" style={{ textDecoration: "none" }}>
+            <li>
+              <ExitToAppIcon className="icon" />
+              <span>Logout</span>
             </li>
           </Link>
           

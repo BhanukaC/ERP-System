@@ -61,6 +61,7 @@ import ViewAllUsers from "./pages/admin/viewAll/viewAll";
 import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
 import ViewAllActivity from "./pages/admin/viewactivity/viewactivity";
 import AddWarehouse from "./pages/admin/addwarehouse/addwarehouse";
+import EditUserDetails from "./pages/admin/edituser/edituser";
 
 
 function App() {
@@ -157,6 +158,7 @@ function App() {
               <Route path="viewwarehouses" element={<ViewAllWarehouses />} />
               <Route path="viewactivity" element={<ViewAllActivity />} />
               <Route path="addwarehouse" element={<AddWarehouse />} />
+              <Route path="edituser" element={<EditUserDetails />} />
             </Route>
 
           </Route>
