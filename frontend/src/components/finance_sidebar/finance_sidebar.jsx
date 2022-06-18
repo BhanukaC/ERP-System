@@ -1,0 +1,53 @@
+import "./finance_sidebar.scss";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import StoreIcon from "@mui/icons-material/Store";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import InsertChartIcon from "@mui/icons-material/InsertChart";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import { Link } from "react-router-dom";
+import { DarkModeContext } from "../../context/darkModeContext";
+import { useContext } from "react";
+
+const Finance_Sidebar = () => {
+  const { dispatch } = useContext(DarkModeContext);
+  return (
+    <div className="sidebar">
+      <div className="top">
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="logo">ABCD</span>
+        </Link>
+      </div>
+      <hr />
+      <div className="center">
+        <ul>
+          <p className="title">Finance Module</p>
+          <Link to="" style={{ textDecoration: "none" }}>
+            <li>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Profile</span>
+            </li>
+          </Link>
+          <Link to="" style={{ textDecoration: "none" }}>
+            <li>
+              <ExitToAppIcon className="icon" />
+              <span>Logout</span>
+            </li>
+          </Link>
+          
+        </ul>
+      </div>
+      <div className="bottom">
+        <div
+          className="colorOption"
+          onClick={() => dispatch({ type: "LIGHT" })}
+        ></div>
+        <div
+          className="colorOption"
+          onClick={() => dispatch({ type: "DARK" })}
+        ></div>
+      </div>
+    </div>
+  );
+};
+
+export default Finance_Sidebar;
