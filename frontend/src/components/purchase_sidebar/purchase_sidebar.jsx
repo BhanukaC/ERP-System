@@ -103,14 +103,19 @@ const Sidebar = () => {
           
           
           <p className="title">PURCHASE ORDER</p>
+
+
+          <Link to="/purchase/order1" style={{ textDecoration: "none" }}>
           <li>
             <AddCircleIcon className="icon" />
             <span>Add Purchase Order</span>
           </li>
+          </Link>
+          
 
           <Link to="/purchase/vieworders" style={{ textDecoration: "none" }}>
           <li>
-            <EditIcon className="icon" />
+            <PreviewIcon className="icon" />
             <span>View Purchase Orders</span>
           </li>
           </Link>

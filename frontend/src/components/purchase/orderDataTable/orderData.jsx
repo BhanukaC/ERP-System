@@ -1,4 +1,4 @@
-import "./orderData.scss";
+import "../table.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
