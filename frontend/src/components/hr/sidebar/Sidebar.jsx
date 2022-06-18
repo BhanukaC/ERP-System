@@ -20,7 +20,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">ABCD</span>
+          <span className="logo">Quick ERP</span>
         </Link>
       </div>
       <hr />
@@ -84,6 +84,33 @@ const Sidebar = () => {
               <span>View All Advance Payments</span>
             </li>
           </Link>
+          <p className="title">Salary</p>
+          <Link to="" style={{ textDecoration: "none" }}>
+            <li>
+              <AddIcon className="icon" />
+              <span>Calculate Salary</span>
+            </li>
+          </Link>
+          <Link to="" style={{ textDecoration: "none" }}>
+            <li>
+              <PreviewIcon className="icon" />
+              <span>View All Salaries</span>
+            </li>
+          </Link>
+
+          <p className="title">Attendance</p>
+          <Link to="" style={{ textDecoration: "none" }}>
+            <li>
+              <AddIcon className="icon" />
+              <span>Add Attendance</span>
+            </li>
+          </Link>
+          <Link to="" style={{ textDecoration: "none" }}>
+            <li>
+              <PreviewIcon className="icon" />
+              <span>View All Attendance</span>
+            </li>
+          </Link>
 
           <p className="title">USER</p>
           <Link to="/profile" style={{ textDecoration: "none" }}>
@@ -99,16 +126,6 @@ const Sidebar = () => {
             </li>
           </Link>
         </ul>
-      </div>
-      <div className="bottom">
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "LIGHT" })}
-        ></div>
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "DARK" })}
-        ></div>
       </div>
     </div>
   );

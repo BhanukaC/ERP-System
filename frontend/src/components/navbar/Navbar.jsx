@@ -10,12 +10,7 @@ const Navbar = () => {
     <div className="navbar">
       <div className="wrapper">
         <div className="items">
-          <div className="item">
-            <DarkModeOutlinedIcon
-              className="icon"
-              onClick={() => dispatch({ type: "TOGGLE" })}
-            />
-          </div>
+          <div className="item"></div>
         </div>
       </div>
     </div>
