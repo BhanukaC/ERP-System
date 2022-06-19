@@ -58,6 +58,7 @@ import ViewAllUsers from "./pages/admin/viewAll/viewAll";
 import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
 import user from "./auth";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import ProtectedRouteUser from "./components/ProtectedRoute/ProtectedRouteUser";
 import LogOut from "./pages/logout/logout";
 import Profile from "./pages/profile/profile";
 
@@ -72,7 +73,7 @@ function App() {
           <Route path="/">
             <Route index element={<Login />} />
             <Route path="logout" element={<LogOut />} />
-            <Route path="profile" element={<Profile />} />
+            <Route path="profile" element={<ProtectedRouteUser><Profile /></ProtectedRouteUser>} />
 
 
 
