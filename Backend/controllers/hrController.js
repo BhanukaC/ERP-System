@@ -478,7 +478,7 @@ exports.calculateSalaryController = async (req, res) => {
                                 tax = 0;
                             }
                             const netSalary = totalSalary - tax;
-                            db.query("insert into Salary(EID,month,year,basicSalary,addInsentiive,dataAllowance,travellingAllowance,consolidatedSalary,EPF,ETF,totOT,totAdvance,totalSalry,tax,netSalary,EPFCompany) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [EID, mm, yyyy, basicSalary, addInsentiive, dataAllowance, travellingAllowance, consolidatedSalary, EPF, ETF, totOT, totAdvance, totalSalary, tax, netSalary, EPFCompany], (err, response) => {
+                            db.query("insert into Salary(EID,month,year,basicSalary,addInsentiive,dataAllowance,travellingAllowance,consolidatedSalary,EPF,ETF,totOT,totAdvance,totalSalry,tax,netSalary,EPFCompany) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [EID, mm, yyyy, basicSalary, addInsentiive, dataAllowance, travellingAllowance, consolidatedSalary, EPF, ETF, totOT, totAdvance, totalSalary, tax, netSalary, EPFCompany], (err, response) => {
                                 if (err) {
                                     res.json({ error: err });
                                     return;
