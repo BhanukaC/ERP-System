@@ -45,6 +45,8 @@ import AddAdvance from "./pages/hr/advance/add/add";
 import ViewAllAdvance from "./pages/hr/advance/viewAll/viewAll";
 import ViewAllAdvanceForEmployee from "./pages/hr/advance/viewAllForEmployee/viewAll";
 import CalculateSalary from "./pages/hr/salary/calculate/calculate";
+import ViewAllSalaries from "./pages/hr/salary/viewAll/viewAll";
+import ViewAllSalariesForEmployee from "./pages/hr/salary/viewAllForEmployee/viewAll";
 
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -141,8 +143,8 @@ function App() {
               </Route>
               <Route path="salary">
                 <Route path="calculate" element={<ProtectedRoute level={2}>< CalculateSalary /></ProtectedRoute>} />
-                {/* <Route path="viewall/" element={<ProtectedRoute level={2}><ViewAllAdvance /></ProtectedRoute>} />
-                <Route path="viewall/:EID" element={<ProtectedRoute level={2}><ViewAllAdvanceForEmployee /></ProtectedRoute>} /> */}
+                <Route path="viewall/" element={<ProtectedRoute level={2}><ViewAllSalaries /></ProtectedRoute>} />
+                <Route path="viewall/:EID" element={<ProtectedRoute level={2}>< ViewAllSalariesForEmployee /></ProtectedRoute>} />
               </Route>
             </Route>
 

@@ -23,6 +23,27 @@ const userColumns = [
   { field: "dailyWage", headerName: "Daily Wage" },
 ];
 
+const salaryButton = [
+  {
+    field: "ViewSalaries",
+    headerName: "",
+    renderCell: getViewSalaryButton,
+    width: 150,
+  },
+];
+function getViewSalaryButton(params) {
+  const reLink5 = "/hr/salary/viewall/" + params.row.EID;
+  if (params.row.dailyWage === null) {
+    return (
+      <div className="cellAction">
+        <Link to={reLink5} style={{ textDecoration: "none" }}>
+          <div className="viewButton">View All Salaries</div>
+        </Link>
+      </div>
+    );
+  }
+}
+
 const Datatable = () => {
   const [data, setData] = useState({});
 
@@ -54,12 +75,13 @@ const Datatable = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 600,
+      width: 510,
       renderCell: (params) => {
         const reLink = "/hr/employee/edit/" + params.row.EID;
         const reLink2 = "/hr/dependent/viewall/" + params.row.EID;
         const reLink3 = "/hr/OtRecord/viewall/" + params.row.EID;
         const reLink4 = "/hr/advance/viewall/" + params.row.EID;
+
         return (
           <div className="cellAction">
             <Link to={reLink} style={{ textDecoration: "none" }}>
@@ -74,6 +96,7 @@ const Datatable = () => {
             <Link to={reLink4} style={{ textDecoration: "none" }}>
               <div className="viewButton">View Advance Records</div>
             </Link>
+
             {/* <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.CID)}
@@ -91,7 +114,7 @@ const Datatable = () => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={userColumns.concat(actionColumn).concat(salaryButton)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         components={{ Toolbar: GridToolbar }}

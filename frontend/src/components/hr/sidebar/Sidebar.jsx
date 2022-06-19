@@ -85,13 +85,13 @@ const Sidebar = () => {
             </li>
           </Link>
           <p className="title">Salary</p>
-          <Link to="" style={{ textDecoration: "none" }}>
+          <Link to="/hr/salary/calculate" style={{ textDecoration: "none" }}>
             <li>
               <AddIcon className="icon" />
               <span>Calculate Salary</span>
             </li>
           </Link>
-          <Link to="" style={{ textDecoration: "none" }}>
+          <Link to="/hr/salary/viewall" style={{ textDecoration: "none" }}>
             <li>
               <PreviewIcon className="icon" />
               <span>View All Salaries</span>
