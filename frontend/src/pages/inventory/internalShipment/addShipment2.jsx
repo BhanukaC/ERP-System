@@ -103,7 +103,18 @@ const AddInternalShipmentsPart2 = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Issue</button>
+              <button 
+              style={{
+                width: "150px",
+              padding: "10px",
+              border: "none",
+              backgroundColor: "#7451f8",
+              color: "white",
+              fontWeight: "bold",
+              cursor: "pointer",
+              margintop: "10px",
+              }}
+              onClick={submitForm}>Issue</button>
             </form>
           </div>
         </div>

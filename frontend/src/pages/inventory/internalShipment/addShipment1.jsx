@@ -133,7 +133,7 @@ const AddInternalShipmentsPart1 = () => {
                   width: "200px",
                   padding: "10px",
                   border: "none",
-                  backgroundColor: "#00004d",
+                  backgroundColor: "#7451f8",
                   color: " white",
                   fontWeight: "bold",
                   cursor: " pointer",

@@ -3,6 +3,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { red } from "@mui/material/colors";
 
 const userColumns = [
   { field: "purchaseOrderID", headerName: "Purchase Order ID",  width: 100},
@@ -29,7 +30,7 @@ const PurchaseOrderTable = () => {
         let dt = res.data.map((d) => {
           let status;
           switch (d.status) {
-            case "P":
+            case "P" :
               status="Pending"
               break;
             case "C":

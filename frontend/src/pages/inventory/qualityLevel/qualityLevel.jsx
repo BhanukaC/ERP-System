@@ -16,11 +16,16 @@ const ChangeQualityLevel = () => {
       PID === " " ||
       WID === " " ||
       qty === " " ||
-      qty === 0 ||
       qualityLevel === " "
       )
       {
         alert("Fill the required fields");
+      }
+      if(
+        qty === 0
+      )
+      {
+        alert("Quantity cannot be 0");
       }
       else{
     axios
