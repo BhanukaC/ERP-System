@@ -5,7 +5,7 @@ import axios from "axios";
 
 const userColumns = [
   { field: "ID", headerName: "ID", width: 100 },
-  { field: "purchaseOrderID", headerName: "Purchase Order ID",  width: 200},
+  //{ field: "purchaseOrderID", headerName: "Purchase Order ID",  width: 200},
   { field: "PID", headerName: "Product ID", width: 200 },
   { field: "unitPrice", headerName: "Unit Price", width: 200 },
   { field: "qty", headerName: "Quantity", width: 100 },

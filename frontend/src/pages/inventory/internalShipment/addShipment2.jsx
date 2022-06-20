@@ -8,6 +8,18 @@ const AddInternalShipmentsPart2 = () => {
   const [list, setList] = useState([]);
   const [fromWID, setFromWID] = useState(0);
   const [toWID, setToWID] = useState(0);
+  const [warehouse, setWarehouse] = useState({});
+
+  useEffect(() => {
+    const getWarehouse = async () => {
+      const res = await axios.get("http://localhost:5000/inventory/Warehouse/getAll", {
+        withCredentials: true,
+        credentials: "include",
+      });
+      setWarehouse(res.data);
+    };
+    getWarehouse();
+  }, [""]);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -80,27 +92,49 @@ const AddInternalShipmentsPart2 = () => {
         <div className="bottom">
           <div className="right">
             <form>
+             
               <div className="formInput">
-                <label>From WID</label>
-                <input
-                  type="number"
+                <label>From</label>
+
+                <select
                   value={fromWID}
                   onChange={(e) => {
                     setFromWID(e.target.value);
                   }}
-                />
+                >
+                  <option value="" disabled selected>
+                    Select Warehouse ID
+                  </option>
+                  {JSON.stringify(warehouse) !== "{}"
+                    ? warehouse.map((w) => (
+                        <option value={w.WID} key={w.WID}>
+                          {w.town}
+                        </option>
+                      ))
+                    : ""}
+                </select>
               </div>
 
               <div className="formInput">
-                <label>To WID</label>
-                <input
-                  type="number"
+                <label>To</label>
+
+                <select
                   value={toWID}
                   onChange={(e) => {
                     setToWID(e.target.value);
                   }}
-                />
+                >
+                  <option value="" disabled selected> Select Warehouse ID</option>
+                  {JSON.stringify(warehouse) !== "{}"
+                    ? warehouse.map((w) => (
+                        <option value={w.WID} key={w.WID}>
+                          {w.town}
+                        </option>
+                      ))
+                    : ""}
+                </select>
               </div>
+
 
               <div className="break"></div>
               <button 
