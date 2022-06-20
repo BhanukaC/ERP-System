@@ -50,7 +50,7 @@ const AddCategory = () => {
       <Sidebar/>
       <div className="newContainer">
         <Navbar />
-        <div className="top">
+        <div className="top1">
           <h1>Add Category</h1>
         </div>
         <div className="bottom">

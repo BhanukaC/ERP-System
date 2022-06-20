@@ -1,5 +1,5 @@
 import "./add_sub_category.scss";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
@@ -9,7 +9,18 @@ const AddSubCategory = () => {
   const [subcatName, setsubcatName] = useState("");
   const [catId, setcatId] = useState("");
   const [discount, setdiscount] = useState("");
-  
+  const [catIds, setcatIds] = useState({});
+
+  useEffect(() => {
+    const getcatId = async () => {
+      const res = await axios.get("http://localhost:5000/purchase/category/getAll", {
+        withCredentials: true,
+        credentials: "include",
+      });
+      setcatIds(res.data);
+    };
+    getcatId();
+  }, [""]);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -47,6 +58,8 @@ const AddSubCategory = () => {
     
   };
 
+  
+
   return (
     <div className="new">
       <Sidebar/>
@@ -72,21 +85,32 @@ const AddSubCategory = () => {
               </div>
 
               <div className="formInput">
-                <label> Category ID</label>
-                <input
-                  type="text"
+                <label>Category ID</label>
+
+                <select
                   value={catId}
                   onChange={(e) => {
                     setcatId(e.target.value);
                   }}
-                />
+                >
+                  <option value="" disabled selected>
+                    select Category ID
+                  </option>
+                  {JSON.stringify(catIds) !== "{}"
+                    ? catIds.map((c) => (
+                        <option value={c.catID} key={c.catID}>
+                          {c.catID}
+                        </option>
+                      ))
+                    : ""}
+                </select>
               </div>
               
               <div className="formInput">
                 <label>Discount</label>
                 <input
                   type="number"
-                  step="any"
+                 
                   value={discount}
                   onChange={(e) => {
                     setdiscount(e.target.value);

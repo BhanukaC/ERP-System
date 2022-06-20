@@ -1,5 +1,5 @@
 import "./add_product.scss";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
@@ -20,6 +20,32 @@ const AddProduct = () => {
   const [noitems, setnoitems] = useState(0);
   const [catid, setcatid] = useState("");
   const [subcatid, setsubcatid] = useState("");
+
+  const [catIds, setcatIds] = useState({});
+  const [SubCatIds, setsubcatIds] = useState("");
+  
+
+  useEffect(() => {
+    const getcatId = async () => {
+      const res = await axios.get("http://localhost:5000/purchase/category/getAll", {
+        withCredentials: true,
+        credentials: "include",
+      });
+      setcatIds(res.data);
+    };
+    getcatId();
+
+    const getsubcatId = async () => {
+      const res = await axios.get("http://localhost:5000/purchase/subCategory/getAll", {
+        withCredentials: true,
+        credentials: "include",
+      });
+      setsubcatIds(res.data);
+    };
+    getsubcatId();
+
+  }, [""]);
+
 
 
   const submitForm = (e) => {
@@ -218,24 +244,46 @@ const AddProduct = () => {
 
               <div className="formInput">
                 <label>Category ID</label>
-                <input
-                  type="text"
+
+                <select
                   value={catid}
                   onChange={(e) => {
                     setcatid(e.target.value);
                   }}
-                />
+                >
+                  <option value="" disabled selected>
+                    select Category ID
+                  </option>
+                  {JSON.stringify(catIds) !== "{}"
+                    ? catIds.map((c) => (
+                        <option value={c.catID} key={c.catID}>
+                          {c.catID}
+                        </option>
+                      ))
+                    : ""}
+                </select>
               </div>
 
               <div className="formInput">
                 <label>Sub Category ID</label>
-                <input
-                  type="text"
+
+                <select
                   value={subcatid}
                   onChange={(e) => {
                     setsubcatid(e.target.value);
                   }}
-                />
+                >
+                  <option value="" disabled selected>
+                    Select Sub Category ID
+                  </option>
+                  {JSON.stringify(SubCatIds) !== "{}"
+                    ? SubCatIds.map((c) => (
+                        <option value={c.SubCatID} key={c.SubCatID}>
+                          {c.SubCatID}
+                        </option>
+                      ))
+                    : ""}
+                </select>
               </div>
 
               <div className="formInput">
