@@ -31,6 +31,7 @@ import ChangePurchaseOrderStatus from "./pages/inventory/order/purchaseOrderDeta
 import AddInternalShipmentsPart1 from "./pages/inventory/internalShipment/addShipment1";
 import AddInternalShipmentsPart2 from "./pages/inventory/internalShipment/addShipment2";
 import ShipmentDetails from "./pages/inventory/internalShipment/shipmentDetails";
+import ShipmentData from "./pages/inventory/internalShipment/shipmentData";
 
 
 import AddCustomer from "./pages/sales/customer/add/add"
@@ -108,6 +109,7 @@ function App() {
                 <Route path="add" element={<AddInternalShipmentsPart1 />} />
                 <Route path="add2" element={<AddInternalShipmentsPart2 />} />
                 <Route path="details" element={<ShipmentDetails />} />
+                <Route path="shipmentData/:id" element={<ShipmentData />} />
               </Route>
 
             </Route>

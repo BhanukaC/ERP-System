@@ -34,18 +34,20 @@ const ChangePurchaseOrderStatus = () => {
       let data;
       if(status==="D"){
         data= {
+            purchaseOrderID:purchaseOrderID,
             WID: WID,
             status: status
           };
       }
       if(status==="C"){
- data = {
-        WID: WID,
-        status: status,
-        reason:reason,
+        data = {
+            purchaseOrderID:purchaseOrderID,
+            WID: WID,
+            status: status,
+            reason:reason,
       };
       }
-     
+     console.log(data);
 
       axios
         .put("http://localhost:5000/inventory/purchaseOrder/update/" , data, {
@@ -59,7 +61,7 @@ const ChangePurchaseOrderStatus = () => {
             setStatus("D"); 
             alert("Purchase order Received");
           } 
-          if (res.data === "Purchase order Returned") {
+          else if (res.data === "Purchase order Returned") {
             setWID(res.data[0].WID);
             setStatus("C"); 
             alert("Purchase order Returned");
@@ -110,7 +112,7 @@ const ChangePurchaseOrderStatus = () => {
                     setStatus(e.target.value);
                   }}
                 >
-                  <option value="" disabled selected> Select Status </option>
+                  <option value="P" > Pending </option>
                   <option value="D">Delivered</option>
                   <option value="C">Cancelled</option>
                 </select>

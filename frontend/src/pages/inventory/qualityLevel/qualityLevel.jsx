@@ -107,7 +107,7 @@ const ChangeQualityLevel = () => {
                     setWID(e.target.value);
                   }}
                 >
-                  <option value="" disabled selected> Select Warehouse ID</option>
+                  <option value="" disabled selected> Select Warehouse</option>
                   {JSON.stringify(warehouse) !== "{}"
                     ? warehouse.map((w) => (
                         <option value={w.WID} key={w.WID}>

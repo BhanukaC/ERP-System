@@ -3,7 +3,7 @@ const router = express.Router();
 const validateToken = require("../middleware/auth");
 const validAccess = require("../middleware/warehouseOperator");
 
-const { warehouseUpdateController, getSingleWarehouseController, getAllWarehouseController, getSingleInternalShipmentController, getAllInternalShipmentToReceiveController, getAllInternalShipmentToSendController, getSingleInternalShipmentDataController, getAllStockLevelController, getAllStockLevelForWareHouseController, changeQualityLevelController, purchaseOrderUpdateController, salesOrderUpdateController, salesReturnOrderUpdateController, addInternalShipmentController, internalShipmentUpdateController, getSinglePurchaseOrderController, getAllPurchaseOrderController, getSinglePurchaseOrderDataController, getSingleSalesOrderController, getAllSalesOrderController, getSingleSalesOrderDataController, getSingleSalesReturnOrderController, getAllSalesReturnOrderController, getSingleSalesReturnOrderDataController} = require("../controllers/inventoryController");
+const { getProductStocksForWareHouseController,warehouseUpdateController, getSingleWarehouseController, getAllWarehouseController, getSingleInternalShipmentController, getAllInternalShipmentToReceiveController, getAllInternalShipmentToSendController, getSingleInternalShipmentDataController, getAllStockLevelController, getAllStockLevelForWareHouseController, changeQualityLevelController, purchaseOrderUpdateController, salesOrderUpdateController, salesReturnOrderUpdateController, addInternalShipmentController, internalShipmentUpdateController, getSinglePurchaseOrderController, getAllPurchaseOrderController, getSinglePurchaseOrderDataController, getSingleSalesOrderController, getAllSalesOrderController, getSingleSalesOrderDataController, getSingleSalesReturnOrderController, getAllSalesReturnOrderController, getSingleSalesReturnOrderDataController} = require("../controllers/inventoryController");
 
 //Warehouse
 router.put("/Warehouse/update/:id", [validateToken, validAccess], warehouseUpdateController);
@@ -39,6 +39,8 @@ router.get("/internalShipmentData/get/:id", [validateToken, validAccess], getSin
 //stock levels
 router.get("/stockLevel/getAll/", [validateToken, validAccess], getAllStockLevelController);
 router.get("/stockLevelForWarehouse/get/:id", [validateToken, validAccess], getAllStockLevelForWareHouseController);
+router.get("/productstockLevelForWarehouse/get/:id", [validateToken, validAccess], getProductStocksForWareHouseController);
+
 
 //change quality level
 router.post("/changeQualityLevel/add", [validateToken, validAccess], changeQualityLevelController);

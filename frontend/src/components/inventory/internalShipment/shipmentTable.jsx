@@ -48,7 +48,7 @@ const ShipmentTable = () => {
       headerName: " ",
       width: 300,
       renderCell: (params) => {
-        const reLink2= "/inventory/order/purchaseOrders/orderData/"+params.row.internalShipmentID;
+        const reLink2= "/inventory/internalShipments/shipmentData/"+params.row.internalShipmentID;
         return (
           <div className="cellAction">
             <Link to={reLink2} style={{ textDecoration: "none" }}>
