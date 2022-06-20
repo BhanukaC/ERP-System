@@ -22,7 +22,8 @@ const Addsupplier = () => {
   const submitForm = (e) => {
     e.preventDefault();
     if(
-      sname === ""
+      sname === ""||
+      email===""
     )
     {
       alert("Please fill the required fields");
@@ -78,7 +79,7 @@ const Addsupplier = () => {
 
               
               <div className="formInput">
-                <label>Supplier Name</label>
+                <label>Supplier Name*</label>
                 <input
                   type="text"
                   value={sname}
@@ -166,7 +167,7 @@ const Addsupplier = () => {
               </div>
 
               <div className="formInput">
-                <label>Email</label>
+                <label>Email*</label>
                 <input
                   type="text"
                   value={email}

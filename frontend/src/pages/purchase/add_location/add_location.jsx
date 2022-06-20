@@ -1,5 +1,5 @@
 import "./add_location.scss";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
@@ -10,6 +10,20 @@ const AddStoreLocation = () => {
   const [street, setstreet] = useState("");
   const [town, settown] = useState("");
   const [country, setcountry] = useState("");
+  const [SIDs, setSIDs] = useState({});
+
+  useEffect(() => {
+    const getSIDs = async () => {
+      const res = await axios.get("http://localhost:5000/purchase/supplier/getAll", {
+        withCredentials: true,
+        credentials: "include",
+      });
+      setSIDs(res.data);
+    };
+    getSIDs();
+  }, [""]);
+
+  
   
 
   const submitForm = (e) => {
@@ -17,6 +31,8 @@ const AddStoreLocation = () => {
     if (
       SID === "" ||
       no === "" ||
+      street===""||
+      town ===""||
       country === "" 
       
     ) {
@@ -78,19 +94,30 @@ const AddStoreLocation = () => {
         <div className="bottom">
           <div className="right">
             <form>
-              <div className="formInput">
-                <label>Supplier ID</label>
-                <input
-                  type="text"
+
+            <div className="formInput">
+                <label>Supplier ID*</label>
+
+                <select
                   value={SID}
                   onChange={(e) => {
                     setSID(e.target.value);
-                    checkSupplier(e.target.value);
                   }}
-                />
+                >
+                  <option value="" disabled selected>
+                    select Supplier ID
+                  </option>
+                  {JSON.stringify(SIDs) !== "{}"
+                    ? SIDs.map((s) => (
+                        <option value={s.SID} key={s.SID}>
+                          {s.SID}
+                        </option>
+                      ))
+                    : ""}
+                </select>
               </div>
               <div className="formInput">
-                <label>No</label>
+                <label>No*</label>
                 <input
                   type="text"
                   
@@ -101,7 +128,7 @@ const AddStoreLocation = () => {
                 />
               </div>
               <div className="formInput">
-                <label>Street</label>
+                <label>Street*</label>
                 <input
                   type="text"
                   value={street}
@@ -112,7 +139,7 @@ const AddStoreLocation = () => {
               </div>
 
               <div className="formInput">
-                <label>Town</label>
+                <label>Town*</label>
                 <input
                   type="text"
                   value={town}
@@ -123,7 +150,7 @@ const AddStoreLocation = () => {
               </div>
 
               <div className="formInput">
-                <label>Country</label>
+                <label>Country*</label>
                 <input
                   type="text"
                   value={country}

@@ -29,6 +29,7 @@ const Datatable = (props) => {
         withCredentials: true,
         credentials: "include",
       })
+      
       .then((res) => {
        
         let dt = res.data.map((d) => {
@@ -41,6 +42,8 @@ const Datatable = (props) => {
         setData(dt);
         
       });
+
+      
   }, [""]);
 
   const actionColumn = [

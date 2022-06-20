@@ -25,7 +25,8 @@ const AddSubCategory = () => {
   const submitForm = (e) => {
     e.preventDefault();
     if(
-      subcatName === ""
+      subcatName === ""||
+      catId===""
     )
     {
       alert("Please fill the required fields");
@@ -74,7 +75,7 @@ const AddSubCategory = () => {
 
               
               <div className="formInput">
-                <label> Sub Category Name</label>
+                <label> Sub Category Name*</label>
                 <input
                   type="text"
                   value={subcatName}
@@ -85,7 +86,7 @@ const AddSubCategory = () => {
               </div>
 
               <div className="formInput">
-                <label>Category ID</label>
+                <label>Category Name</label>
 
                 <select
                   value={catId}
@@ -94,12 +95,12 @@ const AddSubCategory = () => {
                   }}
                 >
                   <option value="" disabled selected>
-                    select Category ID
+                    select Category Name
                   </option>
                   {JSON.stringify(catIds) !== "{}"
                     ? catIds.map((c) => (
                         <option value={c.catID} key={c.catID}>
-                          {c.catID}
+                          {c.categoryName}
                         </option>
                       ))
                     : ""}
@@ -110,7 +111,7 @@ const AddSubCategory = () => {
                 <label>Discount</label>
                 <input
                   type="number"
-                 
+                 min={0}
                   value={discount}
                   onChange={(e) => {
                     setdiscount(e.target.value);

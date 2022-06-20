@@ -115,7 +115,7 @@ const AddProduct = () => {
 
               
               <div className="formInput">
-                <label>Product Name</label>
+                <label>Product Name*</label>
                 <input
                   type="text"
                   value={pname}
@@ -126,10 +126,11 @@ const AddProduct = () => {
               </div>
 
               <div className="formInput">
-                <label>Selling Price</label>
+                <label>Selling Price*</label>
                 <input
                   type="number"
                   step="any"
+                  min={0}
                   value={sellp}
                   onChange={(e) => {
                     setsellp(e.target.value);
@@ -196,6 +197,7 @@ const AddProduct = () => {
                 <label>Height</label>
                 <input
                   type="number"
+                  min={0}
                   step="any"
                   value={height}
                   onChange={(e) => {
@@ -208,6 +210,7 @@ const AddProduct = () => {
                 <label>Length</label>
                 <input
                   type="number"
+                  min={0}
                   step="any"
                   value={length}
                   onChange={(e) => {
@@ -220,6 +223,7 @@ const AddProduct = () => {
                 <label>Weight</label>
                 <input
                   type="number"
+                  min={0}
                   step="any"
                   value={weight}
                   onChange={(e) => {
@@ -229,9 +233,10 @@ const AddProduct = () => {
               </div>
 
               <div className="formInput">
-                <label>Buying Price</label>
+                <label>Buying Price*</label>
                 <input
                  type="number"
+                 min={0}
                  step="any"
                   value={buyingp}
                   onChange={(e) => {
@@ -243,7 +248,7 @@ const AddProduct = () => {
               
 
               <div className="formInput">
-                <label>Category ID</label>
+                <label>Category ID*</label>
 
                 <select
                   value={catid}
@@ -257,7 +262,7 @@ const AddProduct = () => {
                   {JSON.stringify(catIds) !== "{}"
                     ? catIds.map((c) => (
                         <option value={c.catID} key={c.catID}>
-                          {c.catID}
+                          {c.categoryName}
                         </option>
                       ))
                     : ""}
@@ -265,31 +270,23 @@ const AddProduct = () => {
               </div>
 
               <div className="formInput">
-                <label>Sub Category ID</label>
-
-                <select
+                <label>Sub Category ID*</label>
+                <input
+                  type="text"
                   value={subcatid}
                   onChange={(e) => {
                     setsubcatid(e.target.value);
                   }}
-                >
-                  <option value="" disabled selected>
-                    Select Sub Category ID
-                  </option>
-                  {JSON.stringify(SubCatIds) !== "{}"
-                    ? SubCatIds.map((c) => (
-                        <option value={c.SubCatID} key={c.SubCatID}>
-                          {c.SubCatID}
-                        </option>
-                      ))
-                    : ""}
-                </select>
+                />
               </div>
+
+                
 
               <div className="formInput">
                 <label>No Of Items</label>
                 <input
                   type="number"
+                  min={0}
                   value={noitems}
                   onChange={(e) => {
                     setnoitems(e.target.value);
