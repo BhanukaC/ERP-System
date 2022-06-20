@@ -42,6 +42,24 @@ const AddSalesOrderPart2 = () => {
       });
   };
 
+  const checkCustomer = async (val) => {
+    if (val !== "") {
+      const res = await axios.get(
+        "http://localhost:5000/sales/Customer/getSingle/" + val,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
+      if (res.data.length === 0) {
+        alert("CID not found");
+      } else {
+        setCDAID(res.data[0].CDAID);
+        setCCID(res.data[0].CCID);
+      }
+    }
+  };
+
   useEffect(() => {
     const li = JSON.parse(localStorage.getItem("SalesOrderCart"));
     setList(li);
@@ -89,6 +107,7 @@ const AddSalesOrderPart2 = () => {
                   value={CID}
                   onChange={(e) => {
                     setCID(e.target.value);
+                    checkCustomer(e.target.value);
                   }}
                 />
               </div>
@@ -102,6 +121,7 @@ const AddSalesOrderPart2 = () => {
                   }}
                 />
               </div>
+              
               <div className="formInput">
                 <label>CDAID</label>
                 <input

@@ -16,67 +16,81 @@ const AddCustomer = () => {
   const [accountNo, setAccountNumber] = useState("");
   const [bankName, setBankName] = useState("");
   const [email, setEmail] = useState("");
- 
 
+  function ValidateEmail(mail) 
+  {
+   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+    {
+      return true;
+    }
+      return false;
+  }
+ 
   const submitForm = (e) => {
     e.preventDefault();
-    if (
-      customerName === "" ||
-      paymentTerm === "" ||
-      returnTerm === "" ||
-      deliveryTerm === "" ||
-      no === "" ||
-      street === "" ||
-      town === "" ||
-      branchCode === "" ||
-      accountNo === "" ||
-      bankName === "" ||
-      email === "" 
-     ) 
-     {
-      alert("Please fill all required fields");
-    } else {
-      let data = {
-            customerName:customerName,
-            paymentTerm:paymentTerm,
-            returnTerm:returnTerm,
-            deliveryTerm:deliveryTerm,
-            no:no,
-            street:street,
-            town:town,
-            branchCode:branchCode,
-            accountNo:accountNo,
-            bankName:bankName,
-            email:email,
-      };
-    axios
-      .post("http://localhost:5000/sales/Customer/add",data ,
-        {
-          withCredentials: true,
-          credentials: "include",
-        })
-        .then((res) => {
-          if(res.data=="Customer Added"){
-            alert("Customer added");
-            setCustomerName("");
-            setPaymentMethod("");
-            setReturnTerm("");
-            setDeliveryTerm();
-            setNo();
-            setStreet("");
-            setTown("");
-            setBranchCode();           
-            setAccountNumber();
-            setBankName("");
-            setEmail("");
-        }
-      else{
-          alert("Error");
-        }
-        //
-        //console.log(res.data);
-      });
+    if (ValidateEmail(email)) {
+      if (
+        customerName === "" ||
+        paymentTerm === "" ||
+        returnTerm === "" ||
+        deliveryTerm === "" ||
+        no === "" ||
+        street === "" ||
+        town === "" ||
+        branchCode === "" ||
+        accountNo === "" ||
+        bankName === "" ||
+        email === "" 
+       ) 
+       {
+        alert("Please fill all required fields");
+      } else {
+        let data = {
+              customerName:customerName,
+              paymentTerm:paymentTerm,
+              returnTerm:returnTerm,
+              deliveryTerm:deliveryTerm,
+              no:no,
+              street:street,
+              town:town,
+              branchCode:branchCode,
+              accountNo:accountNo,
+              bankName:bankName,
+              email:email,
+        };
+      axios
+        .post("http://localhost:5000/sales/Customer/add",data ,
+          {
+            withCredentials: true,
+            credentials: "include",
+          })
+          .then((res) => {
+            if(res.data=="Customer Added"){
+              alert("Customer added");
+              setCustomerName("");
+              setPaymentMethod("");
+              setReturnTerm("");
+              setDeliveryTerm();
+              setNo();
+              setStreet("");
+              setTown("");
+              setBranchCode();           
+              setAccountNumber();
+              setBankName("");
+              setEmail("");
+          }
+        else{
+            alert("Error");
+          }
+          //
+          //console.log(res.data);
+        });
+      }
     }
+    else{
+      alert("You have entered an invalid email address!");
+    }
+    
   };
 
 

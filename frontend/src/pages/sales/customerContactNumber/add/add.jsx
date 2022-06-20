@@ -48,6 +48,9 @@ const AddCustomerContactNumber = () => {
           credentials: "include",
         }
       );
+      if (res.data.length === 0) {
+        alert("CID not found");
+      } 
     }
   };
 
@@ -63,9 +66,9 @@ const AddCustomerContactNumber = () => {
           <div className="right">
             <form>
               <div className="formInput">
-                <label>CID*</label>
+                <label>CID</label>
                 <input
-                  type="text"
+                  type="number"
                   value={CID}
                   onChange={(e) => {
                     setCID(e.target.value);

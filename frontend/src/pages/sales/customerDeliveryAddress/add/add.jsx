@@ -79,7 +79,7 @@ const AddCustomerDeliveryAddress = () => {
               <div className="formInput">
                 <label>CID</label>
                 <input
-                  type="text"
+                  type="number"
                   value={CID}
                   onChange={(e) => {
                     setCID(e.target.value);
