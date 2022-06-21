@@ -30,7 +30,7 @@ const AddSalesOrderPart1 = () => {
   }, [""]);
 
   const getLocation = async (val) => {
-    const res = await axios.get("http://localhost:5000/sales/Customer/deliveryAddress/getSingle/" + val, {
+    const res = await axios.get("http://localhost:5000/sales/Customer/deliveryAddress/getAll/" + val, {
       withCredentials: true,
       credentials: "include",
     });
