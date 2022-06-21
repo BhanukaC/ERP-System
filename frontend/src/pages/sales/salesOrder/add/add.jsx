@@ -12,9 +12,9 @@ const AddSalesOrderPart1 = () => {
   const [CCID, setCCID] = useState("");
   const [WID, setWID] = useState("");
   const [distance, setDistance] = useState("");
-  const [warehouse, setWarehouse] = useState({});
-  const [location, setLocation] = useState({});
-  const [contactNumber, setContactNumber] = useState({});
+  const [warehouse, setWarehouse] = useState([]);
+  const [location, setLocation] = useState([]);
+  const [contactNumber, setContactNumber] = useState([]);
 
   useEffect(() => {
     const getWarehouse = async () => {
@@ -26,25 +26,28 @@ const AddSalesOrderPart1 = () => {
     };
     getWarehouse();
 
-    const getLocation = async () => {
-      const res = await axios.get("http://localhost:5000/sales/Customer/getSingle/" + CID, {
-        withCredentials: true,
-        credentials: "include",
-      });
-      setLocation(res.data);
-    };
-    getLocation();
-
-    const getContactNumber = async () => {
-      const res = await axios.get("http://localhost:5000/sales/Customer/getSingle/" + CID, {
-        withCredentials: true,
-        credentials: "include",
-      });
-      setContactNumber(res.data);
-    };
-    getContactNumber();
+  
   }, [""]);
 
+  const getLocation = async (val) => {
+    const res = await axios.get("http://localhost:5000/sales/Customer/deliveryAddress/getSingle/" + val, {
+      withCredentials: true,
+      credentials: "include",
+    });
+    setLocation(res.data);
+  };
+ 
+
+  const getContactNumber = async (val) => {
+    const res = await axios.get("http://localhost:5000/sales/Customer/contactNumber/getAll/" + val, {
+      withCredentials: true,
+      credentials: "include",
+    });
+    
+    setContactNumber(res.data);
+
+  };
+  
   const submitForm = (e) => {
     e.preventDefault();
 
@@ -68,9 +71,15 @@ const AddSalesOrderPart1 = () => {
       );
       if (res.data.length === 0) {
         alert("CID not found");
+        setCCID("");
+        setCDAID("");
       } else {
-        setCDAID(res.data[0].CDAID);
+        getContactNumber(val);
+        getLocation(val);
       }
+    }else{
+      setCCID("");
+        setCDAID("");
     }
   };
 
@@ -126,7 +135,7 @@ const AddSalesOrderPart1 = () => {
                 <label>Customer Delivery Address</label>
 
                 <select
-                  value={CID}
+                  value={CDAID}
                   onChange={(e) => {
                     setCDAID(e.target.value);
                   }}
@@ -137,7 +146,7 @@ const AddSalesOrderPart1 = () => {
                   {JSON.stringify(location) !== "{}"
                     ? location.map((l) => (
                         <option value={l.CDAID} key={l.CDAID}>
-                          {l.CDAID}
+                          {l.no},{l.street},{l.town}
                         </option>
                       ))
                     : ""}
@@ -148,7 +157,7 @@ const AddSalesOrderPart1 = () => {
                 <label>Customer Contact Number</label>
 
                 <select
-                  value={CID}
+                  value={CCID}
                   onChange={(e) => {
                     setCCID(e.target.value);
                   }}
@@ -159,7 +168,7 @@ const AddSalesOrderPart1 = () => {
                   {JSON.stringify(contactNumber) !== "{}"
                     ? contactNumber.map((l) => (
                         <option value={l.CCID} key={l.CCID}>
-                          {l.CCID}
+                          {l.contactNumber}
                         </option>
                       ))
                     : ""}
