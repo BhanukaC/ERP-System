@@ -159,7 +159,7 @@ function App() {
               <Route path="viewwarehouses" element={<ViewAllWarehouses />} />
               <Route path="viewactivity" element={<ViewAllActivity />} />
               <Route path="addwarehouse" element={<AddWarehouse />} />
-              <Route path="edituser" element={<EditUserDetails />} />
+              <Route path="edituser/:UID" element={<EditUserDetails />} />
             </Route>
 
             <Route path="account" element={<ViewAccounts />}></Route>

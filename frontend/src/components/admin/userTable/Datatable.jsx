@@ -40,10 +40,11 @@ const Datatable = () => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
+        const link="/admin/edituser/"+params.row.id;
         return (
           <div className="cellAction">
             <div className="editButton">
-              <Link to="../../../admin/edituser" >Edit</Link>
+              <Link to={link} >Edit</Link>
             </div>
             <div
               className="deleteButton"
