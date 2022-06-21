@@ -13,9 +13,7 @@ const userColumns = [
 const Categorytable = () => {
   const [data, setData] = useState({});
 
-  const handleDelete = (catID) => {
-    setData(data.filter((item) => item.id !== catID));
-  };
+  
 
   useEffect(() => {
     axios

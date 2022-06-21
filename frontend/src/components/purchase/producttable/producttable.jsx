@@ -45,6 +45,25 @@ const Producttable = () => {
       });
   }, [""]);
 
+  const actionColumn = [
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      renderCell: (params) => {
+        const upLink = "/purchase/product/updatecat/"+params.row.catID;
+        return (
+          <div className="cellAction">
+            <Link to= {upLink} style= {{textDecoration : "none"}}>
+              <div className="viewButton">Edit</div>
+              </Link>
+            
+          </div>
+        );
+      },
+    },
+  ];
+
   
   return (
     <div className="datatable">
@@ -57,7 +76,7 @@ const Producttable = () => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns}
+        columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         components={{ Toolbar: GridToolbar }}

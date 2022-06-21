@@ -61,10 +61,22 @@ const AddProduct = () => {
       buyingp===""||
       catid===""||
       subcatid===""
+      
     )
+      
     {
-      alert("Please fill the required fields");
+      alert("Please  fill the required fields");
     }
+    else if( hsncode.length!=6)
+    {
+      alert("Please  fill a valid HSN Code");
+    }
+    else if( eancode.length!=13)
+    {
+      alert("Please  fill a valid EAN Code");
+    }
+     
+    
     else{
       axios
       .post(
@@ -131,7 +143,7 @@ const AddProduct = () => {
               </div>
 
               <div className="formInput">
-                <label>Selling Price*</label>
+                <label>Selling Price (LKR)*</label>
                 <input
                   type="number"
                   step="any"
@@ -146,7 +158,8 @@ const AddProduct = () => {
               <div className="formInput">
                 <label>EAN Code</label>
                 <input
-                  type="text"
+                  type="number"
+                  min={0}
                   value={eancode}
                   onChange={(e) => {
                     seteancode(e.target.value);
@@ -168,7 +181,8 @@ const AddProduct = () => {
               <div className="formInput">
                 <label>HSN Code</label>
                 <input
-                  type="text"
+                  type="number"
+                  min={0}
                   value={hsncode}
                   onChange={(e) => {
                     sethsncode(e.target.value);
@@ -238,7 +252,7 @@ const AddProduct = () => {
               </div>
 
               <div className="formInput">
-                <label>Buying Price*</label>
+                <label>Buying Price (LKR)*</label>
                 <input
                  type="number"
                  min={0}
@@ -266,7 +280,7 @@ const AddProduct = () => {
               
 
               <div className="formInput">
-                <label>Category ID*</label>
+                <label>Category Name*</label>
 
                 <select
                   value={catid}
@@ -275,12 +289,12 @@ const AddProduct = () => {
                   }}
                 >
                   <option value="" disabled selected>
-                    select Category ID
+                    select Category Name
                   </option>
                   {JSON.stringify(catIds) !== "{}"
                     ? catIds.map((c) => (
                         <option value={c.catID} key={c.catID}>
-                          {c.catID}
+                          {c.categoryName}
                         </option>
                       ))
                     : ""}
