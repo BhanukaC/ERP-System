@@ -5,7 +5,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Admin_sidebar from "../../../components/admin/admin_sidebar/Admin_sidebar";
 
-const EditUserDetails = () => {
+const SetDiscountCategory = () => {
   const [userName, setUserName] = useState("");
   const [acessLevel, setAcessLevel] = useState("");
   const [email, setEmail] = useState("");
@@ -62,7 +62,7 @@ const EditUserDetails = () => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Edit User Details</h1>
+          <h1>Set Discount Rates by Category</h1>
         </div>
         <div className="bottom">
           <div className="right">
@@ -97,4 +97,4 @@ const EditUserDetails = () => {
   );
 };
 
-export default EditUserDetails;
+export default SetDiscountCategory;

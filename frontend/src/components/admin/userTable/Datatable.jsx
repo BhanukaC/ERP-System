@@ -46,12 +46,6 @@ const Datatable = () => {
             <div className="editButton">
               <Link to={link} >Edit</Link>
             </div>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.CID)}
-            >
-              Delete
-            </div>
           </div>
         );
       },

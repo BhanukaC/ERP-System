@@ -63,6 +63,8 @@ import ViewAllActivity from "./pages/admin/viewactivity/viewactivity";
 import AddWarehouse from "./pages/admin/addwarehouse/addwarehouse";
 import EditUserDetails from "./pages/admin/edituser/edituser";
 import ViewAccounts from "./pages/finance/accounts";
+import SetDiscount from "./pages/admin/setdiscount/setdiscount";
+import SetDiscountCategory from "./pages/admin/setdiscountcategory/setdiscountcategory";
 
 
 function App() {
@@ -160,6 +162,8 @@ function App() {
               <Route path="viewactivity" element={<ViewAllActivity />} />
               <Route path="addwarehouse" element={<AddWarehouse />} />
               <Route path="edituser/:UID" element={<EditUserDetails />} />
+              <Route path="setdiscount" element={<SetDiscount />} />
+              <Route path="setdiscountcategory" element={<SetDiscountCategory />} />
             </Route>
 
             <Route path="account" element={<ViewAccounts />}></Route>
