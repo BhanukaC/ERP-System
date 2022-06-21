@@ -160,7 +160,7 @@ function App() {
                <Route path="add" element={<AddSalesOrderPart1 />} />
                <Route path="add2" element={<AddSalesOrderPart2 />} />
                 <Route path="viewAll" element={<ViewAllSalesOrders />} />
-                <Route path="viewAll2/:id" element={<ViewSalesOrderData />} />
+                <Route path="viewAll2/:salesOrderID" element={<ViewSalesOrderData />} />
               </Route>
               <Route path="salesReturnOrder">
                 <Route path="add" element={<AddSalesReturnOrderPage1 />} />
