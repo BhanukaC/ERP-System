@@ -5,11 +5,15 @@ import Sidebar from "../../../../components/sales/sales-sidebar/sales-sidebar";
 import axios from "axios";
 
 
-const AddInternalShipmentsPart2 = () => {
+const AddSalesOrderPart1 = () => {
 
-  const [fromWID, setFromWID] = useState("");
-  const [toWID, setToWID] = useState("");
+  const [CID, setCID] = useState("");
+  const [CDAID, setCDAID] = useState("");
+  const [CCID, setCCID] = useState("");
+  const [WID, setWID] = useState("");
+  const [distance, setDistance] = useState("");
   const [warehouse, setWarehouse] = useState({});
+  const [location, setLocation] = useState({});
 
   useEffect(() => {
     const getWarehouse = async () => {
@@ -20,15 +24,44 @@ const AddInternalShipmentsPart2 = () => {
       setWarehouse(res.data);
     };
     getWarehouse();
+
+    const getLocation = async () => {
+      const res = await axios.get("http://localhost:5000/sales/Customer/getSingle/" + CID, {
+        withCredentials: true,
+        credentials: "include",
+      });
+      setLocation(res.data);
+    };
+    getLocation();
   }, [""]);
 
   const submitForm = (e) => {
     e.preventDefault();
 
-    localStorage.setItem("FromWID",fromWID);
-    localStorage.setItem("TOWID",toWID);
-    window.location = "/inventory/internalShipments/add2";
+    localStorage.setItem("CID",CID);
+    localStorage.setItem("CDAID",CDAID);
+    localStorage.setItem("CCID",CCID);
+    localStorage.setItem("WID",WID);
+    localStorage.setItem("distance",distance);
+    window.location = "/sales/salesOrder/add2";
    
+  };
+
+  const checkCustomer = async (val) => {
+    if (val !== "") {
+      const res = await axios.get(
+        "http://localhost:5000/sales/Customer/getSingle/" + val,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
+      if (res.data.length === 0) {
+        alert("CID not found");
+      } else {
+        setCDAID(res.data[0].CDAID);
+      }
+    }
   };
 
   return (
@@ -37,20 +70,20 @@ const AddInternalShipmentsPart2 = () => {
       <div className="newContainer">
         <Navbar />
         <div className="topPart">
-          <h1>Add Internal Shipment</h1>
+          <h1>Add Sales Order</h1>
         </div>
        
-        <div className="bottom">
+        <div className="bottomPart">
           <div className="right">
             <form>
              
               <div className="formInput">
-                <label>From</label>
+                <label>Warehouse ID</label>
 
                 <select
-                  value={fromWID}
+                  value={WID}
                   onChange={(e) => {
-                    setFromWID(e.target.value);
+                    setWID(e.target.value);
                   }}
                 >
                   <option value="" disabled selected>
@@ -67,24 +100,61 @@ const AddInternalShipmentsPart2 = () => {
               </div>
 
               <div className="formInput">
-                <label>To</label>
+                <label>Customer ID</label>
+                <input
+                  type="text"
+                  value={CID}
+                  onChange={(e) => {
+                    checkCustomer(e.target.value);
+                    setCID(e.target.value);
+                    
+                  }}
+                />
+              </div>
+
+              <div className="formInput">
+                <label>Customer Delivery Address</label>
 
                 <select
-                  value={toWID}
+                  value={CID}
                   onChange={(e) => {
-                    setToWID(e.target.value);
+                    setCDAID(e.target.value);
                   }}
                 >
-                  <option value="" disabled selected> Select Warehouse ID</option>
-                  {JSON.stringify(warehouse) !== "{}"
-                    ? warehouse.map((w) => (
-                        <option value={w.WID} key={w.WID}>
-                          {w.town}
+                  <option value="" disabled selected>
+                    Select Customer Delivery Address
+                  </option>
+                  {JSON.stringify(location) !== "{}"
+                    ? location.map((l) => (
+                        <option value={l.CDAID} key={l.CDAID}>
+                          {l.CDAID}
                         </option>
                       ))
                     : ""}
                 </select>
               </div>
+
+              <div className="formInput">
+                <label>Customer Contact Number ID</label>
+                <input
+                  type="text"
+                  value={CCID}
+                  onChange={(e) => {
+                    setCCID(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="formInput">
+                <label>Distance</label>
+                <input
+                  type="text"
+                  value={distance}
+                  onChange={(e) => {
+                    setDistance(e.target.value);
+                  }}
+                />
+              </div>
+
 
 
               <div className="break"></div>
@@ -99,7 +169,7 @@ const AddInternalShipmentsPart2 = () => {
               cursor: "pointer",
               margintop: "10px",
               }}
-              onClick={submitForm}>Issue</button>
+              onClick={submitForm}>Add Sales Order</button>
             </form>
           </div>
         </div>
@@ -108,4 +178,4 @@ const AddInternalShipmentsPart2 = () => {
   );
 };
 
-export default AddInternalShipmentsPart2;
+export default AddSalesOrderPart1;

@@ -4,13 +4,16 @@ import Navbar from "../../../../components/navbar/Navbar";
 import Sidebar from "../../../../components/sales/sales-sidebar/sales-sidebar";
 import axios from "axios";
 
-const AddInternalShipmentsPart1 = () => {
+const AddSalesOrderPart2 = () => {
   const [PID, setPID] = useState(0);
   const [qty, setQty] = useState(0);
   const [productName, setProductName] = useState("");
   const [list, setList] = useState([]);
-  const [fromWID, setFromWID] = useState("");
-  const [toWID, setToWID] = useState("");
+  const [CID, setCID] = useState("");
+  const [CDAID, setCDAID] = useState("");
+  const [CCID, setCCID] = useState("");
+  const [WID, setWID] = useState("");
+  const [distance, setDistance] = useState("");
 
   const submitForm = async(e) => {
     e.preventDefault();
@@ -83,7 +86,7 @@ if(stat){
 
   const checkQty=async (val)=>{
     const res =  await axios.post(
-      "http://localhost:5000/inventory/productstockLevelForWarehouse/get/" + fromWID,{
+      "http://localhost:5000/sales/productstockLevelForWarehouse/get/" + WID,{
         PID:PID,
         qty:val
       },{
@@ -102,17 +105,20 @@ if(stat){
     }
   }
 
-  const addInternalShipment = () => {
+  const addSalesOrder = () => {
     if (list.length !== 0) {
      let li=[];
      for(let i=0;i<list.length;i++){
       li.push({PID:list[i].PID,qty:list[i].qty});
      }
      axios
-     .post("http://localhost:5000/inventory/internalShipment/add/",
+     .post("http://localhost:5000/sales/salesOrder/add",
      {
-      FromWID:fromWID,
-      TOWID:toWID,
+      CID:CID,
+      CDAID:CDAID,
+      CCID:CCID,
+      WID:WID,
+      distance:distance,
       items:li,
      },
      {
@@ -121,11 +127,14 @@ if(stat){
      }
      )
      .then((res)=>{
-      if(res.data==="Internal Shipment added"){
-        alert("Internal Shipment Issued");
-        localStorage.setItem("FromWID","");
-        localStorage.setItem("TOWID","");
-        window.location = "/inventory/internalShipments/add";
+      if(res.data==="sales order added"){
+        alert("Sales Order Added");
+        localStorage.setItem("CID","");
+        localStorage.setItem("CDAID","");
+        localStorage.setItem("CCID","");
+        localStorage.setItem("WID","");
+        localStorage.setItem("distance","");
+        window.location = "/sales/salesOrder/add";
       }else{
         alert("Try Again");
       } 
@@ -134,14 +143,21 @@ if(stat){
   };
 
   useEffect(()=>{
-    let from=localStorage.getItem("FromWID");
-    let to=localStorage.getItem("TOWID");
+    let cid=localStorage.getItem("CID");
+    let cdaid=localStorage.getItem("CDAID");
+    let ccid=localStorage.getItem("CCID");
+    let wid=localStorage.getItem("WID");
+    let dis=localStorage.getItem("distance");
     
-   if(from ===null || to===null){
-    window.location = "/inventory/internalShipments/add";
+   if(cid ===null || cdaid===null || ccid===null || wid===null || dis===null){
+    window.location = "/sales/salesOrder/add";
    }
-   setFromWID(from);
-   setToWID(to);
+   setCID(cid);
+   setCDAID(cdaid);
+   setCCID(ccid);
+   setWID(wid);
+   setDistance(dis);
+
   },[""])
 
   return (
@@ -150,11 +166,7 @@ if(stat){
       <div className="newContainer">
         <Navbar />
         <div className="topPart">
-          <h1>Add Internal Shipment</h1>
-          <br />
-          <h1>From Warehouse ID-{fromWID}</h1>
-          <br />
-          <h1>To Warehouse  ID-{toWID}</h1>
+          <h1>Add Sales Order</h1>
         </div>
         <div className="bottomPart">
           <div className="right">
@@ -223,9 +235,9 @@ if(stat){
                   marginTop: "30px",
                   marginLeft: "40%",
                 }}
-                onClick={addInternalShipment}
+                onClick={addSalesOrder}
               >
-                Issue Internal Shipment
+                Add Sales Order
               </button>
             )}
           </div>
@@ -235,4 +247,4 @@ if(stat){
   );
 };
 
-export default AddInternalShipmentsPart1;
+export default AddSalesOrderPart2;

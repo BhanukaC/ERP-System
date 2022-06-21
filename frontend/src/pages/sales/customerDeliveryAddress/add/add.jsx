@@ -77,7 +77,7 @@ const AddCustomerDeliveryAddress = () => {
           <div className="right">
             <form>
               <div className="formInput">
-                <label>CID</label>
+                <label>Customer ID</label>
                 <input
                   type="number"
                   value={CID}

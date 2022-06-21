@@ -66,7 +66,7 @@ const AddCustomerContactNumber = () => {
           <div className="right">
             <form>
               <div className="formInput">
-                <label>CID</label>
+                <label>Customer ID</label>
                 <input
                   type="number"
                   value={CID}
@@ -77,7 +77,7 @@ const AddCustomerContactNumber = () => {
                 />
               </div>
               <div className="formInput">
-                <label>Contact Number</label>
+                <label>Customer Contact Number</label>
                 <input
                   type="text"
                   value={contactNumber}

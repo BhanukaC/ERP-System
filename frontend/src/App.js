@@ -159,9 +159,6 @@ function App() {
                <Route path="add2" element={<AddSalesOrderPart2 />} />
                 <Route path="viewAll" element={<ViewAllSalesOrders />} />
               </Route>
-              <Route path="salesOrders"> 
-               <Route path="add2" element={<AddSalesOrderPart2 />} />  
-              </Route>
               <Route path="salesReturnOrder">
                 <Route path="add" element={<AddSalesReturnOrderPage1 />} />
                 <Route path="add2" element={<AddSalesReturnOrderPage2 />} />
