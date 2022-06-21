@@ -4,54 +4,127 @@ import Navbar from "../../../../components/navbar/Navbar";
 import Sidebar from "../../../../components/sales/sales-sidebar/sales-sidebar";
 import axios from "axios";
 
-const AddSalesReturnOrderPart2 = () => {
-    const [list, setList] = useState([]);
-    const [reason, setReason] = useState("");
-    const [WID, setWID] = useState("");
-    const [CID, setCID] = useState("");
-    const [CDAID, setCDAID] = useState("");
-    const [CCID, setCCID] = useState("");
-    const [salesOrderID, setSalesOrderID] = useState("");
-   
+const AddSalesReturnOrderPage2 = () => {
+  const [PID, setPID] = useState(0);
+  const [qty, setQty] = useState(0);
+  const [productName, setProductName] = useState("");
+  const [list, setList] = useState([]);
+  const [WID, setWID] = useState("");
+  const [CID, setCID] = useState("");
+  const [CDAID, setCDAID] = useState("");
+  const [CCID, setCCID] = useState("");
+  const [reason, setReason] = useState("");
+  const [salesOrderID, setSalesOrderID] = useState("");
 
-  const submitForm = (e) => {
+  const submitForm = async(e) => {
     e.preventDefault();
-    let items = [];
-    for (let i = 0; i < list.length; i++) {
-      items.push({ PID: list[i].PID, qty: list[i].qty });
-    }
-    axios
-      .post(
-        "http://localhost:5000/sales/salesReturnOrder/add",
-        {
-            reason: reason,
-            WID: WID,
-            CID: CID,
-            CDAID: CDAID,
-            CCID: CCID,
-            salesOrderID:salesOrderID ,
-            items:items,
-        },
-        { withCredentials: true, credentials: "include" }
-      )
-      .then((res) => {
-        if (res.data === "sales Return order added") {
-          alert("sales Return order added");
-          localStorage.setItem("SalesReturnOrderCart", JSON.stringify([]));
-          window.location = "/sales/SalesReturnOrders/add";
-        } else {
-          alert("Try again");
+    let stat=false;
+  
+    setQty(parseInt(qty));
+    if (qty > 0) {
+      if (list.length !== 0) {
+        let status = false;
+        for (let i = 0; i < list.length; i++) {
+          if (list[i].PID === PID) {
+            list[i].qty = parseInt(list[i].qty) + parseInt(qty);
+            status = true;
+          }
         }
-      });
+        if (!status) {
+          setList([
+            ...list,
+            { PID: PID, name: productName, qty: parseInt(qty) },
+          ]);
+        }
+      } else {
+        setList([{ PID: PID, name: productName, qty: parseInt(qty) }]);
+      }
+
+      setProductName("");
+      setQty(0);
+      setPID(0);
+      alert("Product added to cart");
+    } else {
+      alert("Enter valid quantity");
+    }
   };
 
-  useEffect(() => {
-    const li = JSON.parse(localStorage.getItem("SalesReturnOrderCart"));
-    setList(li);
-    if (li.length === 0) {
-      window.location = "/sales/SalesReturnOrders/add";
+  const checkProduct = async (val) => {
+    if (val !== "") {
+      const res = await axios.get(
+        "http://localhost:5000/purchase/product/getSingle/" + val,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
+      if (res.data.length === 0) {
+        alert("PID not found");
+      } else {
+        setProductName(res.data[0].PName);
+      }
     }
-  }, [""]);
+  };
+
+
+  const addSalesReturnOrder = () => {
+    if (list.length !== 0) {
+     let li=[];
+     for(let i=0;i<list.length;i++){
+      li.push({PID:list[i].PID,qty:list[i].qty});
+     }
+     axios
+     .post("http://localhost:5000/sales/salesReturnOrder/add",
+     {
+      CID:CID,
+      CDAID:CDAID,
+      CCID:CCID,
+      WID:WID,
+      reason:reason,
+      salesOrderID:salesOrderID,
+      items:li,
+     },
+     {
+      withCredentials:true,
+      credentials:"include"
+     }
+     )
+     .then((res)=>{
+      if(res.data==="sales order added"){
+        alert("Sales Order Added");
+        localStorage.setItem("CID","");
+        localStorage.setItem("CDAID","");
+        localStorage.setItem("CCID","");
+        localStorage.setItem("WID","");
+        localStorage.setItem("reason","");
+        localStorage.setItem("SalesOrderID","");
+        window.location = "/sales/salesReturnOrder/add";
+      }else{
+        alert("Try Again");
+      } 
+     });
+    }
+  };
+
+  useEffect(()=>{
+    let cid=localStorage.getItem("CID");
+    let cdaid=localStorage.getItem("CDAID");
+    let ccid=localStorage.getItem("CCID");
+    let wid=localStorage.getItem("WID");
+    let reason=localStorage.getItem("Reaon");
+    let salesOrderID=localStorage.getItem("SalesOrderID");
+    
+   if(cid ===null || cdaid===null || ccid===null || wid===null || reason===null || salesOrderID===null){
+    window.location = "/sales/salesReturnOrder/add";
+   }
+   setCID(cid);
+   setCDAID(cdaid);
+   setCCID(ccid);
+   setWID(wid);
+   setReason(reason);
+   setSalesOrderID(salesOrderID);
+
+  },[""])
 
   return (
     <div className="new">
@@ -62,6 +135,41 @@ const AddSalesReturnOrderPart2 = () => {
           <h1>Add Sales Return Order</h1>
         </div>
         <div className="bottomPart">
+          <div className="right">
+            <form>
+              <div className="formInput">
+                <label>Product ID</label>
+                <input
+                  type="number"
+                  value={PID}
+                  onChange={(e) => {
+                    setPID(e.target.value);
+                    checkProduct(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="formInput">
+                <label>Product Name</label>
+                <input type="text" 
+                value={productName} disabled />
+              </div>
+              <div className="formInput">
+                <label>Quantity</label>
+                <input
+                  type="number"
+                  value={qty}
+                  onChange={(e) => {
+                    setQty(e.target.value);
+                  }}
+                />
+              </div>
+
+              <div className="break"></div>
+              <button onClick={submitForm}>Add to Cart</button>
+            </form>
+          </div>
+        </div>
+        <div className="bottom">
           <div className="right">
             <h1>Cart</h1>
             <table style={{ width: "80%", textAlign: "center" }}>
@@ -80,75 +188,24 @@ const AddSalesReturnOrderPart2 = () => {
                 );
               })}
             </table>
-          </div>
-        </div>
-        <div className="bottomPart">
-          <div className="right">
-            <form>
-            <div className="formInput">
-                <label>CID</label>
-                <input
-                  type="text"
-                  value={CID}
-                  onChange={(e) => {
-                    setCID(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
-                <label>Sales Order ID</label>
-                <input
-                  type="text"
-                  value={salesOrderID}
-                  onChange={(e) => {
-                    setSalesOrderID(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
-                <label>Reason</label>
-                <input
-                  type="text"
-                  value={reason}
-                  onChange={(e) => {
-                    setReason(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
-                <label>WID</label>
-                <input
-                  type="text"
-                  value={WID}
-                  onChange={(e) => {
-                    setWID(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
-                <label>CDAID</label>
-                <input
-                  type="text"
-                  value={CDAID}
-                  onChange={(e) => {
-                    setCDAID(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
-                <label>CCID</label>
-                <input
-                  type="text"
-                  value={CCID}
-                  onChange={(e) => {
-                    setCCID(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="break"></div>
-              <button onClick={submitForm}>Add</button>
-            </form>
+            {list.length !== 0 && (
+              <button
+                style={{
+                  width: "200px",
+                  padding: "10px",
+                  border: "none",
+                  backgroundColor: "#7451f8",
+                  color: " white",
+                  fontWeight: "bold",
+                  cursor: " pointer",
+                  marginTop: "30px",
+                  marginLeft: "40%",
+                }}
+                onClick={addSalesReturnOrder}
+              >
+                Add Sales Return Order
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -156,4 +213,4 @@ const AddSalesReturnOrderPart2 = () => {
   );
 };
 
-export default AddSalesReturnOrderPart2;
+export default AddSalesReturnOrderPage2;

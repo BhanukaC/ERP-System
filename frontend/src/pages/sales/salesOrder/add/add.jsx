@@ -14,6 +14,7 @@ const AddSalesOrderPart1 = () => {
   const [distance, setDistance] = useState("");
   const [warehouse, setWarehouse] = useState({});
   const [location, setLocation] = useState({});
+  const [contactNumber, setContactNumber] = useState({});
 
   useEffect(() => {
     const getWarehouse = async () => {
@@ -33,6 +34,15 @@ const AddSalesOrderPart1 = () => {
       setLocation(res.data);
     };
     getLocation();
+
+    const getContactNumber = async () => {
+      const res = await axios.get("http://localhost:5000/sales/Customer/getSingle/" + CID, {
+        withCredentials: true,
+        credentials: "include",
+      });
+      setContactNumber(res.data);
+    };
+    getContactNumber();
   }, [""]);
 
   const submitForm = (e) => {
@@ -135,14 +145,25 @@ const AddSalesOrderPart1 = () => {
               </div>
 
               <div className="formInput">
-                <label>Customer Contact Number ID</label>
-                <input
-                  type="text"
-                  value={CCID}
+                <label>Customer Contact Number</label>
+
+                <select
+                  value={CID}
                   onChange={(e) => {
                     setCCID(e.target.value);
                   }}
-                />
+                >
+                  <option value="" disabled selected>
+                  Customer Contact Number
+                  </option>
+                  {JSON.stringify(contactNumber) !== "{}"
+                    ? contactNumber.map((l) => (
+                        <option value={l.CCID} key={l.CCID}>
+                          {l.CCID}
+                        </option>
+                      ))
+                    : ""}
+                </select>
               </div>
               <div className="formInput">
                 <label>Distance</label>
