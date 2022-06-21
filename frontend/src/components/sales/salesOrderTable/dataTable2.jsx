@@ -1,6 +1,7 @@
 import "./dataTable.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const userColumns = [
@@ -14,7 +15,7 @@ const userColumns = [
 ];
 
 const DataTable2 = (props) => {
-  const salesOrderID = props.id;
+  const salesOrderID = props.salesOrderID;
   const [data, setData] = useState({});
 
   useEffect(() => {
