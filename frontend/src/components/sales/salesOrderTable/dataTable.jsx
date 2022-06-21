@@ -10,7 +10,7 @@ const userColumns = [
   { field: "WID", headerName: "WID", width: 120 },
   { field: "CDAID", headerName: "CDAID", width: 120 },
   { field: "CCID", headerName: "CCID", width: 120 },
-  { field: "distance", headerName: "distance", width: 120  },
+  { field: "deliveryCharge", headerName: "Delivery Charge", width: 120  },
  
 ];
 
