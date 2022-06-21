@@ -43,12 +43,6 @@ const Sidebar = () => {
               <span>Set Discount Rates</span>
             </li>
           </Link>
-          <Link to="/admin/setdiscountcategory" style={{ textDecoration: "none" }}>
-            <li>
-              <SettingsApplicationsIcon className="icon" />
-              <span>Set Discount Rates by Category</span>
-            </li>
-          </Link>
           <Link to="/admin/addwarehouse" style={{ textDecoration: "none" }}>
             <li>
               <NotificationsNoneIcon className="icon" />

@@ -5,24 +5,20 @@ import axios from "axios";
 import Admin_sidebar from "../../../components/admin/admin_sidebar/Admin_sidebar";
 
 const SetDiscount = () => {
-  const [managerName, setManagerName] = useState("");
-  const [no, setNo] = useState("");
-  const [street, setStreet] = useState("");
-  const [town, setTown] = useState("");
-  const [uid, setUid] = useState("");
+  const [PID, setPID] = useState("");
+  const [CID, setCID] = useState("");
+  const [discount, setDiscount] = useState("");
 
   const submitForm = (e) => {
     e.preventDefault();
     if (true) {
       axios
         .post(
-          "http://localhost:5000/admin/Warehouse/add",
+          "http://localhost:5000/admin/discount/customer",
           {
-            ManagerName: managerName,
-            no: no,
-            street: street,
-            town: town,
-            UID: uid
+            PID: PID,
+            CID: CID,
+            discount: discount
           },
           {
             withCredentials: true,
@@ -31,8 +27,8 @@ const SetDiscount = () => {
         )
         .then((res) => {
           console.log(res);
-          if (res.data === "Add a new Warehouse") {
-            alert("Warehouse Registered");
+          if (res.data === "Discount added") {
+            alert("Discount set");
           } else {
             alert("Error");
           }
@@ -51,57 +47,35 @@ const SetDiscount = () => {
         <div className="bottom">
           <div className="right">
             <form>
-              <div className="formInput">
-                <label>Manager Name</label>
-                <input
-                  type="text"
-                  value={managerName}
-                  onChange={(e) => {
-                    setManagerName(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="formInput">
-                <label>No</label>
+            <div className="formInput">
+                <label>PID</label>
                 <input
                   type="number"
-                  value={no}
+                  value={PID}
                   onChange={(e) => {
-                    setNo(e.target.value);
+                    setPID(e.target.value);
                   }}
                 />
               </div>
 
               <div className="formInput">
-                <label>Street</label>
+                <label>CID</label>
                 <input
-                  type="text"
-                  value={street}
+                  type="number"
+                  value={CID}
                   onChange={(e) => {
-                    setStreet(e.target.value);
+                    setCID(e.target.value);
                   }}
                 />
               </div>
 
               <div className="formInput">
-                <label>Town</label>
+                <label>Discount</label>
                 <input
-                  type="text"
-                  value={town}
+                  type="number"
+                  value={discount}
                   onChange={(e) => {
-                    setTown(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="formInput">
-                <label>UID</label>
-                <input
-                  type="text"
-                  value={uid}
-                  onChange={(e) => {
-                    setUid(e.target.value);
+                    setDiscount(e.target.value);
                   }}
                 />
               </div>
