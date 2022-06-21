@@ -1,41 +1,65 @@
 import "../form.scss";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import InventorySidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
 import axios from "axios";
+import { TrapFocus } from "@mui/base";
 
 const AddInternalShipmentsPart1 = () => {
   const [PID, setPID] = useState(0);
   const [qty, setQty] = useState(0);
   const [productName, setProductName] = useState("");
   const [list, setList] = useState([]);
+  const [fromWID, setFromWID] = useState("");
+  const [toWID, setToWID] = useState("");
 
-  const submitForm = (e) => {
+  const submitForm = async(e) => {
     e.preventDefault();
+    let stat=false;
+  
     setQty(parseInt(qty));
     if (qty > 0) {
       if (list.length !== 0) {
         let status = false;
         for (let i = 0; i < list.length; i++) {
           if (list[i].PID === PID) {
-            list[i].qty = parseInt(list[i].qty) + parseInt(qty);
+           let stat2= await checkQty(parseInt(list[i].qty) + parseInt(qty));
+           
+            if(stat2){
+              list[i].qty = parseInt(list[i].qty) + parseInt(qty);
+            
+            stat=true;
+            }
             status = true;
+            
           }
         }
         if (!status) {
-          setList([
-            ...list,
-            { PID: PID, name: productName, qty: parseInt(qty) },
-          ]);
+          let stat2=await checkQty(parseInt(qty));
+         
+          if(stat2){
+            setList([
+              ...list,
+              { PID: PID, name: productName, qty: parseInt(qty) },
+            ]);
+            stat=true;
+          }
+         
         }
       } else {
+        let stat2=await checkQty(parseInt(qty));
+        if(stat2){
         setList([{ PID: PID, name: productName, qty: parseInt(qty) }]);
+        stat=true;
+        }
       }
-
-      setProductName("");
-      setQty(0);
-      setPID(0);
-      alert("Product added to cart");
+if(stat){
+  setProductName("");
+  setQty(0);
+  setPID(0);
+  alert("Product added to cart");
+}
+      
     } else {
       alert("Enter valid quantity");
     }
@@ -58,12 +82,68 @@ const AddInternalShipmentsPart1 = () => {
     }
   };
 
+  const checkQty=async (val)=>{
+    const res =  await axios.post(
+      "http://localhost:5000/inventory/productstockLevelForWarehouse/get/" + fromWID,{
+        PID:PID,
+        qty:val
+      },{
+        withCredentials: true,
+        credentials: "include",
+      }
+      
+    );
+  //  console.log(res);
+    if (res.data === "we don't have enough stocks") {
+      alert("we don't have enough stocks");
+      return false;
+    }
+    if(res.data ==="We have Stocks") {
+      return true;
+    }
+  }
+
   const addInternalShipment = () => {
     if (list.length !== 0) {
-      localStorage.setItem("InternalShipmentCart", JSON.stringify(list));
-      window.location = "/inventory/internalShipments/add2";
+     let li=[];
+     for(let i=0;i<list.length;i++){
+      li.push({PID:list[i].PID,qty:list[i].qty});
+     }
+     axios
+     .post("http://localhost:5000/inventory/internalShipment/add/",
+     {
+      FromWID:fromWID,
+      TOWID:toWID,
+      items:li,
+     },
+     {
+      withCredentials:true,
+      credentials:"include"
+     }
+     )
+     .then((res)=>{
+      if(res.data==="Internal Shipment added"){
+        alert("Internal Shipment Issued");
+        localStorage.setItem("FromWID","");
+        localStorage.setItem("TOWID","");
+        window.location = "/inventory/internalShipments/add";
+      }else{
+        alert("Try Again");
+      } 
+     });
     }
   };
+
+  useEffect(()=>{
+    let from=localStorage.getItem("FromWID");
+    let to=localStorage.getItem("TOWID");
+    
+   if(from ===null || to===null){
+    window.location = "/inventory/internalShipments/add";
+   }
+   setFromWID(from);
+   setToWID(to);
+  },[""])
 
   return (
     <div className="new">
@@ -72,6 +152,10 @@ const AddInternalShipmentsPart1 = () => {
         <Navbar />
         <div className="topPart">
           <h1>Add Internal Shipment</h1>
+          <br />
+          <h1>From Warehouse ID-{fromWID}</h1>
+          <br />
+          <h1>To Warehouse  ID-{toWID}</h1>
         </div>
         <div className="bottomPart">
           <div className="right">

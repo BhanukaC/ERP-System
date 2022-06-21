@@ -33,10 +33,8 @@ const StockTable = (props) => {
         setData(dt);
         // console.log(dt);
       });
-  }, [""]);
 
-  useEffect(() => {
-    axios
+      axios
       .get("http://localhost:5000/inventory/Warehouse/getSingle/"+WID, {
         withCredentials: true,
         credentials: "include",

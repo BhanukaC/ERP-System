@@ -28,9 +28,12 @@ const ChangePurchaseOrderStatus = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (WID === "" || status === "" || reason ==="") {
+    if (WID === "" || status === "") {
       alert("Fill the required fields");
-    } else {
+    } 
+    else if(status==="C" && reason === ""){
+      alert("Fill the required fields");
+    }else {
       let data;
       if(status==="D"){
         data= {
@@ -112,7 +115,7 @@ const ChangePurchaseOrderStatus = () => {
                     setStatus(e.target.value);
                   }}
                 >
-                  <option value="P" > Pending </option>
+                  <option value="P" disabled selected> Pending </option>
                   <option value="D">Delivered</option>
                   <option value="C">Cancelled</option>
                 </select>

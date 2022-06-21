@@ -537,8 +537,10 @@ exports.getAllStockLevelForWareHouseController = async (req, res) => {
 exports.getProductStocksForWareHouseController=async(req,res)=>{
     const id = req.params.id;
     const{PID,qty}=req.body;
+  
 
-    db.query("select * from stock where WID=? and PID=?",[id,PID],(err,result)=>{
+    db.query("select * from stock where WID=? and PID=? and qualityLevel='A'",[id,PID],(err,result)=>{
+        
         if (err) {
             res.json({ error: err });
         } else {

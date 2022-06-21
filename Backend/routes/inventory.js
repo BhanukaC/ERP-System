@@ -39,7 +39,7 @@ router.get("/internalShipmentData/get/:id", [validateToken, validAccess], getSin
 //stock levels
 router.get("/stockLevel/getAll/", [validateToken, validAccess], getAllStockLevelController);
 router.get("/stockLevelForWarehouse/get/:id", [validateToken, validAccess], getAllStockLevelForWareHouseController);
-router.get("/productstockLevelForWarehouse/get/:id", [validateToken, validAccess], getProductStocksForWareHouseController);
+router.post("/productstockLevelForWarehouse/get/:id", [validateToken, validAccess], getProductStocksForWareHouseController);
 
 
 //change quality level

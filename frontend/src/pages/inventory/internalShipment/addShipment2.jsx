@@ -5,9 +5,9 @@ import InventorySidebar from "../../../components/inventory/inventorySidebar/inv
 import axios from "axios";
 
 const AddInternalShipmentsPart2 = () => {
-  const [list, setList] = useState([]);
-  const [fromWID, setFromWID] = useState(0);
-  const [toWID, setToWID] = useState(0);
+
+  const [fromWID, setFromWID] = useState("");
+  const [toWID, setToWID] = useState("");
   const [warehouse, setWarehouse] = useState({});
 
   useEffect(() => {
@@ -23,42 +23,33 @@ const AddInternalShipmentsPart2 = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    let items = [];
-    for (let i = 0; i < list.length; i++) {
-      items.push({ PID: list[i].PID, qty: list[i].qty });
-    }
-    axios
-      .post(
-        "http://localhost:5000/inventory/internalShipment/add/",
-        {
-          FromWID: fromWID,
-          TOWID: toWID,
-          items: items,
-        },
-        { withCredentials: true, credentials: "include" }
-      )
-      .then((res) => {
-        if (res.data === "Internal Shipment added") {
-          alert("Internal Shipment added");
-          localStorage.setItem("InternalShipmentCart", JSON.stringify([]));
-          window.location = "/inventory/internalShipments/add";
-        } else {
-          alert("Try again");
-        }
-      });
+
+    localStorage.setItem("FromWID",fromWID);
+    localStorage.setItem("TOWID",toWID);
+    window.location = "/inventory/internalShipments/add2";
+   
+    // axios
+    //   .post(
+    //     "http://localhost:5000/inventory/internalShipment/add/",
+    //     {
+    //       FromWID: fromWID,
+    //       TOWID: toWID,
+    //       items: items,
+    //     },
+    //     { withCredentials: true, credentials: "include" }
+    //   )
+    //   .then((res) => {
+    //     if (res.data === "Internal Shipment added") {
+    //       alert("Internal Shipment added");
+    //       localStorage.setItem("InternalShipmentCart", JSON.stringify([]));
+    //       window.location = "/inventory/internalShipments/add";
+    //     } else {
+    //       alert("Try again");
+    //     }
+    //   });
   };
 
-  useEffect(() => {
-    const li = JSON.parse(localStorage.getItem("InternalShipmentCart"));
-    console.log(li);
-    setList(li);
-    if (li === null) {
-      window.location = "/inventory/internalShipments/add";
-    }
-    if (li.length === 0) {
-      window.location = "/inventory/internalShipments/add";
-    }
-  }, [""]);
+
 
   return (
     <div className="new">
@@ -68,27 +59,7 @@ const AddInternalShipmentsPart2 = () => {
         <div className="topPart">
           <h1>Add Internal Shipment</h1>
         </div>
-        <div className="bottomPart">
-          <div className="right">
-            <h1>Cart</h1>
-            <table style={{ width: "80%", textAlign: "center" }}>
-              <tr>
-                <th>ID</th>
-                <th>Product Name</th>
-                <th>Quantity</th>
-              </tr>
-              {list.map((item) => {
-                return (
-                  <tr key={item.PID}>
-                    <td>{item.PID}</td>
-                    <td> {item.name}</td>
-                    <td>{item.qty}</td>
-                  </tr>
-                );
-              })}
-            </table>
-          </div>
-        </div>
+       
         <div className="bottom">
           <div className="right">
             <form>

@@ -10,6 +10,7 @@ const ChangeQualityLevel = () => {
   const [qty, setQty] = useState(0);
   const [qualityLevel, setQualityLevel] = useState("");
   const [warehouse, setWarehouse] = useState({});
+  const [status, setStatus] = useState(false);
 
   useEffect(() => {
     const getWarehouse = async () => {
@@ -40,6 +41,9 @@ const ChangeQualityLevel = () => {
         alert("Quantity cannot be 0");
       }
       else{
+        if(status===false){
+          alert("Try Again");
+        }else{
     axios
       .post(
         "http://localhost:5000/inventory/changeQualityLevel/add",
@@ -67,24 +71,30 @@ const ChangeQualityLevel = () => {
         }
       });
     }
+    }
   };
 
-  // const checkProduct = async (val) => {
-  //   if (val !== "") {
-  //     const res = await axios.get(
-  //       "http://localhost:5000/hr/employee/getSingle/" + val,
-  //       {
-  //         withCredentials: true,
-  //         credentials: "include",
-  //       }
-  //     );
-  //     if (res.data.length === 0) {
-  //       alert("PID not found");
-  //     } else {
-  //       setPID(res.data[0].PID);
-  //     }
-  //   }
-  // };
+  const checkQty=async (val)=>{
+    const res =  await axios.post(
+      "http://localhost:5000/inventory/productstockLevelForWarehouse/get/" + WID,{
+        PID:PID,
+        qty:val
+      },{
+        withCredentials: true,
+        credentials: "include",
+      }
+      
+    );
+  //  console.log(res);
+    if (res.data === "we don't have enough stocks") {
+      alert("we don't have enough stocks");
+      setStatus(false);
+    }
+    if(res.data ==="We have Stocks") {
+      setStatus(true);
+    }
+  }
+
 
   return (
     <div className="new">
@@ -125,7 +135,6 @@ const ChangeQualityLevel = () => {
                   value={PID}
                   onChange={(e) => {
                     setPID(e.target.value);
-                    //checkProduct(e.target.value);
                   }}
                 />
               </div>
@@ -136,6 +145,7 @@ const ChangeQualityLevel = () => {
                   value={qty}
                   onChange={(e) => {
                     setQty(e.target.value);
+                    checkQty(e.target.value);
                   }}
                 />
               </div>
@@ -150,7 +160,6 @@ const ChangeQualityLevel = () => {
                   <option value="" disabled selected> select Quality Level </option>
                   <option value="A">Level A</option>
                   <option value="B">Level B</option>
-                  <option value="C">Level C</option>
                 </select>
               </div>
               <div className="break"></div>

@@ -106,8 +106,8 @@ function App() {
               </Route>
 
               <Route path="internalShipments" >
-                <Route path="add" element={<AddInternalShipmentsPart1 />} />
-                <Route path="add2" element={<AddInternalShipmentsPart2 />} />
+                <Route path="add2" element={<AddInternalShipmentsPart1 />} />
+                <Route path="add" element={<AddInternalShipmentsPart2 />} />
                 <Route path="details" element={<ShipmentDetails />} />
                 <Route path="shipmentData/:id" element={<ShipmentData />} />
               </Route>
