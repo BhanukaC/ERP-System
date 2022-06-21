@@ -21,8 +21,12 @@ const AddProduct = () => {
   const [catid, setcatid] = useState("");
   const [subcatid, setsubcatid] = useState("");
 
+  const [catName, setCatName] = useState("");
+
+  
   const [catIds, setcatIds] = useState({});
   const [SubCatIds, setsubcatIds] = useState("");
+
   
 
   useEffect(() => {
@@ -46,6 +50,7 @@ const AddProduct = () => {
 
   }, [""]);
 
+  
 
 
   const submitForm = (e) => {
@@ -245,6 +250,19 @@ const AddProduct = () => {
                 />
               </div>
 
+              <div className="formInput">
+                <label>No Of Items</label>
+                <input
+                  type="number"
+                  min={0}
+                  value={noitems}
+                  onChange={(e) => {
+                    setnoitems(e.target.value);
+                  }}
+                />
+              </div>
+
+
               
 
               <div className="formInput">
@@ -262,7 +280,7 @@ const AddProduct = () => {
                   {JSON.stringify(catIds) !== "{}"
                     ? catIds.map((c) => (
                         <option value={c.catID} key={c.catID}>
-                          {c.categoryName}
+                          {c.catID}
                         </option>
                       ))
                     : ""}
@@ -282,19 +300,9 @@ const AddProduct = () => {
 
                 
 
-              <div className="formInput">
-                <label>No Of Items</label>
-                <input
-                  type="number"
-                  min={0}
-                  value={noitems}
-                  onChange={(e) => {
-                    setnoitems(e.target.value);
-                  }}
-                />
-              </div>
+              
 
-              <div className="break1"></div>
+              <div className="Break"></div>
               <button onClick={submitForm}>Add Product</button>
             </form>
           </div>
