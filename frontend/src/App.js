@@ -39,6 +39,7 @@ import ViewAllCustomerContactDetails from "./pages/sales/customerContactNumber/v
 import AddSalesReturnOrderPage1 from "./pages/sales/salesReturnOrder/add/add";
 import AddSalesReturnOrderPage2 from "./pages/sales/salesReturnOrder/add/add2";
 import ViewAllSalesReturnOrders from "./pages/sales/salesReturnOrder/add/viewAll/viewAll"; 
+import ViewSalesReturnOrderData from "./pages/sales/salesReturnOrder/add/viewAll/viewAll2"; 
 import AddSalesOrderPart1 from "./pages/sales/salesOrder/add/add";
 import AddSalesOrderPart2 from "./pages/sales/salesOrder/add/add2";
 import ViewAllSalesOrders from "./pages/sales/salesOrder/viewAll/viewAll";
@@ -165,6 +166,7 @@ function App() {
                 <Route path="add" element={<AddSalesReturnOrderPage1 />} />
                 <Route path="add2" element={<AddSalesReturnOrderPage2 />} />
                 <Route path="viewAll" element={<ViewAllSalesReturnOrders />} />
+                <Route path="viewAll2/:id" element={<ViewSalesReturnOrderData />} />
               </Route>
               <Route path="salesReturnOrders"> 
                <Route path="add2" element={<AddSalesReturnOrderPage2 />} />  

@@ -19,7 +19,7 @@ const DataTable1 = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/sales/salesReturnOrder/getAll/", {
+      .get("http://localhost:5000/sales/salesOrder/getAll/", {
         withCredentials: true,
         credentials: "include",
       })
