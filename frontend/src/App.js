@@ -166,7 +166,7 @@ function App() {
                 <Route path="add" element={<AddSalesReturnOrderPage1 />} />
                 <Route path="add2" element={<AddSalesReturnOrderPage2 />} />
                 <Route path="viewAll" element={<ViewAllSalesReturnOrders />} />
-                <Route path="viewAll2/:id" element={<ViewSalesReturnOrderData />} />
+                <Route path="viewAll2/:salesReturnOrderID" element={<ViewSalesReturnOrderData />} />
               </Route>
               <Route path="salesReturnOrders"> 
                <Route path="add2" element={<AddSalesReturnOrderPage2 />} />  
