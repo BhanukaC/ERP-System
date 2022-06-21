@@ -42,6 +42,7 @@ import ViewAllSalesReturnOrders from "./pages/sales/salesReturnOrder/add/viewAll
 import AddSalesOrderPart1 from "./pages/sales/salesOrder/add/add";
 import AddSalesOrderPart2 from "./pages/sales/salesOrder/add/add2";
 import ViewAllSalesOrders from "./pages/sales/salesOrder/viewAll/viewAll";
+import ViewSalesOrderData from "./pages/sales/salesOrder/viewAll/viewAll2";
 
 import EditEmployee from "./pages/hr/employeee/edit/edit";
 import AddDependent from "./pages/hr/dependent/add/add";
@@ -158,6 +159,7 @@ function App() {
                <Route path="add" element={<AddSalesOrderPart1 />} />
                <Route path="add2" element={<AddSalesOrderPart2 />} />
                 <Route path="viewAll" element={<ViewAllSalesOrders />} />
+                <Route path="viewAll2/:id" element={<ViewSalesOrderData />} />
               </Route>
               <Route path="salesReturnOrder">
                 <Route path="add" element={<AddSalesReturnOrderPage1 />} />
