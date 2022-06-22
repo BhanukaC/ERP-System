@@ -1,4 +1,7 @@
+import "./update_product.scss";
 import { useState, useEffect } from "react";
+
+
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
@@ -20,7 +23,55 @@ const Updateproduct = () => {
     const [catid, setcatid] = useState("");
     const [subcatid, setsubcatid] = useState("");
 
+    const [catname, setcatname] = useState("");
+  const [subcatname, setsubcatname] = useState("");
+
     const [catIds, setcatIds] = useState({});
+
+    const checkCategory = async (val) => {
+      if (val !== "") {
+        const res = await axios.get(
+          "http://localhost:5000/purchase/category/getSingle/" + val,
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        );
+        if (res.data.length === 0) {
+          alert("Category ID is not found");
+          setcatid("");
+        } else {
+          setcatname(res.data[0].categoryName);
+        }
+      }
+    };
+
+    const checksubCategory = async (val) => {
+      if (val !== "") {
+        const res = await axios.get(
+          "http://localhost:5000/purchase/subCategory/getSingle/" + val,
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        );
+        if (res.data.length === 0) {
+          alert("Sub Category ID is not found");
+        } else {
+          setsubcatname(res.data[0].subCategoryName);
+        }
+      }
+    };
+
+    const handlesellp = (value) => {
+      const numberAmount= Number(value).toFixed(2);
+      setsellp(numberAmount)
+    }
+  
+    const handlebuyp = (value) => {
+      const numberAmount= Number(value).toFixed(2);
+      setbuyingp(numberAmount)
+    }
 
   const { PID } = useParams();
   console.log(PID);
@@ -59,12 +110,13 @@ const Updateproduct = () => {
   const submitForm = (e) => {
     e.preventDefault();
     if(
-        pname === ""||
-        sellp===""||
-        buyingp===""||
-        catid===""||
-        subcatid===""
-        
+      pname === ""||
+      sellp===""||
+      buyingp===""||
+      catid===""||
+      subcatid===""||
+      hsncode===""||
+      eancode===""
       )
         
       {
@@ -120,7 +172,7 @@ const Updateproduct = () => {
       <div className="newContainer">
         <Navbar />
         <div className="top1">
-          <h1>Update Product</h1>
+          <h2>Update Product</h2>
         </div>
         <div className="bottom1">
           <div className="right">
@@ -142,14 +194,15 @@ const Updateproduct = () => {
                 <label>Selling Price (LKR)*</label>
                 <input
                   type="number"
-                  step="any"
                   min={0}
+                  step='.01'
+                  onChange={(e) =>handlesellp(e.target.value)} 
                   value={sellp}
-                  onChange={(e) => {
-                    setsellp(e.target.value);
-                  }}
-                />
-              </div>
+                  
+                  
+                   
+                  />
+                 </div>
 
               <div className="formInput">
                 <label>EAN Code</label>
@@ -200,7 +253,7 @@ const Updateproduct = () => {
               <div className="formInput">
                 <label>Long Description</label>
                 <input
-                  type="text"
+                 type="textarea"
                   value={longdep}
                   onChange={(e) => {
                     setlongdep(e.target.value);
@@ -250,52 +303,51 @@ const Updateproduct = () => {
               <div className="formInput">
                 <label>Buying Price (LKR)*</label>
                 <input
-                 type="number"
-                 min={0}
-                 step="any"
+                  type="number"
+                  min={0}
+                  step='.01'
+                  onChange={(e) =>handlebuyp(e.target.value)} 
                   value={buyingp}
-                  onChange={(e) => {
-                    setbuyingp(e.target.value);
-                  }}
-                />
-              </div>
+                  placeholder="0.00"
+                  
+                   
+                  />
+                 </div>
 
-              <div className="formInput">
+                 <div className="formInput">
                 <label>No Of Items</label>
                 <input
                   type="number"
                   min={0}
+                  step="1"
+                  pattern="[0-9]*"
                   value={noitems}
-                  onChange={(e) => {
-                    setnoitems(e.target.value);
-                  }}
+                  onChange={(e) => setnoitems((v)=>(e.target.validity.valid?e.target.value:v))}
                 />
               </div>
-
+                  
 
               
 
               <div className="formInput">
-                <label>Category Name*</label>
-
-                <select
+                <label>Category ID*</label>
+                <input
+                  type="text"
                   value={catid}
                   onChange={(e) => {
                     setcatid(e.target.value);
+                    checkCategory(e.target.value)
                   }}
-                >
-                  <option value="" disabled selected>
-                    select Category Name
-                  </option>
-                  {JSON.stringify(catIds) !== "{}"
-                    ? catIds.map((c) => (
-                        <option value={c.catID} key={c.catID}>
-                          {c.categoryName}
-                        </option>
-                      ))
-                    : ""}
-                </select>
+                />
               </div>
+
+              <div className="formInput">
+                <label>Category Name</label>
+                <input type="text" 
+                value={catname} disabled />
+              </div>
+
+              
 
               <div className="formInput">
                 <label>Sub Category ID*</label>
@@ -304,9 +356,17 @@ const Updateproduct = () => {
                   value={subcatid}
                   onChange={(e) => {
                     setsubcatid(e.target.value);
+                    checksubCategory (e.target.value)
                   }}
                 />
               </div>
+
+              <div className="formInput">
+                <label>Sub Category Name</label>
+                <input type="text" 
+                value={subcatname} disabled />
+              </div>
+
 
                 
 

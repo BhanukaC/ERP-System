@@ -58,28 +58,29 @@ const AddProduct = () => {
       }
     }
   };
+
+  const handlesellp = (value) => {
+    const numberAmount= Number(value).toFixed(2);
+    setsellp(numberAmount)
+  }
+
+  const handlebuyp = (value) => {
+    const numberAmount= Number(value).toFixed(2);
+    setbuyingp(numberAmount)
+  }
   
-
   
   
-
-  
-
-  
-
-    
-
-  
-
-
-  const submitForm = (e) => {
+const submitForm = (e) => {
     e.preventDefault();
     if(
       pname === ""||
       sellp===""||
       buyingp===""||
       catid===""||
-      subcatid===""
+      subcatid===""||
+      hsncode===""||
+      eancode===""
       
     )
       
@@ -127,6 +128,24 @@ const AddProduct = () => {
         console.log(res);
         if(res.data=="product Added"){
           alert("Product added");
+
+          setpname ("");
+          setsellp (0);
+          seteancode ("");
+          setunit ("");
+          sethsncode ("");
+          setshortdep ("");
+          setlongdep ("");
+          setheight (0);
+          setlength (0);
+          setweight (0);
+          setbuyingp (0);
+          setnoitems (0);
+          setcatid ("");
+          setsubcatid ("");
+          setcatname ("");
+          setsubcatname("");
+  
         }else{
           alert("Error");
         }
@@ -134,6 +153,7 @@ const AddProduct = () => {
         //console.log(res.data);
       });
     }
+
     
   };
 
@@ -142,8 +162,8 @@ const AddProduct = () => {
       <Sidebar/>
       <div className="newContainer">
         <Navbar />
-        <div className="top1">
-          <h1>Add Product</h1>
+        <div className="top">
+          <h2>Add Product</h2>
         </div>
         <div className="bottom1">
           <div className="right">
@@ -165,17 +185,18 @@ const AddProduct = () => {
                 <label>Selling Price (LKR)*</label>
                 <input
                   type="number"
-                  step="any"
                   min={0}
+                  step='.01'
+                  onChange={(e) =>handlesellp(e.target.value)} 
                   value={sellp}
-                  onChange={(e) => {
-                    setsellp(e.target.value);
-                  }}
-                />
-              </div>
+                  
+                  
+                   
+                  />
+                 </div>
 
               <div className="formInput">
-                <label>EAN Code</label>
+                <label>EAN Code*</label>
                 <input
                   type="number"
                   min={0}
@@ -198,7 +219,7 @@ const AddProduct = () => {
               </div>
 
               <div className="formInput">
-                <label>HSN Code</label>
+                <label>HSN Code*</label>
                 <input
                   type="number"
                   min={0}
@@ -223,7 +244,7 @@ const AddProduct = () => {
               <div className="formInput">
                 <label>Long Description</label>
                 <input
-                  type="text"
+                  type="textarea"
                   value={longdep}
                   onChange={(e) => {
                     setlongdep(e.target.value);
@@ -273,25 +294,26 @@ const AddProduct = () => {
               <div className="formInput">
                 <label>Buying Price (LKR)*</label>
                 <input
-                 type="number"
-                 min={0}
-                 step="any"
+                  type="number"
+                  min={0}
+                  step='.01'
+                  onChange={(e) =>handlebuyp(e.target.value)} 
                   value={buyingp}
-                  onChange={(e) => {
-                    setbuyingp(e.target.value);
-                  }}
-                />
-              </div>
+                  placeholder="0.00"
+                  
+                   
+                  />
+                 </div>
 
               <div className="formInput">
                 <label>No Of Items</label>
                 <input
                   type="number"
                   min={0}
+                  step="1"
+                  pattern="[0-9]*"
                   value={noitems}
-                  onChange={(e) => {
-                    setnoitems(e.target.value);
-                  }}
+                  onChange={(e) => setnoitems((v)=>(e.target.validity.valid?e.target.value:v))}
                 />
               </div>
                   

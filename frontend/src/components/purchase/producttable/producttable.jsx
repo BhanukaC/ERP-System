@@ -51,7 +51,7 @@ const Producttable = () => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
-        const upLink = "/purchase/product/updatecat/"+params.row.catID;
+        const upLink = "/purchase/product/update/"+params.row.PID;
         return (
           <div className="cellAction">
             <Link to= {upLink} style= {{textDecoration : "none"}}>

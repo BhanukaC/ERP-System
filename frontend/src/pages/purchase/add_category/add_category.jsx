@@ -34,6 +34,7 @@ const AddCategory = () => {
       .then((res) => {
         if(res.data=="category Added"){
           alert("Category Added");
+          setcatName("")
         }else{
           alert("Error");
         }
@@ -42,6 +43,7 @@ const AddCategory = () => {
       });
       
     }
+    
     
   };
 
