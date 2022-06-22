@@ -5,8 +5,8 @@
     .newContainer {
       flex: 6;
   
-      .topPart,
-      .bottomPart {
+      .top,
+      .bottom {
         -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
         box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
         padding: 10px;
@@ -60,7 +60,7 @@
               width: 150px;
               padding: 10px;
               border: none;
-              background-color: #7451f8;
+              background-color: teal;
               color: white;
               font-weight: bold;
               cursor: pointer;
