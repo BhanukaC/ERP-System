@@ -76,7 +76,13 @@ const sidebar = () => {
           <Link to="/inventory/internalShipments/details " style={{ textDecoration: "none" }}>
             <li>
               <LocalShippingIcon className="icon" />
-              <span>Internal Shipment Details</span>
+              <span>Internal Shipments to Received</span>
+            </li>
+          </Link>
+          <Link to="/inventory/internalShipments/details " style={{ textDecoration: "none" }}>
+            <li>
+              <LocalShippingIcon className="icon" />
+              <span>Internal Shipments to be Sent</span>
             </li>
           </Link>
 

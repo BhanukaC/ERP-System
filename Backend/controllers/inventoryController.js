@@ -275,7 +275,7 @@ exports.getSingleSalesReturnOrderController = async (req, res) => {
 
 //view all sales return orders
 exports.getAllSalesReturnOrderController = async (req, res) => {
-    db.query("select * from SalesReturnOrder ", (err, result) => {
+    db.query("select * from SalesReturnOrder where status!='p'", (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {

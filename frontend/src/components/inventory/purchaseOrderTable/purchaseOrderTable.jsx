@@ -3,16 +3,16 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { red } from "@mui/material/colors";
+import moment from "moment";
 
 const userColumns = [
-  { field: "purchaseOrderID", headerName: "Purchase Order ID",  width: 100},
-  { field: "orderDate", headerName: "Order Date", width: 200 },
+  { field: "purchaseOrderID", headerName: "Purchase Order ID",  width: 150},
+  { field: "orderDates", headerName: "Order Date", width: 150 },
   { field: "total", headerName: "Net Total", width: 100 },
-  { field: "SID", headerName: "Supplier ID", width: 100},
-  { field: "WID", headerName: "Warehouse ID", width: 100},
+  { field: "SID", headerName: "Supplier ID", width: 150},
+  { field: "WID", headerName: "Warehouse ID", width: 150},
   { field: "statusMod", headerName: "Status", width: 150 },
-  { field: "deliveredDate", headerName: "DeliveredDate", width: 200},
+  { field: "deliveredDates", headerName: "DeliveredDate", width: 150},
  
 ];
 
@@ -40,7 +40,18 @@ const PurchaseOrderTable = () => {
               status="Delivered"
               break;
           }
-          return { id: d.purchaseOrderID,statusMod:status, ...d };
+          let date;
+          if(d.deliveredDate===null){
+            date=d.deliveredDate
+          }else{
+            date=moment(d.deliveredDate).add(1, "days").utc().format("YYYY/MM/DD");
+          }
+          return { id: d.purchaseOrderID,
+            statusMod:status,
+            orderDates: moment(d.orderDate).add(1, "days").utc().format("YYYY/MM/DD"),
+            deliveredDates: date,
+            ...d };
+
         });
         setData(dt);
         // console.log(dt);

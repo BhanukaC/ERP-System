@@ -4,14 +4,15 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import moment from "moment";
 
 const userColumns = [
-  { field: "internalShipmentID", headerName: "Internal Shipment ID",  width: 100},
-  { field: "date", headerName: "Order Date", width: 200 },
+  { field: "internalShipmentID", headerName: "Internal Shipment ID",  width: 150},
+  { field: "dates", headerName: "Order Date", width: 150 },
   { field: "FromWID", headerName: "From", width: 100 },
   { field: "TOWID", headerName: "To", width: 100},
   { field: "statusMod", headerName: "Status", width: 150 },
-  { field: "finishDate", headerName: "Finish Date", width: 200},
+  { field: "finishDates", headerName: "Finish Date", width: 150},
  
 ];
 
@@ -36,7 +37,10 @@ const ShipmentTable = () => {
               status="Delivered"
               break;
           }
-          return { id: d.internalShipmentID,statusMod:status, ...d };
+          return { id: d.internalShipmentID,statusMod:status,
+            dates: moment(d.date).add(1, "days").utc().format("YYYY/MM/DD"),
+            finishDates: moment(d.finishDate).add(1, "days").utc().format("YYYY/MM/DD"),
+            ...d };
         });
         setData(dt);
         // console.log(dt);

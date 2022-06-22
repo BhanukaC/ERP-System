@@ -3,15 +3,16 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 
 const userColumns = [
   { field: "purchaseReturnOrderID", headerName: "Purchase Return Order ID",  width: 200},
-  { field: "WID", headerName: "Warehouse ID", width: 100},
-  { field: "initiateDate", headerName: "Order Date", width: 200 },
+  { field: "WID", headerName: "Warehouse ID", width: 150},
+  { field: "initiateDates", headerName: "Order Date", width: 150 },
   { field: "reason", headerName: "Reason for Returning", width: 200 },
   { field: "total", headerName: "Net Total", width: 100},
   { field: "SID", headerName: "Supplier ID", width: 100},
-  { field: "purchaseOrderID", headerName: "Purchase Order ID", width: 200},
+  { field: "purchaseOrderID", headerName: "Purchase Order ID", width: 150},
 
 ];
 
@@ -27,7 +28,9 @@ const PurchaseReturnOrderTable = () => {
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {
-          return { id: d.purchaseReturnOrderID, ...d };
+          return { id: d.purchaseReturnOrderID,
+            initiateDates: moment(d.initiateDate).add(1, "days").utc().format("YYYY/MM/DD"),
+            ...d };
         });
         setData(dt);
         // console.log(dt);
