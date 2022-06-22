@@ -29,16 +29,17 @@ const AddPurchaseOrder2 = () => {
   }, [""]);
 
   const getLocation = async (val) => {
-    const res = await axios.get("http://localhost:5000/sales/Customer/deliveryAddress/getAll/" + val, {
+    const res = await axios.get("http://localhost:5000/purchase/supplier/storeLocation/getAll/" + val, {
       withCredentials: true,
       credentials: "include",
     });
     setLocation(res.data);
   };
+  getLocation();
  
 
   const getContactNumber = async (val) => {
-    const res = await axios.get("http://localhost:5000/sales/Customer/contactNumber/getAll/" + val, {
+    const res = await axios.get("http://localhost:5000/purchase/supplier/contactNumber/getAll/" + val, {
       withCredentials: true,
       credentials: "include",
     });
@@ -46,6 +47,7 @@ const AddPurchaseOrder2 = () => {
     setContactNumber(res.data);
 
   };
+  getContactNumber();
 
 
 
