@@ -34,17 +34,25 @@ const DataTable2 = (props) => {
       });
   }, [""]);
 
+  const actionColumn = [
+    {
+        field: "action",
+        headerName: "Action",
+        width: 200,
+      },
+  ];
+
   return (
-    <div className="datatable" style={{height:"50%"}}>
-      <div className="dataTableTitle">
-        Sales Return Order Details of (Sales Return Order ID-{salesReturnOrderID})
+    <div className="datatable">
+      <div className="datatableTitle">
+      Sales Return Order Details of (Sales Return Order ID-{salesReturnOrderID})
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        columns={userColumns.concat(actionColumn)}
+        pageSize={9}
+        rowsPerPageOptions={[9]}
         components={{ Toolbar: GridToolbar }}
         componentsProps={{
           toolbar: {
@@ -55,6 +63,7 @@ const DataTable2 = (props) => {
       />
     </div>
   );
+
 };
 
 export default DataTable2;

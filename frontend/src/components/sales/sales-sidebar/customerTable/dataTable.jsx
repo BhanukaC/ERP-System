@@ -72,6 +72,9 @@ const Datatable = () => {
   
   return (
     <div className="datatable">
+      <div className="datatableTitle">
+        Customer Details
+      </div>
       <DataGrid
         className="datagrid"
         rows={data}
@@ -88,6 +91,7 @@ const Datatable = () => {
       />
     </div>
   );
+  
 };
 
 export default Datatable;
