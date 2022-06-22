@@ -193,7 +193,18 @@ const AddSalesReturnOrderPage1 = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Add</button>
+              <button 
+              style={{
+                width: "150px",
+              padding: "10px",
+              border: "none",
+              backgroundColor: "#7451f8",
+              color: "white",
+              fontWeight: "bold",
+              cursor: "pointer",
+              margintop: "10px",
+              }}
+              onClick={submitForm}>Add Sales Return Order</button>
             </form>
           </div>
         </div>
@@ -201,6 +212,5 @@ const AddSalesReturnOrderPage1 = () => {
     </div>
   );
 };
-
 
 export default AddSalesReturnOrderPage1;
