@@ -12,6 +12,7 @@ const userColumns = [
   { field: "WID", headerName: "WID", width: 120 },
   { field: "CDAID", headerName: "CDAID", width: 120 },
   { field: "CCID", headerName: "CCID", width: 120 },
+  { field: "deliveredDates", headerName: "Deliver Date", width: 150 },
   { field: "deliveryCharge", headerName: "Delivery Charge", width: 120  },
  
 ];
@@ -28,18 +29,12 @@ const DataTable1 = () => {
       .then((res) => {
        
         let dt = res.data.map((d) => {
-          return { id: d.salesOrderID, ...d };
+          return { id: d.salesOrderID, 
+            orderDates: moment(d.orderDates).add(1, "days").utc().format("YYYY/MM/DD"),
+            deliveredDates: moment(d.deliveredDates).add(1, "days").utc().format("YYYY/MM/DD"),
+            ...d };
         });
         setData(dt);
-
-        let dtt = res.data.map((d) => {
-          return {
-            id: d.salesOrderID,
-            orderDates: moment(d.orderDates).add(1, "days").utc().format("YYYY/MM/DD"),
-            ...d,
-          };
-        });
-        setData(dtt);
         
       });
   }, [""]);
