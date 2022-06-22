@@ -75,6 +75,7 @@ const EditOtType = () => {
                 <input
                   type="number"
                   step="any"
+                  min={0}
                   value={payPerHour}
                   onChange={(e) => {
                     setPayPerHour(e.target.value);
