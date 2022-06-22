@@ -35,7 +35,7 @@ const AddPurchaseOrder2 = () => {
     });
     setLocation(res.data);
   };
-  getLocation();
+  
  
 
   const getContactNumber = async (val) => {
@@ -47,7 +47,7 @@ const AddPurchaseOrder2 = () => {
     setContactNumber(res.data);
 
   };
-  getContactNumber();
+  
 
 
 
@@ -100,6 +100,30 @@ const AddPurchaseOrder2 = () => {
     }
   }, [""]);
 
+  const checkSupplier = async (val) => {
+    if (val !== "") {
+      const res = await axios.get(
+        "http://localhost:5000/purchase/supplier/getSingle/" + val,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
+      if (res.data.length === 0) {
+        alert("SID not found");
+        setSID("")
+        setSSLID("");
+        setSCID("");
+      } else {
+        getContactNumber(val);
+        getLocation(val);
+      }
+    }else{
+      setSSLID("");
+      setSCID("");
+    }
+  };
+
   return (
     <div className="new">
       <Sidebar />
@@ -143,41 +167,81 @@ const AddPurchaseOrder2 = () => {
                   value={SID}
                   onChange={(e) => {
                     setSID(e.target.value);
-                  }}
+                    checkSupplier(e.target.value)
+                    }}
                 />
               </div>
 
+              
+
+              
               <div className="formInput">
-                <label>Suppliier Store Location ID</label>
-                <input
-                  type="text"
+                <label>Supplier Store Location</label>
+
+                <select
                   value={SSLID}
                   onChange={(e) => {
                     setSSLID(e.target.value);
                   }}
-                />
+                >
+                  <option value="" disabled selected>
+                    Select Supplier Store Location
+                  </option>
+                  {JSON.stringify(location) !== "{}"
+                    ? location.map((l) => (
+                        <option value={l.SSLID} key={l.SSLID}>
+                          {l.no},{l.street},{l.town}
+                        </option>
+                      ))
+                    : ""}
+                </select>
               </div>
 
+              
+
               <div className="formInput">
-                <label>Suppliier Contact ID</label>
-                <input
-                  type="text"
+                <label>Supplier Contact Number</label>
+
+                <select
                   value={SCID}
                   onChange={(e) => {
                     setSCID(e.target.value);
                   }}
-                />
+                >
+                  <option value="" disabled selected>
+                  Select Supplier Contact Number
+                  </option>
+                  {JSON.stringify(contactNumber) !== "{}"
+                    ? contactNumber.map((c) => (
+                        <option value={c.SCID} key={c.SCID}>
+                          {c.contactNumber}
+                        </option>
+                      ))
+                    : ""}
+                </select>
               </div>
 
+              
               <div className="formInput">
-                <label>Warehouse ID</label>
-                <input
-                  type="text"
+                <label>Warehouse </label>
+
+                <select
                   value={WID}
                   onChange={(e) => {
                     setWID(e.target.value);
                   }}
-                />
+                >
+                  <option value="" disabled selected>
+                    Select Warehouse 
+                  </option>
+                  {JSON.stringify(warehouse) !== "{}"
+                    ? warehouse.map((w) => (
+                        <option value={w.WID} key={w.WID}>
+                          {w.town}
+                        </option>
+                      ))
+                    : ""}
+                </select>
               </div>
 
               <div className="break"></div>
