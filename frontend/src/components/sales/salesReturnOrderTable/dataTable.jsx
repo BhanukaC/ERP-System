@@ -40,7 +40,7 @@ const DataTable1 = () => {
         headerName: "Action",
         width: 200,
         renderCell: (params) => {
-          const upLink = "/sales/salesReturnOrder/viewAll2/"+params.row.salesOrderID;
+          const upLink = "/sales/salesReturnOrder/viewAll2/"+params.row.salesReturnOrderID;
           return (
             <div className="cellAction">
               <Link to= {upLink} style= {{textDecoration : "none"}}>
