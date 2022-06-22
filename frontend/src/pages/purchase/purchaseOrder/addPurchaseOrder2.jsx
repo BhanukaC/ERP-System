@@ -6,10 +6,48 @@ import axios from "axios";
 const AddPurchaseOrder2 = () => {
   const [list, setList] = useState([]);
 
-  const [SID, setSID] = useState(0);
-  const [SSLID, setSSLID] = useState(0);
-  const [SCID, setSCID] = useState(0);
-  const [WID, setWID] = useState(0);
+  const [SID, setSID] = useState("");
+  const [SSLID, setSSLID] = useState("");
+  const [SCID, setSCID] = useState("");
+  const [WID, setWID] = useState("");
+
+  const [warehouse, setWarehouse] = useState([]);
+  const [location, setLocation] = useState([]);
+  const [contactNumber, setContactNumber] = useState([]);
+
+  useEffect(() => {
+    const getWarehouse = async () => {
+      const res = await axios.get("http://localhost:5000/inventory/Warehouse/getAll", {
+        withCredentials: true,
+        credentials: "include",
+      });
+      setWarehouse(res.data);
+    };
+    getWarehouse();
+
+  
+  }, [""]);
+
+  const getLocation = async (val) => {
+    const res = await axios.get("http://localhost:5000/sales/Customer/deliveryAddress/getAll/" + val, {
+      withCredentials: true,
+      credentials: "include",
+    });
+    setLocation(res.data);
+  };
+ 
+
+  const getContactNumber = async (val) => {
+    const res = await axios.get("http://localhost:5000/sales/Customer/contactNumber/getAll/" + val, {
+      withCredentials: true,
+      credentials: "include",
+    });
+    
+    setContactNumber(res.data);
+
+  };
+
+
 
   const submitForm = (e) => {
     e.preventDefault();
