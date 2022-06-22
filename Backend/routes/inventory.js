@@ -3,7 +3,7 @@ const router = express.Router();
 const validateToken = require("../middleware/auth");
 const validAccess = require("../middleware/warehouseOperator");
 
-const { getProductStocksForWareHouseController,warehouseUpdateController, getSingleWarehouseController, getAllWarehouseController, getSingleInternalShipmentController, getAllInternalShipmentToReceiveController, getAllInternalShipmentToSendController, getSingleInternalShipmentDataController, getAllStockLevelController, getAllStockLevelForWareHouseController, changeQualityLevelController, purchaseOrderUpdateController, salesOrderUpdateController, salesReturnOrderUpdateController, addInternalShipmentController, internalShipmentUpdateController, getSinglePurchaseOrderController, getAllPurchaseOrderController, getSinglePurchaseOrderDataController, getSingleSalesOrderController, getAllSalesOrderController, getSingleSalesOrderDataController, getSingleSalesReturnOrderController, getAllSalesReturnOrderController, getSingleSalesReturnOrderDataController} = require("../controllers/inventoryController");
+const { getProductStocksForWareHouseController,warehouseUpdateController, getSingleWarehouseController, getAllWarehouseController, getSingleInternalShipmentController, getAllInternalShipmentToReceiveController, getAllInternalShipmentToSendController, getSingleInternalShipmentDataController, getAllStockLevelController, getAllStockLevelForWareHouseController, changeQualityLevelController, purchaseOrderUpdateController, salesOrderUpdateController, salesReturnOrderUpdateController,getSinglePurchaseReturnOrderController, getAllPurchaseReturnOrderController,getSinglePurchaseReturnOrderDataController, addInternalShipmentController, internalShipmentUpdateController, getSinglePurchaseOrderController, getAllPurchaseOrderController, getSinglePurchaseOrderDataController, getSingleSalesOrderController, getAllSalesOrderController, getSingleSalesOrderDataController, getSingleSalesReturnOrderController, getAllSalesReturnOrderController, getSingleSalesReturnOrderDataController} = require("../controllers/inventoryController");
 
 //Warehouse
 router.put("/Warehouse/update/:id", [validateToken, validAccess], warehouseUpdateController);
@@ -27,6 +27,11 @@ router.get("/salesReturnOrder/getSingle/:id", [validateToken, validAccess], getS
 router.get("/salesReturnOrder/getAll/", [validateToken, validAccess], getAllSalesReturnOrderController);
 router.get("/salesReturnOrderData/get/:id", [validateToken, validAccess], getSingleSalesReturnOrderDataController);
 router.put("/salesReturnOrder/update/", [validateToken, validAccess], salesReturnOrderUpdateController);
+
+//purchase Return Order
+router.get("/purchaseReturnOrder/getSingle/:id", [validateToken, validAccess], getSinglePurchaseReturnOrderController);
+router.get("/purchaseReturnOrder/getAll/", [validateToken, validAccess], getAllPurchaseReturnOrderController);
+router.get("/purchaseReturnOrderData/get/:id", [validateToken, validAccess], getSinglePurchaseReturnOrderDataController);
 
 //internal Shipment
 router.post("/internalShipment/add/", [validateToken, validAccess], addInternalShipmentController);

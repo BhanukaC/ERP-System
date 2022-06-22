@@ -20,10 +20,12 @@ import WarehouseDetails from "./pages/inventory/warehouse/warehouseDetails/wareh
 import StockDetails from "./pages/inventory/warehouse/stockDetails/stockDetails";
 import PurchaseOrderDetails from "./pages/inventory/order/purchaseOrderDetails/purchaseOrderDetails";
 import SalesOrderDetails from "./pages/inventory/order/salesOrderDetails/salesOrderDetails";
-import ReturnOrderDetails from "./pages/inventory/order/returnOrderDetails/returnOrderDetails";
+import ReturnOrderDetails from "./pages/inventory/order/SalesReturnOrderDetails/returnOrderDetails";
+import PurchaseReturnOrderDetails from "./pages/inventory/order/purchaseReturnOrderDetails/purchaseReturnOrderDetails";
 import InventoryDashboard from "./pages/inventory/dashboard/dashboard";
 import PurchaseOrderData from "./pages/inventory/order/orderData/purchaseOrderData";
 import ReturnOrderData from "./pages/inventory/order/orderData/ReturnOrderData";
+import PurchaseReturnOrderData from "./pages/inventory/order/orderData/purchaseReturnOrderData";
 import SalesOrderData from "./pages/inventory/order/orderData/salesOrderData";
 import ChangeQualityLevel from "./pages/inventory/qualityLevel/qualityLevel";
 import EditWarehouseDetails from "./pages/inventory/warehouse/editWarehouseDet/editWarehouseDetails";
@@ -97,6 +99,11 @@ function App() {
                 <Route path="returnOrders" >
                   <Route index element={<ReturnOrderDetails />} />
                   <Route path="orderData/:id" element={<ReturnOrderData />} />
+                </Route>
+
+                <Route path="purchaseReturnOrders" >
+                  <Route index element={<PurchaseReturnOrderDetails />} />
+                  <Route path="orderData/:id" element={<PurchaseReturnOrderData />} />
                 </Route>
 
                 <Route path="salesOrders" >

@@ -47,6 +47,12 @@ const sidebar = () => {
               <span>Purchase</span>
             </li>
           </Link>
+          <Link to="/inventory/order/purchaseReturnOrders" style={{ textDecoration: "none" }}>
+            <li>
+              <AssignmentReturnIcon className="icon" />
+              <span>Purchase Return</span>
+            </li>
+          </Link>
           <Link to="/inventory/order/salesOrders" style={{ textDecoration: "none" }}>
             <li>
               <ShoppingBasketIcon className="icon" />

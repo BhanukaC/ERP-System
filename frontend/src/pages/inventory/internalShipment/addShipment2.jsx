@@ -23,7 +23,7 @@ const AddInternalShipmentsPart2 = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if(fromWID === " " || toWID === " " )
+    if(fromWID === "" || toWID === "" )
     {
       alert("Fill the required fields");
     }

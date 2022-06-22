@@ -298,6 +298,7 @@ exports.getSingleSalesReturnOrderDataController = async (req, res) => {
     });
 }
 
+
 //update status a sales Return order
 exports.salesReturnOrderUpdateController = async (req, res) => {
     const { salesReturnOrderID, WID } = req.body;
@@ -344,6 +345,44 @@ exports.salesReturnOrderUpdateController = async (req, res) => {
             return;
 
 
+        }
+    });
+}
+
+//get a purchase return order
+exports.getSinglePurchaseReturnOrderController = async (req, res) => {
+    const id = req.params.id;
+    db.query("select * from purchaseReturnOrder where purchaseReturnOrderID=?", [id], (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a purchase return order(purchaseReturnOrderID-" + id + ")"], (err, response) => { });
+            res.json(result);
+        }
+    });
+}
+
+//view all purchase return orders
+exports.getAllPurchaseReturnOrderController = async (req, res) => {
+    db.query("select * from purchaseReturnOrder ", (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view all purchase return orders"], (err, response) => { });
+            res.json(result);
+        }
+    });
+}
+
+//get purchase return order data
+exports.getSinglePurchaseReturnOrderDataController = async (req, res) => {
+    const id = req.params.id;
+    db.query("select * from purchaseReturnOrderData where purchaseReturnOrderID=?", [id], (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a purchaseReturnOrderData(purchaseReturnOrderID-" + id + ")"], (err, response) => { });
+            res.json(result);
         }
     });
 }
