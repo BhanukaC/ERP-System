@@ -14,6 +14,7 @@ const userColumns = [
   { field: "initiateDate1", headerName: "Initiate Date", width: 120  },
   { field: "finishDates", headerName: "Finish Date", width: 120  },
   { field: "reason", headerName: "reason", width: 120  },
+  { field: "status", headerName: "Order Status", width: 120 },
   { field: "salesOrderID", headerName: "salesOrderID" },
  
 ];
