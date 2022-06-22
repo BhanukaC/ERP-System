@@ -66,7 +66,7 @@ const UpdateCategory = () => {
                
 
               <div className="formInput">
-                <label>Category Name</label>
+                <label>Category Name*</label>
                 <input
                   type="text"
                   value={categoryName}

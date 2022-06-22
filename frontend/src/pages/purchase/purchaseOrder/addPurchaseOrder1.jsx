@@ -7,6 +7,8 @@ const AddPurchaseOrder1 = () => {
   const [PID, setPID] = useState(0);
   const [qty, setQty] = useState(0);
   const [productName, setProductName] = useState("");
+  const [discount, setdiscount] = useState(0);
+  
   const [list, setList] = useState([]);
 
   const submitForm = (e) => {
@@ -24,16 +26,17 @@ const AddPurchaseOrder1 = () => {
         if (!status) {
           setList([
             ...list,
-            { PID: PID, name: productName, qty: parseInt(qty) },
+            { PID: PID, name: productName, qty: parseInt(qty),discount:parseFloat(discount) },
           ]);
         }
       } else {
-        setList([{ PID: PID, name: productName, qty: parseInt(qty) }]);
+        setList([{ PID: PID, name: productName, qty: parseInt(qty),discount:parseFloat(discount) }]);
       }
 
       setProductName("");
       setQty(0);
       setPID(0);
+      setdiscount(0);
       alert("Product added to cart");
     } else {
       alert("Enter valid quantity");
@@ -96,8 +99,21 @@ const AddPurchaseOrder1 = () => {
                 <input
                   type="number"
                   value={qty}
+                  min={0}
                   onChange={(e) => {
                     setQty(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="formInput">
+                <label>Discount</label>
+                <input
+                  type="number"
+                  step="any"
+                  min={0}
+                  value={discount}
+                  onChange={(e) => {
+                    setdiscount(e.target.value);
                   }}
                 />
               </div>
@@ -115,6 +131,8 @@ const AddPurchaseOrder1 = () => {
                 <th>ID</th>
                 <th>Product Name</th>
                 <th>Quantity</th>
+                <th>Discount</th>
+
               </tr>
               {list.map((item) => {
                 return (
@@ -122,6 +140,8 @@ const AddPurchaseOrder1 = () => {
                     <td>{item.PID}</td>
                     <td> {item.name}</td>
                     <td>{item.qty}</td>
+                    <td>{item.discount}</td>
+
                   </tr>
                 );
               })}

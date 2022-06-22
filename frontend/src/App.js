@@ -25,6 +25,7 @@ import ViewPurchaseOrder from "./pages/purchase/view_purchase_order/view_purchas
 import ViewPurchaseOrderData from "./pages/purchase/view_order_data/view_order_data";
 import AddPurchaseOrder1 from "./pages/purchase/purchaseOrder/addPurchaseOrder1";
 import AddPurchaseOrder2 from "./pages/purchase/purchaseOrder/addPurchaseOrder2";
+import Updateproduct from "./pages/purchase/update_product/update_product";
 
 
 
@@ -121,6 +122,8 @@ function App() {
                 <Route path="editsubcat" element={<EditsubCategory />} />
                 <Route path="updatecat/:catID" element={<UpdateCategory />} />
                 <Route path="updatesubcat/:SCID" element={<UpdatesubCategory />} />
+                <Route path="update/:PID" element={<Updateproduct />} />
+
 
 
               </Route>

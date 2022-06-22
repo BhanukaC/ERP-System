@@ -6,23 +6,13 @@ import axios from "axios";
 
 const AddStoreLocation = () => {
   const [SID, setSID] = useState("");
+  const [Sname, SetSname] = useState("");
   const [no, setno] = useState("");
   const [street, setstreet] = useState("");
   const [town, settown] = useState("");
   const [country, setcountry] = useState("");
-  const [SIDs, setSIDs] = useState({});
-
-  useEffect(() => {
-    const getSIDs = async () => {
-      const res = await axios.get("http://localhost:5000/purchase/supplier/getAll", {
-        withCredentials: true,
-        credentials: "include",
-      });
-      setSIDs(res.data);
-    };
-    getSIDs();
-  }, [""]);
-
+  
+  
   
   
 
@@ -79,6 +69,9 @@ const AddStoreLocation = () => {
       );
       if (res.data.length === 0) {
         alert("SID not found");
+      }
+      else{
+        SetSname(res.data[0].sName);
       } 
     }
   };
@@ -97,25 +90,29 @@ const AddStoreLocation = () => {
 
             <div className="formInput">
                 <label>Supplier ID*</label>
-
-                <select
+                <input
+                  type="text"
+                  
                   value={SID}
                   onChange={(e) => {
                     setSID(e.target.value);
+                    checkSupplier(e.target.value);
                   }}
-                >
-                  <option value="" disabled selected>
-                    select Supplier ID
-                  </option>
-                  {JSON.stringify(SIDs) !== "{}"
-                    ? SIDs.map((s) => (
-                        <option value={s.SID} key={s.SID}>
-                          {s.SID}
-                        </option>
-                      ))
-                    : ""}
-                </select>
+                />
               </div>
+
+              <div className="formInput">
+                <label>Supplier Name</label>
+                <input
+                  type="text"
+                  disabled
+                  value={Sname}
+                  onChange={(e) => {
+                    SetSname(e.target.value);
+                  }}
+                />
+              </div>
+
               <div className="formInput">
                 <label>No*</label>
                 <input

@@ -45,6 +45,8 @@ const AddCategory = () => {
     
   };
 
+  
+
   return (
     <div className="new">
       <Sidebar/>

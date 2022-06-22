@@ -15,7 +15,7 @@ const AddPurchaseOrder2 = () => {
     e.preventDefault();
     let items = [];
     for (let i = 0; i < list.length; i++) {
-      items.push({ PID: list[i].PID, qty: list[i].qty });
+      items.push({ PID: list[i].PID, qty: list[i].qty,discount: list[i].discount });
     }
     axios
       .post(
@@ -30,6 +30,14 @@ const AddPurchaseOrder2 = () => {
         { withCredentials: true, credentials: "include" }
       )
       .then((res) => {
+        console.log(res);
+        console.log( {
+          SID : SID,
+          SSLID: SSLID,
+          SCID: SCID,
+          WID:WID,
+          items: items,
+      });
         if (res.data === "purchase order added") {
           alert("purchase order added");
           localStorage.setItem("PurchaseOrderCart", JSON.stringify([]));
@@ -68,6 +76,8 @@ const AddPurchaseOrder2 = () => {
                 <th>ID</th>
                 <th>Product Name</th>
                 <th>Quantity</th>
+                <th>Discount</th>
+
               </tr>
               {list.map((item) => {
                 return (
@@ -75,6 +85,8 @@ const AddPurchaseOrder2 = () => {
                     <td>{item.PID}</td>
                     <td> {item.name}</td>
                     <td>{item.qty}</td>
+                    <td>{item.discount}</td>
+
                   </tr>
                 );
               })}

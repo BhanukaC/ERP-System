@@ -17,16 +17,31 @@ const Addsupplier = () => {
   const [email, setemail] = useState("");
   
   
-
+  function ValidateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      return true;
+    }
+    return false;
+  }
 
   const submitForm = (e) => {
     e.preventDefault();
     if(
       sname === ""||
+      payterm===""||
+      no===""||
+      town===""||
+      country===""||
+      retterm===""||
+      delterm===""||
       email===""
     )
     {
       alert("Please fill the required fields");
+    }
+    else if(!(ValidateEmail(email)))
+    {
+        alert("Please enter a valid email")
     }
     else{
       axios
@@ -90,7 +105,7 @@ const Addsupplier = () => {
               </div>
 
               <div className="formInput">
-                <label>Payment Term</label>
+                <label>Payment Term*</label>
                 <input
                   type="text"
                   value={payterm}
@@ -101,7 +116,7 @@ const Addsupplier = () => {
               </div>
 
               <div className="formInput">
-                <label>No</label>
+                <label>No*</label>
                 <input
                   type="text"
                   value={no}
@@ -123,7 +138,7 @@ const Addsupplier = () => {
               </div>
 
               <div className="formInput">
-                <label>Town</label>
+                <label>Town*</label>
                 <input
                   type="text"
                   value={town}
@@ -134,7 +149,7 @@ const Addsupplier = () => {
               </div>
 
               <div className="formInput">
-                <label>Country</label>
+                <label>Country*</label>
                 <input
                   type="text"
                   value={country}
@@ -145,7 +160,7 @@ const Addsupplier = () => {
               </div>
 
               <div className="formInput">
-                <label>Return Term</label>
+                <label>Return Term*</label>
                 <input
                   type="text"
                   value={retterm}
@@ -156,7 +171,7 @@ const Addsupplier = () => {
               </div>
 
               <div className="formInput">
-                <label>Delivery Term</label>
+                <label>Delivery Term*</label>
                 <input
                   type="text"
                   value={delterm}
