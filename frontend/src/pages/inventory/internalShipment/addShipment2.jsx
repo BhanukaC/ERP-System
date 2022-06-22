@@ -23,32 +23,20 @@ const AddInternalShipmentsPart2 = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-
-    localStorage.setItem("FromWID",fromWID);
-    localStorage.setItem("TOWID",toWID);
-    window.location = "/inventory/internalShipments/add2";
-   
-    // axios
-    //   .post(
-    //     "http://localhost:5000/inventory/internalShipment/add/",
-    //     {
-    //       FromWID: fromWID,
-    //       TOWID: toWID,
-    //       items: items,
-    //     },
-    //     { withCredentials: true, credentials: "include" }
-    //   )
-    //   .then((res) => {
-    //     if (res.data === "Internal Shipment added") {
-    //       alert("Internal Shipment added");
-    //       localStorage.setItem("InternalShipmentCart", JSON.stringify([]));
-    //       window.location = "/inventory/internalShipments/add";
-    //     } else {
-    //       alert("Try again");
-    //     }
-    //   });
+    if(fromWID === " " || toWID === " " )
+    {
+      alert("Fill the required fields");
+    }
+    else if(fromWID===toWID)
+    {
+      alert("Try Again");
+    }
+    else{
+      localStorage.setItem("FromWID",fromWID);
+      localStorage.setItem("TOWID",toWID);
+      window.location = "/inventory/internalShipments/add2";
+    }
   };
-
 
 
   return (
@@ -60,7 +48,7 @@ const AddInternalShipmentsPart2 = () => {
           <h1>Add Internal Shipment</h1>
         </div>
        
-        <div className="bottom">
+        <div className="bottomPart">
           <div className="right">
             <form>
              

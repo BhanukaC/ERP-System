@@ -28,22 +28,18 @@ const ChangeQualityLevel = () => {
     if(
       PID === " " ||
       WID === " " ||
-      qty === " " ||
+      qty <= 0 ||
       qualityLevel === " "
+
       )
       {
         alert("Fill the required fields");
       }
-      if(
-        qty === 0
-      )
-      {
-        alert("Quantity cannot be 0");
-      }
       else{
         if(status===false){
           alert("Try Again");
-        }else{
+        }
+        else{
     axios
       .post(
         "http://localhost:5000/inventory/changeQualityLevel/add",
@@ -89,9 +85,11 @@ const ChangeQualityLevel = () => {
     if (res.data === "we don't have enough stocks") {
       alert("we don't have enough stocks");
       setStatus(false);
+      
     }
     if(res.data ==="We have Stocks") {
       setStatus(true);
+      
     }
   }
 

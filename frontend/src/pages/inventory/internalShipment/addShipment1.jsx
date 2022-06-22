@@ -3,7 +3,7 @@ import { useState,useEffect } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import InventorySidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
 import axios from "axios";
-import { TrapFocus } from "@mui/base";
+
 
 const AddInternalShipmentsPart1 = () => {
   const [PID, setPID] = useState(0);
