@@ -50,10 +50,10 @@ const AddCustomerDeliveryAddress = () => {
     }
   };
 
-  const checkSupplier = async (val) => {
+  const checkCustomer = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/sales/Customer/deliveryAddress/getSingle/" + val,
+        "http://localhost:5000/sales/Customer/getSingle/" + val,
         {
           withCredentials: true,
           credentials: "include",
@@ -83,7 +83,7 @@ const AddCustomerDeliveryAddress = () => {
                   value={CID}
                   onChange={(e) => {
                     setCID(e.target.value);
-                    checkSupplier(e.target.value);
+                    checkCustomer(e.target.value);
                   }}
                 />
               </div>

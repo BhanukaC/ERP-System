@@ -16,7 +16,12 @@ const AddCustomerContactNumber = () => {
         contactNumber === ""
     ) {
       alert("Please fill all required fields");
-    } else {
+    }
+    else if( contactNumber.length!=10)
+    {
+      alert("Please Enter a Valid Contact Number");
+    }
+     else {
       let data = {
         CID: CID,
         contactNumber: contactNumber,

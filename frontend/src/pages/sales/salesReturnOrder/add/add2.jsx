@@ -18,7 +18,7 @@ const AddSalesReturnOrderPage2 = () => {
 
   const submitForm = async(e) => {
     e.preventDefault();
-    let stat=false;
+
   
     setQty(parseInt(qty));
     if (qty > 0) {
@@ -27,6 +27,7 @@ const AddSalesReturnOrderPage2 = () => {
         for (let i = 0; i < list.length; i++) {
           if (list[i].PID === PID) {
             list[i].qty = parseInt(list[i].qty) + parseInt(qty);
+
             status = true;
           }
         }
@@ -90,14 +91,14 @@ const AddSalesReturnOrderPage2 = () => {
      }
      )
      .then((res)=>{
-      if(res.data==="sales order added"){
-        alert("Sales Order Added");
+      if(res.data==="sales Return order added"){
+        alert("Sales Return Order Added");
         localStorage.setItem("CID","");
         localStorage.setItem("CDAID","");
         localStorage.setItem("CCID","");
         localStorage.setItem("WID","");
         localStorage.setItem("reason","");
-        localStorage.setItem("SalesOrderID","");
+        localStorage.setItem("salesOrderID","");
         window.location = "/sales/salesReturnOrder/add";
       }else{
         alert("Try Again");
@@ -111,8 +112,8 @@ const AddSalesReturnOrderPage2 = () => {
     let cdaid=localStorage.getItem("CDAID");
     let ccid=localStorage.getItem("CCID");
     let wid=localStorage.getItem("WID");
-    let reason=localStorage.getItem("Reaon");
-    let salesOrderID=localStorage.getItem("SalesOrderID");
+    let reason=localStorage.getItem("reason");
+    let salesOrderID=localStorage.getItem("salesOrderID");
     
    if(cid ===null || cdaid===null || ccid===null || wid===null || reason===null || salesOrderID===null){
     window.location = "/sales/salesReturnOrder/add";
