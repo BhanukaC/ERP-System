@@ -36,6 +36,7 @@ import AddCustomerContactNumber from "./pages/sales/customerContactNumber/add/ad
 import EditCustomerContactNumber from "./pages/sales/customerContactNumber/edit/edit";
 import AddCustomerDeliveryAddress from "./pages/sales/customerDeliveryAddress/add/add";
 import ViewCustomerDeliveryAddress from "./pages/sales/customerDeliveryAddress/viewAll/viewAll";
+import EditCustomerDeliveryAddress from "./pages/sales/customerDeliveryAddress/edit/edit";
 import ViewAllCustomerContactDetails from "./pages/sales/customerContactNumber/viewAll/viewAll";
 import AddSalesReturnOrderPage1 from "./pages/sales/salesReturnOrder/add/add";
 import AddSalesReturnOrderPage2 from "./pages/sales/salesReturnOrder/add/add2";
@@ -180,6 +181,7 @@ function App() {
               </Route>
               <Route path="customerDeliveryAddress">
                 <Route path="add" element={<AddCustomerDeliveryAddress />} />
+                <Route path="edit/:CDAID" element={<EditCustomerDeliveryAddress />} />
                 <Route path="viewAll" element={<ViewCustomerDeliveryAddress />} />
                 <Route path="viewAll/:CID" element={<ViewCustomerDeliveryAddress />} />
               </Route>

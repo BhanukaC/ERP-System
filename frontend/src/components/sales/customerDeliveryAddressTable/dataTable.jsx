@@ -39,16 +39,33 @@ const Datatable = (props) => {
       });
   }, [""]);
 
-  
+  const actionColumn = [
+    {
+      field: "action",
+      headerName: "Action",
+      width: 100,
+      renderCell: (params) => {
+        const reLink2 = "/sales/customerDeliveryAddress/edit/" + params.row.CDAID;
+        return (
+          <div className="cellAction">
+            <Link to={reLink2} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Edit</div>
+            </Link>
+          </div>
+        );
+      },
+    },
+  ];
+
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        All Delivery Addresses For Customer (CID-{CID})
+        All Customer Delivery Addresses For Customer(CID-{CID})
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns}
+        columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         components={{ Toolbar: GridToolbar }}
@@ -62,5 +79,7 @@ const Datatable = (props) => {
     </div>
   );
 };
+
+
 
 export default Datatable;

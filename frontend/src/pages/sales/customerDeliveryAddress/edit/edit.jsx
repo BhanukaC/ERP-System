@@ -5,49 +5,57 @@ import Sidebar from "../../../../components/sales/sales-sidebar/sales-sidebar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const EditCustomerContactNumber = () => {
+const EditCustomerDeliveryAddress = () => {
     const [CID, setCID] = useState("");
-    const [contactNumber, setContactNumber] = useState("");
+    const [no, setNo] = useState("");
+    const [street, setStreet] = useState("");
+    const [town, setTown] = useState("");
     
 
-  const { CCID } = useParams();
-  console.log(CCID);
+  const { CDAID } = useParams();
+  console.log(CDAID);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/sales/Customer/contactNumber/getSingle/" + CCID, {
+      .get("http://localhost:5000/sales/Customer/deliveryAddress/getSingle/" + CDAID, {
         withCredentials: true,
         credentials: "include",
       })
       .then((res) => {
         setCID(res.data[0].CID);
-        setContactNumber(res.data[0].contactNumber);
+        setNo(res.data[0].no);
+        setStreet(res.data[0].street);
+        setTown(res.data[0].town);
       });
   }, [""]);
 
   const submitForm = (e) => {
     e.preventDefault();
     if (
-        contactNumber === "" ||
-        CID === ""
+        CID === "" ||
+        no === "" ||
+        street === "" ||
+        town === "" 
      ) 
      {
       alert("Please fill all required fields");
     } else {
       let data = {
-        contactNumber:contactNumber,
         CID:CID,
+        no:no,
+        street:street,
+        town:town,
             
       };
       axios
-      .put("http://localhost:5000/sales/Customer/contactNumber/update/" + CID, data, {
+      .put("http://localhost:5000/sales/Customer/deliveryAddress/update/" + CID, data, {
         withCredentials: true,
         credentials: "include",
       })
       
       .then((res) => {
-          if (res.data === "Customer Contact Number updated") {
-            alert("Customer Contact Number updated");
+          if (res.data === "Customer Delivery Address updated") {
+            alert("Customer Delivery Address updated");
           } else {
             alert("Sorry,Try again");
           }
@@ -62,7 +70,7 @@ const EditCustomerContactNumber = () => {
       <div className="newContainer">
         <Navbar />
         <div className="topPart">
-          <h1>Update Customer Contact Number</h1>
+          <h1>Update Customer Delivery Address</h1>
         </div>
         <div className="bottomPart">
           <div className="right">
@@ -78,16 +86,35 @@ const EditCustomerContactNumber = () => {
                 />
               </div>
               <div className="formInput">
-                <label>Contact Number</label>
+                <label>No</label>
                 <input
                   type="text"
-                  value={contactNumber}
+                  value={no}
                   onChange={(e) => {
-                    setContactNumber(e.target.value);
+                    setNo(e.target.value);
                   }}
                 />
               </div>
-              
+              <div className="formInput">
+                <label>Street</label>
+                <input
+                  type="text"
+                  value={street}
+                  onChange={(e) => {
+                    setStreet(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="formInput">
+                <label>Town</label>
+                <input
+                  type="text"
+                  value={town}
+                  onChange={(e) => {
+                    setTown(e.target.value);
+                  }}
+                />
+              </div>
 
               <div className="break"></div>
               <button onClick={submitForm}>Update</button>
@@ -99,4 +126,4 @@ const EditCustomerContactNumber = () => {
   );
 };
 
-export default EditCustomerContactNumber;
+export default EditCustomerDeliveryAddress;
