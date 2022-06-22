@@ -3,10 +3,12 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 
 const userColumns = [
   { field: "salesOrderID", headerName: "salesOrderID", width: 100 },
   { field: "CID", headerName: "CID", width: 50 },
+  { field: "orderDates", headerName: "Order Date", width: 150 },
   { field: "WID", headerName: "WID", width: 120 },
   { field: "CDAID", headerName: "CDAID", width: 120 },
   { field: "CCID", headerName: "CCID", width: 120 },
@@ -29,6 +31,15 @@ const DataTable1 = () => {
           return { id: d.salesOrderID, ...d };
         });
         setData(dt);
+
+        let dtt = res.data.map((d) => {
+          return {
+            id: d.salesOrderID,
+            orderDates: moment(d.orderDates).add(1, "days").utc().format("YYYY/MM/DD"),
+            ...d,
+          };
+        });
+        setData(dtt);
         
       });
   }, [""]);

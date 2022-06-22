@@ -3,6 +3,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 
 const userColumns = [
   { field: "salesReturnOrderID", headerName: "salesReturnOrderID", width: 150 },
@@ -10,6 +11,8 @@ const userColumns = [
   { field: "CDAID", headerName: "CDAID", width: 120 },
   { field: "CCID", headerName: "CCID", width: 120 },
   { field: "WID", headerName: "WID", width: 120 },
+  { field: "initiateDate1", headerName: "Initiate Date", width: 120  },
+  { field: "finishDates", headerName: "Finish Date", width: 120  },
   { field: "reason", headerName: "reason", width: 120  },
   { field: "salesOrderID", headerName: "salesOrderID" },
  
@@ -30,6 +33,16 @@ const DataTable1 = () => {
           return { id: d.salesReturnOrderID, ...d };
         });
         setData(dt);
+
+        let dtt = res.data.map((d) => {
+          return {
+            id: d.salesReturnOrderID,
+            initiateDate1: moment(d.initiateDate1).add(1, "days").utc().format("YYYY/MM/DD"),
+            finishDates: moment(d.finishDates).add(1, "days").utc().format("YYYY/MM/DD"),
+            ...d,
+          };
+        });
+        setData(dtt);
         
       });
   }, [""]);
