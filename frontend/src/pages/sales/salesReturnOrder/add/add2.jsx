@@ -142,6 +142,7 @@ const AddSalesReturnOrderPage2 = () => {
                 <label>Product ID</label>
                 <input
                   type="number"
+                  min={0}
                   value={PID}
                   onChange={(e) => {
                     setPID(e.target.value);
@@ -158,6 +159,7 @@ const AddSalesReturnOrderPage2 = () => {
                 <label>Quantity</label>
                 <input
                   type="number"
+                  min={0}
                   value={qty}
                   onChange={(e) => {
                     setQty(e.target.value);

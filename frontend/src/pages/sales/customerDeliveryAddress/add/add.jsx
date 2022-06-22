@@ -80,6 +80,7 @@ const AddCustomerDeliveryAddress = () => {
                 <label>Customer ID</label>
                 <input
                   type="number"
+                  min={0}
                   value={CID}
                   onChange={(e) => {
                     setCID(e.target.value);
