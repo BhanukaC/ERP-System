@@ -31,21 +31,11 @@ const DataTable1 = () => {
        
         let dt = res.data.map((d) => {
           return { id: d.salesReturnOrderID,
-            initiateDate1: moment(d.initiateDate1).add(1, "days").utc().format("YYYY/MM/DD"),
-            finishDates: moment(d.finishDates).add(1, "days").utc().format("YYYY/MM/DD"), ...d };
+            initiateDate1: moment(d.initiateDate).add(1, "days").utc().format("YYYY/MM/DD"),
+            finishDates: moment(d.finishDate).add(1, "days").utc().format("YYYY/MM/DD"), ...d };
         });
         setData(dt);
 
-        // let dtt = res.data.map((d) => {
-        //   return {
-        //     id: d.salesReturnOrderID,
-        //     initiateDate1: moment(d.initiateDate1).add(1, "days").utc().format("YYYY/MM/DD"),
-        //     finishDates: moment(d.finishDates).add(1, "days").utc().format("YYYY/MM/DD"),
-        //     ...d,
-        //   };
-        // });
-        // setData(dtt);
-        
       });
   }, [""]);
 

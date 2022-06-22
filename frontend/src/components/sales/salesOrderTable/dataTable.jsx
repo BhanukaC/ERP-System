@@ -30,8 +30,8 @@ const DataTable1 = () => {
        
         let dt = res.data.map((d) => {
           return { id: d.salesOrderID, 
-            orderDates: moment(d.orderDates).add(1, "days").utc().format("YYYY/MM/DD"),
-            deliveredDates: moment(d.deliveredDates).add(1, "days").utc().format("YYYY/MM/DD"),
+            orderDates: moment(d.orderDate).add(1, "days").utc().format("YYYY/MM/DD"),
+            deliveredDates: moment(d.deliveredDate).add(1, "days").utc().format("YYYY/MM/DD"),
             ...d };
         });
         setData(dt);
