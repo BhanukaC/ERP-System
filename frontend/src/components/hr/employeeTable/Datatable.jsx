@@ -14,13 +14,18 @@ const userColumns = [
   { field: "accountNo", headerName: "Account No" },
   { field: "branchCode", headerName: "Branch Code" },
   { field: "branchName", headerName: "Branch Name" },
-  { field: "NIC", headerName: "NIC" },
-  { field: "passportNo", headerName: "Passport No" },
+  { field: "NIC", headerName: "NIC", width: 130 },
+  { field: "passportNo", headerName: "Passport No", width: 130 },
   { field: "gender", headerName: "Gender" },
   { field: "designation", headerName: "Designation" },
   { field: "department", headerName: "Department" },
   { field: "basicSalary", headerName: "Basic Salary" },
   { field: "dailyWage", headerName: "Daily Wage" },
+  { field: "contactNumber", headerName: "contact Number", width: 120 },
+  { field: "email", headerName: "Email", width: 170 },
+  { field: "no", headerName: "No" },
+  { field: "street", headerName: "Street" },
+  { field: "town", headerName: "Town" },
 ];
 
 const salaryButton = [

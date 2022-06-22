@@ -5,8 +5,8 @@ const query = require("../helpers/mysqlPromise");
 
 //Employee-add,update,getone,getAll
 exports.employeeAddController = async (req, res) => {
-    const { DOB, fName, lName, bankName, accountNo, branchCode, branchName, NIC, passportNo, gender, designation, department, basicSalary, dailyWage } = req.body;
-    db.query("insert into Employee(DOB,fName,lName,bankName,accountNo,branchCode,branchName,NIC,passportNo,gender,designation,department,basicSalary,dailyWage) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [DOB, fName, lName, bankName, accountNo, branchCode, branchName, NIC, passportNo, gender, designation, department, basicSalary, dailyWage], (err, result) => {
+    const { DOB, fName, lName, bankName, accountNo, branchCode, branchName, NIC, passportNo, gender, designation, department, basicSalary, dailyWage, contactNumber, email, no, street, town } = req.body;
+    db.query("insert into Employee(DOB,fName,lName,bankName,accountNo,branchCode,branchName,NIC,passportNo,gender,designation,department,basicSalary,dailyWage,contactNumber, email, no, street, town) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [DOB, fName, lName, bankName, accountNo, branchCode, branchName, NIC, passportNo, gender, designation, department, basicSalary, dailyWage, contactNumber, email, no, street, town], (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
@@ -22,8 +22,8 @@ exports.employeeAddController = async (req, res) => {
 
 exports.employeeUpdateController = async (req, res) => {
     const id = req.params.id;
-    const { DOB, fName, lName, bankName, accountNo, branchCode, branchName, NIC, passportNo, gender, designation, department, basicSalary, dailyWage } = req.body;
-    db.query("update Employee set DOB=?,fName=?,lName=?,bankName=?,accountNo=?,branchCode=?,branchName=?,NIC=?,passportNo=?,gender=?,designation=?,department=?,basicSalary=?,dailyWage=? where EID=?", [DOB, fName, lName, bankName, accountNo, branchCode, branchName, NIC, passportNo, gender, designation, department, basicSalary, dailyWage, id], (err, result) => {
+    const { DOB, fName, lName, bankName, accountNo, branchCode, branchName, NIC, passportNo, gender, designation, department, basicSalary, dailyWage, contactNumber, email, no, street, town } = req.body;
+    db.query("update Employee set DOB=?,fName=?,lName=?,bankName=?,accountNo=?,branchCode=?,branchName=?,NIC=?,passportNo=?,gender=?,designation=?,department=?,basicSalary=?,dailyWage=?,contactNumber=?,email=?,no=?,street=?,town=? where EID=?", [DOB, fName, lName, bankName, accountNo, branchCode, branchName, NIC, passportNo, gender, designation, department, basicSalary, dailyWage, contactNumber, email, no, street, town, id], (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
