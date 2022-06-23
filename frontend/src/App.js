@@ -1,8 +1,5 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
-import List from "./pages/list/List";
-import Single from "./pages/single/Single";
-import New from "./pages/new/new";
 import AddEmployee from "./pages/hr/employeee/add/add"
 
 import AddProduct from "./pages/purchase/add_product/add_product";
@@ -47,6 +44,9 @@ import ViewAllOtRecordForEmployee from "./pages/hr/otRecord/viewAllForEmployee/v
 import AddAdvance from "./pages/hr/advance/add/add";
 import ViewAllAdvance from "./pages/hr/advance/viewAll/viewAll";
 import ViewAllAdvanceForEmployee from "./pages/hr/advance/viewAllForEmployee/viewAll";
+import CalculateSalary from "./pages/hr/salary/calculate/calculate";
+import ViewAllSalaries from "./pages/hr/salary/viewAll/viewAll";
+import ViewAllSalariesForEmployee from "./pages/hr/salary/viewAllForEmployee/viewAll";
 
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -59,11 +59,19 @@ import { DarkModeContext } from "./context/darkModeContext";
 import AddUser from "./pages/admin/adduser/adduser";
 import ViewAllUsers from "./pages/admin/viewAll/viewAll";
 import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
+
 import ViewAllActivity from "./pages/admin/viewactivity/viewactivity";
 import AddWarehouse from "./pages/admin/addwarehouse/addwarehouse";
 import EditUserDetails from "./pages/admin/edituser/edituser";
 import ViewAccounts from "./pages/finance/accounts";
 import SetDiscount from "./pages/admin/setdiscount/setdiscount";
+
+import user from "./auth";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import ProtectedRouteUser from "./components/ProtectedRoute/ProtectedRouteUser";
+import LogOut from "./pages/logout/logout";
+import Profile from "./pages/profile/profile";
+
 
 
 function App() {
@@ -74,12 +82,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
+            <Route index element={<Login />} />
+            <Route path="logout" element={<LogOut />} />
+            <Route path="profile" element={<ProtectedRouteUser><Profile /></ProtectedRouteUser>} />
+
 
 
             <Route path="inventory">
-              <Route index element={<InventoryDashboard />} />
+              <Route index element={<ProtectedRoute level={4}><InventoryDashboard /></ProtectedRoute>} />
               <Route path="changeQualityLevel" element={<ChangeQualityLevel />} />
               <Route path="warehouse">
                 <Route path="warehousedetails" element={<WarehouseDetails />} />
@@ -99,7 +109,7 @@ function App() {
             </Route>
 
             <Route path="purchase">
-              <Route index element={<Purchasehome />} />
+              <Route index element={<ProtectedRoute level={3}><Purchasehome /></ProtectedRoute>} />
               <Route path="product">
                 <Route path="add" element={<AddProduct />} />
                 <Route path="addcat" element={<AddCategory />} />
@@ -113,36 +123,46 @@ function App() {
             </Route>
 
             <Route path="hr">
-              <Route index element={<AddEmployee />} />
+              <Route index element={<ProtectedRoute level={2}><AddEmployee /></ProtectedRoute>} />
               <Route path="employee">
-                <Route path="add" element={<AddEmployee />} />
-                <Route path="viewall" element={<ViewAllEmployees />} />
-                <Route path="edit/:EID" element={<EditEmployee />} />
+                <Route path="add" element={<ProtectedRoute level={2}><AddEmployee /></ProtectedRoute>} />
+                <Route path="viewall" element={<ProtectedRoute level={2}><ViewAllEmployees /></ProtectedRoute>} />
+                <Route path="edit/:EID" element={<ProtectedRoute level={2}><EditEmployee /></ProtectedRoute>} />
               </Route>
               <Route path="dependent">
-                <Route path="add" element={<AddDependent />} />
-                <Route path="viewall/:EID" element={<ViewAllDependents />} />
-                <Route path="edit/:DID" element={<EditDependent />} />
+                <Route path="add" element={<ProtectedRoute level={2}><AddDependent /></ProtectedRoute>} />
+                <Route path="viewall/:EID" element={<ProtectedRoute level={2}><ViewAllDependents /></ProtectedRoute>} />
+                <Route path="edit/:DID" element={<ProtectedRoute level={2}><EditDependent /></ProtectedRoute>} />
               </Route>
               <Route path="otType">
-                <Route path="add" element={<AddOtType />} />
-                <Route path="viewall/" element={<ViewAllOtTypes />} />
-                <Route path="edit/:otID" element={<EditOtType />} />
+                <Route path="add" element={<ProtectedRoute level={2}><AddOtType /></ProtectedRoute>} />
+                <Route path="viewall/" element={<ProtectedRoute level={2}><ViewAllOtTypes /></ProtectedRoute>} />
+                <Route path="edit/:otID" element={<ProtectedRoute level={2}><EditOtType /></ProtectedRoute>} />
               </Route>
               <Route path="otRecord">
-                <Route path="add" element={<AddOtRecord />} />
-                <Route path="viewall/" element={<ViewAllOtRecords />} />
-                <Route path="viewall/:EID" element={<ViewAllOtRecordForEmployee />} />
+                <Route path="add" element={<ProtectedRoute level={2}><AddOtRecord /></ProtectedRoute>} />
+                <Route path="viewall/" element={<ProtectedRoute level={2}><ViewAllOtRecords /></ProtectedRoute>} />
+                <Route path="viewall/:EID" element={<ProtectedRoute level={2}><ViewAllOtRecordForEmployee /></ProtectedRoute>} />
               </Route>
               <Route path="advance">
-                <Route path="add" element={<AddAdvance />} />
-                <Route path="viewall/" element={<ViewAllAdvance />} />
-                <Route path="viewall/:EID" element={<ViewAllAdvanceForEmployee />} />
+                <Route path="add" element={<ProtectedRoute level={2}><AddAdvance /></ProtectedRoute>} />
+                <Route path="viewall/" element={<ProtectedRoute level={2}><ViewAllAdvance /></ProtectedRoute>} />
+                <Route path="viewall/:EID" element={<ProtectedRoute level={2}><ViewAllAdvanceForEmployee /></ProtectedRoute>} />
+              </Route>
+              <Route path="salary">
+                <Route path="calculate" element={<ProtectedRoute level={2}>< CalculateSalary /></ProtectedRoute>} />
+                <Route path="viewall/" element={<ProtectedRoute level={2}><ViewAllSalaries /></ProtectedRoute>} />
+                <Route path="viewall/:EID" element={<ProtectedRoute level={2}>< ViewAllSalariesForEmployee /></ProtectedRoute>} />
+              </Route>
+              <Route path="attendance">
+                {/* <Route path="calculate" element={<ProtectedRoute level={2}>< CalculateSalary /></ProtectedRoute>} /> */}
+                {/* <Route path="viewall/" element={<ProtectedRoute level={2}><ViewAllSalaries /></ProtectedRoute>} />
+                <Route path="viewall/:EID" element={<ProtectedRoute level={2}>< ViewAllSalariesForEmployee /></ProtectedRoute>} /> */}
               </Route>
             </Route>
 
             <Route path="sales">
-              <Route index element={<AddCustomer />} />
+              <Route index element={<ProtectedRoute level={1}><AddCustomer /></ProtectedRoute>} />
               <Route path="customer">
                 <Route path="add" element={<AddCustomer />} />
                 <Route path="viewAll" element={<ViewAllCustomer />} />
@@ -154,7 +174,8 @@ function App() {
             </Route>
 
             <Route path="admin">
-              <Route index element={<AddUser />} />
+
+              <Route index element={<ProtectedRoute level={0}><AddUser /></ProtectedRoute>} />
               <Route path="adduser" element={<AddUser />} />
               <Route path="viewAll" element={<ViewAllUsers />} />
               <Route path="viewwarehouses" element={<ViewAllWarehouses />} />

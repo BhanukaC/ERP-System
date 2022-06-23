@@ -9,7 +9,7 @@ router.post("/register", [validateToken, validAccess], userRegisterController);
 router.put("/update/:id", [validateToken, validAccess], userUpdateController);
 router.put("/passwordReset/:id", [validateToken, validAccess], resetPasswordForUser);
 router.delete("/delete/:id", [validateToken, validAccess], userDeleteController);
-router.get("/getUserData/:id", [validateToken, validAccess], getSingleUserController);
+router.get("/getUserData/:id", [validateToken], getSingleUserController);
 router.get("/getAllUserData", [validateToken, validAccess], getAllUserController);
 router.get("/getAllActivityData", [validateToken, validAccess], getAllActivityController);
 router.get("/getActivtyData/:id", [validateToken, validAccess], getSingleActivityController);

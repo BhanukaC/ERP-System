@@ -1,0 +1,112 @@
+<html>
+<head>
+<style>
+table{
+width: 100%;
+border-collapse:collapse;
+border: 1px solid black;
+}
+table td{line-height:25px;padding-left:15px;}
+table th{background-color:#fbc403; color:#363636;}
+</style>
+
+</head>
+<body>
+<table border="1">
+<tr height="100px" style="background-color:#363636;color:#ffffff;text-align:center;font-size:24px; font-weight:600;">
+<td colspan='4'> Company</td>
+</tr>
+<tr>
+<th>SID:</th>
+<td>{{SID}}</td>
+<th>Name</th>
+<td>{{fName}} {{lName}}</td>
+</tr>
+<!-----2 row--->
+<tr>
+<th>Bank</th>
+<td>{{bankName}}</td>
+<th>Bank A/c No.</th>
+<td>{{accountNo}}</td>
+</tr>
+<!------3 row---->
+<tr>
+<th>DOB</th>
+<td>{{DOB}}</td>
+<th>Contact Number</th>
+<td>{{contactNumber}}</td>
+</tr>
+<!------4 row---->
+<tr>
+<th>EID</th>
+<td>{{EID}}</td>
+<th>NIC</th>
+<td>{{NIC}}</td>
+</tr>
+<!------5 row---->
+<tr>
+<th>Year</th>
+<td>{{year}}</td>
+<th>month</th>
+<td>{{month}}</td>
+</tr>
+<!------6 row---->
+<tr>
+<th>Department</th>
+<td>{{department}}</td>
+<th>Designation</th>
+<td>{{designation}}</td>
+</tr>
+</table>
+<tr></tr>
+<br/>
+<table border="1">
+<tr>
+<th >Earnings</th>
+<th>Amount</th>
+<th >Deductions</th>
+<th>Amount</th>
+</tr>
+<tr>
+<td>Basic</td>
+<td>{{basicSalary}}</td>
+<td>EPF</td>
+<td>{{EPF}}</td>
+</tr>
+<tr>
+<td>Add Insentiive</td>
+<td>{{addInsentiive}}</td>
+<td>Tax</td>
+<td>{{tax}}</td>
+</tr>
+<tr>
+<td>dataAllowance</td>
+<td>{{dataAllowance}}</td>
+<td>Total Advance Payments</td>
+<td>{{totAdvance}}</td>
+</tr>
+<tr>
+<td>Travelling Allowance</td>
+<td>{{travellingAllowance}}</td>
+</tr>
+<tr>
+<td>Total OT</td>
+<td>{{totOT}}</td>
+</tr>
+
+
+<tr>
+<th>Gross Earnings</th>
+<td>{{grossEarn}}</td>
+<th >Gross Deductions</th>
+<td>{{grossDeduct}}</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>NET PAY</strong></td>
+<td>{{netSalary}}</td>
+<td></td>
+</tr>
+</table>
+</body>
+</html>

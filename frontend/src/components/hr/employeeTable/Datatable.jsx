@@ -14,14 +14,40 @@ const userColumns = [
   { field: "accountNo", headerName: "Account No" },
   { field: "branchCode", headerName: "Branch Code" },
   { field: "branchName", headerName: "Branch Name" },
-  { field: "NIC", headerName: "NIC" },
-  { field: "passportNo", headerName: "Passport No" },
+  { field: "NIC", headerName: "NIC", width: 130 },
+  { field: "passportNo", headerName: "Passport No", width: 130 },
   { field: "gender", headerName: "Gender" },
   { field: "designation", headerName: "Designation" },
   { field: "department", headerName: "Department" },
   { field: "basicSalary", headerName: "Basic Salary" },
   { field: "dailyWage", headerName: "Daily Wage" },
+  { field: "contactNumber", headerName: "contact Number", width: 120 },
+  { field: "email", headerName: "Email", width: 170 },
+  { field: "no", headerName: "No" },
+  { field: "street", headerName: "Street" },
+  { field: "town", headerName: "Town" },
 ];
+
+const salaryButton = [
+  {
+    field: "ViewSalaries",
+    headerName: "",
+    renderCell: getViewSalaryButton,
+    width: 150,
+  },
+];
+function getViewSalaryButton(params) {
+  const reLink5 = "/hr/salary/viewall/" + params.row.EID;
+  if (params.row.dailyWage === null) {
+    return (
+      <div className="cellAction">
+        <Link to={reLink5} style={{ textDecoration: "none" }}>
+          <div className="viewButton">View All Salaries</div>
+        </Link>
+      </div>
+    );
+  }
+}
 
 const Datatable = () => {
   const [data, setData] = useState({});
@@ -54,12 +80,13 @@ const Datatable = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 600,
+      width: 510,
       renderCell: (params) => {
         const reLink = "/hr/employee/edit/" + params.row.EID;
         const reLink2 = "/hr/dependent/viewall/" + params.row.EID;
         const reLink3 = "/hr/OtRecord/viewall/" + params.row.EID;
         const reLink4 = "/hr/advance/viewall/" + params.row.EID;
+
         return (
           <div className="cellAction">
             <Link to={reLink} style={{ textDecoration: "none" }}>
@@ -74,6 +101,7 @@ const Datatable = () => {
             <Link to={reLink4} style={{ textDecoration: "none" }}>
               <div className="viewButton">View Advance Records</div>
             </Link>
+
             {/* <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.CID)}
@@ -91,7 +119,7 @@ const Datatable = () => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={userColumns.concat(actionColumn).concat(salaryButton)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         components={{ Toolbar: GridToolbar }}

@@ -14,7 +14,9 @@ exports.userRegisterController = async (req, res) => {
 
                 mailer.sendMail(
                     {
-                        from: 'info@codewithx.com',
+
+
+                        from: 'info@codewithx.com', // sender address
                         to: email, // list of receivers
                         subject: "Your account Password", // Subject line
                         text: "Hi " + username + ",Your account password is " + password, // plain text body

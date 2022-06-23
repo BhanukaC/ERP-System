@@ -4,57 +4,47 @@ import Navbar from "../../../../components/navbar/Navbar";
 import Sidebar from "../../../../components/hr/sidebar/Sidebar";
 import axios from "axios";
 
-const AddOtRecord = () => {
+const AddAttendance = () => {
   const [EID, setEID] = useState("");
   const [NIC, setNIC] = useState("");
-  const [otType, setOtType] = useState("");
-  const [hours, setHours] = useState(0);
-  const [OtTypes, setOtTypes] = useState({});
-  const [EIDStatus, setEIDStatus] = useState(false);
-
-  useEffect(() => {
-    const getOtTypes = async () => {
-      const res = await axios.get("http://localhost:5000/hr/otType/getAll", {
-        withCredentials: true,
-        credentials: "include",
-      });
-      setOtTypes(res.data);
-    };
-    getOtTypes();
-  }, [""]);
+  const [balance, setBalance] = useState(0);
+  const [amount, setAmount] = useState(0);
+  const [color, setColor] = useState("");
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (EID === "" || NIC === "" || otType === "" || hours <= 0) {
+    if (
+      EID === "" ||
+      NIC === "" ||
+      balance < amount ||
+      balance === 0 ||
+      amount === 0
+    ) {
       alert("Please fill all required fields");
     } else {
-      if (!EIDStatus) {
-        alert("EID not Valid");
-      } else {
-        let data = {
-          EID: EID,
-          otID: otType,
-          hours: hours,
-        };
+      let data = {
+        EID: EID,
+        amount: amount,
+      };
 
-        axios
-          .post("http://localhost:5000/hr/ot/add", data, {
-            withCredentials: true,
-            credentials: "include",
-          })
-          .then((res) => {
-            console.log(res);
-            if (res.data === "OT Added") {
-              alert("OT Added");
-              setEID("");
-              setNIC("");
-              setHours(0);
-              setOtType("");
-            } else {
-              alert("Sorry,Try again");
-            }
-          });
-      }
+      axios
+        .post("http://localhost:5000/hr/advance/add", data, {
+          withCredentials: true,
+          credentials: "include",
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data === "Give an advance") {
+            alert("Give an advance");
+            setEID("");
+            setNIC("");
+            setBalance(0);
+            setAmount(0);
+            setColor("");
+          } else {
+            alert("Sorry,Try again");
+          }
+        });
     }
   };
 
@@ -69,10 +59,26 @@ const AddOtRecord = () => {
       );
       if (res.data.length === 0) {
         alert("EID not found");
-        setEIDStatus(false);
       } else {
         setNIC(res.data[0].NIC);
-        setEIDStatus(true);
+      }
+    }
+  };
+
+  const checkBalance = async (EID) => {
+    const res = await axios.get(
+      "http://localhost:5000/hr/advance/balance/" + EID,
+      {
+        withCredentials: true,
+        credentials: "include",
+      }
+    );
+    if (res !== undefined) {
+      setBalance(res.data.amount);
+      if (res.data.amount <= 1000) {
+        setColor("red");
+      } else {
+        setColor("yellow");
       }
     }
   };
@@ -83,7 +89,7 @@ const AddOtRecord = () => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Add OT Record</h1>
+          <h1>Give Advance</h1>
         </div>
         <div className="bottom">
           <div className="right">
@@ -96,6 +102,7 @@ const AddOtRecord = () => {
                   onChange={(e) => {
                     setEID(e.target.value);
                     checkEmployee(e.target.value);
+                    checkBalance(e.target.value);
                   }}
                 />
               </div>
@@ -110,38 +117,27 @@ const AddOtRecord = () => {
                   }}
                 />
               </div>
-
               <div className="formInput">
-                <label>OT Type*</label>
-
-                <select
-                  value={otType}
+                <label>Employee Remaning Balance*</label>
+                <input
+                  type="text"
+                  disabled
+                  value={balance}
                   onChange={(e) => {
-                    setOtType(e.target.value);
+                    setBalance(e.target.value);
                   }}
-                >
-                  <option value="" disabled selected>
-                    select OT Type
-                  </option>
-                  {JSON.stringify(OtTypes) !== "{}"
-                    ? OtTypes.map((ot) => (
-                        <option value={ot.otID} key={ot.otID}>
-                          {ot.type}
-                        </option>
-                      ))
-                    : ""}
-                </select>
+                  style={{ backgroundColor: color }}
+                />
               </div>
 
               <div className="formInput">
-                <label>Hours*</label>
+                <label>Amount*</label>
                 <input
                   type="number"
                   step="any"
-                  min={0}
-                  value={hours}
+                  value={amount}
                   onChange={(e) => {
-                    setHours(e.target.value);
+                    setAmount(e.target.value);
                   }}
                 />
               </div>
@@ -156,4 +152,4 @@ const AddOtRecord = () => {
   );
 };
 
-export default AddOtRecord;
+export default AddAttendance;
