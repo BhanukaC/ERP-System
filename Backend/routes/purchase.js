@@ -5,7 +5,7 @@ const validAccess = require("../middleware/purchaseManager");
 
 
 const { categoryAddController, categoryUpdateController, getSingleCategoryController, getAllCategoryController, subCategoryAddController, subCategoryUpdateController, getSingleSubCategoryController, getAllSubCategoryController, productAddController, productUpdateController, getSingleProductController, getAllProductController, supplierAddController, supplierUpdateController, getSingleSupplierController, getAllSupplierController, supplierContactNumberAddController, supplierContactNumberUpdateController, getSingleSupplierContactNumberController, getAllSupplierContactNumbersController, deleteSupplierContactNumberController, supplierStoreLocationAddController, supplierStoreLocationUpdateController, getSingleSupplierStoreLocationController, getAllSupplierStoreLocationsController, deleteSupplierStoreLocationController, addPurchaseOrderController, getSinglePurchaseOrderController, getAllPurchaseOrderController, getSinglePurchaseOrderDataController } = require("../controllers/purchaseController");
-
+const { getAllWarehouseController } = require("../controllers/inventoryController");
 
 //Category
 router.post("/category/add", [validateToken, validAccess], categoryAddController);
@@ -51,6 +51,9 @@ router.post("/purchaseOrder/add", [validateToken, validAccess], addPurchaseOrder
 router.get("/purchaseOrder/getSingle/:id", [validateToken, validAccess], getSinglePurchaseOrderController);
 router.get("/purchaseOrder/getAll/", [validateToken, validAccess], getAllPurchaseOrderController);
 router.get("/purchaseOrderData/get/:id", [validateToken, validAccess], getSinglePurchaseOrderDataController);
+
+//get All Warehouses
+router.get("/Warehouse/getAll/", [validateToken, validAccess], getAllWarehouseController);
 
 
 module.exports = router;

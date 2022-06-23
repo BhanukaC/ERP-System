@@ -4,7 +4,7 @@ const validateToken = require("../middleware/auth");
 const validAccess = require("../middleware/cashier");
 
 const { customerAddController, customerUpdateController, getSingleCustomerController, getAllCustomerController, customerContactNumberAddController, customerContactNumberUpdateController, getSingleCustomerContactNumberController, getAllCustomerContactNumbersController, deleteCustomerContactNumberController, customerDeliveryAddressAddController, customerDeliveryAddressUpdateController, getSinglecustomerDeliveryAddressController, getAllcustomerDeliveryAddresssController, deletecustomerDeliveryAddressController, addSalesOrderController, getSingleSalesOrderController, getAllSalesOrderController, getSingleSalesOrderDataController, addSalesReturnOrderController, getSingleSalesReturnOrderController, getAllSalesReturnOrderController, getSingleSalesReturnOrderDataController, getProductStocksForWareHouseController } = require("../controllers/saleController");
-
+const { getAllWarehouseController } = require("../controllers/inventoryController");
 
 //Customer
 router.post("/Customer/add", [validateToken, validAccess], customerAddController);
@@ -41,6 +41,9 @@ router.post("/salesReturnOrder/add", [validateToken, validAccess], addSalesRetur
 router.get("/salesReturnOrder/getSingle/:id", [validateToken, validAccess], getSingleSalesReturnOrderController);
 router.get("/salesReturnOrder/getAll/", [validateToken, validAccess], getAllSalesReturnOrderController);
 router.get("/salesReturnOrderData/get/:id", [validateToken, validAccess], getSingleSalesReturnOrderDataController);
+
+//get All Warehouses
+router.get("/Warehouse/getAll/", [validateToken, validAccess], getAllWarehouseController);
 
 
 module.exports = router;
