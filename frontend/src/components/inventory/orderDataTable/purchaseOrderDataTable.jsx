@@ -5,7 +5,7 @@ import axios from "axios";
 
 const userColumns = [
   { field: "ID", headerName: "ID", width: 100 },
-  { field: "purchaseOrderID", headerName: "Purchase Order ID",  width: 200},
+  //{ field: "purchaseOrderID", headerName: "Purchase Order ID",  width: 200},
   { field: "PID", headerName: "Product ID", width: 200 },
   { field: "unitPrice", headerName: "Unit Price", width: 200 },
   { field: "qty", headerName: "Quantity", width: 100 },
@@ -14,11 +14,12 @@ const userColumns = [
 ];
 
 const PurchaseOrderDataTable = (props) => {
+  const purchaseOrderID = props.id;
   const [data, setData] = useState({});
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/inventory/purchaseOrderData/get/"+ props.id,{
+      .get("http://localhost:5000/inventory/purchaseOrderData/get/"+ purchaseOrderID,{
         withCredentials: true,
         credentials: "include",
       })
@@ -33,16 +34,16 @@ const PurchaseOrderDataTable = (props) => {
   }, [""]);
 
   return (
-    <div className="datatable">
-      <div className="datatableTitle">
-        Purchase Order Details
+    <div className="datatable" style={{height:"50%"}}>
+      <div className="dataTableTitle">
+        Purchase Order Details of (Purchase Order ID-{purchaseOrderID})
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
         columns={userColumns}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
         components={{ Toolbar: GridToolbar }}
         componentsProps={{
           toolbar: {

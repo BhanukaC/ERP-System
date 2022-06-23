@@ -1,29 +1,29 @@
 import "../table.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "ID", headerName: "ID",  width: 200},
-  { field: "WID", headerName: "Warehouse ID",  width: 200},
+  { field: "ID", headerName: "ID", width: 100 },
   { field: "PID", headerName: "Product ID", width: 200 },
-  { field: "qty", headerName: "Quantity", width: 200 },
-  { field: "qualityLevel", headerName: "Quality Level", width: 200 },
-
+  { field: "unitPrice", headerName: "Unit Price", width: 200 },
+  { field: "qty", headerName: "Quantity", width: 100 },
+  { field: "discount", headerName: "Discount", width: 100},
+  { field: "netTot", headerName: "Net Total", width: 200},
 ];
 
-const AllStockTable = (props) => {
+const PurchaseReturnOrderDataTable = (props) => {
+  const purchaseReturnOrderID = props.id;
   const [data, setData] = useState({});
-  // console.log("props",props);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/inventory/stockLevel/getAll/", {
+      .get("http://localhost:5000/inventory/purchaseReturnOrderData/get/"+ purchaseReturnOrderID,{
         withCredentials: true,
         credentials: "include",
       })
       .then((res) => {
+        // console.log(res);
         let dt = res.data.map((d) => {
           return { id: d.ID, ...d };
         });
@@ -32,18 +32,17 @@ const AllStockTable = (props) => {
       });
   }, [""]);
 
- 
   return (
-    <div className="datatable">
+    <div className="datatable" style={{height:"50%"}}>
       <div className="dataTableTitle">
-        Stock Details
+        Purchase Return Order Details of (Purchase Return Order ID-{purchaseReturnOrderID})
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
         columns={userColumns}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
         components={{ Toolbar: GridToolbar }}
         componentsProps={{
           toolbar: {
@@ -56,4 +55,4 @@ const AllStockTable = (props) => {
   );
 };
 
-export default AllStockTable;
+export default PurchaseReturnOrderDataTable;

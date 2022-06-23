@@ -1,10 +1,12 @@
-.datatable {
-    height: 600px;
+.table {
+    height: 620px;
     padding: 20px;
+    width: 100%;
     
-    .dataTableTitle{
+    
+    .tableTitle{
       width: 100%;
-      font-size: 26px;
+      font-size: 16px;
       color: gray;
       margin-bottom: 10px;
       display: flex;
@@ -33,13 +35,12 @@
       
     }
   
-  
     .cellAction {
       display: flex;
       align-items: center;
       gap: 15px;
   
-      .viewButtons{
+      .viewButtons {
         padding: 3px 6px;
         border-radius: 7px;
         color: #fff;
@@ -47,16 +48,6 @@
         border: none;
         cursor: pointer;
         background-color: #009900;
-      }
-
-      .editButton{
-        padding: 3px 6px;
-        border-radius: 7px;
-        color: #fff;
-        //border: 1px dotted rgba(0, 0, 139, 0.596);
-        border: none;
-        cursor: pointer;
-        background-color: #0073e6;
       }
       
     }

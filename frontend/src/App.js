@@ -34,14 +34,22 @@ import WarehouseDetails from "./pages/inventory/warehouse/warehouseDetails/wareh
 import StockDetails from "./pages/inventory/warehouse/stockDetails/stockDetails";
 import PurchaseOrderDetails from "./pages/inventory/order/purchaseOrderDetails/purchaseOrderDetails";
 import SalesOrderDetails from "./pages/inventory/order/salesOrderDetails/salesOrderDetails";
-import ReturnOrderDetails from "./pages/inventory/order/returnOrderDetails/returnOrderDetails";
+import ReturnOrderDetails from "./pages/inventory/order/SalesReturnOrderDetails/returnOrderDetails";
+import PurchaseReturnOrderDetails from "./pages/inventory/order/purchaseReturnOrderDetails/purchaseReturnOrderDetails";
 import InventoryDashboard from "./pages/inventory/dashboard/dashboard";
 import PurchaseOrderData from "./pages/inventory/order/orderData/purchaseOrderData";
 import ReturnOrderData from "./pages/inventory/order/orderData/ReturnOrderData";
+import PurchaseReturnOrderData from "./pages/inventory/order/orderData/purchaseReturnOrderData";
 import SalesOrderData from "./pages/inventory/order/orderData/salesOrderData";
 import ChangeQualityLevel from "./pages/inventory/qualityLevel/qualityLevel";
 import EditWarehouseDetails from "./pages/inventory/warehouse/editWarehouseDet/editWarehouseDetails";
-
+import ChangePurchaseOrderStatus from "./pages/inventory/order/purchaseOrderDetails/changePurchaseStatus";
+import AddInternalShipmentsPart1 from "./pages/inventory/internalShipment/addShipment1";
+import AddInternalShipmentsPart2 from "./pages/inventory/internalShipment/addShipment2";
+import ReceiveData from "./pages/inventory/internalShipment/receiveData";
+import ReceiveDetails from "./pages/inventory/internalShipment/receiveDetails";
+import SendData from "./pages/inventory/internalShipment/sendData";
+import SendDetails from "./pages/inventory/internalShipment/sendDetails";
 
 import AddCustomer from "./pages/sales/customer/add/add";
 import EditCustomer from "./pages/sales/customer/edit/edit";
@@ -130,12 +138,35 @@ function App() {
               </Route>
 
               <Route path="order">
-                <Route path="purchaseOrders" element={<PurchaseOrderDetails />} />
-                <Route path="returnOrders" element={<ReturnOrderDetails />} />
-                <Route path="salesOrders" element={<SalesOrderDetails />} />
-                <Route path="purchaseOrderData/:id" element={<PurchaseOrderData />} />
-                <Route path="salesOrderData/:id" element={<SalesOrderData />} />
-                <Route path="returnOrderData/:id" element={<ReturnOrderData />} />
+                <Route path="purchaseOrders" >
+                  <Route index element={<PurchaseOrderDetails />} />
+                  <Route path="changeStatus/:purchaseOrderID" element={<ChangePurchaseOrderStatus />} />
+                  <Route path="orderData/:id" element={<PurchaseOrderData />} />
+                </Route>
+
+                <Route path="returnOrders" >
+                  <Route index element={<ReturnOrderDetails />} />
+                  <Route path="orderData/:id" element={<ReturnOrderData />} />
+                </Route>
+
+                <Route path="purchaseReturnOrders" >
+                  <Route index element={<PurchaseReturnOrderDetails />} />
+                  <Route path="orderData/:id" element={<PurchaseReturnOrderData />} />
+                </Route>
+
+                <Route path="salesOrders" >
+                  <Route index element={<SalesOrderDetails />} />
+                  <Route path="orderData/:id" element={<SalesOrderData />} />
+                </Route>
+              </Route>
+
+              <Route path="internalShipments" >
+                <Route path="add2" element={<AddInternalShipmentsPart1 />} />
+                <Route path="add" element={<AddInternalShipmentsPart2 />} />
+                <Route path="toReceive" element={<ReceiveDetails />} />
+                <Route path="ReceivedShipmentData/:id" element={<ReceiveData />} />
+                <Route path="toSend" element={<SendDetails />} />
+                <Route path="sentShipmentData/:id" element={<SendData />} />
               </Route>
 
             </Route>
