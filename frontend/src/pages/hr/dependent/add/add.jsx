@@ -12,12 +12,12 @@ const AddDependent = () => {
   const [contactNo, setContactNo] = useState("");
   const [relationship, setRelationship] = useState("");
   const [gender, setgender] = useState("");
+  const [EIDStatus, setEIDStatus] = useState(false);
 
   const submitForm = (e) => {
     e.preventDefault();
     if (
       EID === "" ||
-      NIC === "" ||
       dependentName === "" ||
       dob === "" ||
       contactNo === "" ||
@@ -26,34 +26,40 @@ const AddDependent = () => {
     ) {
       alert("Please fill all required fields");
     } else {
-      let data = {
-        EID: EID,
-        name: dependentName,
-        contactNo: contactNo,
-        DOB: dob,
-        gender: gender,
-        relationship: relationship,
-      };
+      if (!EIDStatus) {
+        alert("EID not Valid");
+      } else if (!/^\d{10}$/.test(contactNo)) {
+        alert("Invalid Contact number, must be ten digits !");
+      } else {
+        let data = {
+          EID: EID,
+          name: dependentName,
+          contactNo: contactNo,
+          DOB: dob,
+          gender: gender,
+          relationship: relationship,
+        };
 
-      axios
-        .post("http://localhost:5000/hr/dependent/add", data, {
-          withCredentials: true,
-          credentials: "include",
-        })
-        .then((res) => {
-          if (res.data === "Dependent Added") {
-            alert("Dependent Added");
-            setEID("");
-            setNIC("");
-            setDependentName("");
-            setDob("");
-            setContactNo("");
-            setgender("");
-            setRelationship("");
-          } else {
-            alert("Sorry,Try again");
-          }
-        });
+        axios
+          .post("http://localhost:5000/hr/dependent/add", data, {
+            withCredentials: true,
+            credentials: "include",
+          })
+          .then((res) => {
+            if (res.data === "Dependent Added") {
+              alert("Dependent Added");
+              setEID("");
+              setNIC("");
+              setDependentName("");
+              setDob("");
+              setContactNo("");
+              setgender("");
+              setRelationship("");
+            } else {
+              alert("Sorry,Try again");
+            }
+          });
+      }
     }
   };
 
@@ -68,8 +74,10 @@ const AddDependent = () => {
       );
       if (res.data.length === 0) {
         alert("EID not found");
+        setEIDStatus(false);
       } else {
         setNIC(res.data[0].NIC);
+        setEIDStatus(true);
       }
     }
   };
