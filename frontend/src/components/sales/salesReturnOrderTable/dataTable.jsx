@@ -44,7 +44,7 @@ const DataTable1 = () => {
     {
         field: "action",
         headerName: "Action",
-        width: 200,
+        width: 220,
         renderCell: (params) => {
           const upLink = "/sales/salesReturnOrder/viewAll2/"+params.row.salesReturnOrderID;
           return (

@@ -17,7 +17,7 @@ const AddSalesOrderPart1 = () => {
   useEffect(() => {
     const getWarehouse = async () => {
       const res = await axios.get(
-        "http://localhost:5000/inventory/Warehouse/getAll",
+        "http://localhost:5000/sales/Warehouse/getAll",
         {
           withCredentials: true,
           credentials: "include",
@@ -165,7 +165,7 @@ const AddSalesOrderPart1 = () => {
                   <option value="" disabled selected>
                     Customer Contact Number
                   </option>
-                  {JSON.stringify(contactNumber) !== "{}"
+                  {Array.isArray(contactNumber)
                     ? contactNumber.map((l) => (
                         <option value={l.CCID} key={l.CCID}>
                           {l.contactNumber}
