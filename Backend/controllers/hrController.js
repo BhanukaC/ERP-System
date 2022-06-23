@@ -2,6 +2,9 @@ const db = require("../helpers/db");
 const today = require("../helpers/today");
 const _ = require("underscore");
 const query = require("../helpers/mysqlPromise");
+const mailer = require('../helpers/mailer');
+const hbs = require('nodemailer-handlebars');
+const moment = require('moment');
 
 //Employee-add,update,getone,getAll
 exports.employeeAddController = async (req, res) => {
@@ -482,6 +485,92 @@ exports.calculateSalaryController = async (req, res) => {
                                 if (err) {
                                     res.json({ error: err });
                                     return;
+                                } else {
+
+                                    let SID = response.insertId;
+                                    //salary slip email
+
+                                    mailer.use('compile', hbs({
+                                        viewEngine: {
+                                            extname: '.handlebars',
+                                            layoutsDir: '../Backend/views/',
+                                            defaultLayout: 'salarySlip',
+                                        },
+                                        viewPath: '../Backend/views/'
+                                    }));
+
+                                    db.query("select * from Employee where EID=?", EID, (err, res1) => {
+                                        if (err) {
+                                            res.json({ error: err });
+                                            return;
+                                        } else {
+                                            let fname = res1[0].fName;
+                                            let lName = res1[0].lName;
+                                            let bankName = res1[0].bankName;
+                                            let accountNo = res1[0].accountNo;
+                                            let DOB = moment(res1[0].DOB).add(1, "days").utc().format("YYYY/MM/DD");
+                                            let contactNumber = res1[0].contactNumber;
+                                            let NIC = res1[0].NIC;
+                                            let year = yyyy;
+                                            let month = mm;
+                                            let department = res1[0].department;
+                                            let designation = res1[0].designation;
+                                            let toMail = res1[0].email;
+
+                                            let grossEarn = basicSalary + addInsentiive + dataAllowance + travellingAllowance + totOT;
+                                            let grossDeduct = EPF + tax + totAdvance;
+
+                                            let subject = "Salary Slip for month  " + month + " of " + year + " EID(" + EID + ")";
+
+                                            let mailOptions = {
+                                                from: 'info@codewithx.com', // TODO: email sender
+                                                to: toMail, // TODO: email receiver
+                                                subject: subject,
+                                                template: 'salarySlip',
+                                                context: {
+                                                    SID: SID,
+                                                    fName: fname,
+                                                    lName: lName,
+                                                    bankName: bankName,
+                                                    accountNo: accountNo,
+                                                    EID: EID,
+                                                    NIC: NIC,
+                                                    year: year,
+                                                    month: month,
+                                                    department: department,
+                                                    designation: designation,
+                                                    basicSalary: basicSalary,
+                                                    EPF: EPF,
+                                                    addInsentiive: addInsentiive,
+                                                    tax: tax,
+                                                    dataAllowance: dataAllowance,
+                                                    totAdvance: totAdvance,
+                                                    travellingAllowance: travellingAllowance,
+                                                    totOT: totOT,
+                                                    netSalary: netSalary,
+                                                    grossEarn: grossEarn,
+                                                    grossDeduct: grossDeduct,
+                                                    DOB: DOB,
+                                                    contactNumber: contactNumber
+
+                                                } // send extra values to template
+                                            };
+
+                                            mailer.sendMail(mailOptions, (err, data) => {
+                                                if (err) {
+                                                    console.log(err);
+                                                    return console.log('Error occurs');
+                                                }
+
+
+
+                                            });
+
+
+
+
+                                        }
+                                    })
                                 }
                             });
                         });
