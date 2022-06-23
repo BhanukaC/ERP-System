@@ -172,6 +172,116 @@ exports.purchaseOrderUpdateController = async (req, res) => {
     
 }
 
+// db.query("insert into purchaseOrder(orderDate,total,SID,SSLID,SCID,WID) values(?,?,?,?,?,?)", [today, total, SID, SSLID, SCID, WID], (err, result) => {
+//     if (err) {
+//         res.json({ error: err });
+//     } else {
+
+//         const id = result.insertId;
+//         for (let i = 0; i < products.length; i++) {
+//             try {
+//                 query("insert into purchaseOrderData(PID,purchaseOrderID,unitPrice,qty,discount,netTot) values(?,?,?,?,?,?)", [products[i].PID, id, products[i].unitPrice, products[i].qty, products[i].discount, products[i].netTot]);
+//             } catch (e) {
+//                 res.json({ error: e });
+//             }
+//         }
+//         db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Add a purchase order(purchaseOrderID-" + id + ")"], (err, response) => { });
+
+//         mailer.use('compile', hbs({
+//             viewEngine: {
+//                 extname: '.handlebars',
+//                 layoutsDir: '../Backend/views/',
+//                 defaultLayout: 'purchaseOrder',
+//             },
+//             viewPath: '../Backend/views/'
+//         }));
+
+//         db.query("select * from Supplier where SID=?", [SID], (err, res1) => {
+//             if (err) {
+//                 res.json({ error: err });
+//             } else {
+//                 let toMail = res1[0].email;
+//                 let sname = res1[0].sName;
+//                 let subject = "New Order from company ID-" + id;
+//                 let date = today;
+//                 db.query("select * from SupplierContactNumber where SCID=?", [SCID], (err, res2) => {
+//                     if (err) {
+//                         res.json({ error: err });
+//                     } else {
+//                         let contactNumber = res2[0].contactNumber;
+//                         db.query("select * from SupplierStoreLocation where SSLID=?", [SSLID], (err, res3) => {
+//                             if (err) {
+//                                 res.json({ error: err });
+//                             } else {
+//                                 let Sno = res3[0].no;
+//                                 let Sstreet = res3[0].street;
+//                                 let Stown = res3[0].town;
+//                                 let Scountry = res3[0].country;
+
+//                                 db.query("select * from Warehouse where WID=?", [WID], (err, res4) => {
+//                                     if (err) {
+//                                         res.json({ error: err });
+//                                     } else {
+//                                         let Wno = res4[0].no;
+//                                         let Wstreet = res4[0].street;
+//                                         let Wtown = res4[0].town;
+
+//                                         let mailOptions = {
+//                                             from: 'info@codewithx.com', // TODO: email sender
+//                                             to: toMail, // TODO: email receiver
+//                                             subject: subject,
+//                                             template: 'purchaseOrder',
+//                                             context: {
+//                                                 id: id,
+//                                                 date: date,
+//                                                 Sname: sname,
+//                                                 Sno: Sno, Sstreet: Sstreet, Stown: Stown, Scountry: Scountry,
+//                                                 contactNumber: contactNumber,
+//                                                 Wno: Wno, Wstreet: Wstreet, Wtown: Wtown,
+//                                                 total: total,
+//                                                 items: products,
+
+//                                             } // send extra values to template
+//                                         };
+
+//                                         mailer.sendMail(mailOptions, (err, data) => {
+//                                             if (err) {
+//                                                 console.log(err);
+//                                                 return console.log('Error occurs');
+//                                             }
+
+
+//                                             res.json("purchase order added");
+//                                         });
+
+
+//                                     }
+
+//                                 })
+
+//                             }
+
+//                         })
+
+//                     }
+//                 })
+
+//             }
+
+//         })
+
+//     }
+
+// });
+
+
+
+
+
+
+
+
+
 //get a single sales order
 exports.getSingleSalesOrderController = async (req, res) => {
     const id = req.params.id;
