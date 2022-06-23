@@ -9,6 +9,17 @@ import axios from "axios";
 const SendDetails = () => {
   const [WID, setWID] = useState("");
   const [warehouse, setWarehouse] = useState({});
+  const [town, setTown] =  useState("");
+
+  const getWarehouseName=(val)=>{
+    for(let i=0;i<warehouse.length;i++){
+      console.log(warehouse[i].WID);
+      if(warehouse[i].WID==val){
+        setTown(warehouse[i].town);
+        break;
+      }
+    }
+  }
 
   useEffect(() => {
     const getWarehouse = async () => {
@@ -21,28 +32,15 @@ const SendDetails = () => {
     getWarehouse();
   }, [""]);
 
-  const submitForm = (e) => {
-    e.preventDefault();
-    if(WID === "" )
-      {
-        alert("Fill the required fields");
-      }
-        else{
-          localStorage.setItem("WID",WID);
-          alert("Submitted");
-    }
-  };
-
   return (
     <div className="new">
       <InventorySidebar />
       <div className="newContainer">
         <Navbar />
         <div className="topPart">
-          <h1>Shipments To be Sent</h1>
-        </div>
-        <div className="bottomPart">
         <div className="right">
+        <h1>Shipments To be Sent From {town} / WID-{WID} </h1>
+        <br></br>
             <form>
             <div className="formInput">
                 <label>From</label>
@@ -50,6 +48,7 @@ const SendDetails = () => {
                   value={WID}
                   onChange={(e) => {
                     setWID(e.target.value);
+                    getWarehouseName(e.target.value);
                   }}
                 >
                   <option value="" disabled selected>
@@ -66,12 +65,11 @@ const SendDetails = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Submit</button>
             </form>
           </div>
         </div>
         <div className="bottomPart">
-          <SendTable />
+          <SendTable WID={WID} />
         </div>
         
       </div>

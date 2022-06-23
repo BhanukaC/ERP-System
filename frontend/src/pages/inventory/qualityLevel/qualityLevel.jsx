@@ -8,7 +8,7 @@ const ChangeQualityLevel = () => {
   const [PID, setPID] = useState("");
   const [WID, setWID] = useState("");
   const [qty, setQty] = useState(0);
-  const [qualityLevel, setQualityLevel] = useState("");
+  const [qualityLevel, setQualityLevel] = useState("B");
   const [warehouse, setWarehouse] = useState({});
   const [status, setStatus] = useState(false);
 
@@ -149,16 +149,21 @@ const ChangeQualityLevel = () => {
               </div>
               <div className="formInput">
                 <label>New Quality Level</label>
-                <select
+                <input
+                  type="text"
+                  disabled
+                  value={qualityLevel}
+
+                />
+                {/* <select
                   value={qualityLevel}
                   onChange={(e) => {
                     setQualityLevel(e.target.value);
                   }}
                 >
                   <option value="" disabled selected> select Quality Level </option>
-                  <option value="A">Level A</option>
                   <option value="B">Level B</option>
-                </select>
+                </select> */}
               </div>
               <div className="break"></div>
               <button onClick={submitForm}>Submit</button>

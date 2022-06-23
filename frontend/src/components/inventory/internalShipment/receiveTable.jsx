@@ -8,19 +8,20 @@ import moment from "moment";
 const userColumns = [
   { field: "internalShipmentID", headerName: "Internal Shipment ID",  width: 150},
   { field: "dates", headerName: "Order Date", width: 150 },
-  { field: "FromWID", headerName: "From", width: 100 },
-  { field: "TOWID", headerName: "To", width: 100},
+  { field: "FromWID", headerName: "From Warehouse ID", width: 150 },
+  //{ field: "TOWID", headerName: "To", width: 100},
   { field: "statusMod", headerName: "Status", width: 150 },
   { field: "finishDates", headerName: "Finish Date", width: 150},
  
 ];
 
-const ReceiveTable = () => {
+const ReceiveTable = (props) => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    let ToWID=localStorage.getItem("WID");
-    axios
+    let ToWID=props.WID
+    if(ToWID!==""){
+      axios
       .get("http://localhost:5000/inventory/internalShipment/getAllToReceive/"+ ToWID,{
         withCredentials: true,
         credentials: "include",
@@ -51,7 +52,9 @@ const ReceiveTable = () => {
         setData(dt);
         // console.log(dt);
       });
-  }, [""]);
+    }
+  
+  }, [props.WID]);
 
   const actionColumn = [
     {
@@ -72,9 +75,6 @@ const ReceiveTable = () => {
 
   return (
     <div className="table">
-      <div className="tableTitle">
-        Shipments To 
-      </div>
       <DataGrid
         className="datagrid"
         rows={data}

@@ -1,4 +1,4 @@
-import "./shipment.scss"; 
+import "../form.scss"; 
 import Navbar from "../../../components/navbar/Navbar";
 import InventorySidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
 import ReceiveTable from "../../../components/inventory/internalShipment/receiveTable";
@@ -8,7 +8,20 @@ import axios from "axios";
 
 const ReceiveDetails = () => {
   const [WID, setWID] = useState("");
-  const [warehouse, setWarehouse] = useState({});
+  const [warehouse, setWarehouse] = useState([]);
+  const [town, setTown] =  useState("");
+
+
+  const getWarehouseName=(val)=>{
+    for(let i=0;i<warehouse.length;i++){
+      console.log(warehouse[i].WID);
+      if(warehouse[i].WID==val){
+        setTown(warehouse[i].town);
+        break;
+      }
+    }
+  }
+
 
   useEffect(() => {
     const getWarehouse = async () => {
@@ -19,30 +32,21 @@ const ReceiveDetails = () => {
       setWarehouse(res.data);
     };
     getWarehouse();
-  }, [""]);
 
-  const submitForm = (e) => {
-    e.preventDefault();
-    if(WID === "" )
-      {
-        alert("Fill the required fields");
-      }
-        else{
-          localStorage.setItem("WID",WID);
-          alert("Submitted");
-    }
-  };
+  }, [""]);
 
   return (
     <div className="new">
       <InventorySidebar />
       <div className="newContainer">
         <Navbar />
+        {/* <div className="topPart">
+          <h1>Shipments To be Received to {WID} </h1>
+        </div> */}
         <div className="topPart">
-          <h1>Shipments To be Received</h1>
-        </div>
-        <div className="bottomPart">
         <div className="right">
+        <h1>Shipments To be Received to {town} / WID-{WID} </h1>
+        <br></br>
             <form>
             <div className="formInput">
                 <label>To</label>
@@ -50,6 +54,7 @@ const ReceiveDetails = () => {
                   value={WID}
                   onChange={(e) => {
                     setWID(e.target.value);
+                    getWarehouseName(e.target.value);
                   }}
                 >
                   <option value="" disabled selected>
@@ -66,12 +71,11 @@ const ReceiveDetails = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Submit</button>
             </form>
           </div>
         </div>
         <div className="bottomPart">
-          <ReceiveTable />
+          <ReceiveTable WID={WID} />
         </div>
         
       </div>
