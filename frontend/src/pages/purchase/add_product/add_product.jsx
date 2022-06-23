@@ -1,5 +1,5 @@
 import "./add_product.scss";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
@@ -21,19 +21,82 @@ const AddProduct = () => {
   const [catid, setcatid] = useState("");
   const [subcatid, setsubcatid] = useState("");
 
+  const [catname, setcatname] = useState("");
+  const [subcatname, setsubcatname] = useState("");
 
-  const submitForm = (e) => {
+  const checkCategory = async (val) => {
+    if (val !== "") {
+      const res = await axios.get(
+        "http://localhost:5000/purchase/category/getSingle/" + val,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
+      if (res.data.length === 0) {
+        alert("Category ID is not found");
+        setcatid("");
+      } else {
+        setcatname(res.data[0].categoryName);
+      }
+    }
+  };
+
+  const checksubCategory = async (val) => {
+    if (val !== "") {
+      const res = await axios.get(
+        "http://localhost:5000/purchase/subCategory/getSingle/" + val,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
+      if (res.data.length === 0) {
+        alert("Sub Category ID is not found");
+      } else {
+        setsubcatname(res.data[0].subCategoryName);
+      }
+    }
+  };
+
+  const handlesellp = (value) => {
+    const numberAmount= Number(value).toFixed(2);
+    setsellp(numberAmount)
+  }
+
+  const handlebuyp = (value) => {
+    const numberAmount= Number(value).toFixed(2);
+    setbuyingp(numberAmount)
+  }
+  
+  
+  
+const submitForm = (e) => {
     e.preventDefault();
     if(
       pname === ""||
       sellp===""||
       buyingp===""||
       catid===""||
-      subcatid===""
+      subcatid===""||
+      hsncode===""||
+      eancode===""
+      
     )
+      
     {
-      alert("Please fill the required fields");
+      alert("Please  fill the required fields");
     }
+    else if( hsncode.length!=6)
+    {
+      alert("Please  fill a valid HSN Code");
+    }
+    else if( eancode.length!=13)
+    {
+      alert("Please  fill a valid EAN Code");
+    }
+     
+    
     else{
       axios
       .post(
@@ -65,6 +128,24 @@ const AddProduct = () => {
         console.log(res);
         if(res.data=="product Added"){
           alert("Product added");
+
+          setpname ("");
+          setsellp (0);
+          seteancode ("");
+          setunit ("");
+          sethsncode ("");
+          setshortdep ("");
+          setlongdep ("");
+          setheight (0);
+          setlength (0);
+          setweight (0);
+          setbuyingp (0);
+          setnoitems (0);
+          setcatid ("");
+          setsubcatid ("");
+          setcatname ("");
+          setsubcatname("");
+  
         }else{
           alert("Error");
         }
@@ -72,6 +153,7 @@ const AddProduct = () => {
         //console.log(res.data);
       });
     }
+
     
   };
 
@@ -80,16 +162,16 @@ const AddProduct = () => {
       <Sidebar/>
       <div className="newContainer">
         <Navbar />
-        <div className="top">
+        <div className="topPart">
           <h1>Add Product</h1>
         </div>
-        <div className="bottom">
+        <div className="bottomPart">
           <div className="right">
             <form>
 
               
               <div className="formInput">
-                <label>Product Name</label>
+                <label>Product Name*</label>
                 <input
                   type="text"
                   value={pname}
@@ -100,21 +182,24 @@ const AddProduct = () => {
               </div>
 
               <div className="formInput">
-                <label>Selling Price</label>
+                <label>Selling Price (LKR)*</label>
                 <input
                   type="number"
-                  step="any"
+                  min={0}
+                  step='.01'
+                  onChange={(e) =>handlesellp(e.target.value)} 
                   value={sellp}
-                  onChange={(e) => {
-                    setsellp(e.target.value);
-                  }}
-                />
-              </div>
+                  
+                  
+                   
+                  />
+                 </div>
 
               <div className="formInput">
-                <label>EAN Code</label>
+                <label>EAN Code*</label>
                 <input
-                  type="text"
+                  type="number"
+                  min={0}
                   value={eancode}
                   onChange={(e) => {
                     seteancode(e.target.value);
@@ -134,9 +219,10 @@ const AddProduct = () => {
               </div>
 
               <div className="formInput">
-                <label>HSN Code</label>
+                <label>HSN Code*</label>
                 <input
-                  type="text"
+                  type="number"
+                  min={0}
                   value={hsncode}
                   onChange={(e) => {
                     sethsncode(e.target.value);
@@ -158,7 +244,7 @@ const AddProduct = () => {
               <div className="formInput">
                 <label>Long Description</label>
                 <input
-                  type="text"
+                  type="textarea"
                   value={longdep}
                   onChange={(e) => {
                     setlongdep(e.target.value);
@@ -167,9 +253,10 @@ const AddProduct = () => {
               </div>
 
               <div className="formInput">
-                <label>Height</label>
+                <label>Height(cm)</label>
                 <input
                   type="number"
+                  min={0}
                   step="any"
                   value={height}
                   onChange={(e) => {
@@ -179,9 +266,10 @@ const AddProduct = () => {
               </div>
 
               <div className="formInput">
-                <label>Length</label>
+                <label>Length(cm)</label>
                 <input
                   type="number"
+                  min={0}
                   step="any"
                   value={length}
                   onChange={(e) => {
@@ -191,9 +279,10 @@ const AddProduct = () => {
               </div>
 
               <div className="formInput">
-                <label>Weight</label>
+                <label>Weight(g)</label>
                 <input
                   type="number"
+                  min={0}
                   step="any"
                   value={weight}
                   onChange={(e) => {
@@ -203,53 +292,72 @@ const AddProduct = () => {
               </div>
 
               <div className="formInput">
-                <label>Buying Price</label>
+                <label>Buying Price (LKR)*</label>
                 <input
-                 type="number"
-                 step="any"
+                  type="number"
+                  min={0}
+                  step='.01'
+                  onChange={(e) =>handlebuyp(e.target.value)} 
                   value={buyingp}
-                  onChange={(e) => {
-                    setbuyingp(e.target.value);
-                  }}
-                />
-              </div>
-
-              
-
-              <div className="formInput">
-                <label>Category ID</label>
-                <input
-                  type="text"
-                  value={catid}
-                  onChange={(e) => {
-                    setcatid(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="formInput">
-                <label>Sub Category ID</label>
-                <input
-                  type="text"
-                  value={subcatid}
-                  onChange={(e) => {
-                    setsubcatid(e.target.value);
-                  }}
-                />
-              </div>
+                  placeholder="0.00"
+                  
+                   
+                  />
+                 </div>
 
               <div className="formInput">
                 <label>No Of Items</label>
                 <input
                   type="number"
+                  min={0}
+                  step="1"
+                  pattern="[0-9]*"
                   value={noitems}
+                  onChange={(e) => setnoitems((v)=>(e.target.validity.valid?e.target.value:v))}
+                />
+              </div>
+                  
+              <div className="formInput">
+                <label>Category ID*</label>
+                <input
+                  type="text"
+                  value={catid}
                   onChange={(e) => {
-                    setnoitems(e.target.value);
+                    setcatid(e.target.value);
+                    checkCategory(e.target.value)
                   }}
                 />
               </div>
 
-              <div className="break"></div>
+              <div className="formInput">
+                <label>Category Name</label>
+                <input type="text" 
+                value={catname} disabled />
+              </div>
+
+              
+
+              <div className="formInput">
+                <label>Sub Category ID*</label>
+                <input
+                  type="text"
+                  value={subcatid}
+                  onChange={(e) => {
+                    setsubcatid(e.target.value);
+                    checksubCategory (e.target.value)
+                  }}
+                />
+              </div>
+
+              <div className="formInput">
+                <label>Sub Category Name</label>
+                <input type="text" 
+                value={subcatname} disabled />
+              </div>
+
+              
+
+              <div className="Break"></div>
               <button onClick={submitForm}>Add Product</button>
             </form>
           </div>

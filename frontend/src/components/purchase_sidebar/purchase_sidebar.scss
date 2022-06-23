@@ -2,7 +2,7 @@
     flex: 1;
     border-right: 0.5px solid rgb(230, 227, 227);
     min-height: 100vh;
-    background-color: white;
+    background-color: rgba(26, 11, 90, 0.815);
   
     .top {
       height: 50px;
@@ -10,10 +10,12 @@
       align-items: center;
       justify-content: center;
   
-      .logo {
+      .logo1 {
         font-size: 20px;
         font-weight: bold;
-        color: #6439ff;
+        color: #7451f8
+
+        ;
       }
     }
   

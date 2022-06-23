@@ -1,24 +1,24 @@
-import "./producttable.scss";
+import "../table.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "PID", headerName: "Product ID" },
-  { field: "PName", headerName: "Product Name" },
-  { field: "sellingPrice", headerName: "Selling Price" },
-  { field: "EANCode", headerName: "EAN Code" },
-  { field: "UnitOfMeasure", headerName: "Unit of Measure" },
-  { field: "HSNCode", headerName: "HSN Code" },
-  { field: "shortDescription", headerName: "Short Description" },
-  { field: "longDescription", headerName: "Long Description" },
-  { field: "Height", headerName: "Height" },
-  { field: "Length", headerName: "Length" },
-  { field: "Weight", headerName: "Weight" },
-  { field: "buyingPrice", headerName: "Buying Price" },
-  { field: "CatID", headerName: "Category ID" },
-  { field: "SubCatID", headerName: "Sub Category ID" },
+  { field: "PID", headerName: "Product ID",width:100 },
+  { field: "PName", headerName: "Product Name",width:150 },
+  { field: "sellingPrice", headerName: "Selling Price",width:100 },
+  { field: "EANCode", headerName: "EAN Code",width:180 },
+  { field: "UnitOfMeasure", headerName: "Unit of Measure",width:150 },
+  { field: "HSNCode", headerName: "HSN Code",width:100 },
+  { field: "shortDescription", headerName: "Short Description",width:150 },
+  { field: "longDescription", headerName: "Long Description",width:150 },
+  { field: "Height", headerName: "Height",width:100 },
+  { field: "Length", headerName: "Length",width:100 },
+  { field: "Weight", headerName: "Weight",width:100 },
+  { field: "buyingPrice", headerName: "Buying Price",width:100 },
+  { field: "CatID", headerName: "Category ID",width:100 },
+  { field: "SubCatID", headerName: "Sub Category ID",width:150 },
   { field: "NoOfItems", headerName: "No of Items" },
 ];
 
@@ -45,10 +45,29 @@ const Producttable = () => {
       });
   }, [""]);
 
+  const actionColumn = [
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      renderCell: (params) => {
+        const upLink = "/purchase/product/update/"+params.row.PID;
+        return (
+          <div className="cellAction">
+            <Link to= {upLink} style= {{textDecoration : "none"}}>
+              <div className="viewButton">Edit</div>
+              </Link>
+            
+          </div>
+        );
+      },
+    },
+  ];
+
   
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="datatableTitle1">
         Products
         <Link to="/purchase/product/add" className="link">
           Add New Product
@@ -57,7 +76,7 @@ const Producttable = () => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns}
+        columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         components={{ Toolbar: GridToolbar }}

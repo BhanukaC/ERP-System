@@ -1,21 +1,19 @@
-import "./categorytable.scss";
+import "../table.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "catID", headerName: "Category ID" },
-  { field: "categoryName", headerName: "Category Name" },
+  { field: "catID", headerName: "Category ID",width:100 },
+  { field: "categoryName", headerName: "Category Name",width:150 },
   
 ];
 
 const Categorytable = () => {
   const [data, setData] = useState({});
 
-  const handleDelete = (catID) => {
-    setData(data.filter((item) => item.id !== catID));
-  };
+  
 
   useEffect(() => {
     axios
@@ -39,11 +37,12 @@ const Categorytable = () => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
+        const upLink = "/purchase/product/updatecat/"+params.row.catID;
         return (
           <div className="cellAction">
-            
+            <Link to= {upLink} style= {{textDecoration : "none"}}>
               <div className="viewButton">Edit</div>
-            
+              </Link>
             
           </div>
         );
@@ -52,7 +51,7 @@ const Categorytable = () => {
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="datatableTitle1">
         Category
         <Link to="/purchase/product/addcat" className="link">
           Add New Category

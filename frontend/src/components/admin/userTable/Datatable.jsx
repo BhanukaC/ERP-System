@@ -5,10 +5,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "UID", headerName: "UID" },
-  { field: "userName", headerName: "User Name" },
-  { field: "acessLevel", headerName: "Acess Level" },
-  { field: "email", headerName: "Email" },
+  { field: "UID", headerName: "UID", width: 150 },
+  { field: "userName", headerName: "User Name", width: 250 },
+  { field: "acessLevel", headerName: "Acess Level", width: 150 },
+  { field: "email", headerName: "Email", width: 250 },
 ];
 
 const Datatable = () => {
@@ -40,16 +40,11 @@ const Datatable = () => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
+        const link="/admin/edituser/"+params.row.id;
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.CID)}
-            >
-              Delete
+            <div className="editButton">
+              <Link to={link} >Edit</Link>
             </div>
           </div>
         );

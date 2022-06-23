@@ -1,14 +1,14 @@
-import "./subcategorytable.scss";
+import "../table.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "SCID", headerName: "Sub Category ID" },
-  { field: "catID", headerName: "Category ID" },
-  { field: "subCategoryName", headerName: "Sub Category Name" },
-  { field: "discount", headerName: "Discount" },
+  { field: "SCID", headerName: "Sub Category ID" ,width:150},
+  { field: "catID", headerName: "Category ID",width:100 },
+  { field: "subCategoryName", headerName: "Sub Category Name",width:150 },
+  { field: "discount", headerName: "Discount" ,width:100},
   
 ];
 
@@ -41,11 +41,12 @@ const Subcategorytable = () => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
+        const upLink ="/purchase/product/updatesubcat/"+params.row.SCID;
         return (
           <div className="cellAction">
-            
+            <Link to = {upLink} style = {{textDecoration: "none"}}>
               <div className="viewButton">Edit</div>
-            
+            </Link>
             
           </div>
         );
@@ -54,7 +55,7 @@ const Subcategorytable = () => {
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="datatableTitle1">
         Sub Category
         <Link to="/purchase/product/addsubcat" className="link">
           Add New Sub Category

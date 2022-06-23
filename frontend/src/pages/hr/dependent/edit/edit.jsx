@@ -45,27 +45,31 @@ const EditDependent = () => {
     ) {
       alert("Please fill all required fields");
     } else {
-      let data = {
-        EID: EID,
-        name: dependentName,
-        contactNo: contactNo,
-        DOB: dob,
-        gender: gender,
-        relationship: relationship,
-      };
+      if (!/^\d{10}$/.test(contactNo)) {
+        alert("Invalid Contact number, must be ten digits !");
+      } else {
+        let data = {
+          EID: EID,
+          name: dependentName,
+          contactNo: contactNo,
+          DOB: dob,
+          gender: gender,
+          relationship: relationship,
+        };
 
-      axios
-        .put("http://localhost:5000/hr/dependent/update/" + DID, data, {
-          withCredentials: true,
-          credentials: "include",
-        })
-        .then((res) => {
-          if (res.data === "Dependent details Updated") {
-            alert("Dependent details Updated");
-          } else {
-            alert("Sorry,Try again");
-          }
-        });
+        axios
+          .put("http://localhost:5000/hr/dependent/update/" + DID, data, {
+            withCredentials: true,
+            credentials: "include",
+          })
+          .then((res) => {
+            if (res.data === "Dependent details Updated") {
+              alert("Dependent details Updated");
+            } else {
+              alert("Sorry,Try again");
+            }
+          });
+      }
     }
   };
 
