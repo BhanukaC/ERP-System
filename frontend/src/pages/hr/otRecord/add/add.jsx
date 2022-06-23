@@ -29,7 +29,7 @@ const AddOtRecord = () => {
       alert("Please fill all required fields");
     } else {
       if (!EIDStatus) {
-        alert("EID not found");
+        alert("EID not Valid");
       } else {
         let data = {
           EID: EID,
