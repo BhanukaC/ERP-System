@@ -2,6 +2,8 @@ const db = require("../helpers/db");
 const query = require("../helpers/mysqlPromise");
 const today = require("../helpers/today");
 const _ = require("underscore");
+const mailer = require('../helpers/mailer');
+const hbs = require('nodemailer-handlebars');
 
 //Customer - add,update,getOne,getAll
 
@@ -256,18 +258,18 @@ exports.addSalesOrderController = async (req, res) => {
                     query("insert into salesOrderData(PID,salesOrderID,unitPrice,qty,discount,netTot) values(?,?,?,?,?,?)", [products[i].PID, id, products[i].unitPrice, products[i].qty, products[i].discount, products[i].netTot]);
                 } catch (e) {
                     res.json({ error: e });
-                   // return;
+                    // return;
                 }
             }
             db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Add a sales order(salesOrderID-" + id + ")"], (err, response) => { });
-           // res.json("sales order added");
+            // res.json("sales order added");
             mailer.use('compile', hbs({
                 viewEngine: {
                     extname: '.handlebars',
-                    layoutsDir: '../Backend/view/',
+                    layoutsDir: '../Backend/views/',
                     defaultLayout: 'SalesOrder',
                 },
-                viewPath: '../Backend/view/'
+                viewPath: '../Backend/views/'
             }));
 
             db.query("select * from Customer where CID=?", [CID], (err, res1) => {
@@ -308,10 +310,10 @@ exports.addSalesOrderController = async (req, res) => {
                                                     id: id,
                                                     date: date,
                                                     Cname: cname,
-                                                    Cno: Cno, Cstreet: Cstreet, Ctown: Ctown, 
+                                                    Cno: Cno, Cstreet: Cstreet, Ctown: Ctown,
                                                     contactNumber: contactNumber,
                                                     Wno: Wno, Wstreet: Wstreet, Wtown: Wtown,
-                                                    distance:distance,
+                                                    distance: distance,
                                                     total: total,
                                                     items: products,
 
@@ -485,27 +487,27 @@ exports.getSingleSalesReturnOrderDataController = async (req, res) => {
     });
 }
 
-exports.getProductStocksForWareHouseController=async(req,res)=>{
+exports.getProductStocksForWareHouseController = async (req, res) => {
     const id = req.params.id;
-    const{PID,qty}=req.body;
-  
+    const { PID, qty } = req.body;
 
-    db.query("select * from stock where WID=? and PID=? and qualityLevel='A'",[id,PID],(err,result)=>{
-        
+
+    db.query("select * from stock where WID=? and PID=? and qualityLevel='A'", [id, PID], (err, result) => {
+
         if (err) {
             res.json({ error: err });
         } else {
             let response;
-           if(result.length==0){
-            response="we don't have enough stocks";
-           }else{
-            if(result[0].qty>=qty){
-                response="We have Stocks";
-            }else{
-                response="we don't have enough stocks";
+            if (result.length == 0) {
+                response = "we don't have enough stocks";
+            } else {
+                if (result[0].qty >= qty) {
+                    response = "We have Stocks";
+                } else {
+                    response = "we don't have enough stocks";
+                }
             }
-           }
-            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view Product(PID"+PID+") stocks for warehouse(WID-" + id + ")"], (err, response) => { });
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view Product(PID" + PID + ") stocks for warehouse(WID-" + id + ")"], (err, response) => { });
             res.json(response);
         }
     })
