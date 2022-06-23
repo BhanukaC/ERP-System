@@ -1,7 +1,13 @@
 import "./profile.scss";
 import { useState, useEffect } from "react";
 import Navbar from "../../components/navbar/Navbar";
-import Sidebar from "../../components/hr/sidebar/Sidebar";
+import HRSidebar from "../../components/hr/sidebar/Sidebar";
+import SalesSidebar from "../../components/sales/sales-sidebar/sales-sidebar";
+import AdminSidebar from "../../components/admin/admin_sidebar/Admin_sidebar";
+import InventorySidebar from "../../components/inventory/inventorySidebar/inventorySidebar";
+import PurchaseSidebar from "../../components/purchase_sidebar/purchase_sidebar";
+import FianancialSidebar from "../../components/finance_sidebar/finance_sidebar";
+
 import axios from "axios";
 import user from "../../auth";
 
@@ -89,7 +95,12 @@ const Profile = () => {
 
   return (
     <div className="new">
-      <Sidebar />
+      {accessLevel === "Admin" ? <AdminSidebar /> : null}
+      {accessLevel === "Cashier" ? <SalesSidebar /> : null}
+      {accessLevel === "HR Manager" ? <HRSidebar /> : null}
+      {accessLevel === "Purchase Manager" ? <PurchaseSidebar /> : null}
+      {accessLevel === "Warehouse Operator" ? <InventorySidebar /> : null}
+      {accessLevel === "Accountant" ? <FianancialSidebar /> : null}
       <div className="newContainer">
         <Navbar />
         <div className="top">
