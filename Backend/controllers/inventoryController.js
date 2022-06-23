@@ -573,14 +573,12 @@ exports.internalShipmentUpdateController = async (req, res) => {
                         return;
                     }
                     db.query("select * from stock where PID=? and WID=? and qualityLevel='A'", [response[i].PID, WID], (err, result) => {
-                        console.log(result);
                         if (result.length == 0) {
                             db.query("insert into stock(PID,qty,WID) values(?,?,?)", [response[i].PID, response[i].qty, WID], (err, result) => {
                                 if (err) {
                                     res.json({ error: err });
                                     return;
                                 }
-                                console.log("added");
                             });
                         } else {
                             db.query("update stock set qty=? where ID=?", [result[0].qty + response[i].qty, result[0].ID], (err, result) => {
@@ -588,7 +586,6 @@ exports.internalShipmentUpdateController = async (req, res) => {
                                     res.json({ error: err });
                                     return;
                                 }
-                                console.log("updated");
                             })
                         }
                     })
