@@ -1,96 +1,93 @@
-import "./add.scss";
-import { useState } from "react";
+import "./edit.scss";
+import { useState, useEffect } from "react";
 import Navbar from "../../../../components/navbar/Navbar";
 import Sidebar from "../../../../components/sales/sales-sidebar/sales-sidebar";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-const AddCustomer = () => {
-  const [customerName, setCustomerName] = useState("");
-  const [paymentTerm, setPaymentMethod] = useState("");
-  const [returnTerm, setReturnTerm] = useState("");
-  const [deliveryTerm, setDeliveryTerm] = useState("");
-  const [no, setNo] = useState("");
-  const [street, setStreet] = useState("");
-  const [town, setTown] = useState("");
-  const [branchCode, setBranchCode] = useState("");
-  const [accountNo, setAccountNumber] = useState("");
-  const [bankName, setBankName] = useState("");
-  const [email, setEmail] = useState("");
+const EditCustomer = () => {
+    const [customerName, setCustomerName] = useState("");
+    const [paymentTerm, setPaymentMethod] = useState("");
+    const [returnTerm, setReturnTerm] = useState("");
+    const [deliveryTerm, setDeliveryTerm] = useState("");
+    const [no, setNo] = useState("");
+    const [street, setStreet] = useState("");
+    const [town, setTown] = useState("");
+    const [branchCode, setBranchCode] = useState("");
+    const [accountNo, setAccountNumber] = useState("");
+    const [bankName, setBankName] = useState("");
+    const [email, setEmail] = useState("");
 
-  function ValidateEmail(mail) 
-  {
-   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
-    {
-      return true;
-    }
-      return false;
-  }
- 
+  const { CID } = useParams();
+  console.log(CID);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/sales/Customer/getSingle/" + CID, {
+        withCredentials: true,
+        credentials: "include",
+      })
+      .then((res) => {
+    
+        setCustomerName(res.data[0].customerName);
+        setPaymentMethod(res.data[0].paymentTerm);
+        setReturnTerm(res.data[0].returnTerm);
+        setDeliveryTerm(res.data[0].deliveryTerm);
+        setNo(res.data[0].no);
+        setStreet(res.data[0].street);
+        setTown(res.data[0].town);
+        setBranchCode(res.data[0].branchCode);
+        setAccountNumber(res.data[0].accountNo);
+        setBankName(res.data[0].bankName);
+        setEmail(res.data[0].email);
+      });
+  }, [""]);
+
   const submitForm = (e) => {
     e.preventDefault();
-    if (ValidateEmail(email)) {
-      if (
-        customerName === "" ||
-        paymentTerm === "" ||
-        returnTerm === "" ||
-        deliveryTerm === "" ||
-        no === "" ||
-        street === "" ||
-        town === "" ||
-        branchCode === "" ||
-        accountNo === "" ||
-        bankName === "" ||
-        email === "" 
-       ) 
-       {
-        alert("Please fill all required fields");
-      } else {
-        let data = {
-              customerName:customerName,
-              paymentTerm:paymentTerm,
-              returnTerm:returnTerm,
-              deliveryTerm:deliveryTerm,
-              no:no,
-              street:street,
-              town:town,
-              branchCode:branchCode,
-              accountNo:accountNo,
-              bankName:bankName,
-              email:email,
-        };
+    if (
+      customerName === "" ||
+      paymentTerm === "" ||
+      returnTerm === "" ||
+      deliveryTerm === "" ||
+      no === "" ||
+      street === "" ||
+      town === "" ||
+      branchCode === "" ||
+      accountNo === "" ||
+      bankName === "" ||
+      email === "" 
+     ) 
+     {
+      alert("Please fill all required fields");
+    } else {
+      let data = {
+            customerName:customerName,
+            paymentTerm:paymentTerm,
+            returnTerm:returnTerm,
+            deliveryTerm:deliveryTerm,
+            no:no,
+            street:street,
+            town:town,
+            branchCode:branchCode,
+            accountNo:accountNo,
+            bankName:bankName,
+            email:email,
+      };
       axios
-        .post("http://localhost:5000/sales/Customer/add",data ,
-          {
-            withCredentials: true,
-            credentials: "include",
-          })
-          .then((res) => {
-            if(res.data=="Customer Added"){
-              alert("Customer added");
-              setCustomerName("");
-              setPaymentMethod("");
-              setReturnTerm("");
-              setDeliveryTerm();
-              setNo();
-              setStreet("");
-              setTown("");
-              setBranchCode();           
-              setAccountNumber();
-              setBankName("");
-              setEmail("");
+      .put("http://localhost:5000/sales/Customer/update/" + CID, data, {
+        withCredentials: true,
+        credentials: "include",
+      })
+      
+      .then((res) => {
+          if (res.data === "customer updated") {
+            alert("customer updated");
+          } else {
+            alert("Sorry,Try again");
           }
-        else{
-            alert("Error");
-          }
-          //
-          //console.log(res.data);
         });
-      }
     }
-    else{
-      alert("You have entered an invalid email address!");
-    }
-    
   };
 
 
@@ -100,7 +97,7 @@ const AddCustomer = () => {
       <div className="newContainer">
         <Navbar />
         <div className="topPart">
-          <h1>Add Customer</h1>
+          <h1>Update Customer</h1>
         </div>
         <div className="bottomPart">
           <div className="right">
@@ -217,7 +214,7 @@ const AddCustomer = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Add customer</button>
+              <button onClick={submitForm}>Update</button>
             </form>
           </div>
         </div>
@@ -226,5 +223,4 @@ const AddCustomer = () => {
   );
 };
 
-export default AddCustomer;
-
+export default EditCustomer;

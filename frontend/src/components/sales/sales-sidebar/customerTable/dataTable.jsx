@@ -47,22 +47,34 @@ const Datatable = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 600,
       renderCell: (params) => {
+        const reLink = "/sales/customer/edit/" + params.row.CID;
+        const reLink2 = "/sales/customerContactNumber/viewAll/" + params.row.CID;
+        const reLink3 = "/sales/customerDeliveryAddress/viewAll/" + params.row.CID;
         return (
           <div className="cellAction">
-            <div className="deleteButton"
-              onClick={() => handleDelete(params.row.CID)}
-            >
-              Edit
-            </div>
+             <Link to={reLink} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Edit</div>
+            </Link>
+            <Link to={reLink2} style={{ textDecoration: "none" }}>
+              <div className="viewButton">View Customer Contact Details</div>
+            </Link>
+            <Link to={reLink3} style={{ textDecoration: "none" }}>
+              <div className="viewButton">View Customer Delivery Address</div>
+            </Link>
           </div>
         );
       },
     },
   ];
+
+  
   return (
     <div className="datatable">
+      <div className="datatableTitle">
+        Customer Details
+      </div>
       <DataGrid
         className="datagrid"
         rows={data}
@@ -79,6 +91,7 @@ const Datatable = () => {
       />
     </div>
   );
+  
 };
 
 export default Datatable;

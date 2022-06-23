@@ -3,7 +3,7 @@ const router = express.Router();
 const validateToken = require("../middleware/auth");
 const validAccess = require("../middleware/cashier");
 
-const { customerAddController, customerUpdateController, getSingleCustomerController, getAllCustomerController, customerContactNumberAddController, customerContactNumberUpdateController, getSingleCustomerContactNumberController, getAllCustomerContactNumbersController, deleteCustomerContactNumberController, customerDeliveryAddressAddController, customerDeliveryAddressUpdateController, getSinglecustomerDeliveryAddressController, getAllcustomerDeliveryAddresssController, deletecustomerDeliveryAddressController, addSalesOrderController, getSingleSalesOrderController, getAllSalesOrderController, getSingleSalesOrderDataController, addSalesReturnOrderController, getSingleSalesReturnOrderController, getAllSalesReturnOrderController, getSingleSalesReturnOrderDataController } = require("../controllers/saleController");
+const { customerAddController, customerUpdateController, getSingleCustomerController, getAllCustomerController, customerContactNumberAddController, customerContactNumberUpdateController, getSingleCustomerContactNumberController, getAllCustomerContactNumbersController, deleteCustomerContactNumberController, customerDeliveryAddressAddController, customerDeliveryAddressUpdateController, getSinglecustomerDeliveryAddressController, getAllcustomerDeliveryAddresssController, deletecustomerDeliveryAddressController, addSalesOrderController, getSingleSalesOrderController, getAllSalesOrderController, getSingleSalesOrderDataController, addSalesReturnOrderController, getSingleSalesReturnOrderController, getAllSalesReturnOrderController, getSingleSalesReturnOrderDataController, getProductStocksForWareHouseController } = require("../controllers/saleController");
 
 
 //Customer
@@ -32,6 +32,8 @@ router.post("/salesOrder/add", [validateToken, validAccess], addSalesOrderContro
 router.get("/salesOrder/getSingle/:id", [validateToken, validAccess], getSingleSalesOrderController);
 router.get("/salesOrder/getAll/", [validateToken, validAccess], getAllSalesOrderController);
 router.get("/salesOrderData/get/:id", [validateToken, validAccess], getSingleSalesOrderDataController);
+router.post("/productstockLevelForWarehouse/get/:id", [validateToken, validAccess], getProductStocksForWareHouseController);
+
 
 
 //Sales Return orders

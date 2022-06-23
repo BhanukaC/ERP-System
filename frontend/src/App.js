@@ -26,10 +26,23 @@ import ChangeQualityLevel from "./pages/inventory/qualityLevel/qualityLevel";
 import EditWarehouseDetails from "./pages/inventory/warehouse/editWarehouseDet/editWarehouseDetails";
 
 
-import AddCustomer from "./pages/sales/customer/add/add"
-import ViewAllCustomer from "./pages/sales/viewAll/viewAll"
-import AddSalesReturnOrder from "./pages/sales/salesReturnOrder/add/add"
-import ViewAllSalesReturnOrders from "./pages/sales/salesReturnOrder/add/viewAll/viewAll";
+import AddCustomer from "./pages/sales/customer/add/add";
+import EditCustomer from "./pages/sales/customer/edit/edit";
+import ViewAllCustomer from "./pages/sales/viewAll/viewAll";
+import AddCustomerContactNumber from "./pages/sales/customerContactNumber/add/add";
+import EditCustomerContactNumber from "./pages/sales/customerContactNumber/edit/edit";
+import AddCustomerDeliveryAddress from "./pages/sales/customerDeliveryAddress/add/add";
+import ViewCustomerDeliveryAddress from "./pages/sales/customerDeliveryAddress/viewAll/viewAll";
+import EditCustomerDeliveryAddress from "./pages/sales/customerDeliveryAddress/edit/edit";
+import ViewAllCustomerContactDetails from "./pages/sales/customerContactNumber/viewAll/viewAll";
+import AddSalesReturnOrderPage1 from "./pages/sales/salesReturnOrder/add/add";
+import AddSalesReturnOrderPage2 from "./pages/sales/salesReturnOrder/add/add2";
+import ViewAllSalesReturnOrders from "./pages/sales/salesReturnOrder/add/viewAll/viewAll"; 
+import ViewSalesReturnOrderData from "./pages/sales/salesReturnOrder/add/viewAll/viewAll2"; 
+import AddSalesOrderPart1 from "./pages/sales/salesOrder/add/add";
+import AddSalesOrderPart2 from "./pages/sales/salesOrder/add/add2";
+import ViewAllSalesOrders from "./pages/sales/salesOrder/viewAll/viewAll";
+import ViewSalesOrderData from "./pages/sales/salesOrder/viewAll/viewAll2";
 
 import EditEmployee from "./pages/hr/employeee/edit/edit";
 import AddDependent from "./pages/hr/dependent/add/add";
@@ -59,6 +72,8 @@ import { DarkModeContext } from "./context/darkModeContext";
 import AddUser from "./pages/admin/adduser/adduser";
 import ViewAllUsers from "./pages/admin/viewAll/viewAll";
 import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
+import AddSalesReturnOrderPart1 from "./pages/sales/salesReturnOrder/add/add";
+import AddSalesReturnOrderPart2 from "./pages/sales/salesReturnOrder/add/add2";
 
 import ViewAllActivity from "./pages/admin/viewactivity/viewactivity";
 import AddWarehouse from "./pages/admin/addwarehouse/addwarehouse";
@@ -166,10 +181,34 @@ function App() {
               <Route path="customer">
                 <Route path="add" element={<AddCustomer />} />
                 <Route path="viewAll" element={<ViewAllCustomer />} />
+                <Route path="edit/:CID" element={<EditCustomer />} />
+              </Route>
+              <Route path="salesOrder">
+               <Route path="add" element={<AddSalesOrderPart1 />} />
+               <Route path="add2" element={<AddSalesOrderPart2 />} />
+                <Route path="viewAll" element={<ViewAllSalesOrders />} />
+                <Route path="viewAll2/:salesOrderID" element={<ViewSalesOrderData />} />
               </Route>
               <Route path="salesReturnOrder">
-                <Route path="add" element={<AddSalesReturnOrder />} />
+                <Route path="add" element={<AddSalesReturnOrderPage1 />} />
+                <Route path="add2" element={<AddSalesReturnOrderPage2 />} />
                 <Route path="viewAll" element={<ViewAllSalesReturnOrders />} />
+                <Route path="viewAll2/:salesReturnOrderID" element={<ViewSalesReturnOrderData />} />
+              </Route>
+              <Route path="salesReturnOrders"> 
+               <Route path="add2" element={<AddSalesReturnOrderPage2 />} />  
+              </Route>
+              <Route path="customerContactNumber">
+                <Route path="add" element={<AddCustomerContactNumber />} />
+                <Route path="edit/:CCID" element={<EditCustomerContactNumber />} />
+                <Route path="viewAll" element={<ViewAllCustomerContactDetails />} />
+                <Route path="viewAll/:CID" element={<ViewAllCustomerContactDetails />} />
+              </Route>
+              <Route path="customerDeliveryAddress">
+                <Route path="add" element={<AddCustomerDeliveryAddress />} />
+                <Route path="edit/:CDAID" element={<EditCustomerDeliveryAddress />} />
+                <Route path="viewAll" element={<ViewCustomerDeliveryAddress />} />
+                <Route path="viewAll/:CID" element={<ViewCustomerDeliveryAddress />} />
               </Route>
             </Route>
 

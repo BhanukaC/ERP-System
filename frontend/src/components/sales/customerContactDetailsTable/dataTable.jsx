@@ -1,41 +1,36 @@
 import "./dataTable.scss";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
 const userColumns = [
-  { field: "salesReturnOrderID", headerName: "SalesReturnOrderID", width: 150 },
-  { field: "initiateDate", headerName: "InitiateDate", width: 210 },
-  { field: "reason", headerName: "Reason", width: 110 },
-  { field: "status", headerName: "Status", width: 70 },
-  { field: "WID", headerName: "WID" , width: 70 },
-  { field: "total", headerName: "Total" , width: 90},
-  { field: "CID", headerName: "CID", width: 50 },
-  { field: "CDAID", headerName: "CDAID", width: 60 },
-  { field: "CCID", headerName: "CCID", width: 60  },
-  { field: "finishDate", headerName: "FinishDate", width: 90  },
-  { field: "salesOrderID", headerName: "SalesOrderID", width: 110  },
-  
+  { field: "CCID", headerName: "CCID", width: 100 }, 
+  { field: "CID", headerName: "CID", width: 100 },
+  { field: "contactNumber", headerName: "contactNumber" , width: 150},
 ];
 
-const Datatable = () => {
+const Datatable = (props) => {
+  const CID = props.CID;
   const [data, setData] = useState({});
 
-  const handleDelete = (salesReturnOrderID) => {
-    setData(data.filter((item) => item.id !== salesReturnOrderID));
-  };
+  // const handleDelete = (CID) => {
+  //   setData(data.filter((item) => item.id !== CID));
+  // };
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/sales/salesReturnOrder/getAll/", {
+      .get("http://localhost:5000/sales/Customer/contactNumber/getAll/" + CID, {
         withCredentials: true,
         credentials: "include",
       })
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {
-          return { id: d.CID, ...d };
+          return {
+            id: d.CCID,
+            ...d,
+          };
         });
         setData(dt);
         // console.log(dt);
@@ -46,15 +41,14 @@ const Datatable = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 100,
       renderCell: (params) => {
+        const reLink2 = "/sales/customerContactNumber/edit/" + params.row.CCID;
         return (
           <div className="cellAction">
-            <div className="deleteButton"
-              onClick={() => handleDelete(params.row.CID)}
-            >
-              Edit
-            </div>
+            <Link to={reLink2} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Edit</div>
+            </Link>
           </div>
         );
       },
@@ -62,6 +56,9 @@ const Datatable = () => {
   ];
   return (
     <div className="datatable">
+      <div className="datatableTitle">
+        All Contact Numbers For Customer(CID-{CID})
+      </div>
       <DataGrid
         className="datagrid"
         rows={data}
