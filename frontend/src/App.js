@@ -275,16 +275,16 @@ function App() {
             <Route path="admin">
 
               <Route index element={<ProtectedRoute level={0}><AddUser /></ProtectedRoute>} />
-              <Route path="adduser" element={<AddUser />} />
-              <Route path="viewAll" element={<ViewAllUsers />} />
-              <Route path="viewwarehouses" element={<ViewAllWarehouses />} />
-              <Route path="viewactivity" element={<ViewAllActivity />} />
-              <Route path="addwarehouse" element={<AddWarehouse />} />
-              <Route path="edituser/:UID" element={<EditUserDetails />} />
-              <Route path="setdiscount" element={<SetDiscount />} />
+              <Route path="adduser" element={< ProtectedRoute level={0}><AddUser /></ProtectedRoute>} />
+              <Route path="viewAll" element={< ProtectedRoute level={0}><ViewAllUsers /></ProtectedRoute>} />
+              <Route path="viewwarehouses" element={<ProtectedRoute level={0}><ViewAllWarehouses /></ProtectedRoute>} />
+              <Route path="viewactivity" element={< ProtectedRoute level={0}><ViewAllActivity /></ProtectedRoute>} />
+              <Route path="addwarehouse" element={< ProtectedRoute level={0}><AddWarehouse /></ProtectedRoute>} />
+              <Route path="edituser/:UID" element={<ProtectedRoute level={0}><EditUserDetails /></ProtectedRoute>} />
+              <Route path="setdiscount" element={<ProtectedRoute level={0}><SetDiscount /></ProtectedRoute>} />
             </Route>
 
-            <Route path="account" element={<ViewAccounts />}></Route>
+            <Route path="account" element={<ProtectedRoute level={0}><ViewAccounts /></ProtectedRoute>}></Route>
 
           </Route>
         </Routes>
