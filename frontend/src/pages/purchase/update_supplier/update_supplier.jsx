@@ -1,122 +1,124 @@
-import "./add_supplier.scss";
-import { useState } from "react";
+import "./update_supplier.scss";
+import { useState, useEffect } from "react";
+
+
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-const Addsupplier = () => {
-  
-  const [sname, setsname] = useState("");
-  const [payterm, setpayterm] = useState("");
+const Updatesupplier = () => {
+  const [sName, setsName] = useState("");
+  const [payemntTerm, setpaymentTerm] = useState("");
   const [no, setno] = useState("");
   const [street, setstreet] = useState("");
   const [town, settown] = useState("");
   const [country, setcountry] = useState("");
-  const [retterm, setretterm] = useState("");
-  const [delterm, setdelterm] = useState("");
+  const [returnTerm, setreturnTerm] = useState("");
+  const [deliveryTerm, setdeliveryTerm] = useState("");
   const [email, setemail] = useState("");
-  
-  
-  function ValidateEmail(mail) {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
-      return true;
-    }
-    return false;
-  }
+
+  const { SID } = useParams();
+  console.log(SID);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/purchase/supplier/getSingle/" + SID, {
+        withCredentials: true,
+        credentials: "include",
+      })
+      .then((res) => {
+        setsName(res.data[0].sName);
+        setpaymentTerm(res.data[0].payemntTerm);
+        setno(res.data[0].no);
+        setstreet(res.data[0].street);
+        settown(res.data[0].town);
+        setcountry(res.data[0].country);
+        setreturnTerm(res.data[0].returnTerm);
+        setdeliveryTerm(res.data[0].deliveryTerm);
+        setemail(res.data[0].email);
+
+
+        });
+        
+
+  }, [""]);
 
   const submitForm = (e) => {
     e.preventDefault();
-    if(
-      sname === ""||
-      payterm===""||
-      no===""||
-      town===""||
-      country===""||
-      retterm===""||
-      delterm===""||
-      email===""
-    )
-    {
-      alert("Please fill the required fields");
-    }
-    else if(!(ValidateEmail(email)))
-    {
-        alert("Please enter a valid email")
-    }
-    else{
+    if (
+        sName === ""
+      
+    ) {
+      alert("Please fill all required fields");
+    } else {
+      let data = {
+        sName: sName,
+        payemntTerm: payemntTerm,
+        no : no,
+        street:street,
+        town: town,
+        country: country,
+        returnTerm: returnTerm,
+        deliveryTerm: deliveryTerm,
+        email: email,
+        
+        
+      };
+
       axios
-      .post(
-        "http://localhost:5000/purchase/supplier/add",
-        {
-         
-          sName: sname,
-          paymentTerm : payterm,
-          no : no,
-          street : street,
-          town : town,
-          country : country,
-          returnTerm : retterm,
-          deliveryTerm : delterm,
-          email : email,
-
-
-        },
-        {
+        .put("http://localhost:5000/purchase/supplier/update/" + SID, data, {
           withCredentials: true,
           credentials: "include",
-        }
-      )
-      .then((res) => {
-        if(res.data== "supplier Added"){
-          alert("Supplier added");
-        }else{
-          alert("Error");
-        }
-        //
-        //console.log(res.data);
-      });
-
+        })
+        .then((res) => {
+          if (res.data === "supplier updated") {
+            alert(" Supplier Updated");
+          } else {
+            alert("Sorry,Try again");
+          }
+        });
     }
-    
   };
 
   return (
     <div className="new">
-      <Sidebar/>
+      <Sidebar />
       <div className="newContainer">
         <Navbar />
         <div className="topPart">
-          <h1>Add Supplier</h1>
+          <h1>Update Supplier</h1>
         </div>
         <div className="bottomPart">
           <div className="right">
             <form>
-
               
+               
+
               <div className="formInput">
-                <label>Supplier Name*</label>
+                <label>Supplier Name</label>
                 <input
                   type="text"
-                  value={sname}
+                  value={sName}
                   onChange={(e) => {
-                    setsname(e.target.value);
+                    setsName(e.target.value);
                   }}
                 />
               </div>
 
               <div className="formInput">
-                <label>Payment Term*</label>
+                <label>Payment Term</label>
                 <input
                   type="text"
-                  value={payterm}
+                  value={payemntTerm}
                   onChange={(e) => {
-                    setpayterm(e.target.value);
+                    setpaymentTerm(e.target.value);
                   }}
                 />
               </div>
 
               <div className="formInput">
-                <label>No*</label>
+                <label>No</label>
                 <input
                   type="text"
                   value={no}
@@ -126,6 +128,7 @@ const Addsupplier = () => {
                 />
               </div>
 
+              
               <div className="formInput">
                 <label>Street</label>
                 <input
@@ -137,8 +140,9 @@ const Addsupplier = () => {
                 />
               </div>
 
+              
               <div className="formInput">
-                <label>Town*</label>
+                <label>Town</label>
                 <input
                   type="text"
                   value={town}
@@ -148,8 +152,9 @@ const Addsupplier = () => {
                 />
               </div>
 
+              
               <div className="formInput">
-                <label>Country*</label>
+                <label>Country</label>
                 <input
                   type="text"
                   value={country}
@@ -159,30 +164,33 @@ const Addsupplier = () => {
                 />
               </div>
 
+              
               <div className="formInput">
-                <label>Return Term*</label>
+                <label>Return Term</label>
                 <input
                   type="text"
-                  value={retterm}
+                  value={returnTerm}
                   onChange={(e) => {
-                    setretterm(e.target.value);
+                    setreturnTerm(e.target.value);
                   }}
                 />
               </div>
 
+              
               <div className="formInput">
-                <label>Delivery Term*</label>
+                <label>Delivery Term</label>
                 <input
                   type="text"
-                  value={delterm}
+                  value={deliveryTerm}
                   onChange={(e) => {
-                    setdelterm(e.target.value);
+                    setdeliveryTerm(e.target.value);
                   }}
                 />
               </div>
 
+              
               <div className="formInput">
-                <label>Email*</label>
+                <label>Email</label>
                 <input
                   type="text"
                   value={email}
@@ -193,7 +201,7 @@ const Addsupplier = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Add Supplier</button>
+              <button onClick={submitForm}>Update</button>
             </form>
           </div>
         </div>
@@ -202,4 +210,4 @@ const Addsupplier = () => {
   );
 };
 
-export default Addsupplier;
+export default  Updatesupplier ;

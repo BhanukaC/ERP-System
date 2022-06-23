@@ -3,13 +3,16 @@ import { useContext } from "react";
 
 const Navbar = () => {
 
+
   return (
     <div className="navbar">
       <div className="wrapper">
         <div className="items">
 
 
+
           <div className="item"></div>
+
 
 
         </div>

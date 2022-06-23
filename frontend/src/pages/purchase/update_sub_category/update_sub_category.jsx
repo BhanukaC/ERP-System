@@ -1,13 +1,13 @@
-import "./add_sub_category.scss";
-import { useState,useEffect } from "react";
+import "./update_sub_category.scss";
+import { useState, useEffect } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-const AddSubCategory = () => {
-  
-  const [subcatName, setsubcatName] = useState("");
-  const [catId, setcatId] = useState("");
+const UpdatesubCategory = () => {
+  const [catID, setcatID] = useState("");
+  const [subCategoryName, setsubCategoryName] = useState("");
   const [discount, setdiscount] = useState("");
   const [catIds, setcatIds] = useState({});
 
@@ -22,76 +22,89 @@ const AddSubCategory = () => {
     getcatId();
   }, [""]);
 
+
+
+  const { SCID } = useParams();
+  console.log(SCID);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/purchase/subCategory/getSingle/" + SCID, {
+        withCredentials: true,
+        credentials: "include",
+      })
+      .then((res) => {
+        setcatID(res.data[0].catID);
+        setsubCategoryName(res.data[0].subCategoryName);
+        setdiscount(res.data[0].discount);
+        });
+        
+
+  }, [""]);
+
   const submitForm = (e) => {
     e.preventDefault();
-    if(
-      subcatName === ""||
-      catId===""
-    )
-    {
-      alert("Please fill the required fields");
-    }
-    else{
+    if (
+        subCategoryName === ""
+      
+    ) {
+      alert("Please fill all required fields");
+    } else {
+      let data = {
+        catID: catID,
+        subCategoryName: subCategoryName,
+        discount : discount
+        
+        
+      };
+
       axios
-      .post(
-        "http://localhost:5000/purchase/subCategory/add",
-        {
-          
-          catID:catId,
-          subCategoryName : subcatName,
-          discount : discount,
-        },
-        {
+        .put("http://localhost:5000/purchase/subCategory/update/" + SCID, data, {
           withCredentials: true,
           credentials: "include",
-        }
-      )
-      .then((res) => {
-        if(res.data=="subCategory Added"){
-          alert(" Sub Category Added");
-        }else{
-          alert("Error");
-        }
-        //
-        //console.log(res.data);
-      });
+        })
+        .then((res) => {
+          if (res.data === "subCategory updated") {
+            alert(" Sub Category Updated");
+          } else {
+            alert("Sorry,Try again");
+          }
+        });
     }
-    
   };
-
-  
 
   return (
     <div className="new">
-      <Sidebar/>
+      <Sidebar />
       <div className="newContainer">
         <Navbar />
         <div className="topPart">
-          <h1>Add Sub Category</h1>
+          <h1>Update Sub Category</h1>
         </div>
         <div className="bottomPart">
           <div className="right">
             <form>
 
-              
-              <div className="formInput">
-                <label> Sub Category Name*</label>
+            <div className="formInput">
+                <label>Sub Category Name*</label>
                 <input
                   type="text"
-                  value={subcatName}
+                  value={subCategoryName}
                   onChange={(e) => {
-                    setsubcatName(e.target.value);
+                    setsubCategoryName(e.target.value);
                   }}
                 />
               </div>
+              
+               
 
               <div className="formInput">
                 <label>Category Name</label>
 
                 <select
-                  value={catId}
+                  value={catID}
                   onChange={(e) => {
-                    setcatId(e.target.value);
+                    setcatID(e.target.value);
                   }}
                 >
                   <option value="" disabled selected>
@@ -106,12 +119,14 @@ const AddSubCategory = () => {
                     : ""}
                 </select>
               </div>
-              
+
+             
+
               <div className="formInput">
                 <label>Discount</label>
                 <input
                   type="number"
-                   min={0}
+                  min={0}
                   value={discount}
                   onChange={(e) => {
                     setdiscount(e.target.value);
@@ -120,7 +135,7 @@ const AddSubCategory = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Add Sub Category</button>
+              <button onClick={submitForm}>Update</button>
             </form>
           </div>
         </div>
@@ -129,4 +144,4 @@ const AddSubCategory = () => {
   );
 };
 
-export default AddSubCategory;
+export default  UpdatesubCategory ;

@@ -3,6 +3,7 @@ const today = require("../helpers/today");
 const query = require("../helpers/mysqlPromise");
 const mailer = require('../helpers/mailer');
 const hbs = require('nodemailer-handlebars');
+
 //category-add,update,getOne,getAll
 exports.categoryAddController = async (req, res) => {
     const { categoryName } = req.body;
@@ -409,6 +410,7 @@ exports.addPurchaseOrderController = async (req, res) => {
             }
             db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Add a purchase order(purchaseOrderID-" + id + ")"], (err, response) => { });
 
+
             mailer.use('compile', hbs({
                 viewEngine: {
                     extname: '.handlebars',
@@ -491,6 +493,7 @@ exports.addPurchaseOrderController = async (req, res) => {
                 }
 
             })
+
 
         }
 

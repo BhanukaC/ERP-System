@@ -7,17 +7,19 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import AddLocationIcon from '@mui/icons-material/AddLocation';
+import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import { Link } from "react-router-dom";
-import { DarkModeContext } from "../../context/darkModeContext";
+
 import {useContext } from "react";
 
 const Sidebar = () => {
-  const { dispatch } = useContext(DarkModeContext);
+ 
   return (
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">ABCD</span>
+          <span className="logo1">Quick ERP</span>
         </Link>
       </div>
       <hr />
@@ -74,23 +76,52 @@ const Sidebar = () => {
           </li>
           </Link>
 
+          <Link to="/purchase/addcontactno" style={{ textDecoration: "none" }}>
+          <li>
+            < AddIcCallIcon className="icon" />
+            <span>Add Supplier Contact No</span>
+          </li>
+          </Link>
+
+
+
+
+          <Link to="/purchase/addlocation" style={{ textDecoration: "none" }}>
+          <li>
+            <AddLocationIcon className="icon" />
+            <span>Add Supplier Store Loation</span>
+          </li>
+          </Link>
+
           <Link to="/purchase/editsupplier" style={{ textDecoration: "none" }}>
           <li>
             <EditIcon className="icon" />
             <span>Edit Supplier</span>
           </li>
           </Link>
+
+          
           
           <p className="title">PURCHASE ORDER</p>
+
+
+          <Link to="/purchase/order1" style={{ textDecoration: "none" }}>
           <li>
             <AddCircleIcon className="icon" />
             <span>Add Purchase Order</span>
           </li>
+          </Link>
+          
 
+          <Link to="/purchase/vieworders" style={{ textDecoration: "none" }}>
           <li>
             <PreviewIcon className="icon" />
-            <span>View Purchase Order</span>
+            <span>View Purchase Orders</span>
           </li>
+          </Link>
+
+        
+          
           
           <p className="title">USER</p>
           <li>
@@ -103,16 +134,7 @@ const Sidebar = () => {
           </li>
         </ul>
       </div>
-      <div className="bottom">
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "LIGHT" })}
-        ></div>
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "DARK" })}
-        ></div>
-      </div>
+      
     </div>
   );
 };

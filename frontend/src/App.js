@@ -10,7 +10,24 @@ import EditCategory from "./pages/purchase/edit_category/edit_category";
 import Addsupplier from "./pages/purchase/add_supplier/add_supplier";
 import EditSuppler from "./pages/purchase/edit_supplier/edit_supplier";
 import EditsubCategory from "./pages/purchase/edit_sub_category/edit_sub_category";
-import Purchasehome from "./pages/purchase/home_purchase/home_purchase";
+
+import UpdateCategory from "./pages/purchase/update_category/update_category";
+import UpdatesubCategory from "./pages/purchase/update_sub_category/update_sub_category";
+import Updatesupplier from "./pages/purchase/update_supplier/update_supplier";
+import ViewStoreLocations from "./pages/purchase/view_store_location/view_store_location";
+import AddStoreLocation from "./pages/purchase/add_location/add_location";
+import AddContactNo from "./pages/purchase/add_contactno/add_contactno";
+import ViewContactNo from "./pages/purchase/viewContactno/viewContactno";
+import ViewPurchaseOrder from "./pages/purchase/view_purchase_order/view_purchase_order";
+import ViewPurchaseOrderData from "./pages/purchase/view_order_data/view_order_data";
+import AddPurchaseOrder1 from "./pages/purchase/purchaseOrder/addPurchaseOrder1";
+import AddPurchaseOrder2 from "./pages/purchase/purchaseOrder/addPurchaseOrder2";
+import Updateproduct from "./pages/purchase/update_product/update_product";
+
+
+
+
+
 import ViewAllEmployees from "./pages/hr/employeee/viewAll/viewAll";
 
 import WarehouseDetails from "./pages/inventory/warehouse/warehouseDetails/warehouseDetails";
@@ -132,10 +149,28 @@ function App() {
                 <Route path="viewproduct" element={<Viewproduct />} />
                 <Route path="editcat" element={<EditCategory />} />
                 <Route path="editsubcat" element={<EditsubCategory />} />
+                <Route path="editsubcat" element={<EditsubCategory />} />
+                <Route path="updatecat/:catID" element={<UpdateCategory />} />
+                <Route path="updatesubcat/:SCID" element={<UpdatesubCategory />} />
+                <Route path="update/:PID" element={<Updateproduct />} />
+
+
+
               </Route>
               <Route path="addsupplier" element={<Addsupplier />} />
               <Route path="editsupplier" element={<EditSuppler />} />
-            </Route>
+              <Route path="addlocation" element={<AddStoreLocation />} />
+              <Route path="updatesupplier/:SID" element={<Updatesupplier />} />
+              <Route path="viewsuplocation/:SID" element={< ViewStoreLocations/>} />
+              <Route path="addcontactno" element={<  AddContactNo/>} />
+              <Route path="viewcontactno/:SID" element={<   ViewContactNo/>} />
+              <Route path="viewOrders" element={<   ViewPurchaseOrder/>} />
+              <Route path="vieworderdata/:purchaseOrderID" element={<  ViewPurchaseOrderData/>} />
+              <Route path="order1" element={<AddPurchaseOrder1 />} />
+              <Route path="order2" element={<AddPurchaseOrder2 />} />
+              
+
+               </Route>
 
             <Route path="hr">
               <Route index element={<ProtectedRoute level={2}><AddEmployee /></ProtectedRoute>} />

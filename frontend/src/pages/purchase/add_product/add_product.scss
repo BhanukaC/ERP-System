@@ -5,17 +5,21 @@
     .newContainer {
       flex: 6;
   
-      .top,
-      .bottom {
+      .topPart,
+      .bottomPart {
         -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
         box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
         padding: 10px;
         margin: 20px;
         display: flex;
+        
+        
+
   
         h1 {
-          color: lightgray;
-          font-size: 20px;
+          width: 100%;
+      font-size: 24px;
+      color : #7451f8;
         }
   
         .right {
@@ -48,18 +52,19 @@
               }
             }
   
-            .break {
+            .Break {
               flex-basis: 100%;
               width: 0px;
               height: 0px;
               overflow: hidden;
+              color: #000099;
             }
   
             button {
               width: 150px;
               padding: 10px;
               border: none;
-              background-color: teal;
+              background-color: #7451f8;
               color: white;
               font-weight: bold;
               cursor: pointer;
