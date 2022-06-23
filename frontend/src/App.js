@@ -1,4 +1,3 @@
-import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import AddEmployee from "./pages/hr/employeee/add/add"
 
@@ -88,7 +87,6 @@ import ViewAllSalariesForEmployee from "./pages/hr/salary/viewAllForEmployee/vie
 
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
