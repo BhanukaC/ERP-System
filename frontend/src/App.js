@@ -62,8 +62,8 @@ import EditCustomerDeliveryAddress from "./pages/sales/customerDeliveryAddress/e
 import ViewAllCustomerContactDetails from "./pages/sales/customerContactNumber/viewAll/viewAll";
 import AddSalesReturnOrderPage1 from "./pages/sales/salesReturnOrder/add/add";
 import AddSalesReturnOrderPage2 from "./pages/sales/salesReturnOrder/add/add2";
-import ViewAllSalesReturnOrders from "./pages/sales/salesReturnOrder/add/viewAll/viewAll"; 
-import ViewSalesReturnOrderData from "./pages/sales/salesReturnOrder/add/viewAll/viewAll2"; 
+import ViewAllSalesReturnOrders from "./pages/sales/salesReturnOrder/add/viewAll/viewAll";
+import ViewSalesReturnOrderData from "./pages/sales/salesReturnOrder/add/viewAll/viewAll2";
 import AddSalesOrderPart1 from "./pages/sales/salesOrder/add/add";
 import AddSalesOrderPart2 from "./pages/sales/salesOrder/add/add2";
 import ViewAllSalesOrders from "./pages/sales/salesOrder/viewAll/viewAll";
@@ -172,7 +172,7 @@ function App() {
             </Route>
 
             <Route path="purchase">
-              <Route index element={<ProtectedRoute level={3}><Purchasehome /></ProtectedRoute>} />
+              <Route index element={<ProtectedRoute level={3}><AddProduct /></ProtectedRoute>} />
               <Route path="product">
                 <Route path="add" element={<AddProduct />} />
                 <Route path="addcat" element={<AddCategory />} />
@@ -192,16 +192,16 @@ function App() {
               <Route path="editsupplier" element={<EditSuppler />} />
               <Route path="addlocation" element={<AddStoreLocation />} />
               <Route path="updatesupplier/:SID" element={<Updatesupplier />} />
-              <Route path="viewsuplocation/:SID" element={< ViewStoreLocations/>} />
-              <Route path="addcontactno" element={<  AddContactNo/>} />
-              <Route path="viewcontactno/:SID" element={<   ViewContactNo/>} />
-              <Route path="viewOrders" element={<   ViewPurchaseOrder/>} />
-              <Route path="vieworderdata/:purchaseOrderID" element={<  ViewPurchaseOrderData/>} />
+              <Route path="viewsuplocation/:SID" element={< ViewStoreLocations />} />
+              <Route path="addcontactno" element={<  AddContactNo />} />
+              <Route path="viewcontactno/:SID" element={<   ViewContactNo />} />
+              <Route path="viewOrders" element={<   ViewPurchaseOrder />} />
+              <Route path="vieworderdata/:purchaseOrderID" element={<  ViewPurchaseOrderData />} />
               <Route path="order1" element={<AddPurchaseOrder1 />} />
               <Route path="order2" element={<AddPurchaseOrder2 />} />
-              
 
-               </Route>
+
+            </Route>
 
             <Route path="hr">
               <Route index element={<ProtectedRoute level={2}><AddEmployee /></ProtectedRoute>} />
@@ -250,8 +250,8 @@ function App() {
                 <Route path="edit/:CID" element={<EditCustomer />} />
               </Route>
               <Route path="salesOrder">
-               <Route path="add" element={<AddSalesOrderPart1 />} />
-               <Route path="add2" element={<AddSalesOrderPart2 />} />
+                <Route path="add" element={<AddSalesOrderPart1 />} />
+                <Route path="add2" element={<AddSalesOrderPart2 />} />
                 <Route path="viewAll" element={<ViewAllSalesOrders />} />
                 <Route path="viewAll2/:salesOrderID" element={<ViewSalesOrderData />} />
               </Route>
@@ -261,8 +261,8 @@ function App() {
                 <Route path="viewAll" element={<ViewAllSalesReturnOrders />} />
                 <Route path="viewAll2/:salesReturnOrderID" element={<ViewSalesReturnOrderData />} />
               </Route>
-              <Route path="salesReturnOrders"> 
-               <Route path="add2" element={<AddSalesReturnOrderPage2 />} />  
+              <Route path="salesReturnOrders">
+                <Route path="add2" element={<AddSalesReturnOrderPage2 />} />
               </Route>
               <Route path="customerContactNumber">
                 <Route path="add" element={<AddCustomerContactNumber />} />
