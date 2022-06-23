@@ -7,12 +7,12 @@ import axios from "axios";
 import moment from "moment";
 
 const userColumns = [
-  { field: "SSLID", headerName: "Supplier Location ID" },
+  { field: "SSLID", headerName: "Supplier Location ID",width:150 },
  
-  { field: "no", headerName: "No" },
-  { field: "street", headerName: "Street" },
-  { field: "town", headerName: "Town" },
-  { field: "country", headerName: "Country" },
+  { field: "no", headerName: "No" ,width:100},
+  { field: "street", headerName: "Street",width:100 },
+  { field: "town", headerName: "Town" ,width:100},
+  { field: "country", headerName: "Country",width:100 },
   
   
 ];

@@ -162,10 +162,10 @@ const submitForm = (e) => {
       <Sidebar/>
       <div className="newContainer">
         <Navbar />
-        <div className="top">
-          <h2>Add Product</h2>
+        <div className="topPart">
+          <h1>Add Product</h1>
         </div>
-        <div className="bottom1">
+        <div className="bottomPart">
           <div className="right">
             <form>
 

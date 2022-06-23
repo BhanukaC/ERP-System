@@ -6,15 +6,15 @@ import axios from "axios";
 import moment from "moment";
 
 const userColumns = [
-  { field: "purchaseOrderID", headerName: "Purchase Order ID",  width: 100},
-  { field: "orderDate", headerName: "Order Date", width: 200 },
+  { field: "purchaseOrderID", headerName: "Purchase Order ID",  width: 150},
+  { field: "orderDate", headerName: "Order Date", width: 250 },
   { field: "status", headerName: "Status", width: 100 },
   { field: "total", headerName: "Net Total", width: 100 },
   { field: "SID", headerName: "Supplier ID", width: 100},
-  { field: "SSLID", headerName: "Supplier Store Location ID", width: 100},
-  { field: "SCID", headerName: "Supplier Contact ID", width: 100},
-  { field: "WID", headerName: "Warehouse ID", width: 100},
-  { field: "deliveredDate", headerName: "DeliveredDate", width: 200},
+  { field: "SSLID", headerName: "Supplier Store Location ID", width: 185},
+  { field: "SCID", headerName: "Supplier Contact ID", width: 150},
+  { field: "WID", headerName: "Warehouse ID", width: 120},
+  { field: "deliveredDate", headerName: "DeliveredDate", width: 250},
  
  
  

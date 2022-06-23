@@ -5,16 +5,16 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "SID", headerName: "Supplier ID" },
-  { field: "sName", headerName: "Supplier Name" },
-  { field: "paymentTerm", headerName: "Payment Term" },
-  { field: "no", headerName: "NO" },
-  { field: "street", headerName: "Street" },
-  { field: "town", headerName: "Town" },
-  { field: "country", headerName: "Country" },
-  { field: "returnTerm", headerName: "Return Term" },
-  { field: "deliveryTerm", headerName: "Delivery Term" },
-  { field: "email", headerName: "Email" },
+  { field: "SID", headerName: "Supplier ID",width:100 },
+  { field: "sName", headerName: "Supplier Name",width:120 },
+  { field: "paymentTerm", headerName: "Payment Term",width:120 },
+  { field: "no", headerName: "NO",width:100 },
+  { field: "street", headerName: "Street" ,width:150},
+  { field: "town", headerName: "Town",width:100 },
+  { field: "country", headerName: "Country",width:100 },
+  { field: "returnTerm", headerName: "Return Term" ,width:150},
+  { field: "deliveryTerm", headerName: "Delivery Term" ,width:150},
+  { field: "email", headerName: "Email",width:250 },
   
 ];
 

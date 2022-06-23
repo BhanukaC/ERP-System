@@ -8,7 +8,7 @@ import moment from "moment";
 const userColumns = [
   { field: "ID", headerName: "ID" },
   { field: "PID", headerName: "Product ID" },
-  { field: "purchaseOrderID", headerName: "Purchase Order ID" },
+  
   { field: "unitPrice", headerName: "Unit Price" },
   { field: "qty", headerName: "Quantity" },
   { field: "discount", headerName: "Discount" },

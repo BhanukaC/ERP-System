@@ -6,9 +6,9 @@ import axios from "axios";
 import moment from "moment";
 
 const userColumns = [
-  { field: "SCID", headerName: "Supplier Contact ID" },
+  { field: "SCID", headerName: "Supplier Contact ID",width:150 },
  
-  { field: "contactNumber", headerName: "Contact Number" },
+  { field: "contactNumber", headerName: "Contact Number",width:200 },
   
   
   
