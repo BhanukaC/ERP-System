@@ -1,6 +1,6 @@
 import jwtDecode from 'jwt-decode';
 
-function getCookie(cname) {
+export function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
