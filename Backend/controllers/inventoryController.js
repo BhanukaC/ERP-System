@@ -139,12 +139,17 @@ exports.purchaseOrderUpdateController = async (req, res) => {
                             res.json({ error: err });
                             return;
                         } else {
+                            let SID=result[0].SID;
+                            let SSLID=result[0].SSLID;
+                            let SCID=result[0].SCID;
+                            let total=result[0].total;
                             db.query("insert into purchaseReturnOrder(initiateDate,SID,SSLID,SCID,reason,total,WID,purchaseOrderID) values(?,?,?,?,?,?,?,?)", [today, result[0].SID, result[0].SSLID, result[0].SCID, reason, result[0].total, WID, purchaseOrderID], (err, result) => {
                                 if (err) {
                                     res.json({ error: err });
                                     return;
                                 } else {
                                     const purchaseReturnOrderID = result.insertId;
+                                    let products=[];
                                     for (let i = 0; i < response.length; i++) {
                                         db.query("insert into purchaseReturnOrderData(purchaseReturnOrderID,PID,unitPrice,qty,discount,netTot) values(?,?,?,?,?,?)", [purchaseReturnOrderID, response[i].PID, response[i].unitPrice, response[i].qty, response[i].discount, response[i].netTot], (err, result) => {
                                             if (err) {
@@ -152,6 +157,14 @@ exports.purchaseOrderUpdateController = async (req, res) => {
                                                 return;
                                             }
                                         });
+                                        db.query("select * from Product where PID=?",response[i].PID,(err,res1)=>{
+                                            if (err) {
+                                                res.json({ error: err });
+                                                return;
+                                            }else{
+                                                products.push({name:res1[0].PName,unitPrice:response[i].unitPrice,qty:response[i].qty,discount:response[i].discount,netTot:response[i].netTot})
+                                            }
+                                        })
                                     }
                                     db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Update Purchase Order as Cancel(purchaseOrderID-" + purchaseOrderID + ")"], (err, response) => { });
                                     db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Add a purchase return order(purchaseReturnOrderID-" + purchaseReturnOrderID + ")"], (err, response) => { });
@@ -171,7 +184,7 @@ exports.purchaseOrderUpdateController = async (req, res) => {
                                         } else {
                                             let toMail = res1[0].email;
                                             let sname = res1[0].sName;
-                                            let subject = "New Order from company ID-" + id;
+                                            let subject = "Purchase Return Order from company ID-" + purchaseReturnOrderID;
                                             let date = today;
                                             db.query("select * from SupplierContactNumber where SCID=?", [SCID], (err, res2) => {
                                                 if (err) {
@@ -201,12 +214,14 @@ exports.purchaseOrderUpdateController = async (req, res) => {
                                                                         subject: subject,
                                                                         template: 'purchaseReturnOrder',
                                                                         context: {
-                                                                            id: id,
+                                                                            id: purchaseReturnOrderID,
                                                                             date: date,
                                                                             Sname: sname,
                                                                             Sno: Sno, Sstreet: Sstreet, Stown: Stown, Scountry: Scountry,
                                                                             contactNumber: contactNumber,
                                                                             Wno: Wno, Wstreet: Wstreet, Wtown: Wtown,
+                                                                            purchaseOrderID: purchaseOrderID,
+                                                                            reason: reason,
                                                                             total: total,
                                                                             items: products,
                         
