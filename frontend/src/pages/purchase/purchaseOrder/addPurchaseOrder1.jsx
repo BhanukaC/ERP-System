@@ -99,11 +99,11 @@ const AddPurchaseOrder1 = () => {
                 <label>Quantity</label>
                 <input
                   type="number"
-                  value={qty}
                   min={0}
-                  onChange={(e) => {
-                    setQty(e.target.value);
-                  }}
+                  step="1"
+                  pattern="[0-9]*"
+                  value={qty}
+                  onChange={(e) => setQty((v)=>(e.target.validity.valid?e.target.value:v))}
                 />
               </div>
               <div className="formInput">
