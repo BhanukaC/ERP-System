@@ -36,9 +36,9 @@ const DataTable2 = (props) => {
 
   const actionColumn = [
     {
-        field: "action",
-        headerName: "Action",
-        width: 200,
+        // field: "action",
+        // headerName: "Action",
+        // width: 200,
       },
   ];
 
