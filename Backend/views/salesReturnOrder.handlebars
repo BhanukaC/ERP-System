@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        h1 { 
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sales Return Order-{{id}}</h1>
+    <h3>Date-{{date}}</h3>
+    <h3>Customer Name-{{Cname}}</h3>
+    <h3>Customer Delivery Address-{{Cno}},{{Cstreet}},{{Ctown}}</h3>
+    <h3>Reason-{{reason}}</h3>
+    <h3>Sales order ID-{{salesOrderID}}</h3>
+    <h3>Customer Contact Number-{{contactNumber}}</h3>
+    <h3>Warehouse Address -{{Wno}},{{Wstreet}},{{Wtown}},Sri Lanka</h3>
+    <h3>Status - {{Status}} </h3>
+
+    <table border="3">
+        <tr>
+            <th>Product Name</th>
+            <th>unit Price</th>
+             <th>Qunatity</th>
+             <th>discount</th>
+              <th>Total</th>
+        </tr>
+         {{#each items}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{unitPrice}}</td>
+            <td>{{qty}}</td>
+            <td>{{discount}}</td>
+            <td>{{netTot}}</td>
+        </tr>
+          {{/each}}
+    </table>
+
+    <h3>Total -{{total}}</h3>
+
+  
+    
+</body>
+</html>
