@@ -402,3 +402,30 @@ exports.getSingleSalesReturnOrderDataController = async (req, res) => {
         }
     });
 }
+
+exports.getProductStocksForWareHouseController=async(req,res)=>{
+    const id = req.params.id;
+    const{PID,qty}=req.body;
+  
+
+    db.query("select * from stock where WID=? and PID=? and qualityLevel='A'",[id,PID],(err,result)=>{
+        
+        if (err) {
+            res.json({ error: err });
+        } else {
+            let response;
+           if(result.length==0){
+            response="we don't have enough stocks";
+           }else{
+            if(result[0].qty>=qty){
+                response="We have Stocks";
+            }else{
+                response="we don't have enough stocks";
+            }
+           }
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view Product(PID"+PID+") stocks for warehouse(WID-" + id + ")"], (err, response) => { });
+            res.json(response);
+        }
+    })
+
+}

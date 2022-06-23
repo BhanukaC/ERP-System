@@ -1,23 +1,19 @@
 import "./sales-sidebar.scss";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import EventNoteIcon from '@mui/icons-material/EventNote';
-import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
-import SpeakerNotesIcon from '@mui/icons-material/SpeakerNotes';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined' ;
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { Link } from "react-router-dom";
-import { DarkModeContext } from "../../../context/darkModeContext";
-import { useContext } from "react";
 
 const Sidebar = () => {
-  const { dispatch } = useContext(DarkModeContext);
+
   return (
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">ABCD</span>
+          <span className="logo">Quick ERP</span>
         </Link>
       </div>
       <hr />
@@ -36,15 +32,31 @@ const Sidebar = () => {
               <span>View Customer Details</span>
             </li>
           </Link>
+          <Link to="/sales/customerContactNumber/add" style={{ textDecoration: "none" }}>
+            <li>
+              <EventNoteIcon className="icon" />
+              <span>Add Customer Contact Details</span>
+            </li>
+          </Link>
+          <Link to="/sales/customerDeliveryAddress/add" style={{ textDecoration: "none" }}>
+            <li>
+              <EventNoteIcon className="icon" />
+              <span>Add Customer Delivery Address</span>
+            </li>
+          </Link>
           <p className="title">SALES ORDER</p>
-          <li>
-            <FormatListNumberedIcon className="icon" />
-            <span>Add Sales Order</span>
-          </li>
-          <li>
-            <SpeakerNotesIcon className="icon" />
-            <span>View Sales Order</span>
-          </li>
+          <Link to="/sales/salesOrder/add" style={{ textDecoration: "none" }}>
+            <li>
+              <DocumentScannerIcon className="icon" />
+              <span>Add Sales Order Details</span>
+            </li>
+          </Link>
+          <Link to="/sales/salesOrder/viewall" style={{ textDecoration: "none" }}>
+            <li>
+              <DocumentScannerIcon className="icon" />
+              <span>View Sales Order Details</span>
+            </li>
+          </Link>
           <p className="title">SALES RETURN ORDER</p>
           <Link to="/sales/salesReturnOrder/add" style={{ textDecoration: "none" }}>
             <li>
@@ -68,16 +80,6 @@ const Sidebar = () => {
             <span>Logout</span>
           </li>
         </ul>
-      </div>
-      <div className="bottom">
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "LIGHT" })}
-        ></div>
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "DARK" })}
-        ></div>
       </div>
     </div>
   );

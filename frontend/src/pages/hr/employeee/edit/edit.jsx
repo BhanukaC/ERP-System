@@ -22,6 +22,11 @@ const EditEmployee = () => {
   const [department, setDepartment] = useState("");
   const [basicSalary, setBasicSalary] = useState(0);
   const [dailyWage, setDailyWage] = useState(0);
+  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [no, setNo] = useState("");
+  const [street, setStreet] = useState("");
+  const [town, setTown] = useState("");
 
   const { EID } = useParams();
   console.log(EID);
@@ -55,6 +60,11 @@ const EditEmployee = () => {
         setDepartment(res.data[0].department);
         setBasicSalary(res.data[0].basicSalary);
         setDailyWage(res.data[0].dailyWage);
+        setEmail(res.data[0].email);
+        setMobile(res.data[0].contactNumber);
+        setNo(res.data[0].no);
+        setStreet(res.data[0].street);
+        setTown(res.data[0].town);
       });
   }, [""]);
 
@@ -73,50 +83,67 @@ const EditEmployee = () => {
       designation === "" ||
       department === "" ||
       workerType === "" ||
+      email === "" ||
+      mobile === "" ||
+      no === "" ||
+      street === "" ||
+      town === "" ||
       (basicSalary === 0 && dailyWage === 0)
     ) {
       alert("Please fill all required fields");
     } else {
-      let data = {
-        DOB: dob,
-        fName: fname,
-        lName: lname,
-        bankName: bankName,
-        accountNo: accountNo,
-        branchCode: branchCode,
-        branchName: branchName,
-        NIC: NIC,
-        gender: gender,
-        designation: designation,
-        department: department,
-      };
+      if (!/^\d{10}$/.test(mobile)) {
+        alert("Invalid Mobile number, must be ten digits !");
+      } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        alert("You have entered an invalid email address!");
+      } else if (NIC.length !== 10) {
+        alert("Please Enter a valid NIC Number !");
+      } else {
+        let data = {
+          DOB: dob,
+          fName: fname,
+          lName: lname,
+          bankName: bankName,
+          accountNo: accountNo,
+          branchCode: branchCode,
+          branchName: branchName,
+          NIC: NIC,
+          gender: gender,
+          designation: designation,
+          department: department,
+          email: email,
+          contactNumber: mobile,
+          no: no,
+          street: street,
+          town: town,
+        };
 
-      if (workerType === "0") {
-        data = { basicSalary: basicSalary, ...data };
-      }
-      if (workerType === "1") {
-        data = { dailyWage: dailyWage, ...data };
-      }
+        if (workerType === "0") {
+          data = { basicSalary: basicSalary, ...data };
+        }
+        if (workerType === "1") {
+          data = { dailyWage: dailyWage, ...data };
+        }
 
-      if (passportNo !== "") {
-        data = { passportNo: passportNo, ...data };
-      }
+        if (passportNo !== "") {
+          data = { passportNo: passportNo, ...data };
+        }
 
-      axios
-        .put("http://localhost:5000/hr/employee/update/" + EID, data, {
-          withCredentials: true,
-          credentials: "include",
-        })
-        .then((res) => {
-          if (res.data === "Employee details Updated") {
-            alert("Employee details Updated");
-          } else {
-            alert("Sorry,Try again");
-          }
-        });
+        axios
+          .put("http://localhost:5000/hr/employee/update/" + EID, data, {
+            withCredentials: true,
+            credentials: "include",
+          })
+          .then((res) => {
+            if (res.data === "Employee details Updated") {
+              alert("Employee details Updated");
+            } else {
+              alert("Sorry,Try again");
+            }
+          });
+      }
     }
   };
-
   return (
     <div className="new">
       <Sidebar />
@@ -222,6 +249,61 @@ const EditEmployee = () => {
                   value={passportNo}
                   onChange={(e) => {
                     setPassportNo(e.target.value);
+                  }}
+                />
+              </div>
+
+              <div className="formInput">
+                <label>Email*</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                />
+              </div>
+
+              <div className="formInput">
+                <label>Mobile Number*</label>
+                <input
+                  type="tel"
+                  value={mobile}
+                  onChange={(e) => {
+                    setMobile(e.target.value);
+                  }}
+                />
+              </div>
+
+              <div className="formInput">
+                <label>Address Line 1(No)*</label>
+                <input
+                  type="text"
+                  value={no}
+                  onChange={(e) => {
+                    setNo(e.target.value);
+                  }}
+                />
+              </div>
+
+              <div className="formInput">
+                <label>Address Line 2(street)*</label>
+                <input
+                  type="text"
+                  value={street}
+                  onChange={(e) => {
+                    setStreet(e.target.value);
+                  }}
+                />
+              </div>
+
+              <div className="formInput">
+                <label>Address Line 3(Town)*</label>
+                <input
+                  type="text"
+                  value={town}
+                  onChange={(e) => {
+                    setTown(e.target.value);
                   }}
                 />
               </div>
