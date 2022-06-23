@@ -239,36 +239,36 @@ function App() {
             <Route path="sales">
               <Route index element={<ProtectedRoute level={1}><AddCustomer /></ProtectedRoute>} />
               <Route path="customer">
-                <Route path="add" element={<AddCustomer />} />
-                <Route path="viewAll" element={<ViewAllCustomer />} />
-                <Route path="edit/:CID" element={<EditCustomer />} />
+                <Route path="add" element={<ProtectedRoute level={1}><AddCustomer /></ProtectedRoute>} />
+                <Route path="viewAll" element={<ProtectedRoute level={1}><ViewAllCustomer /></ProtectedRoute>} />
+                <Route path="edit/:CID" element={<ProtectedRoute level={1}><EditCustomer /></ProtectedRoute>} />
               </Route>
               <Route path="salesOrder">
-                <Route path="add" element={<AddSalesOrderPart1 />} />
-                <Route path="add2" element={<AddSalesOrderPart2 />} />
-                <Route path="viewAll" element={<ViewAllSalesOrders />} />
-                <Route path="viewAll2/:salesOrderID" element={<ViewSalesOrderData />} />
+                <Route path="add" element={<ProtectedRoute level={1}><AddSalesOrderPart1 /></ProtectedRoute>} />
+                <Route path="add2" element={<ProtectedRoute level={1}><AddSalesOrderPart2 /></ProtectedRoute>} />
+                <Route path="viewAll" element={<ProtectedRoute level={1}><ViewAllSalesOrders /></ProtectedRoute>} />
+                <Route path="viewAll2/:salesOrderID" element={<ProtectedRoute level={1}><ViewSalesOrderData /></ProtectedRoute>} />
               </Route>
               <Route path="salesReturnOrder">
-                <Route path="add" element={<AddSalesReturnOrderPage1 />} />
-                <Route path="add2" element={<AddSalesReturnOrderPage2 />} />
-                <Route path="viewAll" element={<ViewAllSalesReturnOrders />} />
-                <Route path="viewAll2/:salesReturnOrderID" element={<ViewSalesReturnOrderData />} />
+                <Route path="add" element={<ProtectedRoute level={1}><AddSalesReturnOrderPage1 /></ProtectedRoute>} />
+                <Route path="add2" element={<ProtectedRoute level={1}><AddSalesReturnOrderPage2 /></ProtectedRoute>} />
+                <Route path="viewAll" element={<ProtectedRoute level={1}><ViewAllSalesReturnOrders /></ProtectedRoute>} />
+                <Route path="viewAll2/:salesReturnOrderID" element={<ProtectedRoute level={1}><ViewSalesReturnOrderData /></ProtectedRoute>} />
               </Route>
               <Route path="salesReturnOrders">
-                <Route path="add2" element={<AddSalesReturnOrderPage2 />} />
+                <Route path="add2" element={<ProtectedRoute level={1}><AddSalesReturnOrderPage2 /></ProtectedRoute>} />
               </Route>
               <Route path="customerContactNumber">
-                <Route path="add" element={<AddCustomerContactNumber />} />
-                <Route path="edit/:CCID" element={<EditCustomerContactNumber />} />
-                <Route path="viewAll" element={<ViewAllCustomerContactDetails />} />
-                <Route path="viewAll/:CID" element={<ViewAllCustomerContactDetails />} />
+                <Route path="add" element={<ProtectedRoute level={1}><AddCustomerContactNumber /></ProtectedRoute>} />
+                <Route path="edit/:CCID" element={<ProtectedRoute level={1}><EditCustomerContactNumber /></ProtectedRoute>} />
+                <Route path="viewAll" element={<ProtectedRoute level={1}><ViewAllCustomerContactDetails /></ProtectedRoute>} />
+                <Route path="viewAll/:CID" element={<ProtectedRoute level={1}><ViewAllCustomerContactDetails /></ProtectedRoute>} />
               </Route>
               <Route path="customerDeliveryAddress">
-                <Route path="add" element={<AddCustomerDeliveryAddress />} />
-                <Route path="edit/:CDAID" element={<EditCustomerDeliveryAddress />} />
-                <Route path="viewAll" element={<ViewCustomerDeliveryAddress />} />
-                <Route path="viewAll/:CID" element={<ViewCustomerDeliveryAddress />} />
+                <Route path="add" element={<ProtectedRoute level={1}><AddCustomerDeliveryAddress /></ProtectedRoute>} />
+                <Route path="edit/:CDAID" element={<ProtectedRoute level={1}><EditCustomerDeliveryAddress /></ProtectedRoute>} />
+                <Route path="viewAll" element={<ProtectedRoute level={1}><ViewCustomerDeliveryAddress /></ProtectedRoute>} />
+                <Route path="viewAll/:CID" element={<ProtectedRoute level={1}><ViewCustomerDeliveryAddress /></ProtectedRoute>} />
               </Route>
             </Route>
 
