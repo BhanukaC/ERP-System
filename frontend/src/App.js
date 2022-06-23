@@ -130,7 +130,7 @@ function App() {
               <Route path="warehouse">
                 <Route path="warehousedetails" element={<ProtectedRoute level={4}><WarehouseDetails /></ProtectedRoute>} />
                 <Route path="editDetails/:WID" element={<ProtectedRoute level={4}><EditWarehouseDetails /></ProtectedRoute>} />
-                <Route path="stockDetails/:id" element={<ProtectedRoute level={4}><StockDetails /></ProtectedRoute>} />   
+                <Route path="stockDetails/:id" element={<ProtectedRoute level={4}><StockDetails /></ProtectedRoute>} />
               </Route>
 
               <Route path="order">
@@ -152,16 +152,16 @@ function App() {
 
                 <Route path="salesOrders" >
                   <Route index element={<ProtectedRoute level={4}><SalesOrderDetails /></ProtectedRoute>} />
-                  <Route path="orderData/:id" element={<ProtectedRoute level={4}><SalesOrderData /></ProtectedRoute>} />   
+                  <Route path="orderData/:id" element={<ProtectedRoute level={4}><SalesOrderData /></ProtectedRoute>} />
                 </Route>
               </Route>
 
               <Route path="internalShipments" >
                 <Route path="add2" element={<ProtectedRoute level={4}><AddInternalShipmentsPart1 /></ProtectedRoute>} />
-                <Route path="add" element={<ProtectedRoute level={4}><AddInternalShipmentsPart2 /></ProtectedRoute>} />     
+                <Route path="add" element={<ProtectedRoute level={4}><AddInternalShipmentsPart2 /></ProtectedRoute>} />
                 <Route path="toReceive" element={<ProtectedRoute level={4}><ReceiveDetails /></ProtectedRoute>} />
                 <Route path="ReceivedShipmentData/:id" element={<ProtectedRoute level={4}><ReceiveData /></ProtectedRoute>} />
-                <Route path="toSend" element={<ProtectedRoute level={4}><SendDetails /></ProtectedRoute>} />  
+                <Route path="toSend" element={<ProtectedRoute level={4}><SendDetails /></ProtectedRoute>} />
                 <Route path="sentShipmentData/:id" element={<ProtectedRoute level={4}><SendData /></ProtectedRoute>} />
               </Route>
 
@@ -181,7 +181,7 @@ function App() {
                 <Route path="updatesubcat/:SCID" element={<ProtectedRoute level={3}><UpdatesubCategory /></ProtectedRoute>} />
                 <Route path="update/:PID" element={<ProtectedRoute level={3}><Updateproduct /></ProtectedRoute>} />
 
-               </Route>
+              </Route>
               <Route path="addsupplier" element={<ProtectedRoute level={3}><Addsupplier /></ProtectedRoute>} />
               <Route path="editsupplier" element={<ProtectedRoute level={3}><EditSuppler /></ProtectedRoute>} />
               <Route path="addlocation" element={<ProtectedRoute level={3}><AddStoreLocation /></ProtectedRoute>} />
@@ -284,7 +284,7 @@ function App() {
               <Route path="setdiscount" element={<ProtectedRoute level={0}><SetDiscount /></ProtectedRoute>} />
             </Route>
 
-            <Route path="account" element={<ProtectedRoute level={0}><ViewAccounts /></ProtectedRoute>}></Route>
+            <Route path="account" element={<ProtectedRoute level={5}><ViewAccounts /></ProtectedRoute>}></Route>
 
           </Route>
         </Routes>

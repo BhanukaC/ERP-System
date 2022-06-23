@@ -10,20 +10,8 @@ import axios from "axios";
 
 const SendData = () => {
     const {id}=useParams();
-    console.log(id);
-    const [status,setStatus]=useState("");
-    const[WID,setWID]=useState(0);
+    //console.log(id);
 
-  useEffect(()=>{
-    axios.get("http://localhost:5000/inventory/internalShipment/getSingle/"+id,{
-      withCredentials: true,
-      credentials: "include",
-
-    }).then((res)=>{
-      setWID(res.data[0].FromWID);
-      setStatus(res.data[0].status);
-    })
-  },[""]);
 
   return (
     <div className="list">

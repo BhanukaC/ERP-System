@@ -98,7 +98,7 @@ exports.purchaseOrderUpdateController = async (req, res) => {
         res.json({ error: e });
         return;
     }
-    if(response.length!==0){
+    if (response.length !== 0) {
         db.query("update purchaseOrder set status=? ,deliveredDate=? where purchaseOrderID=?", [status, today, purchaseOrderID], (err, result) => {
             if (err) {
                 res.json({ error: err });
@@ -139,17 +139,17 @@ exports.purchaseOrderUpdateController = async (req, res) => {
                             res.json({ error: err });
                             return;
                         } else {
-                            let SID=result[0].SID;
-                            let SSLID=result[0].SSLID;
-                            let SCID=result[0].SCID;
-                            let total=result[0].total;
+                            let SID = result[0].SID;
+                            let SSLID = result[0].SSLID;
+                            let SCID = result[0].SCID;
+                            let total = result[0].total;
                             db.query("insert into purchaseReturnOrder(initiateDate,SID,SSLID,SCID,reason,total,WID,purchaseOrderID) values(?,?,?,?,?,?,?,?)", [today, result[0].SID, result[0].SSLID, result[0].SCID, reason, result[0].total, WID, purchaseOrderID], (err, result) => {
                                 if (err) {
                                     res.json({ error: err });
                                     return;
                                 } else {
                                     const purchaseReturnOrderID = result.insertId;
-                                    let products=[];
+                                    let products = [];
                                     for (let i = 0; i < response.length; i++) {
                                         db.query("insert into purchaseReturnOrderData(purchaseReturnOrderID,PID,unitPrice,qty,discount,netTot) values(?,?,?,?,?,?)", [purchaseReturnOrderID, response[i].PID, response[i].unitPrice, response[i].qty, response[i].discount, response[i].netTot], (err, result) => {
                                             if (err) {
@@ -157,12 +157,12 @@ exports.purchaseOrderUpdateController = async (req, res) => {
                                                 return;
                                             }
                                         });
-                                        db.query("select * from Product where PID=?",response[i].PID,(err,res1)=>{
+                                        db.query("select * from Product where PID=?", response[i].PID, (err, res1) => {
                                             if (err) {
                                                 res.json({ error: err });
                                                 return;
-                                            }else{
-                                                products.push({name:res1[0].PName,unitPrice:response[i].unitPrice,qty:response[i].qty,discount:response[i].discount,netTot:response[i].netTot})
+                                            } else {
+                                                products.push({ name: res1[0].PName, unitPrice: response[i].unitPrice, qty: response[i].qty, discount: response[i].discount, netTot: response[i].netTot })
                                             }
                                         })
                                     }
@@ -199,7 +199,7 @@ exports.purchaseOrderUpdateController = async (req, res) => {
                                                             let Sstreet = res3[0].street;
                                                             let Stown = res3[0].town;
                                                             let Scountry = res3[0].country;
-                        
+
                                                             db.query("select * from Warehouse where WID=?", [WID], (err, res4) => {
                                                                 if (err) {
                                                                     res.json({ error: err });
@@ -207,7 +207,7 @@ exports.purchaseOrderUpdateController = async (req, res) => {
                                                                     let Wno = res4[0].no;
                                                                     let Wstreet = res4[0].street;
                                                                     let Wtown = res4[0].town;
-                        
+
                                                                     let mailOptions = {
                                                                         from: 'info@codewithx.com', // TODO: email sender
                                                                         to: toMail, // TODO: email receiver
@@ -224,51 +224,51 @@ exports.purchaseOrderUpdateController = async (req, res) => {
                                                                             reason: reason,
                                                                             total: total,
                                                                             items: products,
-                        
+
                                                                         } // send extra values to template
                                                                     };
-                        
+
                                                                     mailer.sendMail(mailOptions, (err, data) => {
                                                                         if (err) {
                                                                             console.log(err);
                                                                             return console.log('Error occurs');
                                                                         }
-                        
-                        
+
+
                                                                         res.json("Purchase order Returned");
                                                                         return;
                                                                     });
-                        
-                        
+
+
                                                                 }
-                        
+
                                                             })
-                        
+
                                                         }
-                        
+
                                                     })
-                        
+
                                                 }
                                             })
-                        
+
                                         }
-                        
+
                                     })
-    
+
                                 }
                             })
                         }
                     });
                 }
-    
+
             }
         });
-    }else{
+    } else {
         db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Tried to update purchase order but failed"], (err, response) => { });
         res.json("Please Provide purchaseOrderID");
         return;
     }
-    
+
 }
 
 
@@ -572,8 +572,8 @@ exports.internalShipmentUpdateController = async (req, res) => {
                         res.json({ error: err });
                         return;
                     }
-                    db.query("select * from stock where PID=? and WID=?", [response[i].PID, WID], (err, result) => {
-                        if (_.isEmpty(result)) {
+                    db.query("select * from stock where PID=? and WID=? and qualityLevel='A'", [response[i].PID, WID], (err, result) => {
+                        if (result.length == 0) {
                             db.query("insert into stock(PID,qty,WID) values(?,?,?)", [response[i].PID, response[i].qty, WID], (err, result) => {
                                 if (err) {
                                     res.json({ error: err });
@@ -676,27 +676,27 @@ exports.getAllStockLevelForWareHouseController = async (req, res) => {
     });
 }
 
-exports.getProductStocksForWareHouseController=async(req,res)=>{
+exports.getProductStocksForWareHouseController = async (req, res) => {
     const id = req.params.id;
-    const{PID,qty}=req.body;
-  
+    const { PID, qty } = req.body;
 
-    db.query("select * from stock where WID=? and PID=? and qualityLevel='A'",[id,PID],(err,result)=>{
-        
+
+    db.query("select * from stock where WID=? and PID=? and qualityLevel='A'", [id, PID], (err, result) => {
+
         if (err) {
             res.json({ error: err });
         } else {
             let response;
-           if(result.length==0){
-            response="we don't have enough stocks";
-           }else{
-            if(result[0].qty>=qty){
-                response="We have Stocks";
-            }else{
-                response="we don't have enough stocks";
+            if (result.length == 0) {
+                response = "we don't have enough stocks";
+            } else {
+                if (result[0].qty >= qty) {
+                    response = "We have Stocks";
+                } else {
+                    response = "we don't have enough stocks";
+                }
             }
-           }
-            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view Product(PID"+PID+") stocks for warehouse(WID-" + id + ")"], (err, response) => { });
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view Product(PID" + PID + ") stocks for warehouse(WID-" + id + ")"], (err, response) => { });
             res.json(response);
         }
     })
