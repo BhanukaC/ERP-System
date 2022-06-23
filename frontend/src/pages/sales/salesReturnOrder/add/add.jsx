@@ -19,7 +19,7 @@ const AddSalesReturnOrderPage1 = () => {
   
   useEffect(() => {
     const getWarehouse = async () => {
-      const res = await axios.get("http://localhost:5000/inventory/Warehouse/getAll", {
+      const res = await axios.get("http://localhost:5000/sales/Warehouse/getAll", {
         withCredentials: true,
         credentials: "include",
       });
@@ -140,7 +140,7 @@ const AddSalesReturnOrderPage1 = () => {
                   <option value="" disabled selected>
                     Select Warehouse ID
                   </option>
-                  {JSON.stringify(warehouse) !== "{}"
+                  {Array.isArray(warehouse)
                     ? warehouse.map((w) => (
                         <option value={w.WID} key={w.WID}>
                           {w.town}
@@ -161,7 +161,7 @@ const AddSalesReturnOrderPage1 = () => {
                   <option value="" disabled selected>
                     Select Customer Delivery Address
                   </option>
-                  {JSON.stringify(location) !== "{}"
+                  {Array.isArray(location)
                     ? location.map((l) => (
                         <option value={l.CDAID} key={l.CDAID}>
                           {l.no},{l.street},{l.town}
@@ -182,7 +182,7 @@ const AddSalesReturnOrderPage1 = () => {
                   <option value="" disabled selected>
                   Customer Contact Number
                   </option>
-                  {JSON.stringify(contactNumber) !== "{}"
+                  {Array.isArray(contactNumber)
                     ? contactNumber.map((l) => (
                         <option value={l.CCID} key={l.CCID}>
                           {l.contactNumber}
