@@ -10,6 +10,7 @@ const AddOtRecord = () => {
   const [otType, setOtType] = useState("");
   const [hours, setHours] = useState(0);
   const [OtTypes, setOtTypes] = useState({});
+  const [EIDStatus, setEIDStatus] = useState(false);
 
   useEffect(() => {
     const getOtTypes = async () => {
@@ -26,34 +27,34 @@ const AddOtRecord = () => {
     e.preventDefault();
     if (EID === "" || NIC === "" || otType === "" || hours <= 0) {
       alert("Please fill all required fields");
-      console.log(EID);
-      console.log(NIC);
-      console.log(hours);
-      console.log(otType);
     } else {
-      let data = {
-        EID: EID,
-        otID: otType,
-        hours: hours,
-      };
+      if (!EIDStatus) {
+        alert("EID not found");
+      } else {
+        let data = {
+          EID: EID,
+          otID: otType,
+          hours: hours,
+        };
 
-      axios
-        .post("http://localhost:5000/hr/ot/add", data, {
-          withCredentials: true,
-          credentials: "include",
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.data === "OT Added") {
-            alert("OT Added");
-            setEID("");
-            setNIC("");
-            setHours(0);
-            setOtType("");
-          } else {
-            alert("Sorry,Try again");
-          }
-        });
+        axios
+          .post("http://localhost:5000/hr/ot/add", data, {
+            withCredentials: true,
+            credentials: "include",
+          })
+          .then((res) => {
+            console.log(res);
+            if (res.data === "OT Added") {
+              alert("OT Added");
+              setEID("");
+              setNIC("");
+              setHours(0);
+              setOtType("");
+            } else {
+              alert("Sorry,Try again");
+            }
+          });
+      }
     }
   };
 
@@ -68,8 +69,10 @@ const AddOtRecord = () => {
       );
       if (res.data.length === 0) {
         alert("EID not found");
+        setEIDStatus(false);
       } else {
         setNIC(res.data[0].NIC);
+        setEIDStatus(true);
       }
     }
   };
@@ -135,6 +138,7 @@ const AddOtRecord = () => {
                 <input
                   type="number"
                   step="any"
+                  min={0}
                   value={hours}
                   onChange={(e) => {
                     setHours(e.target.value);
