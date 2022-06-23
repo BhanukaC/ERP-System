@@ -1,12 +1,10 @@
 import "././add.scss";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../../../../components/navbar/Navbar";
 import Sidebar from "../../../../components/sales/sales-sidebar/sales-sidebar";
 import axios from "axios";
 
-
 const AddSalesOrderPart1 = () => {
-
   const [CID, setCID] = useState("");
   const [CDAID, setCDAID] = useState("");
   const [CCID, setCCID] = useState("");
@@ -18,46 +16,50 @@ const AddSalesOrderPart1 = () => {
 
   useEffect(() => {
     const getWarehouse = async () => {
-      const res = await axios.get("http://localhost:5000/inventory/Warehouse/getAll", {
-        withCredentials: true,
-        credentials: "include",
-      });
+      const res = await axios.get(
+        "http://localhost:5000/inventory/Warehouse/getAll",
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
       setWarehouse(res.data);
     };
     getWarehouse();
-
-  
   }, [""]);
 
   const getLocation = async (val) => {
-    const res = await axios.get("http://localhost:5000/sales/Customer/deliveryAddress/getAll/" + val, {
-      withCredentials: true,
-      credentials: "include",
-    });
+    const res = await axios.get(
+      "http://localhost:5000/sales/Customer/deliveryAddress/getAll/" + val,
+      {
+        withCredentials: true,
+        credentials: "include",
+      }
+    );
     setLocation(res.data);
   };
- 
 
   const getContactNumber = async (val) => {
-    const res = await axios.get("http://localhost:5000/sales/Customer/contactNumber/getAll/" + val, {
-      withCredentials: true,
-      credentials: "include",
-    });
-    
-    setContactNumber(res.data);
+    const res = await axios.get(
+      "http://localhost:5000/sales/Customer/contactNumber/getAll/" + val,
+      {
+        withCredentials: true,
+        credentials: "include",
+      }
+    );
 
+    setContactNumber(res.data);
   };
-  
+
   const submitForm = (e) => {
     e.preventDefault();
 
-    localStorage.setItem("CID",CID);
-    localStorage.setItem("CDAID",CDAID);
-    localStorage.setItem("CCID",CCID);
-    localStorage.setItem("WID",WID);
-    localStorage.setItem("distance",distance);
+    localStorage.setItem("CID", CID);
+    localStorage.setItem("CDAID", CDAID);
+    localStorage.setItem("CCID", CCID);
+    localStorage.setItem("WID", WID);
+    localStorage.setItem("distance", distance);
     window.location = "/sales/salesOrder/add2";
-   
   };
 
   const checkCustomer = async (val) => {
@@ -77,9 +79,9 @@ const AddSalesOrderPart1 = () => {
         getContactNumber(val);
         getLocation(val);
       }
-    }else{
+    } else {
       setCCID("");
-        setCDAID("");
+      setCDAID("");
     }
   };
 
@@ -91,11 +93,10 @@ const AddSalesOrderPart1 = () => {
         <div className="topPart">
           <h1>Add Sales Order</h1>
         </div>
-       
+
         <div className="bottomPart">
           <div className="right">
             <form>
-             
               <div className="formInput">
                 <label>Warehouse ID</label>
 
@@ -126,7 +127,6 @@ const AddSalesOrderPart1 = () => {
                   onChange={(e) => {
                     checkCustomer(e.target.value);
                     setCID(e.target.value);
-                    
                   }}
                 />
               </div>
@@ -143,7 +143,7 @@ const AddSalesOrderPart1 = () => {
                   <option value="" disabled selected>
                     Select Customer Delivery Address
                   </option>
-                  {JSON.stringify(location) !== "{}"
+                  {Array.isArray(location)
                     ? location.map((l) => (
                         <option value={l.CDAID} key={l.CDAID}>
                           {l.no},{l.street},{l.town}
@@ -163,7 +163,7 @@ const AddSalesOrderPart1 = () => {
                   }}
                 >
                   <option value="" disabled selected>
-                  Customer Contact Number
+                    Customer Contact Number
                   </option>
                   {JSON.stringify(contactNumber) !== "{}"
                     ? contactNumber.map((l) => (
@@ -185,21 +185,22 @@ const AddSalesOrderPart1 = () => {
                 />
               </div>
 
-
-
               <div className="break"></div>
-              <button 
-              style={{
-                width: "150px",
-              padding: "10px",
-              border: "none",
-              backgroundColor: "#7451f8",
-              color: "white",
-              fontWeight: "bold",
-              cursor: "pointer",
-              margintop: "10px",
-              }}
-              onClick={submitForm}>Add Sales Order</button>
+              <button
+                style={{
+                  width: "150px",
+                  padding: "10px",
+                  border: "none",
+                  backgroundColor: "#7451f8",
+                  color: "white",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  margintop: "10px",
+                }}
+                onClick={submitForm}
+              >
+                Add Sales Order
+              </button>
             </form>
           </div>
         </div>
