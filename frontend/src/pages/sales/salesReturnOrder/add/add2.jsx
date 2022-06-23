@@ -53,7 +53,7 @@ const AddSalesReturnOrderPage2 = () => {
   const checkProduct = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/sales/sales/getSingle/" + val,
+        "http://localhost:5000/sales/product/getSingle/" + val,
         {
           withCredentials: true,
           credentials: "include",

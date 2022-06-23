@@ -17,11 +17,12 @@ const AddPurchaseOrder2 = () => {
 
   useEffect(() => {
     const getWarehouse = async () => {
-      const res = await axios.get("http://localhost:5000/inventory/Warehouse/getAll", {
+      const res = await axios.get("http://localhost:5000/purchase/Warehouse/getAll", {
         withCredentials: true,
         credentials: "include",
       });
       setWarehouse(res.data);
+      // console.log(res.data);
     };
     getWarehouse();
 
@@ -187,7 +188,7 @@ const AddPurchaseOrder2 = () => {
                   <option value="" disabled selected>
                     Select Supplier Store Location
                   </option>
-                  {JSON.stringify(location) !== "{}"
+                  {Array.isArray(location)
                     ? location.map((l) => (
                         <option value={l.SSLID} key={l.SSLID}>
                           {l.no},{l.street},{l.town}
@@ -211,7 +212,7 @@ const AddPurchaseOrder2 = () => {
                   <option value="" disabled selected>
                   Select Supplier Contact Number
                   </option>
-                  {JSON.stringify(contactNumber) !== "{}"
+                  {Array.isArray(contactNumber)
                     ? contactNumber.map((c) => (
                         <option value={c.SCID} key={c.SCID}>
                           {c.contactNumber}
@@ -234,7 +235,7 @@ const AddPurchaseOrder2 = () => {
                   <option value="" disabled selected>
                     Select Warehouse 
                   </option>
-                  {JSON.stringify(warehouse) !== "{}"
+                  {Array.isArray(warehouse)
                     ? warehouse.map((w) => (
                         <option value={w.WID} key={w.WID}>
                           {w.town}

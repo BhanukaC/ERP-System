@@ -19,7 +19,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo1">Quick ERP</span>
+          <span className="logoName">Quick ERP</span>
         </Link>
       </div>
       <hr />
@@ -124,14 +124,18 @@ const Sidebar = () => {
           
           
           <p className="title">USER</p>
-          <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
-          </li>
-          <li>
-            <ExitToAppIcon className="icon" />
-            <span>Logout</span>
-          </li>
+          <Link to="/profile" style={{ textDecoration: "none" }}>
+            <li>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Profile</span>
+            </li>
+          </Link>
+          <Link to="/logout" style={{ textDecoration: "none" }}>
+            <li>
+              <ExitToAppIcon className="icon" />
+              <span>Logout</span>
+            </li>
+          </Link>
         </ul>
       </div>
       

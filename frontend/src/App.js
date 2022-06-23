@@ -124,47 +124,45 @@ function App() {
             <Route path="logout" element={<LogOut />} />
             <Route path="profile" element={<ProtectedRouteUser><Profile /></ProtectedRouteUser>} />
 
-
-
             <Route path="inventory">
               <Route index element={<ProtectedRoute level={4}><InventoryDashboard /></ProtectedRoute>} />
-              <Route path="changeQualityLevel" element={<ChangeQualityLevel />} />
+              <Route path="changeQualityLevel" element={<ProtectedRoute level={4}><ChangeQualityLevel /></ProtectedRoute>} />
               <Route path="warehouse">
-                <Route path="warehousedetails" element={<WarehouseDetails />} />
-                <Route path="editDetails/:WID" element={<EditWarehouseDetails />} />
-                <Route path="stockDetails/:id" element={<StockDetails />} />
+                <Route path="warehousedetails" element={<ProtectedRoute level={4}><WarehouseDetails /></ProtectedRoute>} />
+                <Route path="editDetails/:WID" element={<ProtectedRoute level={4}><EditWarehouseDetails /></ProtectedRoute>} />
+                <Route path="stockDetails/:id" element={<ProtectedRoute level={4}><StockDetails /></ProtectedRoute>} />   
               </Route>
 
               <Route path="order">
                 <Route path="purchaseOrders" >
-                  <Route index element={<PurchaseOrderDetails />} />
-                  <Route path="changeStatus/:purchaseOrderID" element={<ChangePurchaseOrderStatus />} />
-                  <Route path="orderData/:id" element={<PurchaseOrderData />} />
+                  <Route index element={<ProtectedRoute level={4}><PurchaseOrderDetails /></ProtectedRoute>} />
+                  <Route path="changeStatus/:purchaseOrderID" element={<ProtectedRoute level={4}><ChangePurchaseOrderStatus /></ProtectedRoute>} />
+                  <Route path="orderData/:id" element={<ProtectedRoute level={4}><PurchaseOrderData /></ProtectedRoute>} />
                 </Route>
 
                 <Route path="returnOrders" >
-                  <Route index element={<ReturnOrderDetails />} />
-                  <Route path="orderData/:id" element={<ReturnOrderData />} />
+                  <Route index element={<ProtectedRoute level={4}><ReturnOrderDetails /></ProtectedRoute>} />
+                  <Route path="orderData/:id" element={<ProtectedRoute level={4}><ReturnOrderData /></ProtectedRoute>} />
                 </Route>
 
                 <Route path="purchaseReturnOrders" >
-                  <Route index element={<PurchaseReturnOrderDetails />} />
-                  <Route path="orderData/:id" element={<PurchaseReturnOrderData />} />
+                  <Route index element={<ProtectedRoute level={4}><PurchaseReturnOrderDetails /></ProtectedRoute>} />
+                  <Route path="orderData/:id" element={<ProtectedRoute level={4}><PurchaseReturnOrderData /></ProtectedRoute>} />
                 </Route>
 
                 <Route path="salesOrders" >
-                  <Route index element={<SalesOrderDetails />} />
-                  <Route path="orderData/:id" element={<SalesOrderData />} />
+                  <Route index element={<ProtectedRoute level={4}><SalesOrderDetails /></ProtectedRoute>} />
+                  <Route path="orderData/:id" element={<ProtectedRoute level={4}><SalesOrderData /></ProtectedRoute>} />   
                 </Route>
               </Route>
 
               <Route path="internalShipments" >
-                <Route path="add2" element={<AddInternalShipmentsPart1 />} />
-                <Route path="add" element={<AddInternalShipmentsPart2 />} />
-                <Route path="toReceive" element={<ReceiveDetails />} />
-                <Route path="ReceivedShipmentData/:id" element={<ReceiveData />} />
-                <Route path="toSend" element={<SendDetails />} />
-                <Route path="sentShipmentData/:id" element={<SendData />} />
+                <Route path="add2" element={<ProtectedRoute level={4}><AddInternalShipmentsPart1 /></ProtectedRoute>} />
+                <Route path="add" element={<ProtectedRoute level={4}><AddInternalShipmentsPart2 /></ProtectedRoute>} />     
+                <Route path="toReceive" element={<ProtectedRoute level={4}><ReceiveDetails /></ProtectedRoute>} />
+                <Route path="ReceivedShipmentData/:id" element={<ProtectedRoute level={4}><ReceiveData /></ProtectedRoute>} />
+                <Route path="toSend" element={<ProtectedRoute level={4}><SendDetails /></ProtectedRoute>} />  
+                <Route path="sentShipmentData/:id" element={<ProtectedRoute level={4}><SendData /></ProtectedRoute>} />
               </Route>
 
             </Route>
