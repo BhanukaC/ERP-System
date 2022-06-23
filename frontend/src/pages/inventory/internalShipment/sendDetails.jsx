@@ -1,7 +1,7 @@
 import "../form.scss"; 
 import Navbar from "../../../components/navbar/Navbar";
 import InventorySidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
-import ShipmentTable from "../../../components/inventory/internalShipment/sendTable";
+import SendTable from "../../../components/inventory/internalShipment/sendTable";
 import { useState,useEffect } from "react";
 import axios from "axios";
 
@@ -58,7 +58,7 @@ const SendDetails = () => {
                   {JSON.stringify(warehouse) !== "{}"
                     ? warehouse.map((w) => (
                         <option value={w.WID} key={w.WID}>
-                          {w.town}
+                          {w.WID}-{w.town}
                         </option>
                       ))
                     : ""}
@@ -71,7 +71,7 @@ const SendDetails = () => {
           </div>
         </div>
         <div className="bottomPart">
-          <ShipmentTable />
+          <SendTable />
         </div>
         
       </div>

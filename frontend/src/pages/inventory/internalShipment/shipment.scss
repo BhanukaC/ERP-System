@@ -1,3 +1,7 @@
+body{
+height:100%;
+overflow: scroll;
+
 .new {
     width: 100%;
     display: flex;
@@ -73,3 +77,4 @@
       }
     }
   }
+}

@@ -119,7 +119,7 @@ const ChangeQualityLevel = () => {
                   {JSON.stringify(warehouse) !== "{}"
                     ? warehouse.map((w) => (
                         <option value={w.WID} key={w.WID}>
-                          {w.town}
+                          {w.WID}-{w.town}
                         </option>
                       ))
                     : ""}

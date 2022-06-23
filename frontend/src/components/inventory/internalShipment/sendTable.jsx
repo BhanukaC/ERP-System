@@ -10,40 +10,30 @@ const userColumns = [
   { field: "dates", headerName: "Order Date", width: 150 },
   { field: "FromWID", headerName: "From", width: 100 },
   { field: "TOWID", headerName: "To", width: 100},
-  { field: "statusMod", headerName: "Status", width: 150 },
   { field: "finishDates", headerName: "Finish Date", width: 150},
  
 ];
 
-const ShipmentTable = () => {
+const SendTable = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    let WID=localStorage.getItem("WID");
+    let fromWID=localStorage.getItem("WID");
     axios
-      .get("http://localhost:5000/inventory/internalShipment/getAllSend/"+ WID,{
+      .get("http://localhost:5000/inventory/internalShipment/getAllSend/"+ fromWID,{
         withCredentials: true,
         credentials: "include",
       })
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {
-          let status;
-          switch (d.status) {
-            case "P":
-              status="Pending"
-              break;
-            case "D":
-              status="Delivered"
-              break;
-          }
           let date;
           if(d.finishDate===null){
             date=d.finishDate
           }else{
             date=moment(d.deliveredDate).add(1, "days").utc().format("YYYY/MM/DD");
           }
-          return { id: d.internalShipmentID,statusMod:status,
+          return { id: d.internalShipmentID,
             dates: moment(d.date).add(1, "days").utc().format("YYYY/MM/DD"),
             finishDates: date,
             ...d };
@@ -73,7 +63,7 @@ const ShipmentTable = () => {
   return (
     <div className="table">
       <div className="tableTitle">
-        Shipments To be Sent
+        Shipments From
       </div>
       <DataGrid
         className="datagrid"
@@ -93,4 +83,4 @@ const ShipmentTable = () => {
   );
 };
 
-export default ShipmentTable;
+export default SendTable;

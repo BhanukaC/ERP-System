@@ -15,13 +15,13 @@ const userColumns = [
  
 ];
 
-const ShipmentTable = () => {
+const ReceiveTable = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    let WID=localStorage.getItem("WID");
+    let ToWID=localStorage.getItem("WID");
     axios
-      .get("http://localhost:5000/inventory/internalShipment/getAllToReceive/"+ WID,{
+      .get("http://localhost:5000/inventory/internalShipment/getAllToReceive/"+ ToWID,{
         withCredentials: true,
         credentials: "include",
       })
@@ -73,7 +73,7 @@ const ShipmentTable = () => {
   return (
     <div className="table">
       <div className="tableTitle">
-        Shipments To be Received
+        Shipments To 
       </div>
       <DataGrid
         className="datagrid"
@@ -93,4 +93,4 @@ const ShipmentTable = () => {
   );
 };
 
-export default ShipmentTable;
+export default ReceiveTable;
