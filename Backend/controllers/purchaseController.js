@@ -1,6 +1,8 @@
 const db = require("../helpers/db");
 const today = require("../helpers/today");
 const query = require("../helpers/mysqlPromise");
+const mailer = require('../helpers/mailer');
+const hbs = require('nodemailer-handlebars');
 //category-add,update,getOne,getAll
 exports.categoryAddController = async (req, res) => {
     const { categoryName } = req.body;
@@ -406,7 +408,89 @@ exports.addPurchaseOrderController = async (req, res) => {
                 }
             }
             db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Add a purchase order(purchaseOrderID-" + id + ")"], (err, response) => { });
-            res.json("purchase order added");
+
+            mailer.use('compile', hbs({
+                viewEngine: {
+                    extname: '.handlebars',
+                    layoutsDir: '../Backend/views/',
+                    defaultLayout: 'purchaseOrder',
+                },
+                viewPath: '../Backend/views/'
+            }));
+
+            db.query("select * from Supplier where SID=?", [SID], (err, res1) => {
+                if (err) {
+                    res.json({ error: err });
+                } else {
+                    let toMail = res1[0].email;
+                    let sname = res1[0].sName;
+                    let subject = "New Order from company ID-" + id;
+                    let date = today;
+                    db.query("select * from SupplierContactNumber where SCID=?", [SCID], (err, res2) => {
+                        if (err) {
+                            res.json({ error: err });
+                        } else {
+                            let contactNumber = res2[0].contactNumber;
+                            db.query("select * from SupplierStoreLocation where SSLID=?", [SSLID], (err, res3) => {
+                                if (err) {
+                                    res.json({ error: err });
+                                } else {
+                                    let Sno = res3[0].no;
+                                    let Sstreet = res3[0].street;
+                                    let Stown = res3[0].town;
+                                    let Scountry = res3[0].country;
+
+                                    db.query("select * from Warehouse where WID=?", [WID], (err, res4) => {
+                                        if (err) {
+                                            res.json({ error: err });
+                                        } else {
+                                            let Wno = res4[0].no;
+                                            let Wstreet = res4[0].street;
+                                            let Wtown = res4[0].town;
+
+                                            let mailOptions = {
+                                                from: 'info@codewithx.com', // TODO: email sender
+                                                to: toMail, // TODO: email receiver
+                                                subject: subject,
+                                                template: 'purchaseOrder',
+                                                context: {
+                                                    id: id,
+                                                    date: date,
+                                                    Sname: sname,
+                                                    Sno: Sno, Sstreet: Sstreet, Stown: Stown, Scountry: Scountry,
+                                                    contactNumber: contactNumber,
+                                                    Wno: Wno, Wstreet: Wstreet, Wtown: Wtown,
+                                                    total: total,
+                                                    items: products,
+
+                                                } // send extra values to template
+                                            };
+
+                                            mailer.sendMail(mailOptions, (err, data) => {
+                                                if (err) {
+                                                    console.log(err);
+                                                    return console.log('Error occurs');
+                                                }
+
+
+                                                res.json("purchase order added");
+                                            });
+
+
+                                        }
+
+                                    })
+
+                                }
+
+                            })
+
+                        }
+                    })
+
+                }
+
+            })
 
         }
 

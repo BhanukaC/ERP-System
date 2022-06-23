@@ -14,7 +14,9 @@ exports.userRegisterController = async (req, res) => {
 
                 mailer.sendMail(
                     {
-                        from: '"Admin" <admin@erp.com>', // sender address
+
+
+                        from: 'info@codewithx.com', // sender address
                         to: email, // list of receivers
                         subject: "Your account Password", // Subject line
                         text: "Hi " + username + ",Your account password is " + password, // plain text body
@@ -168,3 +170,95 @@ exports.getAllWarehouseController = async (req, res) => {
         }
     });
 };
+
+exports.setDiscountForCustomer = async (req, res) => {
+    const { PID, CID, discount } = req.body;
+    db.query("insert into discounts(PID,CID,discount) values(?,?,?)", [PID, CID, discount], (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Add Product Discount(PID-" + PID + ") for customer(CID+" + ")"], (err, response) => { });
+            res.json("Discount added");
+        }
+    })
+}
+
+exports.setDiscountForSubCategory = async (req, res) => {
+    const { SCID, discount } = req.body;
+    db.query("update subCategory set discount=? where SCID=?", [discount, SCID], (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Add Discount for Sub category(SCID-" + SCID + ")"], (err, response) => { });
+            res.json("Discount added");
+        }
+    })
+}
+
+
+//view all sales return orders
+exports.getAllSalesReturnOrderController = async (req, res) => {
+    db.query("select * from SalesReturnOrder where status='P'", (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view all sales Return orders"], (err, response) => { });
+            res.json(result);
+        }
+    });
+}
+
+exports.acceptSalesReturnOrderController = async (req, res) => {
+    const { salesReturnOrderID, status } = req.body;
+    db.query("update SalesReturnOrder set status=? where salesReturnOrderID=?", [status, salesReturnOrderID], (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Update Sales Return Order status(salesReturnOrderID-" + salesReturnOrderID + ")"], (err, response) => { });
+            res.json("Sales Return Order Updated");
+        }
+    });
+}
+
+
+exports.resetPasswordForUser = async (req, res) => {
+    const id = req.params.id;
+    let email, username;
+    await db.query("select * from users where UID=?", [id], (err, result1) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            email = result1[0].email;
+            username = result1[0].userName;
+        }
+    })
+    const password = Math.floor((Math.random() * 999999) + 100000).toString();
+    await bcrypt.hash(password, 10).then((hash) => {
+        db.query("update users set password=? where UID=?", [hash, id], (err, result) => {
+            if (err) {
+                res.json({ error: err });
+            } else {
+
+                mailer.sendMail(
+                    {
+                        from: 'info@codewithx.com',
+                        to: email, // list of receivers
+                        subject: "Your account New Password", // Subject line
+                        text: "Hi " + username + ",Your account password is " + password, // plain text body
+                    }
+                );
+
+                const UID = result.insertId;
+
+                db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Password Resetted of User(UID-" + UID + ")"], (err, response) => {
+
+                });
+                res.json("Password Resseted");
+
+
+
+            }
+        })
+    })
+
+}

@@ -10,41 +10,43 @@ const AddAdvance = () => {
   const [balance, setBalance] = useState(0);
   const [amount, setAmount] = useState(0);
   const [color, setColor] = useState("");
+  const [EIDStatus, setEIDStatus] = useState(false);
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (
-      EID === "" ||
-      NIC === "" ||
-      balance < amount ||
-      balance === 0 ||
-      amount === 0
-    ) {
+    if (EID === "" || amount === 0) {
       alert("Please fill all required fields");
     } else {
-      let data = {
-        EID: EID,
-        amount: amount,
-      };
+      if (!EIDStatus) {
+        alert("EID not Valid");
+      } else if (balance < amount) {
+        alert("Amount is too large");
+      } else {
+        let data = {
+          EID: EID,
+          amount: amount,
+        };
 
-      axios
-        .post("http://localhost:5000/hr/advance/add", data, {
-          withCredentials: true,
-          credentials: "include",
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.data === "Give an advance") {
-            alert("Give an advance");
-            setEID("");
-            setNIC("");
-            setBalance(0);
-            setAmount(0);
-            setColor("");
-          } else {
-            alert("Sorry,Try again");
-          }
-        });
+        axios
+          .post("http://localhost:5000/hr/advance/add", data, {
+            withCredentials: true,
+            credentials: "include",
+          })
+          .then((res) => {
+            console.log(res);
+            if (res.data === "Give an advance") {
+              alert("Give an advance");
+              setEID("");
+              setNIC("");
+              setBalance(0);
+              setAmount(0);
+              setColor("");
+              setEIDStatus(false);
+            } else {
+              alert("Sorry,Try again");
+            }
+          });
+      }
     }
   };
 
@@ -59,8 +61,11 @@ const AddAdvance = () => {
       );
       if (res.data.length === 0) {
         alert("EID not found");
+        setEIDStatus(false);
       } else {
         setNIC(res.data[0].NIC);
+        checkBalance(val);
+        setEIDStatus(true);
       }
     }
   };
@@ -102,7 +107,6 @@ const AddAdvance = () => {
                   onChange={(e) => {
                     setEID(e.target.value);
                     checkEmployee(e.target.value);
-                    checkBalance(e.target.value);
                   }}
                 />
               </div>
@@ -136,6 +140,7 @@ const AddAdvance = () => {
                   type="number"
                   step="any"
                   value={amount}
+                  min={0}
                   onChange={(e) => {
                     setAmount(e.target.value);
                   }}

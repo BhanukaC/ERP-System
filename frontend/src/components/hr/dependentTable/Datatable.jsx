@@ -9,7 +9,7 @@ const userColumns = [
   { field: "DID", headerName: "DID" },
   { field: "EID", headerName: "EID", width: 100 },
   { field: "name", headerName: "Name" },
-  { field: "contactNo", headerName: "contact No" },
+  { field: "contactNo", headerName: "contact No", width: 120 },
   { field: "birth", headerName: "Date of Birth", width: 100 },
   { field: "gender", headerName: "Gender" },
   { field: "relationship", headerName: "Relationship" },

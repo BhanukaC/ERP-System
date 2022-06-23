@@ -2,6 +2,11 @@ import "./Admin_sidebar.scss";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import StoreIcon from "@mui/icons-material/Store";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import InsertChartIcon from "@mui/icons-material/InsertChart";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { Link } from "react-router-dom";
 //import { DarkModeContext } from "../../context/darkModeContext";
 import { DarkModeContext } from "../../../context/darkModeContext";
@@ -26,30 +31,58 @@ const Sidebar = () => {
               <span>Add User</span>
             </li>
           </Link>
+          <Link to="/admin/addwarehouse" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Add Warehouse</span>
+            </li>
+          </Link>
+          <Link to="/admin/setdiscount" style={{ textDecoration: "none" }}>
+            <li>
+              <SettingsApplicationsIcon className="icon" />
+              <span>Set Discount Rates</span>
+            </li>
+          </Link>
+          <Link to="/admin/addwarehouse" style={{ textDecoration: "none" }}>
+            <li>
+              <NotificationsNoneIcon className="icon" />
+              <span>Sales Return Requests</span>
+            </li>
+          </Link>
+          <p className="title">VIEW</p>
           <Link to="/admin/viewAll" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>All Users</span>
+              <span>Users</span>
             </li>
           </Link>
           <Link to="/admin/viewwarehouses" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
-              <span>All Warehouses</span>
+              <span>Warehouses</span>
+            </li>
+          </Link>
+          <Link to="/admin/viewactivity" style={{ textDecoration: "none" }}>
+            <li>
+              <InsertChartIcon className="icon" />
+              <span>Activity</span>
+            </li>
+          </Link>
+          <p className="title">USER</p>
+          <Link to="" style={{ textDecoration: "none" }}>
+            <li>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Profile</span>
+            </li>
+          </Link>
+          <Link to="" style={{ textDecoration: "none" }}>
+            <li>
+              <ExitToAppIcon className="icon" />
+              <span>Logout</span>
             </li>
           </Link>
           
         </ul>
-      </div>
-      <div className="bottom">
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "LIGHT" })}
-        ></div>
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "DARK" })}
-        ></div>
       </div>
     </div>
   );
