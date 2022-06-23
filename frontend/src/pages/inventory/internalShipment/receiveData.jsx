@@ -1,14 +1,14 @@
 import "../tablePage.scss";
 import Navbar from "../../../components/navbar/Navbar";
 import InventorySidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
-import ShipmentDataTable from "../../../components/inventory/internalShipment/shipmentDataTable";
+import ShipmentDataTable from "../../../components/inventory/internalShipment/receiveDataTable";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 
 
-const ShipmentData = () => {
+const ReceiveData = () => {
     const {id}=useParams();
     console.log(id);
     const [status,setStatus]=useState("");
@@ -72,4 +72,4 @@ const ShipmentData = () => {
   );
 };
 
-export default ShipmentData;
+export default ReceiveData;

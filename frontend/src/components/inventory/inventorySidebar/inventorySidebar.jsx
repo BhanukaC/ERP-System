@@ -73,13 +73,13 @@ const sidebar = () => {
               <span>Add Internal Shipment</span>
             </li>
           </Link>
-          <Link to="/inventory/internalShipments/details " style={{ textDecoration: "none" }}>
+          <Link to="/inventory/internalShipments/toReceive " style={{ textDecoration: "none" }}>
             <li>
               <LocalShippingIcon className="icon" />
-              <span>Internal Shipments to Received</span>
+              <span>Internal Shipments to be Received</span>
             </li>
           </Link>
-          <Link to="/inventory/internalShipments/details " style={{ textDecoration: "none" }}>
+          <Link to="/inventory/internalShipments/toSend " style={{ textDecoration: "none" }}>
             <li>
               <LocalShippingIcon className="icon" />
               <span>Internal Shipments to be Sent</span>

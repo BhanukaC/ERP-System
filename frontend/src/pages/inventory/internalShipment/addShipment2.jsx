@@ -62,7 +62,7 @@ const AddInternalShipmentsPart2 = () => {
                   }}
                 >
                   <option value="" disabled selected>
-                    Select Warehouse ID
+                    Select Warehouse
                   </option>
                   {JSON.stringify(warehouse) !== "{}"
                     ? warehouse.map((w) => (
@@ -83,7 +83,7 @@ const AddInternalShipmentsPart2 = () => {
                     setToWID(e.target.value);
                   }}
                 >
-                  <option value="" disabled selected> Select Warehouse ID</option>
+                  <option value="" disabled selected> Select Warehouse</option>
                   {JSON.stringify(warehouse) !== "{}"
                     ? warehouse.map((w) => (
                         <option value={w.WID} key={w.WID}>

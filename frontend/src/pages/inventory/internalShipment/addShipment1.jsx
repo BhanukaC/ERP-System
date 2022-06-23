@@ -151,11 +151,7 @@ if(stat){
       <div className="newContainer">
         <Navbar />
         <div className="topPart">
-          <h1>Add Internal Shipment</h1>
-          <br />
-          <h1>From Warehouse ID-{fromWID}</h1>
-          <br />
-          <h1>To Warehouse  ID-{toWID}</h1>
+          <h1>Add Internal Shipment From Warehouse ID-{fromWID} To Warehouse  ID-{toWID}</h1>
         </div>
         <div className="bottomPart">
           <div className="right">

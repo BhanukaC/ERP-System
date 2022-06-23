@@ -32,9 +32,10 @@ import EditWarehouseDetails from "./pages/inventory/warehouse/editWarehouseDet/e
 import ChangePurchaseOrderStatus from "./pages/inventory/order/purchaseOrderDetails/changePurchaseStatus";
 import AddInternalShipmentsPart1 from "./pages/inventory/internalShipment/addShipment1";
 import AddInternalShipmentsPart2 from "./pages/inventory/internalShipment/addShipment2";
-import ShipmentDetails from "./pages/inventory/internalShipment/shipmentDetails";
-import ShipmentData from "./pages/inventory/internalShipment/shipmentData";
-
+import ReceiveData from "./pages/inventory/internalShipment/receiveData";
+import ReceiveDetails from "./pages/inventory/internalShipment/receiveDetails";
+import SendData from "./pages/inventory/internalShipment/sendData";
+import SendDetails from "./pages/inventory/internalShipment/sendDetails";
 
 import AddCustomer from "./pages/sales/customer/add/add"
 import ViewAllCustomer from "./pages/sales/viewAll/viewAll"
@@ -115,8 +116,10 @@ function App() {
               <Route path="internalShipments" >
                 <Route path="add2" element={<AddInternalShipmentsPart1 />} />
                 <Route path="add" element={<AddInternalShipmentsPart2 />} />
-                <Route path="details" element={<ShipmentDetails />} />
-                <Route path="shipmentData/:id" element={<ShipmentData />} />
+                <Route path="toReceive" element={<ReceiveDetails />} />
+                <Route path="ReceivedShipmentData/:id" element={<ReceiveData />} />
+                <Route path="toSend" element={<SendDetails />} />
+                <Route path="sentShipmentData/:id" element={<SendData />} />
               </Route>
 
             </Route>

@@ -1,8 +1,7 @@
-import "../table.scss";
+import "./shipmentTable.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 
@@ -20,8 +19,9 @@ const ShipmentTable = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
+    let WID=localStorage.getItem("WID");
     axios
-      .get("http://localhost:5000/inventory/internalShipment/getAllToReceive/5", {
+      .get("http://localhost:5000/inventory/internalShipment/getAllToReceive/"+ WID,{
         withCredentials: true,
         credentials: "include",
       })
@@ -37,9 +37,15 @@ const ShipmentTable = () => {
               status="Delivered"
               break;
           }
+          let date;
+          if(d.finishDate===null){
+            date=d.finishDate
+          }else{
+            date=moment(d.deliveredDate).add(1, "days").utc().format("YYYY/MM/DD");
+          }
           return { id: d.internalShipmentID,statusMod:status,
             dates: moment(d.date).add(1, "days").utc().format("YYYY/MM/DD"),
-            finishDates: moment(d.finishDate).add(1, "days").utc().format("YYYY/MM/DD"),
+            finishDates: date,
             ...d };
         });
         setData(dt);
@@ -52,7 +58,7 @@ const ShipmentTable = () => {
       headerName: " ",
       width: 300,
       renderCell: (params) => {
-        const reLink2= "/inventory/internalShipments/shipmentData/"+params.row.internalShipmentID;
+        const reLink2= "/inventory/internalShipments/ReceivedShipmentData/"+params.row.internalShipmentID;
         return (
           <div className="cellAction">
             <Link to={reLink2} style={{ textDecoration: "none" }}>
@@ -65,16 +71,16 @@ const ShipmentTable = () => {
   ];
 
   return (
-    <div className="datatable">
-      <div className="dataTableTitle">
-        Shipment Details
+    <div className="table">
+      <div className="tableTitle">
+        Shipments To be Received
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        pageSize={8}
+        rowsPerPageOptions={[8]}
         components={{ Toolbar: GridToolbar }}
         componentsProps={{
           toolbar: {
