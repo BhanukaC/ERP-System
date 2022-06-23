@@ -109,7 +109,7 @@ const AddSalesOrderPart1 = () => {
                   <option value="" disabled selected>
                     Select Warehouse ID
                   </option>
-                  {JSON.stringify(warehouse) !== "{}"
+                  {Array.isArray(warehouse)
                     ? warehouse.map((w) => (
                         <option value={w.WID} key={w.WID}>
                           {w.town}
