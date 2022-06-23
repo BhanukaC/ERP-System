@@ -6,7 +6,7 @@
       flex: 6;
   
       .top1,
-      .bottom {
+      .bottom1 {
         -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
         box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
         padding: 10px;
@@ -53,13 +53,13 @@
               width: 0px;
               height: 0px;
               overflow: hidden;
-              color: #000099;
+              color: #7451f8
             }
             button {
               width: 150px;
               padding: 10px;
               border: none;
-              background-color: #7451f8;
+              background-color:#7451f8;
               color: white;
               font-weight: bold;
               cursor: pointer;

@@ -1,3 +1,4 @@
+import "./update_sub_category.scss";
 import { useState, useEffect } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
@@ -77,10 +78,10 @@ const UpdatesubCategory = () => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="top">
+        <div className="topPart">
           <h1>Update Sub Category</h1>
         </div>
-        <div className="bottom">
+        <div className="bottomPart">
           <div className="right">
             <form>
 

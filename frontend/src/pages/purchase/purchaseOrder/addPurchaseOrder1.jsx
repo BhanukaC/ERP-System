@@ -1,3 +1,4 @@
+import "./purchaseOrder.scss";
 import { useState } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
@@ -72,10 +73,10 @@ const AddPurchaseOrder1 = () => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="top">
+        <div className="topPart">
           <h1>Add Purchase Order</h1>
         </div>
-        <div className="bottom">
+        <div className="bottomPart">
           <div className="right">
             <form>
               <div className="formInput">
@@ -123,7 +124,7 @@ const AddPurchaseOrder1 = () => {
             </form>
           </div>
         </div>
-        <div className="bottom">
+        <div className="bottomPart">
           <div className="right">
             <h1>Cart</h1>
             <table style={{ width: "80%", textAlign: "center" }}>

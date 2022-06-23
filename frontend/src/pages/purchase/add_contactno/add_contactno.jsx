@@ -80,10 +80,10 @@ const AddContactNo = () => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="top">
+        <div className="topPart">
           <h1>Add Supplier Contact NO</h1>
         </div>
-        <div className="bottom">
+        <div className="bottomPart">
           <div className="right">
             <form>
               
@@ -137,7 +137,7 @@ const AddContactNo = () => {
               
 
               <div className="break"></div>
-              <button onClick={submitForm}>Add</button>
+              <button onClick={submitForm}>Add </button>
             </form>
           </div>
         </div>

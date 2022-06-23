@@ -54,10 +54,10 @@ const AddCategory = () => {
       <Sidebar/>
       <div className="newContainer">
         <Navbar />
-        <div className="top1">
+        <div className="topPart">
           <h1>Add Category</h1>
         </div>
-        <div className="bottom">
+        <div className="bottomPart">
           <div className="right">
             <form>
 
@@ -73,7 +73,7 @@ const AddCategory = () => {
                 />
               </div>
 
-              <div className="Break"></div>
+              <div className="break"></div>
               <button onClick={submitForm}>Add Category</button>
             </form>
           </div>
