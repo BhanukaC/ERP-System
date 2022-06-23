@@ -26,7 +26,7 @@ const Updateproduct = () => {
     const [catname, setcatname] = useState("");
   const [subcatname, setsubcatname] = useState("");
 
-    const [catIds, setcatIds] = useState({});
+    
 
     const checkCategory = async (val) => {
       if (val !== "") {
@@ -205,7 +205,7 @@ const Updateproduct = () => {
                  </div>
 
               <div className="formInput">
-                <label>EAN Code</label>
+                <label>EAN Code*</label>
                 <input
                   type="number"
                   min={0}
@@ -228,7 +228,7 @@ const Updateproduct = () => {
               </div>
 
               <div className="formInput">
-                <label>HSN Code</label>
+                <label>HSN Code*</label>
                 <input
                   type="number"
                   min={0}
@@ -262,7 +262,7 @@ const Updateproduct = () => {
               </div>
 
               <div className="formInput">
-                <label>Height</label>
+                <label>Height(cm)</label>
                 <input
                   type="number"
                   min={0}
@@ -275,7 +275,7 @@ const Updateproduct = () => {
               </div>
 
               <div className="formInput">
-                <label>Length</label>
+                <label>Length(cm)</label>
                 <input
                   type="number"
                   min={0}
@@ -288,7 +288,7 @@ const Updateproduct = () => {
               </div>
 
               <div className="formInput">
-                <label>Weight</label>
+                <label>Weight(g)</label>
                 <input
                   type="number"
                   min={0}

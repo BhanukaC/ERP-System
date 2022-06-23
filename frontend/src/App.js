@@ -13,7 +13,7 @@ import EditCategory from "./pages/purchase/edit_category/edit_category";
 import Addsupplier from "./pages/purchase/add_supplier/add_supplier";
 import EditSuppler from "./pages/purchase/edit_supplier/edit_supplier";
 import EditsubCategory from "./pages/purchase/edit_sub_category/edit_sub_category";
-import Purchasehome from "./pages/purchase/home_purchase/home_purchase";
+
 import UpdateCategory from "./pages/purchase/update_category/update_category";
 import UpdatesubCategory from "./pages/purchase/update_sub_category/update_sub_category";
 import Updatesupplier from "./pages/purchase/update_supplier/update_supplier";
@@ -111,7 +111,7 @@ function App() {
             </Route>
 
             <Route path="purchase">
-              <Route index element={<Purchasehome />} />
+              <Route index element={<AddProduct />} />
               <Route path="product">
                 <Route path="add" element={<AddProduct />} />
                 <Route path="addcat" element={<AddCategory />} />

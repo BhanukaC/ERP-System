@@ -111,7 +111,7 @@ const AddSubCategory = () => {
                 <label>Discount</label>
                 <input
                   type="number"
-                 min={0}
+                   min={0}
                   value={discount}
                   onChange={(e) => {
                     setdiscount(e.target.value);

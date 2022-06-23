@@ -27,7 +27,8 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "nodemailer": "^6.7.2",
-    
+    "nodemailer-express-handlebars": "^5.0.0",
+    "nodemailer-handlebars": "^1.0.1",
     "nodemon": "^2.0.15",
     "underscore": "^1.13.2"
   }

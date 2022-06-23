@@ -73,7 +73,7 @@ const AddCategory = () => {
                 />
               </div>
 
-              <div className="break"></div>
+              <div className="Break"></div>
               <button onClick={submitForm}>Add Category</button>
             </form>
           </div>

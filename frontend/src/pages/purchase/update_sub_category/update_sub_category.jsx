@@ -8,6 +8,20 @@ const UpdatesubCategory = () => {
   const [catID, setcatID] = useState("");
   const [subCategoryName, setsubCategoryName] = useState("");
   const [discount, setdiscount] = useState("");
+  const [catIds, setcatIds] = useState({});
+
+  useEffect(() => {
+    const getcatId = async () => {
+      const res = await axios.get("http://localhost:5000/purchase/category/getAll", {
+        withCredentials: true,
+        credentials: "include",
+      });
+      setcatIds(res.data);
+    };
+    getcatId();
+  }, [""]);
+
+
 
   const { SCID } = useParams();
   console.log(SCID);
@@ -69,22 +83,9 @@ const UpdatesubCategory = () => {
         <div className="bottom">
           <div className="right">
             <form>
-              
-               
 
-              <div className="formInput">
-                <label>Category ID</label>
-                <input
-                  type="text"
-                  value={catID}
-                  onChange={(e) => {
-                    setcatID(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="formInput">
-                <label>Sub Category Name</label>
+            <div className="formInput">
+                <label>Sub Category Name*</label>
                 <input
                   type="text"
                   value={subCategoryName}
@@ -93,11 +94,38 @@ const UpdatesubCategory = () => {
                   }}
                 />
               </div>
+              
+               
+
+              <div className="formInput">
+                <label>Category Name</label>
+
+                <select
+                  value={catID}
+                  onChange={(e) => {
+                    setcatID(e.target.value);
+                  }}
+                >
+                  <option value="" disabled selected>
+                    select Category Name
+                  </option>
+                  {JSON.stringify(catIds) !== "{}"
+                    ? catIds.map((c) => (
+                        <option value={c.catID} key={c.catID}>
+                          {c.categoryName}
+                        </option>
+                      ))
+                    : ""}
+                </select>
+              </div>
+
+             
 
               <div className="formInput">
                 <label>Discount</label>
                 <input
                   type="number"
+                  min={0}
                   value={discount}
                   onChange={(e) => {
                     setdiscount(e.target.value);

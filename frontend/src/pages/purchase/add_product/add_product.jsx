@@ -253,7 +253,7 @@ const submitForm = (e) => {
               </div>
 
               <div className="formInput">
-                <label>Height</label>
+                <label>Height(cm)</label>
                 <input
                   type="number"
                   min={0}
@@ -266,7 +266,7 @@ const submitForm = (e) => {
               </div>
 
               <div className="formInput">
-                <label>Length</label>
+                <label>Length(cm)</label>
                 <input
                   type="number"
                   min={0}
@@ -279,7 +279,7 @@ const submitForm = (e) => {
               </div>
 
               <div className="formInput">
-                <label>Weight</label>
+                <label>Weight(g)</label>
                 <input
                   type="number"
                   min={0}

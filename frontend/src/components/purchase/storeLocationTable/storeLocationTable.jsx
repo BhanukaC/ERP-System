@@ -8,7 +8,7 @@ import moment from "moment";
 
 const userColumns = [
   { field: "SSLID", headerName: "Supplier Location ID" },
-  { field: "SID", headerName: "Supplier ID" },
+ 
   { field: "no", headerName: "No" },
   { field: "street", headerName: "Street" },
   { field: "town", headerName: "Town" },
@@ -46,25 +46,7 @@ const Datatable = (props) => {
       
   }, [""]);
 
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        const upLink = "/purchase/product/updatecat/"+params.row.catID;
-        return (
-          <div className="cellAction">
-            <Link to= {upLink} style= {{textDecoration : "none"}}>
-              <div className="viewButton">Delete</div>
-              </Link>
-            
-          </div>
-        );
-      },
-    },
-  ];
-
+  
 
   
   return (
@@ -75,7 +57,7 @@ const Datatable = (props) => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={userColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
         components={{ Toolbar: GridToolbar }}
