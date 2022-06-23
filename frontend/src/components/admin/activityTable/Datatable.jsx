@@ -5,12 +5,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "WID", headerName: "WID" },
-  { field: "ManagerName", headerName: "Manager Name" },
-  { field: "no", headerName: "No" },
-  { field: "street", headerName: "Street" },
-  { field: "town", headerName: "Town" },
-  { field: "UID", headerName: "UID" },
+  { field: "ID", headerName: "ID", width: 100 },
+  { field: "IP", headerName: "IP", width: 100 },
+  { field: "userId", headerName: "User ID", width: 100},
+  { field: "userName", headerName: "User Name", width: 250 },
+  { field: "time", headerName: "time", width: 250 },
+  { field: "log", headerName: "log", width: 250 }
 ];
 
 const Datatable = () => {
@@ -22,14 +22,14 @@ const Datatable = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admin/Warehouse/getAll", {
+      .get("http://localhost:5000/admin/getAllActivityData", {
         withCredentials: true,
         credentials: "include",
       })
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {
-          return { id: d.UID, ...d };
+          return { id: d.ID, ...d };
         });
         setData(dt);
         // console.log(dt);
@@ -37,31 +37,12 @@ const Datatable = () => {
   }, [""]);
 
   const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <div
-              className="editButton">
-              Edit
-            </div>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.CID)}
-            >
-              Delete
-            </div>
-          </div>
-        );
-      },
-    },
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">Warehouses</div>
+      <div className="datatableTitle">
+        Activity
+      </div>
       <DataGrid
         className="datagrid"
         rows={data}

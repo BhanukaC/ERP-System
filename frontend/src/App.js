@@ -59,11 +59,19 @@ import { DarkModeContext } from "./context/darkModeContext";
 import AddUser from "./pages/admin/adduser/adduser";
 import ViewAllUsers from "./pages/admin/viewAll/viewAll";
 import ViewAllWarehouses from "./pages/admin/viewwarehouses/viewwarehouses";
+
+import ViewAllActivity from "./pages/admin/viewactivity/viewactivity";
+import AddWarehouse from "./pages/admin/addwarehouse/addwarehouse";
+import EditUserDetails from "./pages/admin/edituser/edituser";
+import ViewAccounts from "./pages/finance/accounts";
+import SetDiscount from "./pages/admin/setdiscount/setdiscount";
+
 import user from "./auth";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ProtectedRouteUser from "./components/ProtectedRoute/ProtectedRouteUser";
 import LogOut from "./pages/logout/logout";
 import Profile from "./pages/profile/profile";
+
 
 
 function App() {
@@ -171,7 +179,13 @@ function App() {
               <Route path="adduser" element={<AddUser />} />
               <Route path="viewAll" element={<ViewAllUsers />} />
               <Route path="viewwarehouses" element={<ViewAllWarehouses />} />
+              <Route path="viewactivity" element={<ViewAllActivity />} />
+              <Route path="addwarehouse" element={<AddWarehouse />} />
+              <Route path="edituser/:UID" element={<EditUserDetails />} />
+              <Route path="setdiscount" element={<SetDiscount />} />
             </Route>
+
+            <Route path="account" element={<ViewAccounts />}></Route>
 
           </Route>
         </Routes>
