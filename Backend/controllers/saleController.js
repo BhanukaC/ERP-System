@@ -305,7 +305,7 @@ exports.addSalesOrderController = async (req, res) => {
                                                 from: 'info@codewithx.com', // TODO: email sender
                                                 to: toMail, // TODO: email receiver
                                                 subject: subject,
-                                                template: 'SalesOrder',
+                                                template: 'salesOrder',
                                                 context: {
                                                     id: id,
                                                     date: date,
@@ -496,7 +496,7 @@ exports.addSalesReturnOrderController = async (req, res) => {
                                                 from: 'info@codewithx.com', // TODO: email sender
                                                 to: toMail, // TODO: email receiver
                                                 subject: subject,
-                                                template: 'SalesReturnOrder',
+                                                template: 'salesReturnOrder',
                                                 context: {
                                                     id: id,
                                                     date: date,
