@@ -3,7 +3,7 @@ const router = express.Router();
 const validateToken = require("../middleware/auth");
 const validAccess = require("../middleware/cashier");
 
-const { customerAddController, customerUpdateController, getSingleCustomerController, getAllCustomerController, customerContactNumberAddController, customerContactNumberUpdateController, getSingleCustomerContactNumberController, getAllCustomerContactNumbersController, deleteCustomerContactNumberController, customerDeliveryAddressAddController, customerDeliveryAddressUpdateController, getSinglecustomerDeliveryAddressController, getAllcustomerDeliveryAddresssController, deletecustomerDeliveryAddressController, addSalesOrderController, getSingleSalesOrderController, getAllSalesOrderController, getSingleSalesOrderDataController, addSalesReturnOrderController, getSingleSalesReturnOrderController, getAllSalesReturnOrderController, getSingleSalesReturnOrderDataController, getProductStocksForWareHouseController } = require("../controllers/saleController");
+const { getSalesOrdersForCutomerController, customerAddController, customerUpdateController, getSingleCustomerController, getAllCustomerController, customerContactNumberAddController, customerContactNumberUpdateController, getSingleCustomerContactNumberController, getAllCustomerContactNumbersController, deleteCustomerContactNumberController, customerDeliveryAddressAddController, customerDeliveryAddressUpdateController, getSinglecustomerDeliveryAddressController, getAllcustomerDeliveryAddresssController, deletecustomerDeliveryAddressController, addSalesOrderController, getSingleSalesOrderController, getAllSalesOrderController, getSingleSalesOrderDataController, addSalesReturnOrderController, getSingleSalesReturnOrderController, getAllSalesReturnOrderController, getSingleSalesReturnOrderDataController, getProductStocksForWareHouseController } = require("../controllers/saleController");
 const { getAllWarehouseController } = require("../controllers/inventoryController");
 const { getSingleProductController } = require("../controllers/purchaseController");
 
@@ -33,6 +33,7 @@ router.post("/salesOrder/add", [validateToken, validAccess], addSalesOrderContro
 router.get("/salesOrder/getSingle/:id", [validateToken, validAccess], getSingleSalesOrderController);
 router.get("/salesOrder/getAll/", [validateToken, validAccess], getAllSalesOrderController);
 router.get("/salesOrderData/get/:id", [validateToken, validAccess], getSingleSalesOrderDataController);
+router.get("/salesOrder/getAllForCusomer/:id", [validateToken, validAccess], getSalesOrdersForCutomerController);
 router.post("/productstockLevelForWarehouse/get/:id", [validateToken, validAccess], getProductStocksForWareHouseController);
 
 

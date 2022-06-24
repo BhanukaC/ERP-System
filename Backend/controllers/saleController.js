@@ -390,6 +390,18 @@ exports.getSingleSalesOrderDataController = async (req, res) => {
     });
 }
 
+exports.getSalesOrdersForCutomerController = async (req, res) => {
+    const id = req.params.id;
+    db.query("select salesOrderID from SalesOrder where CID=?", [id], (err, response) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "get All sales Orders for Customer(CID-" + id + ")"], (err, response) => { });
+            res.json(response);
+        }
+    })
+}
+
 //sales Return order
 exports.addSalesReturnOrderController = async (req, res) => {
     const { WID, CID, CDAID, CCID, reason, salesOrderID, items } = req.body;
@@ -492,8 +504,8 @@ exports.addSalesReturnOrderController = async (req, res) => {
                                                     Cno: Cno, Cstreet: Cstreet, Ctown: Ctown,
                                                     contactNumber: contactNumber,
                                                     Wno: Wno, Wstreet: Wstreet, Wtown: Wtown,
-                                                    reason:reason,
-                                                    salesOrderID:salesOrderID,
+                                                    reason: reason,
+                                                    salesOrderID: salesOrderID,
                                                     total: total,
                                                     items: products,
 
@@ -531,7 +543,7 @@ exports.addSalesReturnOrderController = async (req, res) => {
     });
 }
 
-    
+
 //SalesReturnOrder-view all,view one
 //SalesReturnOrderData-view one(related to a sales order)
 
