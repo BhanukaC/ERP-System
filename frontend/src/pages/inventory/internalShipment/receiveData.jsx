@@ -20,7 +20,7 @@ const ReceiveData = () => {
       credentials: "include",
 
     }).then((res)=>{
-      setWID(res.data[0].FromWID);
+      setWID(res.data[0].TOWID);
       setStatus(res.data[0].status);
     })
   },[""]);
