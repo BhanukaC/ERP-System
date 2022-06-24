@@ -88,9 +88,6 @@ const Datatable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Users
-        <Link  to="../../../admin/adduser" className="link">
-          Add New
-        </Link>
       </div>
       <DataGrid
         className="datagrid"
