@@ -101,6 +101,9 @@ const Updateproduct = () => {
         setcatid(res.data[0].CatID);
         setsubcatid(res.data[0].SubCatID);
 
+        checkCategory(res.data[0].CatID);
+        checksubCategory(res.data[0].SubCatID)
+
 
         });
         

@@ -97,7 +97,7 @@ const AddSubCategory = () => {
                   <option value="" disabled selected>
                     select Category Name
                   </option>
-                  {JSON.stringify(catIds) !== "{}"
+                  {Array.isArray(catIds) 
                     ? catIds.map((c) => (
                         <option value={c.catID} key={c.catID}>
                           {c.categoryName}

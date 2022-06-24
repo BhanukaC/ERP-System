@@ -91,7 +91,8 @@ const AddSalesReturnOrderPage2 = () => {
      }
      )
      .then((res)=>{
-      if(res.data==="sales Return order added"){
+        console.log(res);
+      if(res.data==="sales return order added"){
         alert("Sales Return Order Added");
         localStorage.setItem("CID","");
         localStorage.setItem("CDAID","");
@@ -106,7 +107,7 @@ const AddSalesReturnOrderPage2 = () => {
      });
     }
   };
-
+  
   useEffect(()=>{
     let cid=localStorage.getItem("CID");
     let cdaid=localStorage.getItem("CDAID");
