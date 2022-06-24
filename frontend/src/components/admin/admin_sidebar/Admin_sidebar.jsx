@@ -43,7 +43,7 @@ const Sidebar = () => {
               <span>Set Discount Rates</span>
             </li>
           </Link>
-          <Link to="/admin/addwarehouse" style={{ textDecoration: "none" }}>
+          <Link to="/admin/salesreturnorders" style={{ textDecoration: "none" }}>
             <li>
               <NotificationsNoneIcon className="icon" />
               <span>Sales Return Requests</span>
