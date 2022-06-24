@@ -42,17 +42,12 @@ const Datatable = () => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
+        const link="/admin/editwarehouse/"+params.row.id;
         return (
           <div className="cellAction">
             <div
               className="editButton">
-              Edit
-            </div>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.CID)}
-            >
-              Delete
+              <Link to={link} >Edit</Link>
             </div>
           </div>
         );

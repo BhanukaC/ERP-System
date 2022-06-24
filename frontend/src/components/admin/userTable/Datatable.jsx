@@ -46,6 +46,9 @@ const Datatable = () => {
             <div className="editButton">
               <Link to={link} >Edit</Link>
             </div>
+            <div className="editButton">
+              <Link to={link} >Reset Password</Link>
+            </div>
           </div>
         );
       },
