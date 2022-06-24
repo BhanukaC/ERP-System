@@ -26,10 +26,10 @@ const ChangeQualityLevel = () => {
   const submitForm = (e) => {
     e.preventDefault();
     if(
-      PID === " " ||
-      WID === " " ||
+      PID === "" ||
+      WID === "" ||
       qty <= 0 ||
-      qualityLevel === " "
+      qualityLevel === ""
 
       )
       {
@@ -140,6 +140,7 @@ const ChangeQualityLevel = () => {
                 <label>Quantity to be changed</label>
                 <input
                   type="number"
+                  min={0}
                   value={qty}
                   onChange={(e) => {
                     setQty(e.target.value);

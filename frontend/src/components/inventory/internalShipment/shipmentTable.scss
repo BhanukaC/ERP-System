@@ -40,12 +40,14 @@
       align-items: center;
       gap: 15px;
   
-      .viewButton {
-        padding: 2px 5px;
-        border-radius: 5px;
-        color: darkblue;
-        border: 1px dotted rgba(0, 0, 139, 0.596);
+      .viewButtons {
+        padding: 3px 6px;
+        border-radius: 7px;
+        color: #fff;
+        //border: 1px dotted rgba(0, 0, 139, 0.596);
+        border: none;
         cursor: pointer;
+        background-color: #009900;
       }
       
     }

@@ -48,14 +48,14 @@ const SendTable = (props) => {
 
   const actionColumn = [
     {
-      headerName: " ",
+      headerName: "Action",
       width: 300,
       renderCell: (params) => {
         const reLink2= "/inventory/internalShipments/sentShipmentData/"+params.row.internalShipmentID;
         return (
           <div className="cellAction">
             <Link to={reLink2} style={{ textDecoration: "none" }}>
-              <div className="viewButton">View Shipment</div>
+              <div className="viewButtons">View Shipment</div>
             </Link>
           </div>
         );

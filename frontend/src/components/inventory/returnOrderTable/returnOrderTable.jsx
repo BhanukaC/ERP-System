@@ -59,14 +59,14 @@ const ReturnOrderTable = () => {
 
   const actionColumn = [
     {
-      headerName: " ",
+      headerName: "Action",
       width: 300,
       renderCell: (params) => {
         const reLink2= "/inventory/order/returnOrders/orderData/"+params.row.salesReturnOrderID;
         return (
           <div className="cellAction">
             <Link to={reLink2} style={{ textDecoration: "none" }}>
-              <div className="viewButton">View Order Details</div>
+              <div className="viewButtons">View Order</div>
             </Link>
           </div>
         );

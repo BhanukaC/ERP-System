@@ -34,7 +34,7 @@ const WarehouseTable = () => {
 
   const actionColumn = [
     {
-      headerName: "",
+      headerName: "Action",
       width: 350,
       renderCell: (params) => {
         const reLink1="/inventory/warehouse/stockDetails/"+params.row.WID;
@@ -42,10 +42,10 @@ const WarehouseTable = () => {
         return (
           <div className="cellAction">
               <Link to={reLink2} style={{ textDecoration: "none" }}>
-              <div className="viewButton">Edit</div>
+              <div className="editButton">Edit</div>
             </Link>
             <Link to={reLink1} style={{ textDecoration: "none" }}>
-              <div className="viewButton">View Stock Details</div>
+              <div className="viewButtons">View Stock</div>
             </Link>
           
           </div>

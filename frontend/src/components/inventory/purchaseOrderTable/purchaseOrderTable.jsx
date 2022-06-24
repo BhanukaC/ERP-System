@@ -60,14 +60,14 @@ const PurchaseOrderTable = () => {
 
   const actionColumn = [
     {
-      headerName: " ",
+      headerName: "Action",
       width: 300,
       renderCell: (params) => {
         const reLink2= "/inventory/order/purchaseOrders/orderData/"+params.row.purchaseOrderID;
         return (
           <div className="cellAction">
             <Link to={reLink2} style={{ textDecoration: "none" }}>
-              <div className="viewButton">View Order</div>
+              <div className="viewButtons">View Order</div>
             </Link>
           </div>
         );
