@@ -64,7 +64,7 @@ const AddInternalShipmentsPart2 = () => {
                   <option value="" disabled selected>
                     Select Warehouse
                   </option>
-                  {JSON.stringify(warehouse) !== "{}"
+                  {Array.isArray(warehouse)
                     ? warehouse.map((w) => (
                         <option value={w.WID} key={w.WID}>
                           {w.WID}-{w.town}
@@ -84,10 +84,10 @@ const AddInternalShipmentsPart2 = () => {
                   }}
                 >
                   <option value="" disabled selected> Select Warehouse</option>
-                  {JSON.stringify(warehouse) !== "{}"
+                  {Array.isArray(warehouse)
                     ? warehouse.map((w) => (
                         <option value={w.WID} key={w.WID}>
-                          {w.town}
+                         {w.WID}-{w.town}
                         </option>
                       ))
                     : ""}

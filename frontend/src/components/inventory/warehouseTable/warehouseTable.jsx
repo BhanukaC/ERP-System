@@ -42,7 +42,7 @@ const WarehouseTable = () => {
         return (
           <div className="cellAction">
               <Link to={reLink2} style={{ textDecoration: "none" }}>
-              <div className="editButton">Edit</div>
+              <div className="editButtons">Edit</div>
             </Link>
             <Link to={reLink1} style={{ textDecoration: "none" }}>
               <div className="viewButtons">View Stock</div>
