@@ -12,7 +12,9 @@ const userColumns = [
 ];
 
 const Datatable = () => {
+
   const [data, setData] = useState({});
+  const[UID, setUID] =useState("");
 
   const handleDelete = (CID) => {
     setData(data.filter((item) => item.id !== CID));
@@ -30,9 +32,33 @@ const Datatable = () => {
           return { id: d.UID, ...d };
         });
         setData(dt);
+        setUID(res.data[0].UID);
         // console.log(dt);
       });
   }, [""]);
+
+  const reset = (val) => {
+    
+    
+      axios
+        .put(
+          "http://localhost:5000/admin/passwordReset/"+val,{},
+         
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          if (res.data === "Password Resseted") {
+            alert("Password was reset");
+          } else {
+            alert("Error");
+          }
+        });
+    
+  };
 
   const actionColumn = [
     {
@@ -47,7 +73,9 @@ const Datatable = () => {
               <Link to={link} >Edit</Link>
             </div>
             <div className="editButton">
-              <Link to={link} >Reset Password</Link>
+              <button onClick={()=>{
+                reset(params.row.id);
+              }}>Reset Password</button>
             </div>
           </div>
         );
