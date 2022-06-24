@@ -170,31 +170,29 @@ function App() {
             <Route path="purchase">
               <Route index element={<ProtectedRoute level={3}><AddProduct /></ProtectedRoute>} />
               <Route path="product">
-                <Route path="add" element={<AddProduct />} />
-                <Route path="addcat" element={<AddCategory />} />
-                <Route path="addsubcat" element={<AddSubCategory />} />
-                <Route path="viewproduct" element={<Viewproduct />} />
-                <Route path="editcat" element={<EditCategory />} />
-                <Route path="editsubcat" element={<EditsubCategory />} />
-                <Route path="editsubcat" element={<EditsubCategory />} />
-                <Route path="updatecat/:catID" element={<UpdateCategory />} />
-                <Route path="updatesubcat/:SCID" element={<UpdatesubCategory />} />
-                <Route path="update/:PID" element={<Updateproduct />} />
+                <Route path="add" element={<ProtectedRoute level={3}><AddProduct /></ProtectedRoute>} />
+                <Route path="addcat" element={<ProtectedRoute level={3}><AddCategory /></ProtectedRoute>} />
+                <Route path="addsubcat" element={<ProtectedRoute level={3}><AddSubCategory /></ProtectedRoute>} />
+                <Route path="viewproduct" element={<ProtectedRoute level={3}><Viewproduct /></ProtectedRoute>} />
+                <Route path="editcat" element={<ProtectedRoute level={3}><EditCategory /></ProtectedRoute>} />
+                <Route path="editsubcat" element={<ProtectedRoute level={3}><EditsubCategory /></ProtectedRoute>} />
+                <Route path="editsubcat" element={<ProtectedRoute level={3}><EditsubCategory /></ProtectedRoute>} />
+                <Route path="updatecat/:catID" element={<ProtectedRoute level={3}><UpdateCategory /></ProtectedRoute>} />
+                <Route path="updatesubcat/:SCID" element={<ProtectedRoute level={3}><UpdatesubCategory /></ProtectedRoute>} />
+                <Route path="update/:PID" element={<ProtectedRoute level={3}><Updateproduct /></ProtectedRoute>} />
 
-
-
-              </Route>
-              <Route path="addsupplier" element={<Addsupplier />} />
-              <Route path="editsupplier" element={<EditSuppler />} />
-              <Route path="addlocation" element={<AddStoreLocation />} />
-              <Route path="updatesupplier/:SID" element={<Updatesupplier />} />
-              <Route path="viewsuplocation/:SID" element={< ViewStoreLocations />} />
-              <Route path="addcontactno" element={<  AddContactNo />} />
-              <Route path="viewcontactno/:SID" element={<   ViewContactNo />} />
-              <Route path="viewOrders" element={<   ViewPurchaseOrder />} />
-              <Route path="vieworderdata/:purchaseOrderID" element={<  ViewPurchaseOrderData />} />
-              <Route path="order1" element={<AddPurchaseOrder1 />} />
-              <Route path="order2" element={<AddPurchaseOrder2 />} />
+               </Route>
+              <Route path="addsupplier" element={<ProtectedRoute level={3}><Addsupplier /></ProtectedRoute>} />
+              <Route path="editsupplier" element={<ProtectedRoute level={3}><EditSuppler /></ProtectedRoute>} />
+              <Route path="addlocation" element={<ProtectedRoute level={3}><AddStoreLocation /></ProtectedRoute>} />
+              <Route path="updatesupplier/:SID" element={<ProtectedRoute level={3}><Updatesupplier /></ProtectedRoute>} />
+              <Route path="viewsuplocation/:SID" element={<ProtectedRoute level={3}><ViewStoreLocations /></ProtectedRoute>} />
+              <Route path="addcontactno" element={<ProtectedRoute level={3}><AddContactNo /></ProtectedRoute>} />
+              <Route path="viewcontactno/:SID" element={<ProtectedRoute level={3}><ViewContactNo /></ProtectedRoute>} />
+              <Route path="viewOrders" element={<ProtectedRoute level={3}><ViewPurchaseOrder /></ProtectedRoute>} />
+              <Route path="vieworderdata/:purchaseOrderID" element={<ProtectedRoute level={3}><ViewPurchaseOrderData /></ProtectedRoute>} />
+              <Route path="order1" element={<ProtectedRoute level={3}><AddPurchaseOrder1 /></ProtectedRoute>} />
+              <Route path="order2" element={<ProtectedRoute level={3}><AddPurchaseOrder2 /></ProtectedRoute>} />
 
 
             </Route>
