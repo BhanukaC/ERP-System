@@ -16,6 +16,7 @@ const AddSalesReturnOrderPage1 = () => {
   const [warehouse, setWarehouse] = useState([]);
   const [location, setLocation] = useState([]);
   const [contactNumber, setContactNumber] = useState([]);
+  const [soid, setSOID] = useState([]);
   
   useEffect(() => {
     const getWarehouse = async () => {
@@ -36,6 +37,14 @@ const AddSalesReturnOrderPage1 = () => {
       credentials: "include",
     });
     setLocation(res.data);
+  };
+
+  const getSOID = async (val) => {
+    const res = await axios.get("http://localhost:5000/sales/salesOrder/getAllForCusomer/" + val, {
+      withCredentials: true,
+      credentials: "include",
+    });
+    setSOID(res.data);
   };
  
 
@@ -78,10 +87,12 @@ const AddSalesReturnOrderPage1 = () => {
       } else {
         getContactNumber(val);
         getLocation(val);
+        getSOID(val);
       }
     }else{
       setCCID("");
         setCDAID("");
+        setSalesOrderID("");
     }
   };
 
@@ -110,13 +121,24 @@ const AddSalesReturnOrderPage1 = () => {
               </div>
               <div className="formInput">
                 <label>Sales Order ID</label>
-                <input
-                  type="text"
+
+                <select
                   value={salesOrderID}
                   onChange={(e) => {
                     setSalesOrderID(e.target.value);
                   }}
-                />
+                >
+                  <option value="" disabled selected>
+                    Select Sales Order ID
+                  </option>
+                  {Array.isArray(soid)
+                    ? soid.map((s) => (
+                        <option value={s.CID} key={s.CID}>
+                          {s.salesOrderID}
+                        </option>
+                      ))
+                    : ""}
+                </select>
               </div>
               <div className="formInput">
                 <label>Reason</label>
