@@ -68,7 +68,7 @@ if(stat){
   const checkProduct = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/purchase/product/getSingle/" + val,
+        "http://localhost:5000/inventory/product/getSingle/" + val,
         {
           withCredentials: true,
           credentials: "include",
