@@ -424,12 +424,12 @@ exports.calculateSalaryController = async (req, res) => {
 
     var t = new Date();
     var dd = String(t.getDate()).padStart(2, '0');
-    var mm = String(t.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var mm = String(t.getMonth() + 1).padStart(2, '0');
     var yyyy = t.getFullYear();
     const startDate = yyyy + '-' + mm + '-' + 01;
     const endDate = yyyy + '-' + mm + '-' + 31;
-    if (dd == 25) {
-        var addInsentiive, dataAllowance, travellingAllowance;
+    if (dd >= 25) {
+        var addInsentiive, dataAllowance, travellingAllowance, status;
 
         try {
             res1 = await query("select * from charges where ID=2");
@@ -440,11 +440,19 @@ exports.calculateSalaryController = async (req, res) => {
 
             res3 = await query("select * from charges where ID=4");
             travellingAllowance = res3[0].amount;
+
+            res4 = await query("select * from SalaryStatus where year=? and month=?", [yyyy, mm]);
+            if (res4.length !== 0) {
+                res.json("Already calculated salary for this month");
+                return;
+            }
         } catch (e) {
             res.json({ error: e });
             return;
 
         }
+
+
 
 
         db.query("select * from Employee where dailyWage IS NULL", (err, result) => {
@@ -577,6 +585,7 @@ exports.calculateSalaryController = async (req, res) => {
                     });
                 }
                 db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Salary calculated"], (err, response) => { });
+                db.query("insert into SalaryStatus(year,month) values(?,?)", [yyyy, mm], (err, response) => { });
                 res.json("Salary calculated");
             }
 

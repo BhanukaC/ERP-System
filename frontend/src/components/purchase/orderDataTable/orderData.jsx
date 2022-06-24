@@ -6,45 +6,41 @@ import axios from "axios";
 import moment from "moment";
 
 const userColumns = [
-  { field: "ID", headerName: "ID" },
-  { field: "PID", headerName: "Product ID" },
-  
-  { field: "unitPrice", headerName: "Unit Price" },
-  { field: "qty", headerName: "Quantity" },
-  { field: "discount", headerName: "Discount" },
-  { field: "netTot", headerName: "Net Total" },
-  
-  
-  
+  { field: "ID", headerName: "ID",width:100 },
+  { field: "PID", headerName: "Product ID",width:100 },
+  { field: "PName", headerName: "Product Name",width:150 },
+  { field: "unitPrice", headerName: "Unit Price",width:100 },
+  { field: "qty", headerName: "Quantity",width:100 },
+  { field: "discount", headerName: "Discount",width:100 },
+  { field: "netTot", headerName: "Net Total",width:100 }, 
 ];
 
 const Datatable = (props) => {
   const purchaseOrderID = props.purchaseOrderID;
   const [data, setData] = useState({});
 
- 
-
   useEffect(() => {
     axios
-      .get("http://localhost:5000/purchase/purchaseOrderData/get/" + purchaseOrderID , {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "http://localhost:5000/purchase/purchaseOrderData/get/" +
+          purchaseOrderID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
-       
         let dt = res.data.map((d) => {
           return {
             id: d.ID,
-           
+
             ...d,
           };
         });
         setData(dt);
-        
       });
   }, [""]);
 
-  
   return (
     <div className="datatable">
       <div className="datatableTitle1">

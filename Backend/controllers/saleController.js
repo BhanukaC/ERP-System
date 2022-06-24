@@ -267,7 +267,7 @@ exports.addSalesOrderController = async (req, res) => {
                 viewEngine: {
                     extname: '.handlebars',
                     layoutsDir: '../Backend/views/',
-                    defaultLayout: 'SalesOrder',
+                    defaultLayout: 'salesOrder',
                 },
                 viewPath: '../Backend/views/'
             }));
@@ -458,7 +458,7 @@ exports.addSalesReturnOrderController = async (req, res) => {
                 viewEngine: {
                     extname: '.handlebars',
                     layoutsDir: '../Backend/views/',
-                    defaultLayout: 'SalesReturnOrder',
+                    defaultLayout: 'salesReturnOrder',
                 },
                 viewPath: '../Backend/views/'
             }));
