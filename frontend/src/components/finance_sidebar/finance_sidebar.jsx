@@ -1,13 +1,9 @@
 import "./finance_sidebar.scss";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import StoreIcon from "@mui/icons-material/Store";
-import PreviewIcon from "@mui/icons-material/Preview";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import InsertChartIcon from "@mui/icons-material/InsertChart";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
-//import { DarkModeContext } from "../../../context/darkModeContext";
 import { useContext } from "react";
 
 const Finance_Sidebar = () => {
@@ -25,7 +21,7 @@ const Finance_Sidebar = () => {
           <p className="title">Accounts</p>
           <Link to="" style={{ textDecoration: "none" }}>
             <li>
-              <PreviewIcon className="icon" />
+              <ViewModuleIcon className="icon" />
               <span>View Accounts</span>
             </li>
           </Link>

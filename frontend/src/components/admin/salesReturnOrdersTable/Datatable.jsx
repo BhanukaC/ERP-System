@@ -111,7 +111,7 @@ const DataTable1 = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-       Sales Return Order
+       Sales Return Requests
       </div>
       <DataGrid
         className="datagrid"

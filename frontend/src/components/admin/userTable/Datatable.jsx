@@ -69,10 +69,12 @@ const Datatable = () => {
         const link="/admin/edituser/"+params.row.id;
         return (
           <div className="cellAction">
-            <div className="editButton">
-              <Link to={link} >Edit</Link>
+            <div>
+              <button>
+                <Link className="btn" to={link} >Edit User</Link>
+              </button>
             </div>
-            <div className="editButton">
+            <div>
               <button onClick={()=>{
                 reset(params.row.id);
               }}>Reset Password</button>
@@ -86,7 +88,7 @@ const Datatable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Users
-        <Link to="../../../admin/adduser" className="link">
+        <Link  to="../../../admin/adduser" className="link">
           Add New
         </Link>
       </div>
