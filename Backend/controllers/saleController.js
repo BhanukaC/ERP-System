@@ -609,3 +609,29 @@ exports.getProductStocksForWareHouseController = async (req, res) => {
     })
 
 }
+
+
+exports.getSingleSalesOrderDataController = async (req, res) => {
+    const id = req.params.id;
+    db.query("select * from salesOrderData,Product where salesOrderID=? and Product.PID=salesOrderData.PID", [id], (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a SalesOrderData(salesOrderID-" + id + ")"], (err, response) => { });
+            res.json(result);
+        }
+    });
+}
+
+
+exports.getSingleSalesReturnOrderDataController = async (req, res) => {
+    const id = req.params.id;
+    db.query("select * from salesReturnOrderData,Product where salesReturnOrderID=? and Product.PID=salesReturnOrderData.PID", [id], (err, result) => {
+        if (err) {
+            res.json({ error: err });
+        } else {
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view a SalesReturnOrderData(salesReturnOrderID-" + id + ")"], (err, response) => { });
+            res.json(result);
+        }
+    });
+}
