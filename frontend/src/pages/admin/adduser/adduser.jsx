@@ -39,7 +39,11 @@ const AddUser = () => {
             alert("Error");
           }
         });
-    } else {
+    }
+    else if (userName === "" || email === "") {
+      alert("Fill the required fields");
+    }
+    else {
       alert("Wrong Email");
     }
   };
@@ -79,7 +83,7 @@ const AddUser = () => {
               <br></br>
 
               <div className="formInput">
-                <label>acessLevel</label>
+                <label>Acess Level</label>
 
                 <select
                   value={acessLevel}
@@ -88,7 +92,7 @@ const AddUser = () => {
                   }}
                 >
                   <option value="" disabled selected>
-                    select Access Level
+                    Select Access Level
                   </option>
                   <option value="0">Admin</option>
                   <option value="1">cashier</option>
