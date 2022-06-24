@@ -8,43 +8,39 @@ import moment from "moment";
 const userColumns = [
   { field: "ID", headerName: "ID" },
   { field: "PID", headerName: "Product ID" },
-  
+  { field: "PName", headerName: "Product Name" },
   { field: "unitPrice", headerName: "Unit Price" },
   { field: "qty", headerName: "Quantity" },
   { field: "discount", headerName: "Discount" },
   { field: "netTot", headerName: "Net Total" },
-  
-  
-  
 ];
 
 const Datatable = (props) => {
   const purchaseOrderID = props.purchaseOrderID;
   const [data, setData] = useState({});
 
- 
-
   useEffect(() => {
     axios
-      .get("http://localhost:5000/purchase/purchaseOrderData/get/" + purchaseOrderID , {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "http://localhost:5000/purchase/purchaseOrderData/get/" +
+          purchaseOrderID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
-       
         let dt = res.data.map((d) => {
           return {
             id: d.ID,
-           
+
             ...d,
           };
         });
         setData(dt);
-        
       });
   }, [""]);
 
-  
   return (
     <div className="datatable">
       <div className="datatableTitle1">
