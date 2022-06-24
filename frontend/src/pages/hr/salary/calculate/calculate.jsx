@@ -8,6 +8,7 @@ const CalculateSalary = () => {
   const [today, setToday] = useState("");
   const [nextDay, setNextDay] = useState("");
   const [remainingDays, setRemainingDays] = useState(0);
+  const [dd, setDd] = useState(0);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -23,6 +24,8 @@ const CalculateSalary = () => {
           alert("Salary calculated");
         } else if (res.data === "Can not calculate salry til 25th") {
           alert("Can not calculate salry til 25th");
+        } else if (res.data === "Already calculated salary for this month") {
+          alert("Salary already calculated salary for this month");
         } else {
           alert("try again!");
         }
@@ -34,6 +37,7 @@ const CalculateSalary = () => {
     var dd = String(td.getDate()).padStart(2, "0");
     var mm = String(td.getMonth() + 1).padStart(2, "0");
     var yyyy = td.getFullYear();
+    setDd(dd);
 
     setToday(yyyy + "/" + mm + "/" + dd);
     if (dd <= 25) {
@@ -75,7 +79,7 @@ const CalculateSalary = () => {
               </div>
 
               <div className="break"></div>
-              {remainingDays === 0 && (
+              {dd >= 25 && (
                 <button onClick={submitForm}>
                   Calculate Salary for this Month
                 </button>

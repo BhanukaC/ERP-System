@@ -10,6 +10,7 @@ const EditWarehouseDetailsAdmin = () => {
   const [no, setNo] = useState("");
   const [street, setStreet] = useState("");
   const [town, setTown] = useState("");
+  const [UID, setUID] = useState("");
 
   const { WID } = useParams();
   console.log(WID);
@@ -25,6 +26,7 @@ const EditWarehouseDetailsAdmin = () => {
         setNo(res.data[0].no);
         setStreet(res.data[0].street);
         setTown(res.data[0].town);
+        setUID(res.data[0].UID)
       });
   }, [""]);
 
@@ -38,6 +40,7 @@ const EditWarehouseDetailsAdmin = () => {
         no: no,
         street: street,
         town: town,
+        UID: UID
       };
 
       axios

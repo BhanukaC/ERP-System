@@ -529,7 +529,7 @@ exports.getAllPurchaseOrderController = async (req, res) => {
 
 exports.getSinglePurchaseOrderDataController = async (req, res) => {
     const id = req.params.id;
-    db.query("select * from purchaseOrderData where purchaseOrderID=?", [id], (err, result) => {
+    db.query("select * from purchaseOrderData,Product where purchaseOrderID=? and Product.PID=purchaseOrderData.PID", [id], (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {

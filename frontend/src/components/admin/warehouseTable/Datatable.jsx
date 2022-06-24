@@ -42,13 +42,12 @@ const Datatable = () => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
-        const link="/admin/editwarehouse/"+params.row.id;
+        const link="/admin/editwarehouse/"+params.row.WID;
         return (
           <div className="cellAction">
-            <div
-              className="editButton">
-              <Link to={link} >Edit</Link>
-            </div>
+            <button>
+              <Link className="btn" to={link} >Edit Warehouse</Link>
+            </button>
           </div>
         );
       },

@@ -1,14 +1,17 @@
 import "./Admin_sidebar.scss";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import StoreIcon from "@mui/icons-material/Store";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import InsertChartIcon from "@mui/icons-material/InsertChart";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import WarehouseIcon from '@mui/icons-material/Warehouse';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import AddIcon from '@mui/icons-material/Add';
+import DiscountIcon from '@mui/icons-material/Discount';
+import RestoreIcon from '@mui/icons-material/Restore';
+import ReportIcon from '@mui/icons-material/Report';
+import GroupsIcon from '@mui/icons-material/Groups';
+
 import { Link } from "react-router-dom";
-//import { DarkModeContext } from "../../context/darkModeContext";
 import { DarkModeContext } from "../../../context/darkModeContext";
 import { useContext } from "react";
 
@@ -18,7 +21,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">ABCD</span>
+          <span className="logo">Quick ERP</span>
         </Link>
       </div>
       <hr />
@@ -27,44 +30,44 @@ const Sidebar = () => {
           <p className="title">FUNCTIONS</p>
           <Link to="/admin/adduser" style={{ textDecoration: "none" }}>
             <li>
-              <AccountCircleOutlinedIcon className="icon" />
+              <PersonAddIcon className="icon" />
               <span>Add User</span>
             </li>
           </Link>
           <Link to="/admin/addwarehouse" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <AddIcon className="icon" />
               <span>Add Warehouse</span>
             </li>
           </Link>
           <Link to="/admin/setdiscount" style={{ textDecoration: "none" }}>
             <li>
-              <SettingsApplicationsIcon className="icon" />
-              <span>Set Discount Rates</span>
+              <DiscountIcon className="icon" />
+              <span>Set Discount Rate</span>
             </li>
           </Link>
           <p className="title">VIEW</p>
           <Link to="/admin/viewAll" style={{ textDecoration: "none" }}>
             <li>
-              <PersonOutlineIcon className="icon" />
+              <GroupsIcon className="icon" />
               <span>Users</span>
             </li>
           </Link>
           <Link to="/admin/viewwarehouses" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <WarehouseIcon className="icon" />
               <span>Warehouses</span>
             </li>
           </Link>
           <Link to="/admin/salesreturnorders" style={{ textDecoration: "none" }}>
             <li>
-              <NotificationsNoneIcon className="icon" />
+              <RestoreIcon className="icon" />
               <span>Sales Return Requests</span>
             </li>
           </Link>
           <Link to="/admin/viewactivity" style={{ textDecoration: "none" }}>
             <li>
-              <InsertChartIcon className="icon" />
+              <ReportIcon className="icon" />
               <span>Activity</span>
             </li>
           </Link>
@@ -79,6 +82,37 @@ const Sidebar = () => {
             <li>
               <ExitToAppIcon className="icon" />
               <span>Logout</span>
+            </li>
+          </Link>
+          <p className="title">DASHBOARDS</p>
+          <Link to="/hr" style={{ textDecoration: "none" }}>
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Human Resources</span>
+            </li>
+          </Link>
+          <Link to="/sales" style={{ textDecoration: "none" }}>
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Sales</span>
+            </li>
+          </Link>
+          <Link to="/purchase" style={{ textDecoration: "none" }}>
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Purchase</span>
+            </li>
+          </Link>
+          <Link to="/inventory" style={{ textDecoration: "none" }}>
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Inventory</span>
+            </li>
+          </Link>
+          <Link to="/account" style={{ textDecoration: "none" }}>
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Finance</span>
             </li>
           </Link>
           
