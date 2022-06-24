@@ -15,6 +15,7 @@ const AddSalesReturnOrderPage2 = () => {
   const [CCID, setCCID] = useState("");
   const [reason, setReason] = useState("");
   const [salesOrderID, setSalesOrderID] = useState("");
+  const [salesOrderData,setSalesOrderData]=useState([]);
 
   const submitForm = async(e) => {
     e.preventDefault();
@@ -26,25 +27,41 @@ const AddSalesReturnOrderPage2 = () => {
         let status = false;
         for (let i = 0; i < list.length; i++) {
           if (list[i].PID === PID) {
-            list[i].qty = parseInt(list[i].qty) + parseInt(qty);
-
+            if(checkProduct2(PID, parseInt(list[i].qty) + parseInt(qty))){
+              list[i].qty = parseInt(list[i].qty) + parseInt(qty);
+              setProductName("");
+      setQty(0);
+      setPID(0);
+      alert("Product added to cart");
+            }
             status = true;
           }
         }
         if (!status) {
-          setList([
-            ...list,
-            { PID: PID, name: productName, qty: parseInt(qty) },
-          ]);
-        }
-      } else {
-        setList([{ PID: PID, name: productName, qty: parseInt(qty) }]);
-      }
-
-      setProductName("");
+          if(checkProduct2(PID,parseInt(qty))){
+            setList([
+              ...list,
+              { PID: PID, name: productName, qty: parseInt(qty) },
+            ]);
+            setProductName("");
       setQty(0);
       setPID(0);
       alert("Product added to cart");
+          }
+         
+        }
+      } else {
+        if(checkProduct2(PID,parseInt(qty))){
+          setList([{ PID: PID, name: productName, qty: parseInt(qty) }]);
+          setProductName("");
+      setQty(0);
+      setPID(0);
+      alert("Product added to cart");
+        }
+       
+      }
+
+      
     } else {
       alert("Enter valid quantity");
     }
@@ -66,6 +83,30 @@ const AddSalesReturnOrderPage2 = () => {
       }
     }
   };
+
+  const checkProduct2=(p,q)=>{
+    let status=null;
+    
+      let li=salesOrderData;
+      for(let i=0;i<li.length;i++){
+        if(li[i].PID==p){
+          if(li[i].qty>=q){
+            status=true;
+            break;
+          }else{
+            alert("Amount exceeded");
+           status=false;
+            break;
+          }
+        }
+      }
+      if(status===null){
+        alert("Product not found in sales order");
+        status=false;
+      }
+      return status;
+    
+  }
 
 
   const addSalesReturnOrder = () => {
@@ -125,6 +166,13 @@ const AddSalesReturnOrderPage2 = () => {
    setWID(wid);
    setReason(reason);
    setSalesOrderID(salesOrderID);
+
+   axios.get("http://localhost:5000/sales/salesOrderData/get/"+salesOrderID,{
+      withCredentials: true,
+      credentials: "include",
+    }).then((res)=>{
+      setSalesOrderData(res.data);
+    });
 
   },[""])
 
