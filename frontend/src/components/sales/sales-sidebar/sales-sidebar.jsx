@@ -1,9 +1,12 @@
 import "./sales-sidebar.scss";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import EventNoteIcon from '@mui/icons-material/EventNote';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined' ;
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import AddIcon from '@mui/icons-material/Add';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { Link } from "react-router-dom";
 
@@ -34,20 +37,20 @@ const Sidebar = () => {
           </Link>
           <Link to="/sales/customerContactNumber/add" style={{ textDecoration: "none" }}>
             <li>
-              <EventNoteIcon className="icon" />
+              <AddIcon className="icon" />
               <span>Add Customer Contact Details</span>
             </li>
           </Link>
           <Link to="/sales/customerDeliveryAddress/add" style={{ textDecoration: "none" }}>
             <li>
-              <EventNoteIcon className="icon" />
+              <AddCircleIcon className="icon" />
               <span>Add Customer Delivery Address</span>
             </li>
           </Link>
           <p className="title">SALES ORDER</p>
           <Link to="/sales/salesOrder/add" style={{ textDecoration: "none" }}>
             <li>
-              <DocumentScannerIcon className="icon" />
+              <PlaylistAddCheckIcon className="icon" />
               <span>Add Sales Order Details</span>
             </li>
           </Link>
@@ -60,7 +63,7 @@ const Sidebar = () => {
           <p className="title">SALES RETURN ORDER</p>
           <Link to="/sales/salesReturnOrder/add" style={{ textDecoration: "none" }}>
             <li>
-              <FormatListBulletedIcon className="icon" />
+              <PlaylistAddIcon className="icon" />
               <span>Add Sales Return Order</span>
             </li>
           </Link>
