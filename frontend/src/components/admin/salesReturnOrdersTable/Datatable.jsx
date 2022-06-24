@@ -46,20 +46,67 @@ const DataTable1 = () => {
         headerName: "Action",
         width: 220,
         renderCell: (params) => {
-          const upLink = "/sales/salesReturnOrder/viewAll2/"+params.row.salesReturnOrderID;
+          const upLink = ""+params.row.salesReturnOrderID;
           return (
             <div className="cellAction">
-              <Link to= {upLink} style= {{textDecoration : "none"}}>
-                <div className="viewButton">Accept</div>
-                </Link>
-                <Link to= {upLink} style= {{textDecoration : "none"}}>
-                <div className="viewButton">Reject</div>
-                </Link>
+              <div>
+                <button onClick={()=>{accept(params.row.salesReturnOrderID);}}>Accept</button>
+              </div>
+              <div>
+                <button onClick={()=>{reject(params.row.salesReturnOrderID);}}>Reject</button>
+              </div>
             </div>
           );
         },
       },
   ];
+
+  const accept = (val) => {
+      axios
+        .post(
+          "http://localhost:5000/admin/salesReturnOrder/update",
+          {
+            salesReturnOrderID: val,
+            status: 'A',
+          },
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          if (res.data === "Sales Return Order Updated") {
+            alert("Sales Return Order Updated");
+          } else {
+            alert("Error");
+          }
+        });
+    };
+
+    const reject = (val) => {
+      axios
+        .post(
+          "http://localhost:5000/admin/salesReturnOrder/update",
+          {
+            salesReturnOrderID: val,
+            status: 'R',
+          },
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          if (res.data === "Sales Return Order Updated") {
+            alert("Sales Return Order Updated");
+          } else {
+            alert("Error");
+          }
+        });
+    };
+
 
   return (
     <div className="datatable">

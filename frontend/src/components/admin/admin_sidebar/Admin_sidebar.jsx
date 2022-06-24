@@ -43,12 +43,6 @@ const Sidebar = () => {
               <span>Set Discount Rates</span>
             </li>
           </Link>
-          <Link to="/admin/salesreturnorders" style={{ textDecoration: "none" }}>
-            <li>
-              <NotificationsNoneIcon className="icon" />
-              <span>Sales Return Requests</span>
-            </li>
-          </Link>
           <p className="title">VIEW</p>
           <Link to="/admin/viewAll" style={{ textDecoration: "none" }}>
             <li>
@@ -60,6 +54,12 @@ const Sidebar = () => {
             <li>
               <StoreIcon className="icon" />
               <span>Warehouses</span>
+            </li>
+          </Link>
+          <Link to="/admin/salesreturnorders" style={{ textDecoration: "none" }}>
+            <li>
+              <NotificationsNoneIcon className="icon" />
+              <span>Sales Return Requests</span>
             </li>
           </Link>
           <Link to="/admin/viewactivity" style={{ textDecoration: "none" }}>
