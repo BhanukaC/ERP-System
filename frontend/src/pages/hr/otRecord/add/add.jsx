@@ -123,7 +123,7 @@ const AddOtRecord = () => {
                   <option value="" disabled selected>
                     select OT Type
                   </option>
-                  {JSON.stringify(OtTypes) !== "{}"
+                  {Array.isArray(OtTypes)
                     ? OtTypes.map((ot) => (
                         <option value={ot.otID} key={ot.otID}>
                           {ot.type}
