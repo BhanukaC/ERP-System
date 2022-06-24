@@ -14,7 +14,7 @@ const userColumns = [
   { field: "SSLID", headerName: "Supplier Store Location ID", width: 185},
   { field: "SCID", headerName: "Supplier Contact ID", width: 150},
   { field: "WID", headerName: "Warehouse ID", width: 120},
-  { field: "deliveredDate", headerName: "DeliveredDate", width: 250},
+  { field: "deliveredDate", headerName: "Finished Date", width: 250},
  
  
  

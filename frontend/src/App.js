@@ -109,6 +109,8 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ProtectedRouteUser from "./components/ProtectedRoute/ProtectedRouteUser";
 import LogOut from "./pages/logout/logout";
 import Profile from "./pages/profile/profile";
+import ViewAllSalesReturnOrdersAdmin from "./pages/admin/salesreturnorders/salesreturnorders";
+import EditWarehouseDetailsAdmin from "./pages/admin/editwarehouse/editwarehouse";
 
 
 
@@ -282,6 +284,8 @@ function App() {
               <Route path="addwarehouse" element={< ProtectedRoute level={0}><AddWarehouse /></ProtectedRoute>} />
               <Route path="edituser/:UID" element={<ProtectedRoute level={0}><EditUserDetails /></ProtectedRoute>} />
               <Route path="setdiscount" element={<ProtectedRoute level={0}><SetDiscount /></ProtectedRoute>} />
+              <Route path="salesreturnorders" element={<ProtectedRoute level={0}><ViewAllSalesReturnOrdersAdmin /></ProtectedRoute>} />
+              <Route path="editwarehouse/:WID" element={<ProtectedRoute level={0}><EditWarehouseDetailsAdmin /></ProtectedRoute>} />
             </Route>
 
             <Route path="account" element={<ProtectedRoute level={5}><ViewAccounts /></ProtectedRoute>}></Route>

@@ -7,7 +7,7 @@ import axios from "axios";
 import moment from "moment";
 
 const userColumns = [
-  { field: "SSLID", headerName: "Supplier Location ID",width:150 },
+  { field: "SSLID", headerName: "Supplier Location ID",width:180 },
  
   { field: "no", headerName: "No" ,width:100},
   { field: "street", headerName: "Street",width:100 },
