@@ -6,13 +6,13 @@ import axios from "axios";
 import moment from "moment";
 
 const userColumns = [
-  { field: "ID", headerName: "ID" },
-  { field: "PID", headerName: "Product ID" },
-  { field: "PName", headerName: "Product Name" },
-  { field: "unitPrice", headerName: "Unit Price" },
-  { field: "qty", headerName: "Quantity" },
-  { field: "discount", headerName: "Discount" },
-  { field: "netTot", headerName: "Net Total" },
+  { field: "ID", headerName: "ID",width:100 },
+  { field: "PID", headerName: "Product ID",width:100 },
+  { field: "PName", headerName: "Product Name",width:150 },
+  { field: "unitPrice", headerName: "Unit Price",width:100 },
+  { field: "qty", headerName: "Quantity",width:100 },
+  { field: "discount", headerName: "Discount",width:100 },
+  { field: "netTot", headerName: "Net Total",width:100 }, 
 ];
 
 const Datatable = (props) => {
