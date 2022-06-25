@@ -42,7 +42,7 @@ const Datatable = (params) => {
 
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="dataTableTitle">
         All Advance Records for Employee(EID-{EID})
       </div>
       <DataGrid

@@ -59,7 +59,7 @@ const Datatable = (props) => {
 
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="dataTableTitle">
         All Customer Delivery Addresses For Customer(CID-{CID})
       </div>
       <DataGrid

@@ -4,11 +4,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "ID", headerName: "ID",  width: 100},
+  { field: "ID", headerName: "ID",  width: 150},
   //{ field: "WID", headerName: "WID",  width: 100},
-  { field: "PID", headerName: "Product ID", width: 200 },
-  { field: "qty", headerName: "Quantity", width: 200 },
+  { field: "PID", headerName: "Product ID", width: 150 },
+  { field: "PName", headerName: "Product Name", width: 200 },
   { field: "qualityLevel", headerName: "Quality Level", width: 200 },
+  { field: "qty", headerName: "Quantity", width: 200 },
+  
 
 ];
 

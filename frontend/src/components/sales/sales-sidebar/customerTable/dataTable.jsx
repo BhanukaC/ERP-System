@@ -72,7 +72,7 @@ const Datatable = () => {
   
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="dataTableTitle">
         Customer Details
       </div>
       <DataGrid

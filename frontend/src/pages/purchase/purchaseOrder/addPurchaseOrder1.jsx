@@ -73,10 +73,10 @@ const AddPurchaseOrder1 = () => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="topPart">
+        <div className="topContainer">
           <h1>Add Purchase Order</h1>
         </div>
-        <div className="bottomPart">
+        <div className="bottomContainer">
           <div className="right">
             <form>
               <div className="formInput">
@@ -124,7 +124,7 @@ const AddPurchaseOrder1 = () => {
             </form>
           </div>
         </div>
-        <div className="bottomPart">
+        <div className="bottomContainer">
           <div className="right">
             <h1>Cart</h1>
             <table style={{ width: "80%", textAlign: "center" }}>
@@ -153,7 +153,7 @@ const AddPurchaseOrder1 = () => {
                   width: "200px",
                   padding: "10px",
                   border: "none",
-                  backgroundColor: "#00004d",
+                  backgroundColor: "#0085cc",
                   color: " white",
                   fontWeight: "bold",
                   cursor: " pointer",

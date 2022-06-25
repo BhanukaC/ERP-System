@@ -78,7 +78,7 @@ exports.getAllPurchaseOrderController = async (req, res) => {
 //get purchase order data
 exports.getSinglePurchaseOrderDataController = async (req, res) => {
     const id = req.params.id;
-    db.query("select * from purchaseOrderData where purchaseOrderID=?", [id], (err, result) => {
+    db.query("select purchaseOrderData.ID,purchaseOrderData.PID,Product.PName,purchaseOrderData.unitPrice,purchaseOrderData.qty,purchaseOrderData.discount,purchaseOrderData.netTot from purchaseOrderData,Product where purchaseOrderID=? and Product.PID=purchaseOrderData.PID", [id], (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
@@ -301,7 +301,7 @@ exports.getAllSalesOrderController = async (req, res) => {
 //get sales order data
 exports.getSingleSalesOrderDataController = async (req, res) => {
     const id = req.params.id;
-    db.query("select * from salesOrderData where salesOrderID=?", [id], (err, result) => {
+    db.query("select salesOrderData.ID,salesOrderData.PID,Product.PName,salesOrderData.unitPrice,salesOrderData.qty,salesOrderData.discount,salesOrderData.netTot from salesOrderData,Product where salesOrderID=? and Product.PID=salesOrderData.PID", [id], (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
@@ -391,7 +391,7 @@ exports.getAllSalesReturnOrderController = async (req, res) => {
 //get sales return order data
 exports.getSingleSalesReturnOrderDataController = async (req, res) => {
     const id = req.params.id;
-    db.query("select * from salesReturnOrderData where salesReturnOrderID=?", [id], (err, result) => {
+    db.query("select salesReturnOrderData.ID,salesReturnOrderData.PID,Product.PName,salesReturnOrderData.unitPrice,salesReturnOrderData.qty,salesReturnOrderData.discount,salesReturnOrderData.netTot from salesReturnOrderData,Product where salesReturnOrderID=? and Product.PID=salesReturnOrderData.PID", [id], (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
@@ -480,7 +480,7 @@ exports.getAllPurchaseReturnOrderController = async (req, res) => {
 //get purchase return order data
 exports.getSinglePurchaseReturnOrderDataController = async (req, res) => {
     const id = req.params.id;
-    db.query("select * from purchaseReturnOrderData where purchaseReturnOrderID=?", [id], (err, result) => {
+    db.query("select purchaseReturnOrderData.ID,purchaseReturnOrderData.PID,Product.PName,purchaseReturnOrderData.unitPrice,purchaseReturnOrderData.qty,purchaseReturnOrderData.discount,purchaseReturnOrderData.netTot from purchaseReturnOrderData,Product where purchaseReturnOrderID=? and Product.PID=purchaseReturnOrderData.PID", [id], (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
@@ -616,7 +616,7 @@ exports.getSingleInternalShipmentController = async (req, res) => {
 //view Internal Shipment
 exports.getAllInternalShipmentToReceiveController = async (req, res) => {
     const id = req.params.id;
-    db.query("select * from internalShipment where TOWID=?", [id], (err, result) => {
+    db.query("select * from internalShipment,Warehouse where TOWID=? and Warehouse.WID=internalShipment.FromWID", [id], (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
@@ -628,7 +628,7 @@ exports.getAllInternalShipmentToReceiveController = async (req, res) => {
 
 exports.getAllInternalShipmentToSendController = async (req, res) => {
     const id = req.params.id;
-    db.query("select * from internalShipment where FromWID=?", [id], (err, result) => {
+    db.query("select * from internalShipment,Warehouse where FromWID=? and Warehouse.WID=internalShipment.TOWID", [id], (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
@@ -641,7 +641,7 @@ exports.getAllInternalShipmentToSendController = async (req, res) => {
 //get single internal shipment data
 exports.getSingleInternalShipmentDataController = async (req, res) => {
     const id = req.params.id;
-    db.query("select * from internalShipmentData where internalShipmentID=?", [id], (err, result) => {
+    db.query("select internalShipmentData.ID,internalShipmentData.PID,internalShipmentData.qty,Product.PName from internalShipmentData,Product where internalShipmentID=? and Product.PID=internalShipmentData.PID", [id], (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
@@ -653,7 +653,7 @@ exports.getSingleInternalShipmentDataController = async (req, res) => {
 
 //get stock level
 exports.getAllStockLevelController = async (req, res) => {
-    db.query("select * from stock", (err, result) => {
+    db.query("select stock.ID, stock.WID, stock.PID, Product.PName, stock.qualityLevel, stock.qty,Warehouse.town from stock,Product,Warehouse where Product.PID=stock.PID and stock.WID=Warehouse.WID", (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
@@ -666,7 +666,7 @@ exports.getAllStockLevelController = async (req, res) => {
 //get stock level of a warehouse
 exports.getAllStockLevelForWareHouseController = async (req, res) => {
     const id = req.params.id;
-    db.query("select * from stock where WID=?", [id], (err, result) => {
+    db.query("select stock.ID, stock.PID, Product.PName, stock.qualityLevel, stock.qty from stock,Product where WID=? and Product.PID=stock.PID", [id], (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {

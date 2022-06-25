@@ -1,16 +1,17 @@
 import "../table.scss";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "ID", headerName: "ID",  width: 200},
-  { field: "WID", headerName: "Warehouse ID",  width: 200},
-  { field: "PID", headerName: "Product ID", width: 200 },
-  { field: "qty", headerName: "Quantity", width: 200 },
+  { field: "ID", headerName: "ID",  width: 150},
+  { field: "WID", headerName: "Warehouse ID",  width: 150},
+  { field: "town", headerName: "Branch",  width: 200},
+  { field: "PID", headerName: "Product ID", width: 150 },
+  { field: "PName", headerName: "Product Name", width: 200 },
   { field: "qualityLevel", headerName: "Quality Level", width: 200 },
-
+  { field: "qty", headerName: "Quantity", width: 200 },
+ 
 ];
 
 const AllStockTable = (props) => {

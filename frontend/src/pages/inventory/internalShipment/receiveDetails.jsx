@@ -43,7 +43,7 @@ const ReceiveDetails = () => {
         {/* <div className="topPart">
           <h1>Shipments To be Received to {WID} </h1>
         </div> */}
-        <div className="topPart">
+        <div className="topContainer">
         <div className="right">
         <h1>Shipments To be Received to {town} / WID-{WID} </h1>
         <br></br>
@@ -74,7 +74,7 @@ const ReceiveDetails = () => {
             </form>
           </div>
         </div>
-        <div className="bottomPart">
+        <div className="bottomContainer">
           <ReceiveTable WID={WID} />
         </div>
         

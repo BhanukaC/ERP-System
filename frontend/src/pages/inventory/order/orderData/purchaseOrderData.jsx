@@ -41,7 +41,7 @@ const PurchaseOrderData = () => {
              width: "150px",
              padding: "10px",
              border: "none",
-             backgroundColor: "#7451f8",
+             backgroundColor: "#0085cc",
              color:" white",
              fontWeight: "bold",
              cursor:" pointer",

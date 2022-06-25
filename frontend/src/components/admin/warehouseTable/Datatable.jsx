@@ -55,7 +55,7 @@ const Datatable = () => {
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">Warehouses</div>
+      <div className="dataTableTitle">Warehouses</div>
       <DataGrid
         className="datagrid"
         rows={data}

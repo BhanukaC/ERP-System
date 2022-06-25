@@ -7,12 +7,12 @@ import moment from "moment";
 
 const userColumns = [
   { field: "purchaseOrderID", headerName: "Purchase Order ID",  width: 150},
+  { field: "WID", headerName: "Warehouse ID", width: 150},
+  { field: "SID", headerName: "Supplier ID", width: 150},
   { field: "orderDates", headerName: "Order Date", width: 150 },
   { field: "total", headerName: "Net Total", width: 100 },
-  { field: "SID", headerName: "Supplier ID", width: 150},
-  { field: "WID", headerName: "Warehouse ID", width: 150},
   { field: "statusMod", headerName: "Status", width: 150 },
-  { field: "deliveredDates", headerName: "DeliveredDate", width: 150},
+  { field: "deliveredDates", headerName: "Finished Date", width: 150},
  
 ];
 

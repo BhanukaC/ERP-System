@@ -40,8 +40,8 @@ const Datatable = () => {
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">
-        Activity
+      <div className="dataTableTitle">
+        Activity Records
       </div>
       <DataGrid
         className="datagrid"

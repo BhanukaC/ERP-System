@@ -5,8 +5,8 @@
     .newContainer {
       flex: 6;
   
-      .top1,
-      .bottom1 {
+      .topContainer,
+      .bottomContainer {
         -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
         box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
         padding: 10px;
@@ -14,8 +14,9 @@
         display: flex;
   
         h1 {
-          color: lightgray;
+          color: #002133;
           font-size: 20px;
+          font-family:Arial, Helvetica, sans-serif;
         }
   
         .right {
@@ -59,7 +60,7 @@
               width: 150px;
               padding: 10px;
               border: none;
-              background-color:#7451f8;
+              background-color:#0085cc;
               color: white;
               font-weight: bold;
               cursor: pointer;

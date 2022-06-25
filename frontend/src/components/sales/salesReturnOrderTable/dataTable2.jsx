@@ -8,6 +8,7 @@ const userColumns = [
   { field: "ID", headerName: "ID", width: 100 },
   { field: "salesReturnOrderID", headerName: "Sales Return Order ID",  width: 200},
   { field: "PID", headerName: "Product ID", width: 200 },
+  { field: "PName", headerName: "Product Name", width: 200 },
   { field: "unitPrice", headerName: "Unit Price", width: 200 },
   { field: "qty", headerName: "Quantity", width: 100 },
   { field: "discount", headerName: "Discount", width: 100},
@@ -44,7 +45,7 @@ const DataTable2 = (props) => {
 
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="dataTableTitle">
       Sales Return Order Details of (Sales Return Order ID-{salesReturnOrderID})
       </div>
       <DataGrid
