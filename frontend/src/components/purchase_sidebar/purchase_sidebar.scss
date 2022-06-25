@@ -1,8 +1,8 @@
-.sidebar {
+.purchaseSidebar {
     flex: 1;
-    border-right: 0.5px solid rgb(230, 227, 227);
+    //border-right: 0.5px solid rgb(230, 227, 227);
     min-height: 100vh;
-    background-color: rgba(26, 11, 90, 0.815);
+    background-color: #002133;
   
     .top {
       height: 50px;
@@ -10,12 +10,21 @@
       align-items: center;
       justify-content: center;
   
-      .logoName {
-        font-size: 20px;
+      .logo {
+        font-size: 18px;
         font-weight: bold;
-        color: #7451f8
+        //color: #7451f8;
+        color: #e6b800;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+      }
 
-        ;
+      .name {
+        font-size: 28px;
+        font-weight: bold;
+        //color: #7451f8;
+        color: #e6b800;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-style: italic;
       }
     }
   
@@ -35,7 +44,7 @@
         .title {
           font-size: 10px;
           font-weight: bold;
-          color: #999;
+          color: #fff;
           margin-top: 15px;
           margin-bottom: 5px;
         }
@@ -47,18 +56,18 @@
           cursor: pointer;
   
           &:hover {
-            background-color: #ece8ff;
+            background-color: #0085cc;
           }
   
           .icon {
             font-size: 18px;
-            color: #7451f8;
+            color: #ccc;
           }
   
           span{
               font-size: 13px;
               font-weight: 600;
-              color: #888;
+              color: #ccc;
               margin-left: 10px;
           }
         }
