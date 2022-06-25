@@ -37,7 +37,7 @@ const SendDetails = () => {
       <InventorySidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="topPart">
+        <div className="topContainer">
         <div className="right">
         <h1>Shipments To be Sent From {town} / WID-{WID} </h1>
         <br></br>
@@ -68,7 +68,7 @@ const SendDetails = () => {
             </form>
           </div>
         </div>
-        <div className="bottomPart">
+        <div className="bottomContainer">
           <SendTable WID={WID} />
         </div>
         

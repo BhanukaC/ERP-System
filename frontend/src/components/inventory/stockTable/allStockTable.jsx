@@ -36,8 +36,8 @@ const AllStockTable = (props) => {
  
   return (
     <div className="datatable">
-      <div className="dataTableTitle">
-        Stock Details
+      <div className="dataTableTitle1">
+        <h1>Stock Details</h1>
       </div>
       <DataGrid
         className="datagrid"
@@ -53,7 +53,7 @@ const AllStockTable = (props) => {
           },
         }}
       />
-    </div>
+      </div>
   );
 };
 
