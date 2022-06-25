@@ -41,10 +41,10 @@ const SetDiscount = () => {
       <Admin_sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="top">
+        <div className="topContainer">
           <h1>Set Discount Rates</h1>
         </div>
-        <div className="bottom">
+        <div className="bottomContainer">
           <div className="right">
             <form>
             <div className="formInput">
@@ -82,7 +82,7 @@ const SetDiscount = () => {
               
 
               <div className="break"></div>
-              <button onClick={submitForm}>Send</button>
+              <button onClick={submitForm}>Set</button>
             </form>
           </div>
         </div>
