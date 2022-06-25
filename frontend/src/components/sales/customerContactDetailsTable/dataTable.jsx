@@ -55,9 +55,9 @@ const Datatable = (props) => {
     },
   ];
   return (
-    <div className="datatable">
-      <div className="dataTableTitle">
-        All Contact Numbers For Customer(CID-{CID})
+    <div className="datatable" style={{height:"78%"}}>
+      <div className="dataTableTitle1">
+        <h1>All Contact Numbers For Customer(CID-{CID})</h1>
       </div>
       <DataGrid
         className="datagrid"
