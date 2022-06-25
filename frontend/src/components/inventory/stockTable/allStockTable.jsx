@@ -35,7 +35,7 @@ const AllStockTable = (props) => {
 
  
   return (
-    <div className="datatable">
+    <div className="datatable" style={{height:"78%"}}>
       <div className="dataTableTitle1">
         <h1>Stock Details</h1>
       </div>

@@ -35,7 +35,7 @@
       border: 0.5px solid rgb(230, 227, 227);
     }
   
-    .center {
+    .bottom {
       padding-left: 12px;
       padding-top: 10px;
   
@@ -63,6 +63,11 @@
            //background-color: #ece8ff;
            background-color: #0085cc;
           }
+
+          &:active {
+            //background-color: #ece8ff;
+            background-color: #0085cc;
+           }
 
           .icon {
             font-size: 18px;

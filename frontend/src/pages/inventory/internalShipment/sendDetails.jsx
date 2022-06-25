@@ -1,4 +1,4 @@
-import "../form.scss"; 
+import "./shipment.scss"; 
 import Navbar from "../../../components/navbar/Navbar";
 import InventorySidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
 import SendTable from "../../../components/inventory/internalShipment/sendTable";

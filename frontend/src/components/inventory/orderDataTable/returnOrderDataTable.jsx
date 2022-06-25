@@ -35,9 +35,9 @@ const ReturnOrderDataTable = (props) => {
   }, [""]);
 
   return (
-    <div className="datatable" style={{height:"50%"}}>
-      <div className="dataTableTitle">
-        Sales Return Order Details of (Sales Return Order ID-{salesReturnOrderID})
+    <div className="datatable" style={{height:"70%"}}>
+      <div className="dataTableTitle1">
+        <h1>Sales Return Order Details of (Sales Return Order ID-{salesReturnOrderID})</h1>
       </div>
       <DataGrid
         className="datagrid"
