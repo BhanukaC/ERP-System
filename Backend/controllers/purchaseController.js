@@ -516,7 +516,7 @@ exports.getSinglePurchaseOrderController = async (req, res) => {
 }
 
 exports.getAllPurchaseOrderController = async (req, res) => {
-    db.query("select * from purchaseOrder ", (err, result) => {
+    db.query("select purchaseOrder.purchaseOrderID,purchaseOrder.orderDate,purchaseOrder.status,purchaseOrder.total,purchaseOrder.SID,purchaseOrder.SSLID,purchaseOrder.SCID,purchaseOrder.WID,purchaseOrder.deliveredDate,Supplier.sName from purchaseOrder,Supplier,SupplierContactNumber where purchaseOrder.SID=Supplier.SID ", (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
