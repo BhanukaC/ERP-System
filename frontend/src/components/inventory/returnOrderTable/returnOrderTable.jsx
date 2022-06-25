@@ -8,10 +8,10 @@ import moment from "moment";
 const userColumns = [
   { field: "salesReturnOrderID", headerName: "Sales Return Order ID",  width: 100},
   { field: "WID", headerName: "Warehouse ID", width: 100},
+  { field: "CID", headerName: "Customer ID", width: 100},
   { field: "initiateDates", headerName: "Order Date", width: 150 },
   { field: "reason", headerName: "Reason for Returning", width: 200 },
   { field: "total", headerName: "Net Total", width: 100},
-  { field: "CID", headerName: "Customer ID", width: 100},
   { field: "salesOrderID", headerName: "Sales Order ID", width: 100},
   { field: "statusMod", headerName: "Status", width: 100 },
   { field: "finishDates", headerName: "Finish Date", width: 150 },

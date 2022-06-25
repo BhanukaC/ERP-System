@@ -55,7 +55,7 @@ const ReturnOrderData = () => {
       <div className="listContainer">
         <Navbar />
         <ReturnOrderDataTable id={id}/>
-        {status ==="P" &&(<button style={{
+        {status ==="A" &&(<button style={{
              width: "150px",
              padding: "10px",
              border: "none",

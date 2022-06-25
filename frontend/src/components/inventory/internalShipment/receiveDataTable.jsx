@@ -7,6 +7,7 @@ const userColumns = [
   { field: "ID", headerName: "ID", width: 100 },
   //{ field: "internalShipmentID", headerName: "Internal Shipment ID",  width: 200},
   { field: "PID", headerName: "Product ID", width: 200 },
+  { field: "PName", headerName: "Product Name", width: 200 },
   { field: "qty", headerName: "Quantity", width: 100 },
   
 ];

@@ -15,8 +15,8 @@ const sidebar = () => {
   return (
     <div className="inventorySidebar">
       <div className="top">
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">Quick ERP</span>
+        <Link to="/inventory" style={{ textDecoration: "none" }}>
+          <span className="logo"> <span className="name">Quick</span> ERP</span>
         </Link>
       </div>
       <hr />

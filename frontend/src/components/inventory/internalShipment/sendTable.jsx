@@ -10,6 +10,7 @@ const userColumns = [
   { field: "dates", headerName: "Order Date", width: 150 },
  // { field: "FromWID", headerName: "From", width: 100 },
   { field: "TOWID", headerName: "To Warehouse ID", width: 150},
+  { field: "town", headerName: "To Branch", width: 150 },
   { field: "finishDates", headerName: "Finish Date", width: 150},
  
 ];
