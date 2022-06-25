@@ -55,7 +55,7 @@ const Datatable = (props) => {
 
   return (
     <div className="datatable">
-      <div className="datatableTitle">All Salaries</div>
+      <div className="dataTableTitle">All Salaries</div>
       <DataGrid
         className="datagrid"
         rows={data}

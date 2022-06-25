@@ -62,7 +62,7 @@ const Datatable = (props) => {
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="dataTableTitle">
         All Dependents For Employee(EID-{EID})
       </div>
       <DataGrid
