@@ -5,8 +5,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "SCID", headerName: "Sub Category ID" ,width:150},
-  { field: "catID", headerName: "Category ID",width:100 },
+  { field: "SCID", headerName: "Sub Category ID" ,width:120},
+ 
+  { field: "categoryName", headerName: "Category Name",width:120 },
   { field: "subCategoryName", headerName: "Sub Category Name",width:150 },
   { field: "discount", headerName: "Discount" ,width:100},
   

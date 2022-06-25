@@ -107,7 +107,7 @@ exports.getSingleSubCategoryController = async (req, res) => {
 
 
 exports.getAllSubCategoryController = async (req, res) => {
-    db.query("select * from subCategory ", (err, result) => {
+    db.query("select * from subCategory,category where subCategory.catID=category.catID ", (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
