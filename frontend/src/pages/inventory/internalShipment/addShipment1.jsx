@@ -188,7 +188,7 @@ if(stat){
             </form>
           </div>
         </div>
-        <div className="bottom">
+        <div className="bottomContainer">
           <div className="right">
             <h1>Cart</h1>
             <table style={{ width: "80%", textAlign: "center" }}>
