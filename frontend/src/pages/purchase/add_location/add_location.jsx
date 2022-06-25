@@ -81,10 +81,10 @@ const AddStoreLocation = () => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="topPart">
+        <div className="topContainer">
           <h1>Add Supplier Store Location</h1>
         </div>
-        <div className="bottomPart">
+        <div className="bottomContainer">
           <div className="right">
             <form>
 

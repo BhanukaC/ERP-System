@@ -99,10 +99,10 @@ const ChangeQualityLevel = () => {
       <InventorySidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="topPart">
+        <div className="topContainer">
           <h1>Change Quality Level</h1>
         </div>
-        <div className="bottomPart">
+        <div className="bottomContainer">
           <div className="right">
             <form>
           

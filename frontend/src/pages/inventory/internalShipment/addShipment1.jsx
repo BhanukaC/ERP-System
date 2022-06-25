@@ -150,10 +150,10 @@ if(stat){
       <InventorySidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="topPart">
+        <div className="topContainer">
           <h1>Add Internal Shipment From Warehouse ID-{fromWID} To Warehouse  ID-{toWID}</h1>
         </div>
-        <div className="bottomPart">
+        <div className="bottomContainer">
           <div className="right">
             <form>
               <div className="formInput">
@@ -213,7 +213,7 @@ if(stat){
                   width: "200px",
                   padding: "10px",
                   border: "none",
-                  backgroundColor: "#7451f8",
+                  backgroundColor: "#0085cc",
                   color: " white",
                   fontWeight: "bold",
                   cursor: " pointer",

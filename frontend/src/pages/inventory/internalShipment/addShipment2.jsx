@@ -44,11 +44,11 @@ const AddInternalShipmentsPart2 = () => {
       <InventorySidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="topPart">
+        <div className="topContainer">
           <h1>Add Internal Shipment</h1>
         </div>
        
-        <div className="bottomPart">
+        <div className="bottomContainer">
           <div className="right">
             <form>
              
@@ -101,7 +101,7 @@ const AddInternalShipmentsPart2 = () => {
                 width: "150px",
               padding: "10px",
               border: "none",
-              backgroundColor: "#7451f8",
+              backgroundColor: "#0085cc",
               color: "white",
               fontWeight: "bold",
               cursor: "pointer",
