@@ -47,7 +47,7 @@ const Datatable = (props) => {
         return (
           <div className="cellAction">
             <Link to={reLink2} style={{ textDecoration: "none" }}>
-              <div className="viewButton">Edit</div>
+              <div className="viewButton1">Edit</div>
             </Link>
           </div>
         );
