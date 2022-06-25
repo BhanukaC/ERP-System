@@ -70,10 +70,10 @@ const AddCustomerDeliveryAddress = () => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="topPart">
+        <div className="topPartContainer">
           <h1>Add Customer Delivery Address</h1>
         </div>
-        <div className="bottomPart">
+        <div className="bottomPartContainer">
           <div className="right">
             <form>
               <div className="formInput">
