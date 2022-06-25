@@ -82,7 +82,7 @@ const SetDiscount = () => {
               
 
               <div className="break"></div>
-              <button onClick={submitForm}>Send</button>
+              <button onClick={submitForm}>Set</button>
             </form>
           </div>
         </div>

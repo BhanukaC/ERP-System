@@ -108,7 +108,7 @@ const AddWarehouse = () => {
               
 
               <div className="break"></div>
-              <button onClick={submitForm}>Send</button>
+              <button onClick={submitForm}>Add Warehouse</button>
             </form>
           </div>
         </div>

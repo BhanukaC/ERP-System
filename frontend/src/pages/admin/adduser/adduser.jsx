@@ -104,7 +104,7 @@ const AddUser = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Send</button>
+              <button onClick={submitForm}>Add User</button>
             </form>
           </div>
         </div>
