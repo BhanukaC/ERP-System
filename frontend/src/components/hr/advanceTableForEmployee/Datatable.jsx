@@ -41,9 +41,9 @@ const Datatable = (params) => {
   }, [""]);
 
   return (
-    <div className="datatable">
-      <div className="datatableTitle">
-        All Advance Records for Employee(EID-{EID})
+    <div className="datatable" style={{height:"78%"}}>
+      <div className="dataTableTitle1">
+        <h1>All Advance Records for Employee(EID-{EID})</h1>
       </div>
       <DataGrid
         className="datagrid"

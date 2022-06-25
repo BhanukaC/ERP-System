@@ -13,7 +13,10 @@ const AddWarehouse = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (true) {
+    if (managerName === "" || no === "" || street === "" || town === "" || uid === "") {
+      alert("Please fill in all the required fields");
+    }
+    else {
       axios
         .post(
           "http://localhost:5000/admin/Warehouse/add",
@@ -38,6 +41,7 @@ const AddWarehouse = () => {
           }
         });
     }
+    
   };
 
   return (
@@ -45,10 +49,10 @@ const AddWarehouse = () => {
       <Admin_sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="top">
+        <div className="topContainer">
           <h1>Add Warehouse</h1>
         </div>
-        <div className="bottom">
+        <div className="bottomContainer">
           <div className="right">
             <form>
               <div className="formInput">
@@ -108,7 +112,7 @@ const AddWarehouse = () => {
               
 
               <div className="break"></div>
-              <button onClick={submitForm}>Send</button>
+              <button onClick={submitForm}>Add Warehouse</button>
             </form>
           </div>
         </div>

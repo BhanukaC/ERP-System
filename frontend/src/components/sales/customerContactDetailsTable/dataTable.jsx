@@ -47,7 +47,7 @@ const Datatable = (props) => {
         return (
           <div className="cellAction">
             <Link to={reLink2} style={{ textDecoration: "none" }}>
-              <div className="viewButton">Edit</div>
+              <div className="viewButton1">Edit</div>
             </Link>
           </div>
         );
@@ -55,9 +55,9 @@ const Datatable = (props) => {
     },
   ];
   return (
-    <div className="datatable">
-      <div className="datatableTitle">
-        All Contact Numbers For Customer(CID-{CID})
+    <div className="datatable" style={{height:"78%"}}>
+      <div className="dataTableTitle1">
+        <h1>All Contact Numbers For Customer(CID-{CID})</h1>
       </div>
       <DataGrid
         className="datagrid"

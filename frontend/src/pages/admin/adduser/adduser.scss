@@ -5,8 +5,15 @@
   .newContainer {
     flex: 6;
 
-    .top,
-    .bottom {
+    .topContainer{
+      -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        padding: 10px;
+        margin: 20px;
+        display: flex;
+        background-color:#f2f2f2 ;
+    }
+    .bottomContainer {
       -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
       box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
       padding: 10px;
@@ -14,8 +21,9 @@
       display: flex;
 
       h1 {
-        color: lightgray;
-        font-size: 20px;
+        color: #002133;
+          font-size: 20px;
+          font-family:Arial, Helvetica, sans-serif;
       }
 
       .right {
@@ -63,13 +71,13 @@
 
           button {
             width: 150px;
-            padding: 10px;
-            border: none;
-            background-color: #7451F8 !important;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
+              padding: 10px;
+              border: none;
+              background-color: #0085cc;
+              color: white;
+              font-weight: bold;
+              cursor: pointer;
+              margin-top: 10px;
           }
         }
       }

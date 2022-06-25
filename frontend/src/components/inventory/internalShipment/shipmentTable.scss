@@ -7,12 +7,14 @@
     .tableTitle{
       width: 100%;
       font-size: 16px;
-      color: gray;
+      color: #002133;
       margin-bottom: 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       font-weight: bold;
+      font-family:Arial, Helvetica, sans-serif;
+  
   
       .link{
         text-decoration: none;
@@ -41,9 +43,10 @@
       gap: 15px;
   
       .viewButtons {
-        padding: 3px 6px;
-        border-radius: 7px;
+        padding: 4px 8px;
+        border-radius: 10px;
         color: #fff;
+        font-size: 12px;
         //border: 1px dotted rgba(0, 0, 139, 0.596);
         border: none;
         cursor: pointer;

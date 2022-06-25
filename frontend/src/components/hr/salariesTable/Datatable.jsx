@@ -54,8 +54,10 @@ const Datatable = (props) => {
   }, [""]);
 
   return (
-    <div className="datatable">
-      <div className="datatableTitle">All Salaries</div>
+    <div className="datatable" style={{height:"78%"}}>
+      <div className="dataTableTitle1">
+        <h1>All Salaries</h1>
+        </div>
       <DataGrid
         className="datagrid"
         rows={data}

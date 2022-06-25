@@ -109,9 +109,9 @@ const DataTable1 = () => {
 
 
   return (
-    <div className="datatable">
-      <div className="datatableTitle">
-       Sales Return Requests
+    <div className="datatable" style={{height:"78%"}}>
+    <div className="dataTableTitle1">
+      <h1>Sales Return Requests</h1> 
       </div>
       <DataGrid
         className="datagrid"

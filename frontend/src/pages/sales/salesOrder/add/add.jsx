@@ -90,11 +90,11 @@ const AddSalesOrderPart1 = () => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="topPart">
+        <div className="topPartContainer">
           <h1>Add Sales Order</h1>
         </div>
 
-        <div className="bottomPart">
+        <div className="bottomPartContainer">
           <div className="right">
             <form>
               <div className="formInput">
@@ -191,7 +191,7 @@ const AddSalesOrderPart1 = () => {
                   width: "150px",
                   padding: "10px",
                   border: "none",
-                  backgroundColor: "#7451f8",
+                  backgroundColor: "#0085cc",
                   color: "white",
                   fontWeight: "bold",
                   cursor: "pointer",

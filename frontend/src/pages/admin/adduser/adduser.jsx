@@ -53,10 +53,10 @@ const AddUser = () => {
       <Admin_sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="top">
+        <div className="topContainer">
           <h1>Add User</h1>
         </div>
-        <div className="bottom">
+        <div className="bottomContainer">
           <div className="right">
             <form>
               <div className="formInput">
@@ -104,7 +104,7 @@ const AddUser = () => {
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Send</button>
+              <button onClick={submitForm}>Add User</button>
             </form>
           </div>
         </div>

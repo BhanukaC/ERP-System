@@ -16,11 +16,11 @@ const sidebar = () => {
     <div className="inventorySidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">Quick ERP</span>
+          <span className="logo"> <span className="name">Quick</span> ERP</span>
         </Link>
       </div>
       <hr />
-      <div className="center">
+      <div className="bottom">
         <ul>
           <p className="title">STOCK</p>
           <Link to="/inventory" style={{ textDecoration: "none" }}>
@@ -94,19 +94,6 @@ const sidebar = () => {
             </li>
           </Link>
 
-          <p className="title">USER</p>
-          <Link to="/profile" style={{ textDecoration: "none" }}>
-            <li>
-              <AccountCircleOutlinedIcon className="icon" />
-              <span>Profile</span>
-            </li>
-          </Link>
-          <Link to="/logout" style={{ textDecoration: "none" }}>
-            <li>
-              <ExitToAppIcon className="icon" />
-              <span>Logout</span>
-            </li>
-          </Link>
         </ul>
       </div>
     </div>

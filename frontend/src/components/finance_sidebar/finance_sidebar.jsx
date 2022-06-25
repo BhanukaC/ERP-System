@@ -9,10 +9,10 @@ import { useContext } from "react";
 const Finance_Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
   return (
-    <div className="sidebar">
+    <div className="financeSidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">Quick ERP</span>
+        <span className="logo"> <span className="name">Quick</span> ERP</span>
         </Link>
       </div>
       <hr />
@@ -26,19 +26,6 @@ const Finance_Sidebar = () => {
             </li>
           </Link>
 
-          <p className="title">Profile</p>
-          <Link to="/profile" style={{ textDecoration: "none" }}>
-            <li>
-              <AccountCircleOutlinedIcon className="icon" />
-              <span>Profile</span>
-            </li>
-          </Link>
-          <Link to="/logout" style={{ textDecoration: "none" }}>
-            <li>
-              <ExitToAppIcon className="icon" />
-              <span>Logout</span>
-            </li>
-          </Link>
         </ul>
       </div>
     </div>

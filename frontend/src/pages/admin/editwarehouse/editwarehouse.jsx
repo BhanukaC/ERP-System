@@ -33,7 +33,7 @@ const EditWarehouseDetailsAdmin = () => {
   const submitForm = (e) => {
     e.preventDefault();
     if (ManagerName=== "" || no === "" || street === "" || town === "") {
-      alert("Fill the required fields");
+      alert("Please fill in all the required fields");
     } else {
       let data = {
         ManagerName: ManagerName,
@@ -64,10 +64,10 @@ const EditWarehouseDetailsAdmin = () => {
       <Admin_sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="topPart">
+        <div className="topPartContainer">
           <h1>Edit Warehouse Details</h1>
         </div>
-        <div className="bottomPart">
+        <div className="bottomPartContainer">
           <div className="right">
             <form>
             <div className="formInput">

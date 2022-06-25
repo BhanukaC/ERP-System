@@ -7,6 +7,7 @@ const userColumns = [
   { field: "ID", headerName: "ID", width: 100 },
   //{ field: "salesReturnOrderID", headerName: "Sales Return Order ID",  width: 200},
   { field: "PID", headerName: "Product ID", width: 200 },
+  { field: "PName", headerName: "Product Name", width: 200 },
   { field: "unitPrice", headerName: "Unit Price", width: 200 },
   { field: "qty", headerName: "Quantity", width: 100 },
   { field: "discount", headerName: "Discount", width: 100},
@@ -34,9 +35,9 @@ const ReturnOrderDataTable = (props) => {
   }, [""]);
 
   return (
-    <div className="datatable" style={{height:"50%"}}>
-      <div className="dataTableTitle">
-        Sales Return Order Details of (Sales Return Order ID-{salesReturnOrderID})
+    <div className="datatable" style={{height:"70%"}}>
+      <div className="dataTableTitle1">
+        <h1>Sales Return Order Details of (Sales Return Order ID-{salesReturnOrderID})</h1>
       </div>
       <DataGrid
         className="datagrid"

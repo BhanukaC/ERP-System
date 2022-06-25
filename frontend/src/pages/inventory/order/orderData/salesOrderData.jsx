@@ -58,11 +58,11 @@ const SalesOrderData = () => {
              width: "150px",
              padding: "10px",
              border: "none",
-             backgroundColor: "#7451f8",
+             backgroundColor: "#0085cc",
              color:" white",
              fontWeight: "bold",
              cursor:" pointer",
-             marginTop: "30px",
+             marginTop: "50px",
              marginLeft:"40%",
       
         }} onClick={submitButton} >Mark as Issued</button>)}

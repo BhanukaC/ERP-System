@@ -114,8 +114,9 @@ const Datatable = () => {
     },
   ];
   return (
-    <div className="datatable">
-      <div className="datatableTitle">All Employees</div>
+    <div className="datatable" style={{height:"78%"}}>
+      <div className="dataTableTitle1">
+        <h1>All Employees</h1></div>
       <DataGrid
         className="datagrid"
         rows={data}

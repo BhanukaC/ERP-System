@@ -13,10 +13,10 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
 
   return (
-    <div className="sidebar">
+    <div className="salesSidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">Quick ERP</span>
+        <span className="logo"> <span className="name">Quick</span> ERP</span>
         </Link>
       </div>
       <hr />
@@ -71,19 +71,6 @@ const Sidebar = () => {
             <li>
               <DocumentScannerIcon className="icon" />
               <span>View Sales Return Order Details</span>
-            </li>
-          </Link>
-          <p className="title">USER</p>
-          <Link to="/profile" style={{ textDecoration: "none" }}>
-            <li>
-              <AccountCircleOutlinedIcon className="icon" />
-              <span>Profile</span>
-            </li>
-          </Link>
-          <Link to="/logout" style={{ textDecoration: "none" }}>
-            <li>
-              <ExitToAppIcon className="icon" />
-              <span>Logout</span>
             </li>
           </Link>
         </ul>

@@ -72,9 +72,9 @@ const SalesOrderTable = () => {
     },
   ];
   return (
-    <div className="datatable">
-      <div className="dataTableTitle">
-        Sales Orders
+    <div className="datatable" style={{height:"78%"}}>
+      <div className="dataTableTitle1">
+        <h1>Sales Orders</h1>
       </div>
       <DataGrid
         className="datagrid"

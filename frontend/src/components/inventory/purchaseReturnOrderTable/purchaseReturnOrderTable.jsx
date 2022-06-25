@@ -8,10 +8,10 @@ import moment from "moment";
 const userColumns = [
   { field: "purchaseReturnOrderID", headerName: "Purchase Return Order ID",  width: 200},
   { field: "WID", headerName: "Warehouse ID", width: 150},
+  { field: "SID", headerName: "Supplier ID", width: 100},
   { field: "initiateDates", headerName: "Order Date", width: 150 },
   { field: "reason", headerName: "Reason for Returning", width: 200 },
   { field: "total", headerName: "Net Total", width: 100},
-  { field: "SID", headerName: "Supplier ID", width: 100},
   { field: "purchaseOrderID", headerName: "Purchase Order ID", width: 150},
 
 ];
@@ -54,9 +54,9 @@ const PurchaseReturnOrderTable = () => {
     },
   ];
   return (
-    <div className="datatable">
-      <div className="dataTableTitle">
-        Purchase Return Orders
+    <div className="datatable" style={{height:"78%"}}>
+      <div className="dataTableTitle1">
+        <h1>Purchase Return Orders</h1>
       </div>
       <DataGrid
         className="datagrid"

@@ -1,4 +1,4 @@
-import "../form.scss"; 
+import "./shipment.scss"; 
 import Navbar from "../../../components/navbar/Navbar";
 import InventorySidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
 import SendTable from "../../../components/inventory/internalShipment/sendTable";
@@ -38,11 +38,11 @@ const SendDetails = () => {
       <div className="newContainer">
         <Navbar />
         <div className="topPart">
-        <div className="right">
+        <div className="rightPart">
         <h1>Shipments To be Sent From {town} / WID-{WID} </h1>
         <br></br>
             <form>
-            <div className="formInput">
+            <div className="inputField">
                 <label>From</label>
                 <select
                   value={WID}
