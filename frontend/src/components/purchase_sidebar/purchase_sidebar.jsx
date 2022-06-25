@@ -16,10 +16,10 @@ import {useContext } from "react";
 const Sidebar = () => {
  
   return (
-    <div className="sidebar">
+    <div className="purchaseSidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logoName">Quick ERP</span>
+        <span className="logo"> <span className="name">Quick</span> ERP</span>
         </Link>
       </div>
       <hr />
