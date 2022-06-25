@@ -45,7 +45,7 @@ const DataTable2 = (props) => {
 
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      <div className="dataTableTitle">
       Sales Order Details of (Sales Order ID-{salesOrderID})
       </div>
       <DataGrid
