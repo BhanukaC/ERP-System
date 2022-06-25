@@ -403,8 +403,7 @@ exports.addAttendanceController = async (req, res) => {
 
 exports.viewSingleEmployeeAttendanceController = async (req, res) => {
     const id = req.params.id;
-    const { startDate, endDate } = req.body;
-    db.query("select * from Attendance where EID=? and (date  between ? and ?)", [id, startDate, endDate], (err, result) => {
+    db.query("select * from Attendance where EID=?", [id], (err, result) => {
         db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "View an Employee Attendance(EID-" + id + ")"], (err, response) => { });
         res.json(result);
     });
@@ -412,7 +411,7 @@ exports.viewSingleEmployeeAttendanceController = async (req, res) => {
 
 exports.viewAllAttendanceController = async (req, res) => {
 
-    db.query("select * from Attendance ", (err, result) => {
+    db.query("select a.AID,a.EID,e.fName,e.lName,a.date,a.inTime,a.outTime from Attendance a,Employee e where a.EID=e.EID ", (err, result) => {
         db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "View All Employee Attendance"], (err, response) => { });
         res.json(result);
     });
