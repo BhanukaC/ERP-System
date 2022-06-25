@@ -15,13 +15,16 @@ const Navbar = () => {
           <div className="item">
           <ul>
             <Link to="/profile" style={{ textDecoration: "none" }}>
-            <li>
+            <li className="tooltip1">
               <AccountCircleOutlinedIcon className="icon" />
-            </li>
+              <span class="tooltiptext1">Profile</span>
+            </li>  
           </Link>
+
           <Link to="/logout" style={{ textDecoration: "none" }}>
-            <li>
+            <li className="tooltip2">
               <ExitToAppIcon className="icon" />
+              <span class="tooltiptext2">Logout</span>
             </li>
           </Link>
           </ul> 
