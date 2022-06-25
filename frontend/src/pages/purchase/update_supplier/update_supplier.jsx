@@ -86,10 +86,10 @@ const Updatesupplier = () => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="topPart">
+        <div className="topContainer">
           <h1>Update Supplier</h1>
         </div>
-        <div className="bottomPart">
+        <div className="bottomContainer">
           <div className="right">
             <form>
               
