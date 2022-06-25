@@ -110,7 +110,7 @@ import LogOut from "./pages/logout/logout";
 import Profile from "./pages/profile/profile";
 import ViewAllSalesReturnOrdersAdmin from "./pages/admin/salesreturnorders/salesreturnorders";
 import EditWarehouseDetailsAdmin from "./pages/admin/editwarehouse/editwarehouse";
-import ViewTAccounts from "./pages/finance/taccounts";
+import ViewAccountingDetails from "./pages/finance/taccounts";
 
 
 
@@ -288,7 +288,7 @@ function App() {
               <Route path="editwarehouse/:WID" element={<ProtectedRoute level={0}><EditWarehouseDetailsAdmin /></ProtectedRoute>} />
             </Route>
 
-            <Route path="finance" element={<ProtectedRoute level={5}><ViewTAccounts /></ProtectedRoute>}></Route>
+            <Route path="finance" element={<ProtectedRoute level={5}><ViewAccountingDetails /></ProtectedRoute>}></Route>
 
           </Route>
         </Routes>

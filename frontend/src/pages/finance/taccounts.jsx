@@ -1,8 +1,62 @@
 import "./taccounts.scss";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
 import Finance_Sidebar from "../../components/finance_sidebar/finance_sidebar";
 
-const ViewAllUsers = () => {
+const ViewAccountingDetails = () => {
+    
+    const [sales, setSales] = useState("");
+    const [purchases, setPurchases] = useState("");
+    const [epf, setEpf] = useState("");
+    const [etf, setEtf] = useState("");
+  
+    useEffect(() => {
+        axios
+          .get("http://localhost:5000/account/TotalSales/get" , {
+            withCredentials: true,
+            credentials: "include",
+          })
+          .then((res) => {
+             setSales(res.data);
+          });
+      }, [""]);
+
+      useEffect(() => {
+        axios
+          .get("http://localhost:5000/account/TotalPurchases/get" , {
+            withCredentials: true,
+            credentials: "include",
+          })
+          .then((res) => {
+             setPurchases(res.data);
+          });
+      }, [""]);
+
+      useEffect(() => {
+        axios
+          .get("http://localhost:5000/account/TotalEPF/get" , {
+            withCredentials: true,
+            credentials: "include",
+          })
+          .then((res) => {
+             setEpf(res.data);
+          });
+      }, [""]);
+
+      useEffect(() => {
+        axios
+          .get("http://localhost:5000/account/TotalETF/get" , {
+            withCredentials: true,
+            credentials: "include",
+          })
+          .then((res) => {
+             setEtf(res.data);
+          });
+      }, [""]);
+
+      
+
   return (
     <div>
         <div className="list">
@@ -19,11 +73,8 @@ const ViewAllUsers = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="debit">
-                                        <p>hello</p>
-                                        <p>hello</p>
-                                    </td>
-                                    <td>with two columns</td>
+                                    <td class="debit"> </td>
+                                    <td> {sales} </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -32,13 +83,13 @@ const ViewAllUsers = () => {
                         <table>
                             <thead>
                                 <tr>
-                                    <th colspan="2">Purchase</th>
+                                    <th colspan="2">Purchases</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="debit">The table body</td>
-                                    <td>with two columns</td>
+                                    <td class="debit"> {purchases} </td>
+                                    <td> </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -82,8 +133,8 @@ const ViewAllUsers = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="debit">The table body</td>
-                                    <td>with two columns</td>
+                                    <td class="debit"> </td>
+                                    <td> {epf} </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -97,8 +148,8 @@ const ViewAllUsers = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="debit">The table body</td>
-                                    <td>with two columns</td>
+                                    <td class="debit"> </td>
+                                    <td> {etf} </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -125,4 +176,4 @@ const ViewAllUsers = () => {
   );
 };
 
-export default ViewAllUsers;
+export default ViewAccountingDetails;
