@@ -87,6 +87,10 @@ const submitForm = (e) => {
     {
       alert("Please  fill the required fields");
     }
+    else if( sellp==0)
+    {
+      alert("Please  fill the correct selling price");
+    }
     else if( hsncode.length!=6)
     {
       alert("Please  fill a valid HSN Code");
