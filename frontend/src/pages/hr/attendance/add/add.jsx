@@ -88,10 +88,10 @@ const AddAttendance = () => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="top">
+        <div className="topContainer">
           <h1>Give Advance</h1>
         </div>
-        <div className="bottom">
+        <div className="bottomContainer">
           <div className="right">
             <form>
               <div className="formInput">

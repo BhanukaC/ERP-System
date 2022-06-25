@@ -61,10 +61,10 @@ const EditWarehouseDetails = () => {
       <InventorySidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="topPart">
+        <div className="topContainer">
           <h1>Edit Warehouse Details</h1>
         </div>
-        <div className="bottomPart">
+        <div className="bottomContainer">
           <div className="right">
             <form>
             <div className="formInput">
