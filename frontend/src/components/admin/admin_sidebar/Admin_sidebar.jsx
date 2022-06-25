@@ -68,7 +68,7 @@ const Sidebar = () => {
           <Link to="/admin/viewactivity" style={{ textDecoration: "none" }}>
             <li>
               <ReportIcon className="icon" />
-              <span>Activity</span>
+              <span>Activity Records</span>
             </li>
           </Link>
           <p className="title">USER</p>

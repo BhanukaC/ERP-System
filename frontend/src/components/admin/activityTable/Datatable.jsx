@@ -41,7 +41,7 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="dataTableTitle">
-        Activity
+        Activity Records
       </div>
       <DataGrid
         className="datagrid"
