@@ -21,6 +21,9 @@ const Updatesupplier = () => {
   const { SID } = useParams();
   console.log(SID);
 
+  
+
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/purchase/supplier/getSingle/" + SID, {
@@ -44,14 +47,35 @@ const Updatesupplier = () => {
 
   }, [""]);
 
+  function ValidateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      return true;
+    }
+    return false;
+  }
+
   const submitForm = (e) => {
     e.preventDefault();
     if (
-        sName === ""
+      sName === ""||
+      payemntTerm===""||
+      no===""||
+      town===""||
+      country===""||
+      returnTerm===""||
+      deliveryTerm===""||
+      email===""
       
     ) {
       alert("Please fill all required fields");
-    } else {
+    }
+    else if(!(ValidateEmail(email)))
+    {
+        alert("Please enter a valid email")
+    }
+    
+    
+    else {
       let data = {
         sName: sName,
         payemntTerm: payemntTerm,
@@ -96,7 +120,7 @@ const Updatesupplier = () => {
                
 
               <div className="formInput">
-                <label>Supplier Name</label>
+                <label>Supplier Name*</label>
                 <input
                   type="text"
                   value={sName}
@@ -107,7 +131,7 @@ const Updatesupplier = () => {
               </div>
 
               <div className="formInput">
-                <label>Payment Term</label>
+                <label>Payment Term*</label>
                 <input
                   type="text"
                   value={payemntTerm}
@@ -118,7 +142,7 @@ const Updatesupplier = () => {
               </div>
 
               <div className="formInput">
-                <label>No</label>
+                <label>No*</label>
                 <input
                   type="text"
                   value={no}
@@ -142,7 +166,7 @@ const Updatesupplier = () => {
 
               
               <div className="formInput">
-                <label>Town</label>
+                <label>Town*</label>
                 <input
                   type="text"
                   value={town}
@@ -154,7 +178,7 @@ const Updatesupplier = () => {
 
               
               <div className="formInput">
-                <label>Country</label>
+                <label>Country*</label>
                 <input
                   type="text"
                   value={country}
@@ -166,7 +190,7 @@ const Updatesupplier = () => {
 
               
               <div className="formInput">
-                <label>Return Term</label>
+                <label>Return Term*</label>
                 <input
                   type="text"
                   value={returnTerm}
@@ -178,7 +202,7 @@ const Updatesupplier = () => {
 
               
               <div className="formInput">
-                <label>Delivery Term</label>
+                <label>Delivery Term*</label>
                 <input
                   type="text"
                   value={deliveryTerm}
@@ -190,7 +214,7 @@ const Updatesupplier = () => {
 
               
               <div className="formInput">
-                <label>Email</label>
+                <label>Email*</label>
                 <input
                   type="text"
                   value={email}
