@@ -55,7 +55,7 @@ const Producttable = () => {
         return (
           <div className="cellAction">
             <Link to= {upLink} style= {{textDecoration : "none"}}>
-              <div className="viewButton">Edit</div>
+              <div className="viewButtons">Edit</div>
               </Link>
             
           </div>
@@ -66,12 +66,10 @@ const Producttable = () => {
 
   
   return (
-    <div className="datatable">
-      <div className="datatableTitle1">
-        Products
-        <Link to="/purchase/product/add" className="link">
-          Add New Product
-        </Link>
+    <div className="TableOfData" style={{height:"78%"}}>
+      <div className="TableOfDataTitle1">
+        <h1>Products</h1>
+        
       </div>
       <DataGrid
         className="datagrid"

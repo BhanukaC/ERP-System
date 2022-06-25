@@ -20,6 +20,7 @@ const userColumns = [
 const Datatable = (props) => {
   const SID = props.SID;
   const [data, setData] = useState({});
+  const [sName, setsName] = useState("");
 
  
 
@@ -43,6 +44,15 @@ const Datatable = (props) => {
         
       });
 
+      axios
+      .get("http://localhost:5000/purchase/supplier/getSingle/"+SID, {
+        withCredentials: true,
+        credentials: "include",
+      })
+      .then((res) => {
+        setsName(res.data[0].sName);
+      });
+
       
   }, [""]);
 
@@ -50,9 +60,10 @@ const Datatable = (props) => {
 
   
   return (
-    <div className="datatable">
-      <div className="datatableTitle1">
-        All Store Locations For Supplier (SID-{SID})
+    <div className="TableOfData" style={{height:"78%"}}>
+      <div className="TableOfDataTitle1">
+        <h1>All Store Locations For Supplier - {sName} (SID-{SID})</h1>
+        
       </div>
       <DataGrid
         className="datagrid"
