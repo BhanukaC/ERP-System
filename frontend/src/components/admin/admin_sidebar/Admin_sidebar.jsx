@@ -97,7 +97,7 @@ const Sidebar = () => {
               <span>Inventory</span>
             </li>
           </Link>
-          <Link to="/account" style={{ textDecoration: "none" }}>
+          <Link to="/finance" style={{ textDecoration: "none" }}>
             <li>
               <DashboardIcon className="icon" />
               <span>Finance</span>
