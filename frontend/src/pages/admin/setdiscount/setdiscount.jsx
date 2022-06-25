@@ -11,7 +11,10 @@ const SetDiscount = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (true) {
+    if (PID === "" || CID === "" || discount === "") {
+      alert("Please fill in all the required fields");
+    }
+    else {
       axios
         .post(
           "http://localhost:5000/admin/discount/customer",
@@ -28,7 +31,7 @@ const SetDiscount = () => {
         .then((res) => {
           console.log(res);
           if (res.data === "Discount added") {
-            alert("Discount set");
+            alert("Discount was set");
           } else {
             alert("Error");
           }
