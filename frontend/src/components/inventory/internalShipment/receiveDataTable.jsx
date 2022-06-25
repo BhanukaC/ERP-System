@@ -33,9 +33,9 @@ const ShipmentDataTable = (props) => {
   }, [""]);
 
   return (
-    <div className="datatable" style={{height:"50%"}}>
-      <div className="dataTableTitle">
-        Internal Shipment Details of (Internal Shipment ID-{internalShipmentID})
+    <div className="datatable" style={{height:"70%"}}>
+      <div className="dataTableTitle1">
+        <h1>Internal Shipment Details of (Internal Shipment ID-{internalShipmentID})</h1>
       </div>
       <DataGrid
         className="datagrid"

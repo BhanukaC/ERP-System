@@ -5,8 +5,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "SCID", headerName: "Sub Category ID" ,width:150},
-  { field: "catID", headerName: "Category ID",width:100 },
+  { field: "SCID", headerName: "Sub Category ID" ,width:120},
+ 
+  { field: "categoryName", headerName: "Category Name",width:120 },
   { field: "subCategoryName", headerName: "Sub Category Name",width:150 },
   { field: "discount", headerName: "Discount" ,width:100},
   
@@ -45,7 +46,7 @@ const Subcategorytable = () => {
         return (
           <div className="cellAction">
             <Link to = {upLink} style = {{textDecoration: "none"}}>
-              <div className="viewButton">Edit</div>
+              <div className="editButtons">Edit</div>
             </Link>
             
           </div>
@@ -54,12 +55,10 @@ const Subcategorytable = () => {
     },
   ];
   return (
-    <div className="datatable">
-      <div className="datatableTitle1">
-        Sub Category
-        <Link to="/purchase/product/addsubcat" className="link">
-          Add New Sub Category
-        </Link>
+    <div className="TableOfData" style={{height:"78%"}}>
+      <div className="TableOfDataTitle1">
+        <h1>Sub Category</h1>
+        
       </div>
       <DataGrid
         className="datagrid"

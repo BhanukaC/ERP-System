@@ -74,9 +74,9 @@ const ReturnOrderTable = () => {
     },
   ];
   return (
-    <div className="datatable">
-      <div className="dataTableTitle">
-        Sales Return Orders
+    <div className="datatable" style={{height:"78%"}}>
+      <div className="dataTableTitle1">
+        <h1>Sales Return Orders</h1>
       </div>
       <DataGrid
         className="datagrid"

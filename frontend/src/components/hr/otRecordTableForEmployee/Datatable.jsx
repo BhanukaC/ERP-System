@@ -48,7 +48,8 @@ const Datatable = (props) => {
 
   return (
     <div className="datatable">
-      <div className="dataTableTitle">All OT Records</div>
+      <div className="dataTableTitle1">
+        <h1>All OT Records</h1></div>
       <DataGrid
         className="datagrid"
         rows={data}

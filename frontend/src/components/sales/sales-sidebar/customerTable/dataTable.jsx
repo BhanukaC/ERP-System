@@ -6,17 +6,17 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
 const userColumns = [
   { field: "CID", headerName: "CID", width: 50 },
-  { field: "customerName", headerName: "CustomerName", width: 120 },
-  { field: "paymentTerm", headerName: "PaymentTerm", width: 120 },
-  { field: "returnTerm", headerName: "ReturnTerm" },
-  { field: "deliveryTerm", headerName: "DeliveryTerm" },
+  { field: "customerName", headerName: "Customer Name", width: 120 },
+  { field: "paymentTerm", headerName: "Payment Term", width: 120 },
+  { field: "returnTerm", headerName: "Return Term" ,width:120},
+  { field: "deliveryTerm", headerName: "Delivery Term" , width: 120 },
   { field: "no", headerName: "No" , width: 50},
   { field: "street", headerName: "Street", width: 100 },
   { field: "town", headerName: "Town", width: 80 },
-  { field: "branchCode", headerName: "BranchCode" },
-  { field: "accountNo", headerName: "AccountNo" },
-  { field: "bankName", headerName: "BankName" },
-  { field: "email", headerName: "Email" },
+  { field: "branchCode", headerName: "Branch Code" },
+  { field: "accountNo", headerName: "Account No" },
+  { field: "bankName", headerName: "Bank Name" },
+  { field: "email", headerName: "Email" , width:150},
   
 ];
 
@@ -55,13 +55,13 @@ const Datatable = () => {
         return (
           <div className="cellAction">
              <Link to={reLink} style={{ textDecoration: "none" }}>
-              <div className="viewButton">Edit</div>
+              <div className="viewButton1">Edit</div>
             </Link>
             <Link to={reLink2} style={{ textDecoration: "none" }}>
-              <div className="viewButton">View Customer Contact Details</div>
+              <div className="viewButton2">View Customer Contact Details</div>
             </Link>
             <Link to={reLink3} style={{ textDecoration: "none" }}>
-              <div className="viewButton">View Customer Delivery Address</div>
+              <div className="viewButton3">View Customer Delivery Address</div>
             </Link>
           </div>
         );
@@ -71,9 +71,9 @@ const Datatable = () => {
 
   
   return (
-    <div className="datatable">
-      <div className="dataTableTitle">
-        Customer Details
+    <div className="datatable" style={{height:"78%"}}>
+      <div className="dataTableTitle1">
+       <h1>Customer Details</h1> 
       </div>
       <DataGrid
         className="datagrid"

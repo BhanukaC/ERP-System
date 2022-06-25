@@ -39,9 +39,9 @@ const Datatable = () => {
   const actionColumn = [
   ];
   return (
-    <div className="datatable">
-      <div className="dataTableTitle">
-        Activity Records
+    <div className="datatable" style={{height:"78%"}}>
+      <div className="dataTableTitle1">
+       <h1>Activity Records</h1> 
       </div>
       <DataGrid
         className="datagrid"

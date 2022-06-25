@@ -26,7 +26,7 @@ const Sidebar = () => {
       <hr />
       <div className="center">
         <ul>
-          <p className="title">Employee</p>
+          <p className="title">EMPLOYEE</p>
           <Link to="/hr/employee/add" style={{ textDecoration: "none" }}>
             <li>
               <AddIcon className="icon" />
@@ -71,7 +71,8 @@ const Sidebar = () => {
               <span>View All OT Records</span>
             </li>
           </Link>
-          <p className="title">Advance Payment</p>
+
+          <p className="title">ADVANCE PAYMENT</p>
           <Link to="/hr/advance/add" style={{ textDecoration: "none" }}>
             <li>
               <AddIcon className="icon" />
@@ -84,7 +85,8 @@ const Sidebar = () => {
               <span>View All Advance Payments</span>
             </li>
           </Link>
-          <p className="title">Salary</p>
+
+          <p className="title">SALARY</p>
           <Link to="/hr/salary/calculate" style={{ textDecoration: "none" }}>
             <li>
               <AddIcon className="icon" />
@@ -98,7 +100,7 @@ const Sidebar = () => {
             </li>
           </Link>
 
-          <p className="title">Attendance</p>
+          <p className="title">ATTENDANCE</p>
           <Link to="" style={{ textDecoration: "none" }}>
             <li>
               <AddIcon className="icon" />
@@ -112,19 +114,6 @@ const Sidebar = () => {
             </li>
           </Link>
 
-          <p className="title">USER</p>
-          <Link to="/profile" style={{ textDecoration: "none" }}>
-            <li>
-              <AccountCircleOutlinedIcon className="icon" />
-              <span>Profile</span>
-            </li>
-          </Link>
-          <Link to="/logout" style={{ textDecoration: "none" }}>
-            <li>
-              <ExitToAppIcon className="icon" />
-              <span>Logout</span>
-            </li>
-          </Link>
         </ul>
       </div>
     </div>

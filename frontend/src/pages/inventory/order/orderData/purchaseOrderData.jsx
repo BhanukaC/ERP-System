@@ -45,7 +45,7 @@ const PurchaseOrderData = () => {
              color:" white",
              fontWeight: "bold",
              cursor:" pointer",
-             marginTop: "30px",
+             marginTop: "50px",
              marginLeft:"40%",
       
         }} onClick={submitButton} >Change Status</button>)}

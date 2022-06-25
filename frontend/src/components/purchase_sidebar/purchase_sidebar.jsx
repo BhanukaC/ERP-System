@@ -1,12 +1,12 @@
 import "./purchase_sidebar.scss";
-import AddIcon from '@mui/icons-material/Add';
+//import AddIcon from '@mui/icons-material/Add';
 import PreviewIcon from "@mui/icons-material/Preview";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import EditIcon from '@mui/icons-material/Edit';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+//import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+//import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import AddLocationIcon from '@mui/icons-material/AddLocation';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import { Link } from "react-router-dom";
@@ -28,21 +28,21 @@ const Sidebar = () => {
           <p className="title">PRODUCT</p>
           <Link to="/purchase/product/add" style={{ textDecoration: "none" }}>
             <li>
-              <AddIcon className="icon" />
+              <AddCircleOutlineIcon className="icon" />
               <span>Add Product</span>
             </li>
           </Link>
 
           <Link to="/purchase/product/viewproduct" style={{ textDecoration: "none" }}>
             <li>
-              <PreviewIcon className="icon" />
-              <span>View product</span>
+              <EditIcon className="icon" />
+              <span>Edit product</span>
             </li>
           </Link>
 
           <Link to="/purchase/product/addcat" style={{ textDecoration: "none" }}>
           <li>
-            <AddCircleIcon className="icon" />
+            <AddCircleOutlineIcon className="icon" />
             <span>Add Category</span>
           </li>
           </Link>
@@ -120,22 +120,6 @@ const Sidebar = () => {
           </li>
           </Link>
 
-        
-          
-          
-          <p className="title">USER</p>
-          <Link to="/profile" style={{ textDecoration: "none" }}>
-            <li>
-              <AccountCircleOutlinedIcon className="icon" />
-              <span>Profile</span>
-            </li>
-          </Link>
-          <Link to="/logout" style={{ textDecoration: "none" }}>
-            <li>
-              <ExitToAppIcon className="icon" />
-              <span>Logout</span>
-            </li>
-          </Link>
         </ul>
       </div>
       

@@ -10,7 +10,7 @@ const userColumns = [
   { field: "CID", headerName: "CID", width: 50 },
   { field: "CDAID", headerName: "CDAID", width: 120 },
   { field: "CCID", headerName: "CCID", width: 120 },
-  { field: "WID", headerName: "WID", width: 120 },
+  { field: "WID", headerName: "Warehouse ID", width: 120 },
   { field: "initiateDate1", headerName: "Initiate Date", width: 120  },
   { field: "finishDates", headerName: "Finish Date", width: 120  },
   { field: "reason", headerName: "reason", width: 160  },
@@ -50,7 +50,7 @@ const DataTable1 = () => {
           return (
             <div className="cellAction">
               <Link to= {upLink} style= {{textDecoration : "none"}}>
-                <div className="viewButton">View Return Order Details</div>
+                <div className="viewButton1">View Return Order Details</div>
                 </Link>
               
             </div>
@@ -60,9 +60,9 @@ const DataTable1 = () => {
   ];
 
   return (
-    <div className="datatable">
-      <div className="dataTableTitle">
-       Sales Return Order
+    <div className="datatable" style={{height:"78%"}}>
+      <div className="dataTableTitle1">
+       <h1>Sales Return Order</h1>
       </div>
       <DataGrid
         className="datagrid"

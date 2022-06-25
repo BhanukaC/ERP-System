@@ -7,7 +7,7 @@ import moment from "moment";
 
 const userColumns = [
   { field: "ID", headerName: "ID",width:100 },
-  { field: "PID", headerName: "Product ID",width:100 },
+ 
   { field: "PName", headerName: "Product Name",width:150 },
   { field: "unitPrice", headerName: "Unit Price",width:100 },
   { field: "qty", headerName: "Quantity",width:100 },
@@ -42,9 +42,10 @@ const Datatable = (props) => {
   }, [""]);
 
   return (
-    <div className="datatable">
-      <div className="datatableTitle1">
-        Order Details (Purchase Order ID-{purchaseOrderID})
+    <div className="TableOfData" style={{height:"78%"}}>
+      <div className="TableOfDataTitle1">
+        <h1>Order Details (Purchase Order ID-{purchaseOrderID})</h1>
+        
       </div>
       <DataGrid
         className="datagrid"

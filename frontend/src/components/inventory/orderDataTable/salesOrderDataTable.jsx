@@ -35,9 +35,9 @@ const SalesOrderDataTable = (props) => {
   }, [""]);
 
   return (
-    <div className="datatable" style={{height:"50%"}}>
-      <div className="dataTableTitle">
-        Sales Order Details of (Sales Order ID-{salesOrderID})
+    <div className="datatable" style={{height:"70%"}}>
+      <div className="dataTableTitle1">
+        <h1>Sales Order Details of (Sales Order ID-{salesOrderID})</h1>
       </div>
       <DataGrid
         className="datagrid"
