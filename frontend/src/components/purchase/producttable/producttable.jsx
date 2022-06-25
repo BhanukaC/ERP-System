@@ -25,9 +25,7 @@ const userColumns = [
 const Producttable = () => {
   const [data, setData] = useState({});
 
-  const handleDelete = (PID) => {
-    setData(data.filter((item) => item.id !== PID));
-  };
+ 
 
   useEffect(() => {
     axios
