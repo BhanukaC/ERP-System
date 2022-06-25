@@ -13,7 +13,10 @@ const AddWarehouse = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (true) {
+    if (managerName === "" || no === "" || street === "" || town === "" || uid === "") {
+      alert("Please fill in all the required fields");
+    }
+    else {
       axios
         .post(
           "http://localhost:5000/admin/Warehouse/add",
@@ -38,6 +41,7 @@ const AddWarehouse = () => {
           }
         });
     }
+    
   };
 
   return (

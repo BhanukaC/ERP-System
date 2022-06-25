@@ -33,7 +33,7 @@ const EditWarehouseDetailsAdmin = () => {
   const submitForm = (e) => {
     e.preventDefault();
     if (ManagerName=== "" || no === "" || street === "" || town === "") {
-      alert("Fill the required fields");
+      alert("Please fill in all the required fields");
     } else {
       let data = {
         ManagerName: ManagerName,
