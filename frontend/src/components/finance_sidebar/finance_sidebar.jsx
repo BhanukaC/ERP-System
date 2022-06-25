@@ -9,10 +9,10 @@ import { useContext } from "react";
 const Finance_Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
   return (
-    <div className="sidebar">
+    <div className="financeSidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">Quick ERP</span>
+        <span className="logo"> <span className="name">Quick</span> ERP</span>
         </Link>
       </div>
       <hr />
