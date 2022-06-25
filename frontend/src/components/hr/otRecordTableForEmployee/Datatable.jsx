@@ -7,7 +7,6 @@ import moment from "moment";
 
 const userColumns = [
   { field: "OID", headerName: "OID" },
-  { field: "EID", headerName: "EID" },
   { field: "hours", headerName: "Hours" },
   { field: "otID", headerName: "otID" },
   { field: "payPerHour", headerName: "Pay Per Hour" },
@@ -49,7 +48,8 @@ const Datatable = (props) => {
   return (
     <div className="datatable">
       <div className="dataTableTitle1">
-        <h1>All OT Records</h1></div>
+        <h1>All OT Records For Employee(EID-{EID})</h1>
+      </div>
       <DataGrid
         className="datagrid"
         rows={data}

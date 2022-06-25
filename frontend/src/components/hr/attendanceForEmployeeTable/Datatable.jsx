@@ -6,22 +6,22 @@ import axios from "axios";
 import moment from "moment";
 
 const userColumns = [
-  { field: "adID", headerName: "adID" },
-  { field: "EID", headerName: "EID" },
-  { field: "UID", headerName: "UID" },
-  { field: "amount", headerName: "amount" },
-  { field: "modifiedDate", headerName: "Date" },
+  { field: "AID", headerName: "SID" },
+  {
+    field: "formatDate",
+    headerName: "Date",
+  },
+  { field: "inTime", headerName: "In Time" },
+  { field: "outTime", headerName: "Out Time" },
 ];
 
-const Datatable = () => {
+const Datatable = (props) => {
   const [data, setData] = useState({});
-  // const handleDelete = (CID) => {
-  //   setData(data.filter((item) => item.id !== CID));
-  // };
+  const EID = props.EID;
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/hr/advance/getAll", {
+      .get("http://localhost:5000/hr/attendance/getSingle/" + EID, {
         withCredentials: true,
         credentials: "include",
       })
@@ -29,8 +29,8 @@ const Datatable = () => {
         // console.log(res);
         let dt = res.data.map((d) => {
           return {
-            id: d.adID,
-            modifiedDate: moment(d.Date)
+            id: d.AID,
+            formatDate: moment(d.date)
               .add(1, "days")
               .utc()
               .format("YYYY/MM/DD"),
@@ -38,14 +38,13 @@ const Datatable = () => {
           };
         });
         setData(dt);
-        // console.log(dt);
       });
   }, [""]);
 
   return (
     <div className="datatable" style={{ height: "78%" }}>
       <div className="dataTableTitle1">
-        <h1>All Advance Records</h1>
+        <h1>All Attendace For Employee(EID-{EID})</h1>
       </div>
       <DataGrid
         className="datagrid"

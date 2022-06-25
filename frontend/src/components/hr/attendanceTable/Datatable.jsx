@@ -4,33 +4,35 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
-
+function getFullName(params) {
+  return `${params.row.fName || ""} ${params.row.lName || ""}`;
+}
 const userColumns = [
-  { field: "adID", headerName: "adID" },
+  { field: "AID", headerName: "SID" },
   { field: "EID", headerName: "EID" },
-  { field: "UID", headerName: "UID" },
-  { field: "amount", headerName: "amount" },
-  { field: "modifiedDate", headerName: "Date" },
+  { field: "name", headerName: "Name", valueGetter: getFullName, width: 150 },
+  {
+    field: "formatDate",
+    headerName: "Date",
+  },
+  { field: "inTime", headerName: "In Time" },
+  { field: "outTime", headerName: "Out Time" },
 ];
 
-const Datatable = () => {
+const Datatable = (props) => {
   const [data, setData] = useState({});
-  // const handleDelete = (CID) => {
-  //   setData(data.filter((item) => item.id !== CID));
-  // };
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/hr/advance/getAll", {
+      .get("http://localhost:5000/hr/attendance/getAll", {
         withCredentials: true,
         credentials: "include",
       })
       .then((res) => {
-        // console.log(res);
         let dt = res.data.map((d) => {
           return {
-            id: d.adID,
-            modifiedDate: moment(d.Date)
+            id: d.AID,
+            formatDate: moment(d.date)
               .add(1, "days")
               .utc()
               .format("YYYY/MM/DD"),
@@ -38,14 +40,13 @@ const Datatable = () => {
           };
         });
         setData(dt);
-        // console.log(dt);
       });
   }, [""]);
 
   return (
     <div className="datatable" style={{ height: "78%" }}>
       <div className="dataTableTitle1">
-        <h1>All Advance Records</h1>
+        <h1>All Attendance</h1>
       </div>
       <DataGrid
         className="datagrid"

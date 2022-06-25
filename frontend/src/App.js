@@ -84,6 +84,9 @@ import ViewAllAdvanceForEmployee from "./pages/hr/advance/viewAllForEmployee/vie
 import CalculateSalary from "./pages/hr/salary/calculate/calculate";
 import ViewAllSalaries from "./pages/hr/salary/viewAll/viewAll";
 import ViewAllSalariesForEmployee from "./pages/hr/salary/viewAllForEmployee/viewAll";
+import AddAttendance from "./pages/hr/attendance/add/add";
+import ViewAllAttendance from "./pages/hr/attendance/viewAll/viewAll";
+import ViewAllAttendanceForEmployee from "./pages/hr/attendance/viewAllForEmployee/viewAll";
 
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -232,9 +235,9 @@ function App() {
                 <Route path="viewall/:EID" element={<ProtectedRoute level={2}>< ViewAllSalariesForEmployee /></ProtectedRoute>} />
               </Route>
               <Route path="attendance">
-                {/* <Route path="calculate" element={<ProtectedRoute level={2}>< CalculateSalary /></ProtectedRoute>} /> */}
-                {/* <Route path="viewall/" element={<ProtectedRoute level={2}><ViewAllSalaries /></ProtectedRoute>} />
-                <Route path="viewall/:EID" element={<ProtectedRoute level={2}>< ViewAllSalariesForEmployee /></ProtectedRoute>} /> */}
+                <Route path="add" element={<ProtectedRoute level={2}>< AddAttendance /></ProtectedRoute>} />
+                <Route path="viewall/" element={<ProtectedRoute level={2}><ViewAllAttendance /></ProtectedRoute>} />
+                <Route path="viewall/:EID" element={<ProtectedRoute level={2}>< ViewAllAttendanceForEmployee /></ProtectedRoute>} />
               </Route>
             </Route>
 

@@ -80,12 +80,13 @@ const Datatable = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 510,
+      width: 710,
       renderCell: (params) => {
         const reLink = "/hr/employee/edit/" + params.row.EID;
         const reLink2 = "/hr/dependent/viewall/" + params.row.EID;
         const reLink3 = "/hr/OtRecord/viewall/" + params.row.EID;
         const reLink4 = "/hr/advance/viewall/" + params.row.EID;
+        const reLink5 = "/hr/attendance/viewall/" + params.row.EID;
 
         return (
           <div className="cellAction">
@@ -101,22 +102,19 @@ const Datatable = () => {
             <Link to={reLink4} style={{ textDecoration: "none" }}>
               <div className="viewButton">View Advance Records</div>
             </Link>
-
-            {/* <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.CID)}
-            >
-              Delete
-            </div> */}
+            <Link to={reLink5} style={{ textDecoration: "none" }}>
+              <div className="viewButton">View All Attenace Records</div>
+            </Link>
           </div>
         );
       },
     },
   ];
   return (
-    <div className="datatable" style={{height:"78%"}}>
+    <div className="datatable" style={{ height: "78%" }}>
       <div className="dataTableTitle1">
-        <h1>All Employees</h1></div>
+        <h1>All Employees</h1>
+      </div>
       <DataGrid
         className="datagrid"
         rows={data}

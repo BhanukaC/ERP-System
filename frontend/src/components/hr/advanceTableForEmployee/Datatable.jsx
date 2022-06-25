@@ -7,7 +7,6 @@ import moment from "moment";
 
 const userColumns = [
   { field: "adID", headerName: "adID" },
-  { field: "EID", headerName: "EID" },
   { field: "UID", headerName: "UID" },
   { field: "amount", headerName: "amount" },
   { field: "modifiedDate", headerName: "Date" },
@@ -41,7 +40,7 @@ const Datatable = (params) => {
   }, [""]);
 
   return (
-    <div className="datatable" style={{height:"78%"}}>
+    <div className="datatable" style={{ height: "78%" }}>
       <div className="dataTableTitle1">
         <h1>All Advance Records for Employee(EID-{EID})</h1>
       </div>

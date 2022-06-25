@@ -20,7 +20,10 @@ const Sidebar = () => {
     <div className="hrSidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-        <span className="logo"> <span className="name">Quick</span> ERP</span>
+          <span className="logo">
+            {" "}
+            <span className="name">Quick</span> ERP
+          </span>
         </Link>
       </div>
       <hr />
@@ -101,19 +104,18 @@ const Sidebar = () => {
           </Link>
 
           <p className="title">ATTENDANCE</p>
-          <Link to="" style={{ textDecoration: "none" }}>
+          <Link to="/hr/attendance/add" style={{ textDecoration: "none" }}>
             <li>
               <AddIcon className="icon" />
               <span>Add Attendance</span>
             </li>
           </Link>
-          <Link to="" style={{ textDecoration: "none" }}>
+          <Link to="/hr/attendance/viewall" style={{ textDecoration: "none" }}>
             <li>
               <PreviewIcon className="icon" />
               <span>View All Attendance</span>
             </li>
           </Link>
-
         </ul>
       </div>
     </div>
