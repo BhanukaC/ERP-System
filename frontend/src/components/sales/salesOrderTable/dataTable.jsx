@@ -5,13 +5,17 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 
+function getFullAddress(params) {
+  return `${params.row.no || ""} ${params.row.street || "" } ${ params.row.town || "" }`;
+}
+
 const userColumns = [
   { field: "salesOrderID", headerName: "SalesOrderID", width: 100 },
   { field: "CID", headerName: "Customer ID", width: 120 },
   { field: "customerName", headerName: "Customer Name", width: 120 },
   { field: "orderDates", headerName: "Order Date", width: 120 },
   { field: "town", headerName: "Warehouse name", width: 120 },
-  { field: "CDAID", headerName: "Delivery Address ID", width: 150 },
+  { field: "CDAID", headerName: "Delivery Address", valueGetter: getFullAddress, width: 180 },
   { field: "contactNumber", headerName: "Contact Number", width: 150 },
   { field: "status", headerName: "Order Status", width: 120 },
   { field: "deliveredDates", headerName: "Deliver Date", width: 120 },
