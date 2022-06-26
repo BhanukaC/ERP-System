@@ -61,6 +61,8 @@ const AddAdvance = () => {
       );
       if (res.data.length === 0) {
         alert("EID not found");
+        setNIC("");
+        setBalance(0);
         setEIDStatus(false);
       } else {
         setNIC(res.data[0].NIC);

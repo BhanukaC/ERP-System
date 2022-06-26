@@ -17,8 +17,11 @@ const userColumns = [
   { field: "Length", headerName: "Length",width:100 },
   { field: "Weight", headerName: "Weight",width:100 },
   { field: "buyingPrice", headerName: "Buying Price",width:100 },
-  { field: "CatID", headerName: "Category ID",width:100 },
-  { field: "SubCatID", headerName: "Sub Category ID",width:150 },
+ // { field: "CatID", headerName: "Category ID",width:100 },
+  { field: "categoryName", headerName: "Category Name",width:120 },
+ // { field: "SubCatID", headerName: "Sub Category ID",width:150 },
+  { field: "subCategoryName", headerName: "Sub Category Name",width:150 },
+  
   { field: "NoOfItems", headerName: "No of Items" },
 ];
 

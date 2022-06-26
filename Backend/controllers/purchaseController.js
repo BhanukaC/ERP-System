@@ -164,7 +164,7 @@ exports.getSingleProductController = async (req, res) => {
 
 
 exports.getAllProductController = async (req, res) => {
-    db.query("select * from Product ", (err, result) => {
+    db.query("select Product.PID,Product.PName,Product.sellingPrice,Product.EANCode,Product.UnitOfMeasure,Product.HSNCode,Product.shortDescription,Product.longDescription,Product.Height,Product.Length,Product.Weight,Product.buyingPrice,Product.NoOfItems,Product.CatID,Product.SubCatID,category.categoryName,subCategory.subCategoryName from Product,category,subCategory where Product.CatID=category.catID and Product.SubCatID=subCategory.SCID", (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
@@ -516,7 +516,7 @@ exports.getSinglePurchaseOrderController = async (req, res) => {
 }
 
 exports.getAllPurchaseOrderController = async (req, res) => {
-    db.query("select purchaseOrder.purchaseOrderID,purchaseOrder.orderDate,purchaseOrder.status,purchaseOrder.total,purchaseOrder.SID,purchaseOrder.SSLID,purchaseOrder.SCID,purchaseOrder.WID,purchaseOrder.deliveredDate,Supplier.sName from purchaseOrder,Supplier where purchaseOrder.SID=Supplier.SID", (err, result) => {
+    db.query("select purchaseOrder.purchaseOrderID,purchaseOrder.orderDate,purchaseOrder.status,purchaseOrder.total,purchaseOrder.SID,purchaseOrder.SSLID,purchaseOrder.SCID,purchaseOrder.WID,purchaseOrder.deliveredDate,Supplier.sName,SupplierContactNumber.contactNumber,SupplierStoreLocation.no,SupplierStoreLocation.town,SupplierStoreLocation.street,SupplierStoreLocation.country  from purchaseOrder,Supplier,SupplierContactNumber,SupplierStoreLocation where purchaseOrder.SID=Supplier.SID and purchaseOrder.SCID=SupplierContactNumber.SCID and purchaseOrder.SSLID=SupplierStoreLocation.SSLID ", (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
