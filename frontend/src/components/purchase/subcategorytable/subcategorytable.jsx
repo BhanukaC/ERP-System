@@ -6,9 +6,9 @@ import axios from "axios";
 
 const userColumns = [
   { field: "SCID", headerName: "Sub Category ID" ,width:120},
- 
-  { field: "categoryName", headerName: "Category Name",width:120 },
   { field: "subCategoryName", headerName: "Sub Category Name",width:150 },
+  { field: "categoryName", headerName: "Category Name",width:120 },
+ 
   { field: "discount", headerName: "Discount" ,width:100},
   
 ];
@@ -16,10 +16,7 @@ const userColumns = [
 const Subcategorytable = () => {
   const [data, setData] = useState({});
 
-  const handleDelete = (SCID) => {
-    setData(data.filter((item) => item.id !== SCID));
-  };
-
+  
   useEffect(() => {
     axios
       .get("http://localhost:5000/purchase/subCategory/getAll", {

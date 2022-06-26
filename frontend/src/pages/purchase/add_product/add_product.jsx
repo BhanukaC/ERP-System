@@ -140,11 +140,11 @@ const submitForm = (e) => {
           sethsncode ("");
           setshortdep ("");
           setlongdep ("");
-          setheight (0);
-          setlength (0);
-          setweight (0);
+          setheight ("");
+          setlength ("");
+          setweight ("");
           setbuyingp (0);
-          setnoitems (0);
+          setnoitems ("");
           setcatid ("");
           setsubcatid ("");
           setcatname ("");

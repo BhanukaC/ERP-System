@@ -10,7 +10,8 @@ const userColumns = [
   { field: "orderDate", headerName: "Order Date", width: 250 },
   { field: "status", headerName: "Status", width: 100 },
   { field: "total", headerName: "Net Total", width: 100 },
-  { field: "SID", headerName: "Supplier ID", width: 150},
+
+  { field: "sName", headerName: "Supplier Name", width: 150},
   { field: "SSLID", headerName: "Supplier Store Location ID", width: 185},
   { field: "SCID", headerName: "Supplier Contact ID", width: 150},
   
