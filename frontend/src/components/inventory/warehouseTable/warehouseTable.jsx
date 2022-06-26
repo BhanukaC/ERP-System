@@ -54,9 +54,9 @@ const WarehouseTable = () => {
     },
   ];
   return (
-    <div className="datatable">
-      <div className="dataTableTitle">
-        Warehouse Details
+    <div className="datatable" style={{height:"78%"}}>
+      <div className="dataTableTitle1">
+        <h1>Warehouse Details</h1>
       </div>
       <DataGrid
         className="datagrid"

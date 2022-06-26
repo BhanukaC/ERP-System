@@ -73,19 +73,6 @@ const Sidebar = () => {
               <span>View Sales Return Order Details</span>
             </li>
           </Link>
-          <p className="title">USER</p>
-          <Link to="/profile" style={{ textDecoration: "none" }}>
-            <li>
-              <AccountCircleOutlinedIcon className="icon" />
-              <span>Profile</span>
-            </li>
-          </Link>
-          <Link to="/logout" style={{ textDecoration: "none" }}>
-            <li>
-              <ExitToAppIcon className="icon" />
-              <span>Logout</span>
-            </li>
-          </Link>
         </ul>
       </div>
     </div>
