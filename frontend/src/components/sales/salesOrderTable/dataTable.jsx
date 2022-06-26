@@ -8,6 +8,7 @@ import moment from "moment";
 const userColumns = [
   { field: "salesOrderID", headerName: "salesOrderID", width: 100 },
   { field: "CID", headerName: "CID", width: 50 },
+  { field: "customerName", headerName: "Customer Name", width: 80 },
   { field: "orderDates", headerName: "Order Date", width: 150 },
   { field: "WID", headerName: "Warehouse ID", width: 120 },
   { field: "CDAID", headerName: "CDAID", width: 120 },

@@ -367,7 +367,7 @@ exports.getSingleSalesOrderController = async (req, res) => {
 }
 
 exports.getAllSalesOrderController = async (req, res) => {
-    db.query("select * from SalesOrder ", (err, result) => {
+    db.query("select SalesOrder.salesOrderID,SalesOrder.orderDate,SalesOrder.status,SalesOrder.WID,SalesOrder.total,SalesOrder.CID,SalesOrder.CDAID,SalesOrder.CCID,SalesOrder.deliveredDate,SalesOrder.deliveryCharge,SalesOrder.netTotal,Customer.customerName from SalesOrder,Customer where SalesOrder.CID=Customer.CID ", (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
