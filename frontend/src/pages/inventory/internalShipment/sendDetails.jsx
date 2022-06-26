@@ -37,12 +37,12 @@ const SendDetails = () => {
       <InventorySidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="topContainer">
-        <div className="right">
+        <div className="topPart">
+        <div className="rightPart">
         <h1>Shipments To be Sent From {town} / WID-{WID} </h1>
         <br></br>
             <form>
-            <div className="formInput">
+            <div className="inputField">
                 <label>From</label>
                 <select
                   value={WID}
@@ -68,7 +68,7 @@ const SendDetails = () => {
             </form>
           </div>
         </div>
-        <div className="bottomContainer">
+        <div className="bottomPart">
           <SendTable WID={WID} />
         </div>
         
