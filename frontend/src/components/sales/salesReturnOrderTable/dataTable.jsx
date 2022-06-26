@@ -6,13 +6,13 @@ import axios from "axios";
 import moment from "moment";
 
 const userColumns = [
-  { field: "salesReturnOrderID", headerName: "salesReturnOrderID", width: 150 },
-  { field: "CID", headerName: "CID", width: 50 },
-  { field: "CDAID", headerName: "CDAID", width: 120 },
-  { field: "CCID", headerName: "CCID", width: 120 },
+  { field: "salesReturnOrderID", headerName: "SalesReturnOrderID", width: 150 },
+  { field: "customerName", headerName: "Customer Name", width: 120 },
+  { field: "CDAID", headerName: "Delivery Address ID", width: 150 },
+  { field: "CCID", headerName: "Contact Number ID", width: 150 },
   { field: "WID", headerName: "Warehouse ID", width: 120 },
-  { field: "initiateDate1", headerName: "Initiate Date", width: 120  },
-  { field: "finishDates", headerName: "Finish Date", width: 120  },
+  { field: "initiateDate1", headerName: "Initiate Date", width: 100  },
+  { field: "finishDates", headerName: "Finish Date", width: 100  },
   { field: "reason", headerName: "reason", width: 160  },
   { field: "status", headerName: "Order Status", width: 120 },
   { field: "salesOrderID", headerName: "salesOrderID" },

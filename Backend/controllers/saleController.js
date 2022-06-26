@@ -367,7 +367,7 @@ exports.getSingleSalesOrderController = async (req, res) => {
 }
 
 exports.getAllSalesOrderController = async (req, res) => {
-    db.query("select * from SalesOrder ", (err, result) => {
+    db.query("select SalesOrder.salesOrderID,SalesOrder.orderDate,SalesOrder.status,SalesOrder.WID,SalesOrder.total,SalesOrder.CID,SalesOrder.CDAID,SalesOrder.CCID,SalesOrder.deliveredDate,SalesOrder.deliveryCharge,SalesOrder.netTotal,Customer.customerName from SalesOrder,Customer where SalesOrder.CID=Customer.CID ", (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
@@ -457,10 +457,10 @@ exports.addSalesReturnOrderController = async (req, res) => {
             mailer.use('compile', hbs({
                 viewEngine: {
                     extname: '.handlebars',
-                    layoutsDir: '../Backend/views/',
+                    layoutsDir: '../Backend/views/salesReturnOrder/',
                     defaultLayout: 'salesReturnOrder',
                 },
-                viewPath: '../Backend/views/'
+                viewPath: '../Backend/views/salesReturnOrder/'
             }));
 
             db.query("select * from Customer where CID=?", [CID], (err, res1) => {
@@ -560,7 +560,7 @@ exports.getSingleSalesReturnOrderController = async (req, res) => {
 }
 
 exports.getAllSalesReturnOrderController = async (req, res) => {
-    db.query("select * from SalesReturnOrder ", (err, result) => {
+    db.query("select SalesReturnOrder.salesReturnOrderID,SalesReturnOrder.initiateDate,SalesReturnOrder.reason,SalesReturnOrder.status,SalesReturnOrder.WID,SalesReturnOrder.total,SalesReturnOrder.CID,SalesReturnOrder.CDAID,SalesReturnOrder.CCID,SalesReturnOrder.finishDate,SalesReturnOrder.salesOrderID,Customer.customerName from SalesReturnOrder,Customer where SalesReturnOrder.CID=Customer.CID ", (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
