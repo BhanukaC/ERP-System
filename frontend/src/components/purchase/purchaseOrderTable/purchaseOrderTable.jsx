@@ -6,7 +6,7 @@ import axios from "axios";
 import moment from "moment";
 
 function getFullAddress(params) {
-  return `${params.row.no || ""} ${params.row.street || "" } ${ params.row.town || "" } ${ params.row.country  }`;
+  return `${params.row.no || ""}, ${params.row.street || "" } ,${ params.row.town || "" } ,${ params.row.country  }`;
 }
 
 const userColumns = [
