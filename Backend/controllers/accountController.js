@@ -94,5 +94,18 @@ exports.getTotalAdvanceController = async (req, res) => {
     })
 }
 
+exports.getTotalCompanyEPFController = async (req, res) => {
+    db.query("select sum(EPFCompany) as sum from Salary", (err, response) => {
+        if (err) {
+            res.json(err);
+        } else {
+            let sum = response[0].sum;
+            res.json(sum);
+            db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Get sum of Company EPF"], (err, response) => {
+            });
+        }
+    })
+}
+
 
 
