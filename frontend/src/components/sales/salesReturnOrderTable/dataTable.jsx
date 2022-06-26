@@ -7,10 +7,11 @@ import moment from "moment";
 
 const userColumns = [
   { field: "salesReturnOrderID", headerName: "SalesReturnOrderID", width: 150 },
+  { field: "CID", headerName: "Customer ID", width: 120 },
   { field: "customerName", headerName: "Customer Name", width: 120 },
   { field: "CDAID", headerName: "Delivery Address ID", width: 150 },
-  { field: "CCID", headerName: "Contact Number ID", width: 150 },
-  { field: "WID", headerName: "Warehouse ID", width: 120 },
+  { field: "contactNumber", headerName: "Contact Number", width: 150 },
+  { field: "town", headerName: "Warehouse Name", width: 120 },
   { field: "initiateDate1", headerName: "Initiate Date", width: 100  },
   { field: "finishDates", headerName: "Finish Date", width: 100  },
   { field: "reason", headerName: "reason", width: 160  },

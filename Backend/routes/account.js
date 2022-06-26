@@ -3,7 +3,7 @@ const router = express.Router();
 const validateToken = require("../middleware/auth");
 const validAccess = require("../middleware/account");
 
-const { getTotalSalesAmountController, getTotalPurchaseAmountController, getTotalSalaryController, getTotalGrossSalaryController, getTotalEPFController,
+const {getTotalCompanyEPFController, getTotalSalesAmountController, getTotalPurchaseAmountController, getTotalSalaryController, getTotalGrossSalaryController, getTotalEPFController,
     getTotalETFController, getTotalAdvanceController } = require("../controllers/accountController");
 
 router.get("/TotalSales/get/", [validateToken, validAccess], getTotalSalesAmountController);
@@ -13,5 +13,6 @@ router.get("/TotalGrossSalary/get/", [validateToken, validAccess], getTotalGross
 router.get("/TotalEPF/get/", [validateToken, validAccess], getTotalEPFController);
 router.get("/TotalETF/get/", [validateToken, validAccess], getTotalETFController);
 router.get("/TotalAdvance/get/", [validateToken, validAccess], getTotalAdvanceController);
+router.get("/TotalEPFCompany/get/", [validateToken, validAccess], getTotalCompanyEPFController);
 
 module.exports = router;

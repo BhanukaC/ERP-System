@@ -10,6 +10,10 @@ const ViewAccountingDetails = () => {
     const [purchases, setPurchases] = useState("");
     const [epf, setEpf] = useState("");
     const [etf, setEtf] = useState("");
+    const [netsalary, setNetSalary] = useState("");
+    const [grosssalary, setGrossSalary] = useState("");
+    const [advance, setAdvance] = useState("");
+    const [epfcompany, setEPFCompany] = useState("");
   
     useEffect(() => {
         axios
@@ -18,7 +22,7 @@ const ViewAccountingDetails = () => {
             credentials: "include",
           })
           .then((res) => {
-             setSales(res.data);
+             setSales(Math.round(res.data));
           });
       }, [""]);
 
@@ -55,6 +59,50 @@ const ViewAccountingDetails = () => {
           });
       }, [""]);
 
+      useEffect(() => {
+        axios
+          .get("http://localhost:5000/account/TotalNetSalary/get" , {
+            withCredentials: true,
+            credentials: "include",
+          })
+          .then((res) => {
+             setNetSalary(res.data);
+          });
+      }, [""]);
+
+      useEffect(() => {
+        axios
+          .get("http://localhost:5000/account/TotalGrossSalary/get" , {
+            withCredentials: true,
+            credentials: "include",
+          })
+          .then((res) => {
+             setGrossSalary(res.data);
+          });
+      }, [""]);
+
+      useEffect(() => {
+        axios
+          .get("http://localhost:5000/account/TotalAdvance/get" , {
+            withCredentials: true,
+            credentials: "include",
+          })
+          .then((res) => {
+             setAdvance(res.data);
+          });
+      }, [""]);
+
+      useEffect(() => {
+        axios
+          .get("http://localhost:5000/account/TotalEPFCompany/get" , {
+            withCredentials: true,
+            credentials: "include",
+          })
+          .then((res) => {
+             setEPFCompany(res.data);
+          });
+      }, [""]);
+
       
 
   return (
@@ -74,7 +122,7 @@ const ViewAccountingDetails = () => {
                             <tbody>
                                 <tr>
                                     <td class="debit"> </td>
-                                    <td> {sales} </td>
+                                    <td> Cash {sales} </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -88,7 +136,7 @@ const ViewAccountingDetails = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="debit"> {purchases} </td>
+                                    <td class="debit">Cash {purchases} </td>
                                     <td> </td>
                                 </tr>
                             </tbody>
@@ -98,13 +146,19 @@ const ViewAccountingDetails = () => {
                         <table>
                             <thead>
                                 <tr>
-                                    <th colspan="2">Net Salary</th>
+                                    <th colspan="2">Salary Control</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="debit">The table body</td>
-                                    <td>with two columns</td>
+                                    <td class="debit">
+                                        Advance {advance}
+                                        <br></br>
+                                        EPF Payable {epf}
+                                    </td>
+                                    <td>
+                                        Salary {grosssalary}
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -113,13 +167,13 @@ const ViewAccountingDetails = () => {
                         <table>
                             <thead>
                                 <tr>
-                                    <th colspan="2">Gross Salary</th>
+                                    <th colspan="2">Salary Account</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="debit">The table body</td>
-                                    <td>with two columns</td>
+                                    <td class="debit">Salary Control {grosssalary}</td>
+                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -128,13 +182,13 @@ const ViewAccountingDetails = () => {
                         <table>
                             <thead>
                                 <tr>
-                                    <th colspan="2">EPF</th>
+                                    <th colspan="2">EPF Expense</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="debit"> </td>
-                                    <td> {epf} </td>
+                                    <td class="debit">EPF Payable {epfcompany}</td>
+                                    <td> </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -143,13 +197,28 @@ const ViewAccountingDetails = () => {
                         <table>
                             <thead>
                                 <tr>
-                                    <th colspan="2">ETF</th>
+                                    <th colspan="2">ETF Expense</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="debit"> </td>
-                                    <td> {etf} </td>
+                                    <td class="debit">ETF Payable {etf}</td>
+                                    <td> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="item">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Cash</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="debit">Sales {sales}</td>
+                                    <td>Purchase {purchases}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -163,8 +232,41 @@ const ViewAccountingDetails = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="debit">The table body</td>
-                                    <td>with two columns</td>
+                                    <td class="debit"></td>
+                                    <td>Salary Control {advance}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="item">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2">EPF Payable</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="debit"></td>
+                                    <td>Salary Control {epf}
+                                        <br></br>
+                                        EPF Expense {epfcompany}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="item">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2">ETF Payable</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="debit"></td>
+                                    <td>ETF Expense {etf}</td>
                                 </tr>
                             </tbody>
                         </table>

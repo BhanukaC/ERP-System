@@ -3,6 +3,7 @@ const query = require("../helpers/mysqlPromise");
 const today = require("../helpers/today");
 const _ = require("underscore");
 const mailer = require('../helpers/mailer');
+const mailer2= require('../helpers/mailer2');
 const hbs = require('nodemailer-handlebars');
 
 //Customer - add,update,getOne,getAll
@@ -367,7 +368,7 @@ exports.getSingleSalesOrderController = async (req, res) => {
 }
 
 exports.getAllSalesOrderController = async (req, res) => {
-    db.query("select SalesOrder.salesOrderID,SalesOrder.orderDate,SalesOrder.status,SalesOrder.WID,SalesOrder.total,SalesOrder.CID,SalesOrder.CDAID,SalesOrder.CCID,SalesOrder.deliveredDate,SalesOrder.deliveryCharge,SalesOrder.netTotal,Customer.customerName from SalesOrder,Customer where SalesOrder.CID=Customer.CID ", (err, result) => {
+    db.query("select SalesOrder.salesOrderID,SalesOrder.orderDate,SalesOrder.status,SalesOrder.WID,SalesOrder.total,SalesOrder.CID,SalesOrder.CDAID,SalesOrder.CCID,SalesOrder.deliveredDate,SalesOrder.deliveryCharge,SalesOrder.netTotal,Customer.customerName,customerContactNumber.contactNumber,Warehouse.town from SalesOrder join Customer on SalesOrder.CID=Customer.CID join customerContactNumber on customerContactNumber.CCID = SalesOrder.CCID join Warehouse on Warehouse.WID=SalesOrder.WID ", (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
@@ -454,7 +455,7 @@ exports.addSalesReturnOrderController = async (req, res) => {
             }
             db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Add a sales Return order(salesReturnOrderID-" + id + ")"], (err, response) => { });
             // res.json("sales Return order added");
-            mailer.use('compile', hbs({
+            mailer2.use('compile', hbs({
                 viewEngine: {
                     extname: '.handlebars',
                     layoutsDir: '../Backend/views/salesReturnOrder/',
@@ -512,7 +513,7 @@ exports.addSalesReturnOrderController = async (req, res) => {
                                                 } // send extra values to template
                                             };
 
-                                            mailer.sendMail(mailOptions, (err, data) => {
+                                            mailer2.sendMail(mailOptions, (err, data) => {
                                                 if (err) {
                                                     console.log(err);
                                                     return console.log('Error occurs');
@@ -560,7 +561,7 @@ exports.getSingleSalesReturnOrderController = async (req, res) => {
 }
 
 exports.getAllSalesReturnOrderController = async (req, res) => {
-    db.query("select SalesReturnOrder.salesReturnOrderID,SalesReturnOrder.initiateDate,SalesReturnOrder.reason,SalesReturnOrder.status,SalesReturnOrder.WID,SalesReturnOrder.total,SalesReturnOrder.CID,SalesReturnOrder.CDAID,SalesReturnOrder.CCID,SalesReturnOrder.finishDate,SalesReturnOrder.salesOrderID,Customer.customerName from SalesReturnOrder,Customer where SalesReturnOrder.CID=Customer.CID ", (err, result) => {
+    db.query("select SalesReturnOrder.salesReturnOrderID,SalesReturnOrder.initiateDate,SalesReturnOrder.reason,SalesReturnOrder.status,SalesReturnOrder.WID,SalesReturnOrder.total,SalesReturnOrder.CID,SalesReturnOrder.CDAID,SalesReturnOrder.CCID,SalesReturnOrder.finishDate,SalesReturnOrder.salesOrderID,Customer.customerName,customerContactNumber.contactNumber,Warehouse.town from SalesReturnOrder join Customer on SalesReturnOrder.CID=Customer.CID join customerContactNumber on customerContactNumber.CCID = SalesReturnOrder.CCID join Warehouse on Warehouse.WID=SalesReturnOrder.WID", (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
