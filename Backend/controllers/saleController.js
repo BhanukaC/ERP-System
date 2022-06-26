@@ -3,6 +3,7 @@ const query = require("../helpers/mysqlPromise");
 const today = require("../helpers/today");
 const _ = require("underscore");
 const mailer = require('../helpers/mailer');
+const mailer2= require('../helpers/mailer2');
 const hbs = require('nodemailer-handlebars');
 
 //Customer - add,update,getOne,getAll
@@ -454,7 +455,7 @@ exports.addSalesReturnOrderController = async (req, res) => {
             }
             db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Add a sales Return order(salesReturnOrderID-" + id + ")"], (err, response) => { });
             // res.json("sales Return order added");
-            mailer.use('compile', hbs({
+            mailer2.use('compile', hbs({
                 viewEngine: {
                     extname: '.handlebars',
                     layoutsDir: '../Backend/views/salesReturnOrder/',
@@ -512,7 +513,7 @@ exports.addSalesReturnOrderController = async (req, res) => {
                                                 } // send extra values to template
                                             };
 
-                                            mailer.sendMail(mailOptions, (err, data) => {
+                                            mailer2.sendMail(mailOptions, (err, data) => {
                                                 if (err) {
                                                     console.log(err);
                                                     return console.log('Error occurs');
