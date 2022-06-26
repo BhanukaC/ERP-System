@@ -3,85 +3,116 @@ import { useState, useEffect } from "react";
 import Navbar from "../../../../components/navbar/Navbar";
 import Sidebar from "../../../../components/hr/sidebar/Sidebar";
 import axios from "axios";
+import * as XLSX from "xlsx";
+import Datatable from "../../../../components/hr/attendanceDisplayTable/Datatable";
+import moment from "moment";
 
 const AddAttendance = () => {
-  const [EID, setEID] = useState("");
-  const [NIC, setNIC] = useState("");
-  const [balance, setBalance] = useState(0);
-  const [amount, setAmount] = useState(0);
-  const [color, setColor] = useState("");
-
+  const [data, setData] = useState([]);
+  const [EIDList, setEIDList] = useState([]);
   const submitForm = (e) => {
     e.preventDefault();
-    if (
-      EID === "" ||
-      NIC === "" ||
-      balance < amount ||
-      balance === 0 ||
-      amount === 0
-    ) {
-      alert("Please fill all required fields");
+    if (data.length === 0) {
+      alert("Please select a file first");
     } else {
-      let data = {
-        EID: EID,
-        amount: amount,
-      };
-
       axios
-        .post("http://localhost:5000/hr/advance/add", data, {
-          withCredentials: true,
-          credentials: "include",
-        })
+        .post(
+          "http://localhost:5000/hr/attendance/add",
+          { data: data },
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
         .then((res) => {
-          console.log(res);
-          if (res.data === "Give an advance") {
-            alert("Give an advance");
-            setEID("");
-            setNIC("");
-            setBalance(0);
-            setAmount(0);
-            setColor("");
+          if (res.data === "Employee attendance added") {
+            alert("Employee attendance added");
+            window.location.reload();
           } else {
-            alert("Sorry,Try again");
+            if (res.data.error.code === "ER_DUP_ENTRY") {
+              alert("You trying to add existing data again");
+            } else {
+              alert("Try again");
+            }
           }
         });
     }
   };
 
-  const checkEmployee = async (val) => {
-    if (val !== "") {
-      const res = await axios.get(
-        "http://localhost:5000/hr/employee/getSingle/" + val,
-        {
-          withCredentials: true,
-          credentials: "include",
+  // process CSV data
+  const processData = (dataString) => {
+    const dataStringLines = dataString.split(/\r\n|\n/);
+    const headers = dataStringLines[0].split(
+      /,(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)/
+    );
+    if (
+      headers[0] === "EID" &&
+      headers[1] === "date" &&
+      headers[2] === "inTime" &&
+      headers[3] === "outTime"
+    ) {
+      const list = [];
+      for (let i = 1; i < dataStringLines.length; i++) {
+        const row = dataStringLines[i].split(
+          /,(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)/
+        );
+
+        if (row.length !== 0) {
+          if (checkEID(row[0])) {
+            list.push({
+              id: i,
+              EID: row[0],
+              date: moment(row[1]).format("YYYY/MM/DD"),
+              inTime: row[2],
+              outTime: row[3],
+            });
+          }
         }
-      );
-      if (res.data.length === 0) {
-        alert("EID not found");
-      } else {
-        setNIC(res.data[0].NIC);
       }
+      setData(list);
+    } else {
+      alert("Please Check your file");
+      window.location.reload();
     }
   };
 
-  const checkBalance = async (EID) => {
-    const res = await axios.get(
-      "http://localhost:5000/hr/advance/balance/" + EID,
-      {
-        withCredentials: true,
-        credentials: "include",
-      }
-    );
-    if (res !== undefined) {
-      setBalance(res.data.amount);
-      if (res.data.amount <= 1000) {
-        setColor("red");
-      } else {
-        setColor("yellow");
+  // handle file upload
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      /* Parse data */
+      const bstr = evt.target.result;
+      const wb = XLSX.read(bstr, { type: "binary" });
+      /* Get first worksheet */
+      const wsname = wb.SheetNames[0];
+      const ws = wb.Sheets[wsname];
+      /* Convert array of arrays */
+      const data = XLSX.utils.sheet_to_csv(ws, { header: 1 });
+      processData(data);
+    };
+    reader.readAsBinaryString(file);
+  };
+
+  const checkEID = (val) => {
+    for (let i = 0; i < EIDList.length; i++) {
+      if (val == EIDList[i].EID) {
+        return true;
       }
     }
+    return false;
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/hr/employee/getAllEID", {
+        withCredentials: true,
+        credentials: "include",
+      })
+      .then((res) => {
+        setEIDList(res.data);
+      });
+  }, [""]);
 
   return (
     <div className="new">
@@ -95,58 +126,22 @@ const AddAttendance = () => {
           <div className="right">
             <form>
               <div className="formInput">
-                <label>EID*</label>
-                <input
-                  type="text"
-                  value={EID}
-                  onChange={(e) => {
-                    setEID(e.target.value);
-                    checkEmployee(e.target.value);
-                    checkBalance(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
-                <label>Employee NIC*</label>
-                <input
-                  type="text"
-                  disabled
-                  value={NIC}
-                  onChange={(e) => {
-                    setNIC(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
-                <label>Employee Remaning Balance*</label>
-                <input
-                  type="text"
-                  disabled
-                  value={balance}
-                  onChange={(e) => {
-                    setBalance(e.target.value);
-                  }}
-                  style={{ backgroundColor: color }}
-                />
-              </div>
-
-              <div className="formInput">
-                <label>Amount*</label>
-                <input
-                  type="number"
-                  step="any"
-                  value={amount}
-                  onChange={(e) => {
-                    setAmount(e.target.value);
-                  }}
-                />
+                <label>Attendnce CSV File</label>
+                <input type="file" accept=".csv" onChange={handleFileUpload} />
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Add</button>
+              <button onClick={submitForm}>Add Attendace Data</button>
             </form>
           </div>
         </div>
+        {data.length !== 0 && (
+          <div className="bottomContainer">
+            <div className="right">
+              <Datatable data={data} />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

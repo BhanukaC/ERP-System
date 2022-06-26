@@ -398,7 +398,7 @@ exports.addAttendanceController = async (req, res) => {
     }
     db.commit();
     db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "Add Employee Attendance"], (err, response) => { });
-    res.json("Employee attnedance added");
+    res.json("Employee attendance added");
 }
 
 exports.viewSingleEmployeeAttendanceController = async (req, res) => {
@@ -615,6 +615,13 @@ exports.viewAllSalaryForEmployeeController = async (req, res) => {
     const id = req.params.id;
     db.query("select * from Salary where EID=?", id, (err, result) => {
         db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "View all Salaries for an Employee(EID-" + id + ")"], (err, response) => { });
+        res.json(result);
+    });
+}
+
+exports.getAllEmployeeEIDController = async (req, res) => {
+    db.query("select EID from Employee", (err, result) => {
+        db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, req.user.id, req.user.username, "view All EIDs"], (err, response) => { });
         res.json(result);
     });
 }

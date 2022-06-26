@@ -3,13 +3,14 @@ const router = express.Router();
 const validateToken = require("../middleware/auth");
 const validAccess = require("../middleware/hrManager");
 
-const { employeeAddController, employeeUpdateController, employeeGetSingleController, employeeGetAllController, dependentAddController, dependentUpdateController, dependentGetSingleController, dependentGetAllController, otDataAddController, otDataUpdateController, otDataGetSingleController, otDataGetAllController, otAddController, otGetSingleController, otGetAllForEmployeeController, otGetAllController, advanceAddController, getAvailableAdvanceController, getAllAdvanceController, getSingleAdvanceController, getAllAdvanceForEmployeeController, addAttendanceController, viewSingleEmployeeAttendanceController, viewAllAttendanceController, calculateSalaryController, viewAllSalaryForEmployeeController, viewSingleSalaryController, viewAllSalaryController } = require("../controllers/hrController");
+const { employeeAddController, employeeUpdateController, employeeGetSingleController, employeeGetAllController, dependentAddController, dependentUpdateController, dependentGetSingleController, dependentGetAllController, otDataAddController, otDataUpdateController, otDataGetSingleController, otDataGetAllController, otAddController, otGetSingleController, otGetAllForEmployeeController, otGetAllController, advanceAddController, getAvailableAdvanceController, getAllAdvanceController, getSingleAdvanceController, getAllAdvanceForEmployeeController, addAttendanceController, viewSingleEmployeeAttendanceController, viewAllAttendanceController, calculateSalaryController, viewAllSalaryForEmployeeController, viewSingleSalaryController, viewAllSalaryController, getAllEmployeeEIDController } = require("../controllers/hrController");
 
 //employee
 router.post("/employee/add", [validateToken, validAccess], employeeAddController);
 router.put("/employee/update/:id", [validateToken, validAccess], employeeUpdateController);
 router.get("/employee/getSingle/:id", [validateToken, validAccess], employeeGetSingleController);
 router.get("/employee/getAll/", [validateToken, validAccess], employeeGetAllController);
+router.get("/employee/getAllEID/", [validateToken, validAccess], getAllEmployeeEIDController);
 
 //dependent
 router.post("/dependent/add", [validateToken, validAccess], dependentAddController);
