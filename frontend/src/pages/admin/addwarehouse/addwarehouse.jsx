@@ -10,6 +10,7 @@ const AddWarehouse = () => {
   const [street, setStreet] = useState("");
   const [town, setTown] = useState("");
   const [uid, setUid] = useState("");
+  const [UIDStatus, setUIDStatus] = useState(false);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -44,6 +45,26 @@ const AddWarehouse = () => {
     
   };
 
+  const checkUser = async (val) => {
+    if (val !== "") {
+      const res = await axios.get(
+        "http://localhost:5000/admin/getUserData/"+ val,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
+      if (res.data.length === 0) {
+        alert("UID not found");
+        setUIDStatus(false);
+      } else {
+        setUIDStatus(true);
+        setManagerName(res.data[0].userName);
+        console.log(res)
+      }
+    }
+  };
+
   return (
     <div className="new">
       <Admin_sidebar />
@@ -62,6 +83,7 @@ const AddWarehouse = () => {
                   value={uid}
                   onChange={(e) => {
                     setUid(e.target.value);
+                    checkUser(e.target.value);
                   }}
                 />
               </div>

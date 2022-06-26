@@ -78,16 +78,6 @@ const EditUserDetails = () => {
                 />
               </div>
               <div className="formInput">
-                <label>Email</label>
-                <input disabled
-                  type="email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="formInput">
                 <label>Acess Level</label>
                 <input
                   type="number"

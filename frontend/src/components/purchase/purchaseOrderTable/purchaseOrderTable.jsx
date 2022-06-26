@@ -5,17 +5,24 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 
+function getFullAddress(params) {
+  return `${params.row.no || ""}, ${params.row.street || "" } ,${ params.row.town || "" } ,${ params.row.country  }`;
+}
+
 const userColumns = [
   { field: "purchaseOrderID", headerName: "Purchase Order ID",  width: 150},
-  { field: "orderDate", headerName: "Order Date", width: 250 },
+  { field: "orderDate1", headerName: "Order Date", width: 100 },
   { field: "status", headerName: "Status", width: 100 },
   { field: "total", headerName: "Net Total", width: 100 },
 
   { field: "sName", headerName: "Supplier Name", width: 150},
-  { field: "SSLID", headerName: "Supplier Store Location ID", width: 185},
-  { field: "SCID", headerName: "Supplier Contact ID", width: 150},
+ // { field: "SSLID", headerName: "Supplier Store Location ID", width: 185},
+  { field: "SSLID", headerName: "Delivery Address", valueGetter: getFullAddress, width: 300 },
+
+  //{ field: "SCID", headerName: "Supplier Contact ID", width: 150},
+  { field: "contactNumber", headerName: "Supplier Contact No", width: 150},
   
-  { field: "deliveredDate", headerName: "Finished Date", width: 250},
+  { field: "deliveredDate1", headerName: "Finished Date", width: 100},
  
  
  
@@ -32,16 +39,17 @@ const PurchaseOrderTable = () => {
       })
       .then((res) => {
        
-        let dt = res.data.map((d) => {
-          return { id: d.purchaseOrderID, ...d };
-        });
-        setData(dt);
+       // let dt = res.data.map((d) => {
+       //   return { id: d.purchaseOrderID, ...d };
+        //});
+       // setData(dt);
 
         let dtt = res.data.map((d) => {
           return {
             id: d.purchaseOrderID,
-            orderDate: moment(d.orderDate).add(1, "days").utc().format("YYYY/MM/DD"),
-            ...d,
+            orderDate1: moment(d.orderDate).add(1, "days").utc().format("YYYY/MM/DD"),
+            deliveredDate1: moment(d.deliveredDate).add(1, "days").utc().format("YYYY/MM/DD"),
+            ...d
           };
         });
         setData(dtt);

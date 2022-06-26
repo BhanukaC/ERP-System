@@ -25,7 +25,7 @@ const AddContactNo = () => {
     {
       alert("Please  fill the required fields");
     }
-    else if( contactNumber.length<10)
+    else if( contactNumber.length<10||contactNumber.length>15)
     {
       alert("Please enter a valid contact Number");
     }
