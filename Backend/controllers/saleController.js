@@ -560,7 +560,7 @@ exports.getSingleSalesReturnOrderController = async (req, res) => {
 }
 
 exports.getAllSalesReturnOrderController = async (req, res) => {
-    db.query("select * from SalesReturnOrder ", (err, result) => {
+    db.query("select SalesReturnOrder.salesReturnOrderID,SalesReturnOrder.initiateDate,SalesReturnOrder.reason,SalesReturnOrder.status,SalesReturnOrder.WID,SalesReturnOrder.total,SalesReturnOrder.CID,SalesReturnOrder.CDAID,SalesReturnOrder.CCID,SalesReturnOrder.finishDate,SalesReturnOrder.salesOrderID,Customer.customerName from SalesReturnOrder,Customer where SalesReturnOrder.CID=Customer.CID ", (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
