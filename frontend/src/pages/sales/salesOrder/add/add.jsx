@@ -53,13 +53,19 @@ const AddSalesOrderPart1 = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
+    if(CID === "" || CDAID === "" || CCID === "" || WID === "" || distance === ""  )
+    {
+      alert("Fill the required fields");
+    }
 
+    else{
     localStorage.setItem("CID", CID);
     localStorage.setItem("CDAID", CDAID);
     localStorage.setItem("CCID", CCID);
     localStorage.setItem("WID", WID);
     localStorage.setItem("distance", distance);
     window.location = "/sales/salesOrder/add2";
+    }
   };
 
   const checkCustomer = async (val) => {
@@ -107,7 +113,7 @@ const AddSalesOrderPart1 = () => {
                   }}
                 >
                   <option value="" disabled selected>
-                    Select Warehouse ID
+                    Select Warehouse 
                   </option>
                   {Array.isArray(warehouse)
                     ? warehouse.map((w) => (
