@@ -45,7 +45,7 @@ const Subcategorytable = () => {
         return (
           <div className="cellAction">
             <Link to = {upLink} style = {{textDecoration: "none"}}>
-              <div className="viewButton">Edit</div>
+              <div className="editButtons">Edit</div>
             </Link>
             
           </div>
@@ -54,12 +54,10 @@ const Subcategorytable = () => {
     },
   ];
   return (
-    <div className="datatable">
-      <div className="datatableTitle1">
-        Sub Category
-        <Link to="/purchase/product/addsubcat" className="link">
-          Add New Sub Category
-        </Link>
+    <div className="TableOfData" style={{height:"78%"}}>
+      <div className="TableOfDataTitle1">
+        <h1>Sub Category</h1>
+        
       </div>
       <DataGrid
         className="datagrid"

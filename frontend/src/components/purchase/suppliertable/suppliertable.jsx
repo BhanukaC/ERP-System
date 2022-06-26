@@ -55,15 +55,15 @@ const Suppliertable = () => {
         return (
           <div className="cellAction">
             <Link to={Link1} style={{ textDecoration: "none" }}>
-              <div className="viewButton">Edit</div>
+              <div className="editButtons">Edit</div>
             </Link>
 
             <Link to={Link3} style={{ textDecoration: "none" }}>
-              <div className="viewButton">view Contact No</div>
+              <div className="viewButtons">View Contact No</div>
             </Link>
             
            <Link to={Link2} style={{ textDecoration: "none" }}>
-              <div className="viewButton">view Store Locations</div>
+              <div className="viewButtons">View Store Locations</div>
             </Link>
             
             
@@ -73,8 +73,11 @@ const Suppliertable = () => {
     },
   ];
   return (
-    <div className="datatable">
-      <div className="datatableTitle1">All Suppliers</div>
+    <div className="TableOfData" style={{height:"78%"}}>
+      <div className="TableOfDataTitle1">
+        <h1>All Suppliers</h1>
+        
+      </div>
       <DataGrid
         className="datagrid"
         rows={data}

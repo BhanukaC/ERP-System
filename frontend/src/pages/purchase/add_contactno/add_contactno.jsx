@@ -81,7 +81,7 @@ const AddContactNo = () => {
       <div className="newContainer">
         <Navbar />
         <div className="topContainer">
-          <h1>Add Supplier Contact NO</h1>
+          <h1>Add Supplier Contact Number</h1>
         </div>
         <div className="bottomContainer">
           <div className="right">

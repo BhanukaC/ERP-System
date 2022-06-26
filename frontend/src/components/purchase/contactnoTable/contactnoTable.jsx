@@ -8,6 +8,7 @@ import moment from "moment";
 const userColumns = [
   { field: "SCID", headerName: "Supplier Contact ID",width:150 },
  
+ 
   { field: "contactNumber", headerName: "Contact Number",width:200 },
   
   
@@ -17,6 +18,7 @@ const userColumns = [
 const Datatable = (props) => {
   const SID = props.SID;
   const [data, setData] = useState({});
+  const [sName, setsName] = useState("");
 
  
 
@@ -38,15 +40,25 @@ const Datatable = (props) => {
         setData(dt);
         
       });
+
+      axios
+      .get("http://localhost:5000/purchase/supplier/getSingle/"+SID, {
+        withCredentials: true,
+        credentials: "include",
+      })
+      .then((res) => {
+        setsName(res.data[0].sName);
+      });
   }, [""]);
 
   
 
   
   return (
-    <div className="datatable">
-      <div className="datatableTitle1">
-        All Contact Numbers For Supplier (SID-{SID})
+    <div className="TableOfData" style={{height:"78%"}}>
+      <div className="TableOfDataTitle1">
+        <h1>All Contact Numbers For Supplier - {sName} (SID-{SID}) </h1>
+        
       </div>
       <DataGrid
         className="datagrid"

@@ -28,7 +28,6 @@ const AddCustomer = () => {
  
   const submitForm = (e) => {
     e.preventDefault();
-    if (ValidateEmail(email)) {
       if (
         customerName === "" ||
         paymentTerm === "" ||
@@ -44,40 +43,49 @@ const AddCustomer = () => {
        ) 
        {
         alert("Please fill all required fields");
-      } else {
-        let data = {
-              customerName:customerName,
-              paymentTerm:paymentTerm,
-              returnTerm:returnTerm,
-              deliveryTerm:deliveryTerm,
-              no:no,
-              street:street,
-              town:town,
-              branchCode:branchCode,
-              accountNo:accountNo,
-              bankName:bankName,
-              email:email,
-        };
+      }
+      
+      else if(!(ValidateEmail(email)))
+    {
+        alert("Please enter a valid email")
+    }
+      else {
       axios
-        .post("http://localhost:5000/sales/Customer/add",data ,
+        .post("http://localhost:5000/sales/Customer/add",
+          {
+            customerName:customerName,
+            paymentTerm:paymentTerm,
+            returnTerm:returnTerm,
+            deliveryTerm:deliveryTerm,
+            no:no,
+            street:street,
+            town:town,
+            branchCode:branchCode,
+            accountNo:accountNo,
+            bankName:bankName,
+            email:email,
+          },
+          
           {
             withCredentials: true,
             credentials: "include",
-          })
+          }
+          
+          )
           .then((res) => {
             if(res.data=="Customer Added"){
               alert("Customer added");
-              setCustomerName("");
-              setPaymentMethod("");
-              setReturnTerm("");
-              setDeliveryTerm();
-              setNo();
-              setStreet("");
-              setTown("");
-              setBranchCode();           
-              setAccountNumber();
-              setBankName("");
-              setEmail("");
+              // setCustomerName("");
+              // setPaymentMethod("");
+              // setReturnTerm("");
+              // setDeliveryTerm();
+              // setNo();
+              // setStreet("");
+              // setTown("");
+              // setBranchCode();           
+              // setAccountNumber();
+              // setBankName("");
+              // setEmail("");
           }
         else{
             alert("Error");
@@ -86,10 +94,6 @@ const AddCustomer = () => {
           //console.log(res.data);
         });
       }
-    }
-    else{
-      alert("You have entered an invalid email address!");
-    }
     
   };
 

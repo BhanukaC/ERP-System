@@ -60,7 +60,7 @@ const PurchaseOrderTable = () => {
           return (
             <div className="cellAction">
               <Link to= {upLink} style= {{textDecoration : "none"}}>
-                <div className="viewButton">View Order Details</div>
+                <div className="viewButtons">View Order Details</div>
                 </Link>
               
             </div>
@@ -70,9 +70,10 @@ const PurchaseOrderTable = () => {
   ];
 
   return (
-    <div className="datatable">
-      <div className="datatableTitle1">
-        Purchase Orders
+    <div className="TableOfData" style={{height:"78%"}}>
+      <div className="TableOfDataTitle1">
+        <h1>All Purchase Orders</h1>
+        
       </div>
       <DataGrid
         className="datagrid"
