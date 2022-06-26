@@ -1,11 +1,9 @@
 .navbar {
-  height: 53px;
-  border-bottom: 0.5px solid rgb(231, 228, 228);
+  height: 50px;
+  //border-bottom: 0.5px solid rgb(231, 228, 228);
   display: flex;
   align-items: center;
   font-size: 14px;
-  color: #999;
-  //background-color: #fff;
   background-color: #002133;
   
 
@@ -35,7 +33,6 @@
 
             .icon {
               font-size: 28px;
-              //color: #7451f8;
               color: #fff;
             }
           }

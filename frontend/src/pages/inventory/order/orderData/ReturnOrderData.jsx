@@ -63,7 +63,7 @@ const ReturnOrderData = () => {
              color:" white",
              fontWeight: "bold",
              cursor:" pointer",
-             marginTop: "30px",
+             marginTop: "50px",
              marginLeft:"40%",
       
         }} onClick={submitButton} >Mark as Received</button>)}
