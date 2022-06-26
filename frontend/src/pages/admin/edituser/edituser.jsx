@@ -67,6 +67,26 @@ const EditUserDetails = () => {
         <div className="bottomContainer">
           <div className="right">
             <form>
+            <div className="formInput">
+                <label>User Name</label>
+                <input disabled
+                  type="text"
+                  value={userName}
+                  onChange={(e) => {
+                    setUserName(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="formInput">
+                <label>Email</label>
+                <input disabled
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                />
+              </div>
               <div className="formInput">
                 <label>Acess Level</label>
                 <input

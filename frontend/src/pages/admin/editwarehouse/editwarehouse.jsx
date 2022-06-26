@@ -72,7 +72,7 @@ const EditWarehouseDetailsAdmin = () => {
             <form>
             <div className="formInput">
                 <label>Name of the Manager</label>
-                <input
+                <input disabled
                   type="text"
                   value={ManagerName}
                   onChange={(e) => {
