@@ -5,7 +5,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 
-
+function getFullAddress(params) {
+  return `${params.row.no || ""} ${params.row.street || "" } ${ params.row.town || "" } ${ params.row.country  }`;
+}
 
 const userColumns = [
   { field: "purchaseOrderID", headerName: "Purchase Order ID",  width: 150},
@@ -14,7 +16,9 @@ const userColumns = [
   { field: "total", headerName: "Net Total", width: 100 },
 
   { field: "sName", headerName: "Supplier Name", width: 150},
-  { field: "SSLID", headerName: "Supplier Store Location ID", width: 185},
+ // { field: "SSLID", headerName: "Supplier Store Location ID", width: 185},
+  { field: "SSLID", headerName: "Delivery Address", valueGetter: getFullAddress, width: 300 },
+
   //{ field: "SCID", headerName: "Supplier Contact ID", width: 150},
   { field: "contactNumber", headerName: "Supplier Contact No", width: 150},
   
