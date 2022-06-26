@@ -37,7 +37,7 @@ const AddWarehouse = () => {
           if (res.data === "Add a new Warehouse") {
             alert("Warehouse Registered");
           } else {
-            alert("Error");
+            alert("User does not exist");
           }
         });
     }
@@ -55,6 +55,16 @@ const AddWarehouse = () => {
         <div className="bottomContainer">
           <div className="right">
             <form>
+            <div className="formInput">
+                <label>UID</label>
+                <input
+                  type="text"
+                  value={uid}
+                  onChange={(e) => {
+                    setUid(e.target.value);
+                  }}
+                />
+              </div>
               <div className="formInput">
                 <label>Manager Name</label>
                 <input
@@ -98,18 +108,6 @@ const AddWarehouse = () => {
                   }}
                 />
               </div>
-
-              <div className="formInput">
-                <label>UID</label>
-                <input
-                  type="text"
-                  value={uid}
-                  onChange={(e) => {
-                    setUid(e.target.value);
-                  }}
-                />
-              </div>
-              
 
               <div className="break"></div>
               <button onClick={submitForm}>Add Warehouse</button>
