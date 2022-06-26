@@ -16,10 +16,7 @@ const userColumns = [
 const Subcategorytable = () => {
   const [data, setData] = useState({});
 
-  const handleDelete = (SCID) => {
-    setData(data.filter((item) => item.id !== SCID));
-  };
-
+  
   useEffect(() => {
     axios
       .get("http://localhost:5000/purchase/subCategory/getAll", {
