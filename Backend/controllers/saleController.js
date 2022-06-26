@@ -457,10 +457,10 @@ exports.addSalesReturnOrderController = async (req, res) => {
             mailer.use('compile', hbs({
                 viewEngine: {
                     extname: '.handlebars',
-                    layoutsDir: '../Backend/views/',
+                    layoutsDir: '../Backend/views/salesReturnOrder/',
                     defaultLayout: 'salesReturnOrder',
                 },
-                viewPath: '../Backend/views/'
+                viewPath: '../Backend/views/salesReturnOrder/'
             }));
 
             db.query("select * from Customer where CID=?", [CID], (err, res1) => {
