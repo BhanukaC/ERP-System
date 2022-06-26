@@ -7,7 +7,7 @@ import moment from "moment";
 
 const userColumns = [
   { field: "purchaseOrderID", headerName: "Purchase Order ID",  width: 150},
-  { field: "orderDate", headerName: "Order Date", width: 250 },
+  { field: "orderDate1", headerName: "Order Date", width: 100 },
   { field: "status", headerName: "Status", width: 100 },
   { field: "total", headerName: "Net Total", width: 100 },
 
@@ -15,7 +15,7 @@ const userColumns = [
   { field: "SSLID", headerName: "Supplier Store Location ID", width: 185},
   { field: "SCID", headerName: "Supplier Contact ID", width: 150},
   
-  { field: "deliveredDate", headerName: "Finished Date", width: 250},
+  { field: "deliveredDate1", headerName: "Finished Date", width: 100},
  
  
  
@@ -32,13 +32,16 @@ const PurchaseOrderTable = () => {
       })
       .then((res) => {
        
-        
+       // let dt = res.data.map((d) => {
+       //   return { id: d.purchaseOrderID, ...d };
+        //});
+       // setData(dt);
 
         let dtt = res.data.map((d) => {
           return {
             id: d.purchaseOrderID,
-            orderDate: moment(d.orderDate).add(1, "days").utc().format("YYYY/MM/DD"),
-            deliveredDate: moment(d.deliveredDate).add(1, "days").utc().format("YYYY/MM/DD"),
+            orderDate1: moment(d.orderDate).add(1, "days").utc().format("YYYY/MM/DD"),
+            deliveredDate1: moment(d.deliveredDate).add(1, "days").utc().format("YYYY/MM/DD"),
             ...d
           };
         });
