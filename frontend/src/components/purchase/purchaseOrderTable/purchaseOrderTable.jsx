@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 
+
+
 const userColumns = [
   { field: "purchaseOrderID", headerName: "Purchase Order ID",  width: 150},
   { field: "orderDate1", headerName: "Order Date", width: 100 },
@@ -13,7 +15,8 @@ const userColumns = [
 
   { field: "sName", headerName: "Supplier Name", width: 150},
   { field: "SSLID", headerName: "Supplier Store Location ID", width: 185},
-  { field: "SCID", headerName: "Supplier Contact ID", width: 150},
+  //{ field: "SCID", headerName: "Supplier Contact ID", width: 150},
+  { field: "contactNumber", headerName: "Supplier Contact No", width: 150},
   
   { field: "deliveredDate1", headerName: "Finished Date", width: 100},
  

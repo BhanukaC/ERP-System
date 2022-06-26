@@ -516,7 +516,7 @@ exports.getSinglePurchaseOrderController = async (req, res) => {
 }
 
 exports.getAllPurchaseOrderController = async (req, res) => {
-    db.query("select purchaseOrder.purchaseOrderID,purchaseOrder.orderDate,purchaseOrder.status,purchaseOrder.total,purchaseOrder.SID,purchaseOrder.SSLID,purchaseOrder.SCID,purchaseOrder.WID,purchaseOrder.deliveredDate,Supplier.sName from purchaseOrder,Supplier where purchaseOrder.SID=Supplier.SID", (err, result) => {
+    db.query("select purchaseOrder.purchaseOrderID,purchaseOrder.orderDate,purchaseOrder.status,purchaseOrder.total,purchaseOrder.SID,purchaseOrder.SSLID,purchaseOrder.SCID,purchaseOrder.WID,purchaseOrder.deliveredDate,Supplier.sName,SupplierContactNumber.contactNumber,SupplierStoreLocation.no,SupplierStoreLocation.town,SupplierStoreLocation.street,SupplierStoreLocation.country  from purchaseOrder,Supplier,SupplierContactNumber,SupplierStoreLocation where purchaseOrder.SID=Supplier.SID and purchaseOrder.SCID=SupplierContactNumber.SCID and purchaseOrder.SSLID=SupplierStoreLocation.SSLID ", (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
