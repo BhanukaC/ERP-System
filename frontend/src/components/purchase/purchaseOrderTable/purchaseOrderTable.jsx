@@ -32,16 +32,14 @@ const PurchaseOrderTable = () => {
       })
       .then((res) => {
        
-        let dt = res.data.map((d) => {
-          return { id: d.purchaseOrderID, ...d };
-        });
-        setData(dt);
+        
 
         let dtt = res.data.map((d) => {
           return {
             id: d.purchaseOrderID,
             orderDate: moment(d.orderDate).add(1, "days").utc().format("YYYY/MM/DD"),
-            ...d,
+            deliveredDate: moment(d.deliveredDate).add(1, "days").utc().format("YYYY/MM/DD"),
+            ...d
           };
         });
         setData(dtt);
