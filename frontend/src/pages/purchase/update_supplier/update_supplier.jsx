@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 
 const Updatesupplier = () => {
   const [sName, setsName] = useState("");
-  const [payemntTerm, setpaymentTerm] = useState("");
+  const [paymentTerm, setpaymentTerm] = useState("");
   const [no, setno] = useState("");
   const [street, setstreet] = useState("");
   const [town, settown] = useState("");
@@ -58,7 +58,7 @@ const Updatesupplier = () => {
     e.preventDefault();
     if (
       sName === ""||
-      payemntTerm===""||
+      paymentTerm===""||
       no===""||
       town===""||
       country===""||
@@ -78,7 +78,7 @@ const Updatesupplier = () => {
     else {
       let data = {
         sName: sName,
-        payemntTerm: payemntTerm,
+        paymentTerm: paymentTerm,
         no : no,
         street:street,
         town: town,
@@ -134,7 +134,7 @@ const Updatesupplier = () => {
                 <label>Payment Term*</label>
                 <input
                   type="text"
-                  value={payemntTerm}
+                  value={paymentTerm}
                   onChange={(e) => {
                     setpaymentTerm(e.target.value);
                   }}
