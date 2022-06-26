@@ -73,6 +73,7 @@ const AddDependent = () => {
         }
       );
       if (res.data.length === 0) {
+        setNIC("");
         alert("EID not found");
         setEIDStatus(false);
       } else {
