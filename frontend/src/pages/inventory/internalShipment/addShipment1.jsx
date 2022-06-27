@@ -62,6 +62,7 @@ if(stat){
       
     } else {
       alert("Enter valid quantity");
+      setQty(0);
     }
   };
 
@@ -75,7 +76,10 @@ if(stat){
         }
       );
       if (res.data.length === 0) {
+        setProductName("");
         alert("PID not found");
+        setQty(0);
+        setPID(0);
       } else {
         setProductName(res.data[0].PName);
       }
@@ -96,6 +100,7 @@ if(stat){
   //  console.log(res);
     if (res.data === "we don't have enough stocks") {
       alert("we don't have enough stocks");
+      setQty(0);
       return false;
     }
     if(res.data ==="We have Stocks") {

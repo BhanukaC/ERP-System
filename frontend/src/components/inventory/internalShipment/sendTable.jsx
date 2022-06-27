@@ -29,15 +29,15 @@ const SendTable = (props) => {
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {
-          let date;
+          let SendDate;
           if(d.finishDate===null){
-            date=d.finishDate
+            SendDate=d.finishDate
           }else{
-            date=moment(d.deliveredDate).add(1, "days").utc().format("YYYY/MM/DD");
+            SendDate=moment(d.finishDate).utc().format("YYYY/MM/DD");
           }
           return { id: d.internalShipmentID,
-            dates: moment(d.date).add(1, "days").utc().format("YYYY/MM/DD"),
-            finishDates: date,
+            dates: moment(d.date).utc().format("YYYY/MM/DD"),
+            finishDates: SendDate,
             ...d };
         });
         setData(dt);

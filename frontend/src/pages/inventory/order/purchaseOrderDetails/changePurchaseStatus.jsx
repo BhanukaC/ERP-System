@@ -63,11 +63,13 @@ const ChangePurchaseOrderStatus = () => {
             setWID(res.data[0].WID);
             setStatus("D"); 
             alert("Purchase order Received");
+            window.location="/inventory/order/purchaseOrders";
           } 
           else if (res.data === "Purchase order Returned") {
             setWID(res.data[0].WID);
             setStatus("C"); 
             alert("Purchase order Returned");
+            window.location="/inventory/order/purchaseOrders";
           } 
           else {
             alert("Try again");
@@ -81,10 +83,10 @@ const ChangePurchaseOrderStatus = () => {
       <InventorySidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="topPart">
+        <div className="topContainer">
           <h1>Change Order Status</h1>
         </div>
-        <div className="bottomPart">
+        <div className="bottomContainer">
           <div className="right">
             <form>
 

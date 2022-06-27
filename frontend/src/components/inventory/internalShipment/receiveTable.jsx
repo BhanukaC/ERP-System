@@ -39,15 +39,15 @@ const ReceiveTable = (props) => {
               status="Delivered"
               break;
           }
-          let date;
+          let ReceiveDate;
           if(d.finishDate===null){
-            date=d.finishDate
+            ReceiveDate=d.finishDate
           }else{
-            date=moment(d.deliveredDate).add(1, "days").utc().format("YYYY/MM/DD");
+            ReceiveDate=moment(d.finishDate).utc().format("YYYY/MM/DD");
           }
           return { id: d.internalShipmentID,statusMod:status,
-            dates: moment(d.date).add(1, "days").utc().format("YYYY/MM/DD"),
-            finishDates: date,
+            dates: moment(d.date).utc().format("YYYY/MM/DD"),
+            finishDates: ReceiveDate,
             ...d };
         });
         setData(dt);

@@ -34,7 +34,6 @@ const EditWarehouseDetails = () => {
       alert("Fill the required fields");
     } else {
       let data = {
-        ManagerName: ManagerName,
         no: no,
         street: street,
         town: town,
@@ -71,10 +70,8 @@ const EditWarehouseDetails = () => {
                 <label>Name of the Manager</label>
                 <input
                   type="text"
+                  disabled
                   value={ManagerName}
-                  onChange={(e) => {
-                    setManagerName(e.target.value);
-                  }}
                 />
               </div>
               <div className="formInput">

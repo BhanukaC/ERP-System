@@ -4,13 +4,17 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
+function getAddress(params) {
+  return `${params.row.no || ""}, ${params.row.street || ""}, ${params.row.town || ""}`;
+}
+
 const userColumns = [
   { field: "WID", headerName: "Warehouse ID",  width: 150},
-  //{ field: "town", headerName: "Branch", width: 200 },
   { field: "ManagerName", headerName: "Name of the Manager", width: 200 },
-  { field: "no", headerName: "No", width: 150 },
-  { field: "street", headerName: "Street", width: 200},
-  { field: "town", headerName: "Town", width: 200},
+  { field: "address", headerName: "Address",valueGetter: getAddress, width: 300 },
+  // { field: "no", headerName: "No", width: 150 },
+  // { field: "street", headerName: "Street", width: 200},
+  // { field: "town", headerName: "Town", width: 200},
 ];
 
 const WarehouseTable = () => {

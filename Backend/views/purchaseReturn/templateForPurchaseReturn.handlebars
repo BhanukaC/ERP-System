@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        table{      
+        width: 100%;
+        border-collapse:collapse;
+        border: 1px solid black;
+        text-align: left;
+        }
+        table td{
+            line-height:25px;
+            padding-left:15px;
+        }
+        table th{
+            background-color:#00ace6; 
+            color:#363636;
+            padding-left:15px;
+        }
+        h3{
+            text-align: center;
+        }
+        .tot{
+            color: red;
+        }
+        .topic{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table border="1">
+        <tr height="100px" style="background-color:#363636;color:#ffffff;text-align:center;font-size:24px; font-weight:600;">
+        <td  colspan='5'>Purchase Return Order</td>
+        </tr>
+        <tr>
+            <th  colspan='1'>Company Name</th>
+            <td  colspan='4'>ABCD Enterprises</td>
+        </tr>
+        <tr>
+            <th  colspan='1'>Purchase Return Order ID</th>
+            <td  colspan='4'>{{id}}</td>
+        </tr>
+        <tr>
+            <th colspan='1'>Order Date</th>
+            <td colspan='4'>{{date}}</td>
+        </tr>
+        <tr>
+            <th colspan='1'>Purchase Order ID</th>
+            <td colspan='4'>{{purchaseOrderID}}</td>
+        </tr>
+        <tr>
+            <th colspan='1'>Reason for Returning Goods</th>
+            <td colspan='4'>{{reason}}</td>
+        </tr>
+        <tr class="topic">
+            <th colspan='1'>Purchase Return From</th>
+            <th colspan='4'>Ship to</th>
+           
+        </tr>
+        <tr>
+            <td colspan='1'>Warehouse Address -<br> No {{Wno}},{{Wstreet}},{{Wtown}}, Sri Lanka</td>
+            <td colspan='4'>Supplier Name - {{Sname}}<br>
+                Store Location - No {{Sno}}, {{Sstreet}}, {{Stown}}, {{Scountry}}<br>
+                Contact Number - {{contactNumber}}
+            </td>
+        </tr>
+
+        <tr class="topic">
+            <th>Product Name</th>
+            <th>Unit Price</th>
+            <th>Qunatity</th>
+            <th>Discount</th>
+            <th>Amount</th>
+        </tr>
+             {{#each items}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{unitPrice}}</td>
+            <td>{{qty}}</td>
+            <td>{{discount}}</td>
+            <td>{{netTot}}</td>
+        </tr>
+              {{/each}}
+
+        <tr class="tot">
+            <td colspan='3'></td>
+            <td>Total</td>
+            <td>{{total}}</td>
+        </tr>
+    </table>
+
+    <h3>Thank You For Your Business!</h3>

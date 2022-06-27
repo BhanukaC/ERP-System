@@ -43,11 +43,11 @@ const ReturnOrderTable = () => {
           if(d.finishDate===null){
             date=d.finishDate
           }else{
-            date=moment(d.finishDate).add(1, "days").utc().format("YYYY/MM/DD");
+            date=moment(d.finishDate).utc().format("YYYY/MM/DD");
           }
           return { id: d.salesReturnOrderID,
             statusMod:status,
-            initiateDates: moment(d.initiateDate).add(1, "days").utc().format("YYYY/MM/DD"),
+            initiateDates: moment(d.initiateDate).utc().format("YYYY/MM/DD"),
             finishDates: date,
             ...d };
 

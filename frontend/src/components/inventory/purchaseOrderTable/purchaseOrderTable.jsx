@@ -44,11 +44,11 @@ const PurchaseOrderTable = () => {
           if(d.deliveredDate===null){
             date=d.deliveredDate
           }else{
-            date=moment(d.deliveredDate).add(1, "days").utc().format("YYYY/MM/DD");
+            date=moment(d.deliveredDate).utc().format("YYYY/MM/DD");
           }
           return { id: d.purchaseOrderID,
             statusMod:status,
-            orderDates: moment(d.orderDate).add(1, "days").utc().format("YYYY/MM/DD"),
+            orderDates: moment(d.orderDate).utc().format("YYYY/MM/DD"),
             deliveredDates: date,
             ...d };
 

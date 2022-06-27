@@ -8,8 +8,8 @@ const hbs = require('nodemailer-handlebars');
 //update warehouse details
 exports.warehouseUpdateController = async (req, res) => {
     const id = req.params.id;
-    const { ManagerName, no, street, town } = req.body;
-    db.query("update Warehouse set ManagerName=?, no=?,street=?,town=? where WID=?", [ManagerName, no, street, town, id], (err, result) => {
+    const {no, street, town } = req.body;
+    db.query("update Warehouse set no=?,street=?,town=? where WID=?", [no, street, town, id], (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
@@ -172,10 +172,10 @@ exports.purchaseOrderUpdateController = async (req, res) => {
                                     mailer.use('compile', hbs({
                                         viewEngine: {
                                             extname: '.handlebars',
-                                            layoutsDir: '../Backend/views/',
-                                            defaultLayout: 'purchaseReturnOrder',
+                                            layoutsDir: '../Backend/views/purchaseReturn/',
+                                            defaultLayout: 'templateForPurchaseReturn',
                                         },
-                                        viewPath: '../Backend/views/'
+                                        viewPath: '../Backend/views/purchaseReturn/'
                                     }));
 
                                     db.query("select * from Supplier where SID=?", [SID], (err, res1) => {
@@ -212,7 +212,7 @@ exports.purchaseOrderUpdateController = async (req, res) => {
                                                                         from: 'info@codewithx.com', // TODO: email sender
                                                                         to: toMail, // TODO: email receiver
                                                                         subject: subject,
-                                                                        template: 'purchaseReturnOrder',
+                                                                        template: 'templateForPurchaseReturn',
                                                                         context: {
                                                                             id: purchaseReturnOrderID,
                                                                             date: date,
