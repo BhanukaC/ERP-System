@@ -120,18 +120,18 @@ const AddAttendance = () => {
       <div className="newContainer">
         <Navbar />
         <div className="topContainer">
-          <h1>Give Advance</h1>
+          <h1>Add Attendance</h1>
         </div>
         <div className="bottomContainer">
           <div className="right">
             <form>
               <div className="formInput">
-                <label>Attendnce CSV File</label>
+                <label>Attendance CSV File</label>
                 <input type="file" accept=".csv" onChange={handleFileUpload} />
               </div>
 
               <div className="break"></div>
-              <button onClick={submitForm}>Add Attendace Data</button>
+              <button onClick={submitForm}>Add Attendance Data</button>
             </form>
           </div>
         </div>
