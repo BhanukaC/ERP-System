@@ -34,7 +34,7 @@ const PurchaseReturnOrderDataTable = (props) => {
   }, [""]);
 
   return (
-    <div className="datatable" style={{height:"70%"}}>
+    <div className="datatable" style={{height:"50%"}}>
       <div className="dataTableTitle1">
         <h1>Purchase Return Order Details of (Purchase Return Order ID-{purchaseReturnOrderID})</h1>
       </div>
