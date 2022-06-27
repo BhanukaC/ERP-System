@@ -77,7 +77,7 @@ if(stat){
       );
       if (res.data.length === 0) {
         setProductName("");
-        alert("PID not found");
+        alert("Product is not available in the stock");
         setQty(0);
         setPID(0);
       } else {

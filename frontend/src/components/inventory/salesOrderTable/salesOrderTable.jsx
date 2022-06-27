@@ -35,7 +35,7 @@ const SalesOrderTable = () => {
               status="Pending"
               break;
             case "D":
-              status="Delivered"
+              status="Issued"
               break;
           }
           let date;

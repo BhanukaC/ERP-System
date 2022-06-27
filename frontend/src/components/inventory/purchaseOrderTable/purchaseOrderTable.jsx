@@ -34,7 +34,7 @@ const PurchaseOrderTable = () => {
               status="Pending"
               break;
             case "C":
-              status="Cancelled"
+              status="Returned"
               break;
             case "D":
               status="Delivered"

@@ -56,7 +56,7 @@ const SendTable = (props) => {
         return (
           <div className="cellAction">
             <Link to={reLink2} style={{ textDecoration: "none" }}>
-              <div className="viewButtons">View Shipment</div>
+              <div className="viewButtons">View Shipment Details</div>
             </Link>
           </div>
         );
