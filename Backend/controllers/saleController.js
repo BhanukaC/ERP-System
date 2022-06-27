@@ -368,7 +368,7 @@ exports.getSingleSalesOrderController = async (req, res) => {
 }
 
 exports.getAllSalesOrderController = async (req, res) => {
-    db.query("select SalesOrder.salesOrderID,SalesOrder.orderDate,SalesOrder.status,SalesOrder.WID,SalesOrder.total,SalesOrder.CID,SalesOrder.CDAID,SalesOrder.CCID,SalesOrder.deliveredDate,SalesOrder.deliveryCharge,SalesOrder.netTotal,Customer.customerName,customerContactNumber.contactNumber,Warehouse.town from SalesOrder join Customer on SalesOrder.CID=Customer.CID join customerContactNumber on customerContactNumber.CCID = SalesOrder.CCID join Warehouse on Warehouse.WID=SalesOrder.WID ", (err, result) => {
+    db.query("select SalesOrder.salesOrderID,SalesOrder.orderDate,SalesOrder.status,SalesOrder.WID,SalesOrder.total,SalesOrder.CID,SalesOrder.CDAID,SalesOrder.CCID,SalesOrder.deliveredDate,SalesOrder.deliveryCharge,SalesOrder.netTotal,Customer.customerName,customerContactNumber.contactNumber,Warehouse.town,customerDeliveryAddress.no,customerDeliveryAddress.street,customerDeliveryAddress.town from SalesOrder join Customer on SalesOrder.CID=Customer.CID join customerContactNumber on customerContactNumber.CCID = SalesOrder.CCID join Warehouse on Warehouse.WID=SalesOrder.WID join customerDeliveryAddress on customerDeliveryAddress.CDAID=SalesOrder.CDAID ", (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
@@ -561,7 +561,7 @@ exports.getSingleSalesReturnOrderController = async (req, res) => {
 }
 
 exports.getAllSalesReturnOrderController = async (req, res) => {
-    db.query("select SalesReturnOrder.salesReturnOrderID,SalesReturnOrder.initiateDate,SalesReturnOrder.reason,SalesReturnOrder.status,SalesReturnOrder.WID,SalesReturnOrder.total,SalesReturnOrder.CID,SalesReturnOrder.CDAID,SalesReturnOrder.CCID,SalesReturnOrder.finishDate,SalesReturnOrder.salesOrderID,Customer.customerName,customerContactNumber.contactNumber,Warehouse.town from SalesReturnOrder join Customer on SalesReturnOrder.CID=Customer.CID join customerContactNumber on customerContactNumber.CCID = SalesReturnOrder.CCID join Warehouse on Warehouse.WID=SalesReturnOrder.WID", (err, result) => {
+    db.query("select SalesReturnOrder.salesReturnOrderID,SalesReturnOrder.initiateDate,SalesReturnOrder.reason,SalesReturnOrder.status,SalesReturnOrder.WID,SalesReturnOrder.total,SalesReturnOrder.CID,SalesReturnOrder.CDAID,SalesReturnOrder.CCID,SalesReturnOrder.finishDate,SalesReturnOrder.salesOrderID,Customer.customerName,customerContactNumber.contactNumber,Warehouse.town,customerDeliveryAddress.no,customerDeliveryAddress.street,customerDeliveryAddress.town from SalesReturnOrder join Customer on SalesReturnOrder.CID=Customer.CID join customerContactNumber on customerContactNumber.CCID = SalesReturnOrder.CCID join Warehouse on Warehouse.WID=SalesReturnOrder.WID join customerDeliveryAddress on customerDeliveryAddress.CDAID=SalesReturnOrder.CDAID order by SalesReturnOrder.salesReturnOrderID asc", (err, result) => {
         if (err) {
             res.json({ error: err });
         } else {
