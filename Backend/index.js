@@ -10,7 +10,11 @@ const result = dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors());
+app.use(cors({
+    origin: ["https://erp-system-c9365.web.app", "http://localhost:3000"],
+    method: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true,
+}));
 
 const purchaseRouter = require("./routes/purchase");
 const adminRouter = require('./routes/admin');
