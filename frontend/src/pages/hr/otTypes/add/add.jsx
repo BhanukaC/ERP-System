@@ -19,7 +19,7 @@ const AddOtType = () => {
       };
 
       axios
-        .post("http://localhost:5000/hr/otType/add", data, {
+        .post("https://erp-system-nexeyo.herokuapp.com/hr/otType/add", data, {
           withCredentials: true,
           credentials: "include",
         })

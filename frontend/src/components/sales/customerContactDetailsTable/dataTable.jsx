@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "CCID", headerName: "CCID", width: 100 }, 
+  { field: "CCID", headerName: "CCID", width: 100 },
   { field: "CID", headerName: "CID", width: 100 },
-  { field: "contactNumber", headerName: "contactNumber" , width: 150},
+  { field: "contactNumber", headerName: "contactNumber", width: 150 },
 ];
 
 const Datatable = (props) => {
@@ -20,10 +20,14 @@ const Datatable = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/sales/Customer/contactNumber/getAll/" + CID, {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/sales/Customer/contactNumber/getAll/" +
+          CID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {
@@ -55,7 +59,7 @@ const Datatable = (props) => {
     },
   ];
   return (
-    <div className="datatable" style={{height:"78%"}}>
+    <div className="datatable" style={{ height: "78%" }}>
       <div className="dataTableTitle1">
         <h1>All Contact Numbers For Customer(CID-{CID})</h1>
       </div>

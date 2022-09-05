@@ -1,5 +1,5 @@
 import "././add.scss";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../../../../components/navbar/Navbar";
 import Sidebar from "../../../../components/sales/sales-sidebar/sales-sidebar";
 import axios from "axios";
@@ -15,53 +15,48 @@ const AddSalesReturnOrderPage2 = () => {
   const [CCID, setCCID] = useState("");
   const [reason, setReason] = useState("");
   const [salesOrderID, setSalesOrderID] = useState("");
-  const [salesOrderData,setSalesOrderData]=useState([]);
+  const [salesOrderData, setSalesOrderData] = useState([]);
 
-  const submitForm = async(e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
 
-  
     setQty(parseInt(qty));
     if (qty > 0) {
       if (list.length !== 0) {
         let status = false;
         for (let i = 0; i < list.length; i++) {
           if (list[i].PID === PID) {
-            if(checkProduct2(PID, parseInt(list[i].qty) + parseInt(qty))){
+            if (checkProduct2(PID, parseInt(list[i].qty) + parseInt(qty))) {
               list[i].qty = parseInt(list[i].qty) + parseInt(qty);
               setProductName("");
-      setQty(0);
-      setPID(0);
-      alert("Product added to cart");
+              setQty(0);
+              setPID(0);
+              alert("Product added to cart");
             }
             status = true;
           }
         }
         if (!status) {
-          if(checkProduct2(PID,parseInt(qty))){
+          if (checkProduct2(PID, parseInt(qty))) {
             setList([
               ...list,
               { PID: PID, name: productName, qty: parseInt(qty) },
             ]);
             setProductName("");
-      setQty(0);
-      setPID(0);
-      alert("Product added to cart");
+            setQty(0);
+            setPID(0);
+            alert("Product added to cart");
           }
-         
         }
       } else {
-        if(checkProduct2(PID,parseInt(qty))){
+        if (checkProduct2(PID, parseInt(qty))) {
           setList([{ PID: PID, name: productName, qty: parseInt(qty) }]);
           setProductName("");
-      setQty(0);
-      setPID(0);
-      alert("Product added to cart");
+          setQty(0);
+          setPID(0);
+          alert("Product added to cart");
         }
-       
       }
-
-      
     } else {
       alert("Enter valid quantity");
     }
@@ -70,7 +65,8 @@ const AddSalesReturnOrderPage2 = () => {
   const checkProduct = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/sales/product/getSingle/" + val,
+        "https://erp-system-nexeyo.herokuapp.com/sales/product/getSingle/" +
+          val,
         {
           withCredentials: true,
           credentials: "include",
@@ -84,97 +80,108 @@ const AddSalesReturnOrderPage2 = () => {
     }
   };
 
-  const checkProduct2=(p,q)=>{
-    let status=null;
-    
-      let li=salesOrderData;
-      for(let i=0;i<li.length;i++){
-        if(li[i].PID==p){
-          if(li[i].qty>=q){
-            status=true;
-            break;
-          }else{
-            alert("Amount exceeded");
-           status=false;
-            break;
-          }
+  const checkProduct2 = (p, q) => {
+    let status = null;
+
+    let li = salesOrderData;
+    for (let i = 0; i < li.length; i++) {
+      if (li[i].PID == p) {
+        if (li[i].qty >= q) {
+          status = true;
+          break;
+        } else {
+          alert("Amount exceeded");
+          status = false;
+          break;
         }
       }
-      if(status===null){
-        alert("Product not found in sales order");
-        status=false;
-      }
-      return status;
-    
-  }
-
+    }
+    if (status === null) {
+      alert("Product not found in sales order");
+      status = false;
+    }
+    return status;
+  };
 
   const addSalesReturnOrder = () => {
     if (list.length !== 0) {
-     let li=[];
-     for(let i=0;i<list.length;i++){
-      li.push({PID:list[i].PID,qty:list[i].qty});
-     }
-     axios
-     .post("http://localhost:5000/sales/salesReturnOrder/add",
-     {
-      CID:CID,
-      CDAID:CDAID,
-      CCID:CCID,
-      WID:WID,
-      reason:reason,
-      salesOrderID:salesOrderID,
-      items:li,
-     },
-     {
-      withCredentials:true,
-      credentials:"include"
-     }
-     )
-     .then((res)=>{
-        console.log(res);
-      if(res.data==="sales return order added"){
-        alert("Sales Return Order Added");
-        localStorage.setItem("CID","");
-        localStorage.setItem("CDAID","");
-        localStorage.setItem("CCID","");
-        localStorage.setItem("WID","");
-        localStorage.setItem("reason","");
-        localStorage.setItem("salesOrderID","");
-        window.location = "/sales/salesReturnOrder/add";
-      }else{
-        alert("Try Again");
-      } 
-     });
+      let li = [];
+      for (let i = 0; i < list.length; i++) {
+        li.push({ PID: list[i].PID, qty: list[i].qty });
+      }
+      axios
+        .post(
+          "https://erp-system-nexeyo.herokuapp.com/sales/salesReturnOrder/add",
+          {
+            CID: CID,
+            CDAID: CDAID,
+            CCID: CCID,
+            WID: WID,
+            reason: reason,
+            salesOrderID: salesOrderID,
+            items: li,
+          },
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          if (res.data === "sales return order added") {
+            alert("Sales Return Order Added");
+            localStorage.setItem("CID", "");
+            localStorage.setItem("CDAID", "");
+            localStorage.setItem("CCID", "");
+            localStorage.setItem("WID", "");
+            localStorage.setItem("reason", "");
+            localStorage.setItem("salesOrderID", "");
+            window.location = "/sales/salesReturnOrder/add";
+          } else {
+            alert("Try Again");
+          }
+        });
     }
   };
-  
-  useEffect(()=>{
-    let cid=localStorage.getItem("CID");
-    let cdaid=localStorage.getItem("CDAID");
-    let ccid=localStorage.getItem("CCID");
-    let wid=localStorage.getItem("WID");
-    let reason=localStorage.getItem("reason");
-    let salesOrderID=localStorage.getItem("salesOrderID");
-    
-   if(cid ===null || cdaid===null || ccid===null || wid===null || reason===null || salesOrderID===null){
-    window.location = "/sales/salesReturnOrder/add";
-   }
-   setCID(cid);
-   setCDAID(cdaid);
-   setCCID(ccid);
-   setWID(wid);
-   setReason(reason);
-   setSalesOrderID(salesOrderID);
 
-   axios.get("http://localhost:5000/sales/salesOrderData/get/"+salesOrderID,{
-      withCredentials: true,
-      credentials: "include",
-    }).then((res)=>{
-      setSalesOrderData(res.data);
-    });
+  useEffect(() => {
+    let cid = localStorage.getItem("CID");
+    let cdaid = localStorage.getItem("CDAID");
+    let ccid = localStorage.getItem("CCID");
+    let wid = localStorage.getItem("WID");
+    let reason = localStorage.getItem("reason");
+    let salesOrderID = localStorage.getItem("salesOrderID");
 
-  },[""])
+    if (
+      cid === null ||
+      cdaid === null ||
+      ccid === null ||
+      wid === null ||
+      reason === null ||
+      salesOrderID === null
+    ) {
+      window.location = "/sales/salesReturnOrder/add";
+    }
+    setCID(cid);
+    setCDAID(cdaid);
+    setCCID(ccid);
+    setWID(wid);
+    setReason(reason);
+    setSalesOrderID(salesOrderID);
+
+    axios
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/sales/salesOrderData/get/" +
+          salesOrderID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
+      .then((res) => {
+        setSalesOrderData(res.data);
+      });
+  }, [""]);
 
   return (
     <div className="new">
@@ -201,8 +208,7 @@ const AddSalesReturnOrderPage2 = () => {
               </div>
               <div className="formInput">
                 <label>Product Name</label>
-                <input type="text" 
-                value={productName} disabled />
+                <input type="text" value={productName} disabled />
               </div>
               <div className="formInput">
                 <label>Quantity</label>

@@ -1,38 +1,37 @@
-import "./shipment.scss"; 
+import "./shipment.scss";
 import Navbar from "../../../components/navbar/Navbar";
 import InventorySidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
 import ReceiveTable from "../../../components/inventory/internalShipment/receiveTable";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-
 
 const ReceiveDetails = () => {
   const [WID, setWID] = useState("");
   const [warehouse, setWarehouse] = useState([]);
-  const [town, setTown] =  useState("");
+  const [town, setTown] = useState("");
 
-
-  const getWarehouseName=(val)=>{
-    for(let i=0;i<warehouse.length;i++){
+  const getWarehouseName = (val) => {
+    for (let i = 0; i < warehouse.length; i++) {
       console.log(warehouse[i].WID);
-      if(warehouse[i].WID==val){
+      if (warehouse[i].WID == val) {
         setTown(warehouse[i].town);
         break;
       }
     }
-  }
-
+  };
 
   useEffect(() => {
     const getWarehouse = async () => {
-      const res = await axios.get("http://localhost:5000/inventory/Warehouse/getAll", {
-        withCredentials: true,
-        credentials: "include",
-      });
+      const res = await axios.get(
+        "https://erp-system-nexeyo.herokuapp.com/inventory/Warehouse/getAll",
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
       setWarehouse(res.data);
     };
     getWarehouse();
-
   }, [""]);
 
   return (
@@ -44,11 +43,13 @@ const ReceiveDetails = () => {
           <h1>Shipments To be Received to {WID} </h1>
         </div> */}
         <div className="topPart">
-        <div className="rightPart">
-        <h1>Shipments To be Received to {town} / WID-{WID} </h1>
-        <br></br>
+          <div className="rightPart">
+            <h1>
+              Shipments To be Received to {town} / WID-{WID}{" "}
+            </h1>
+            <br></br>
             <form>
-            <div className="inputField">
+              <div className="inputField">
                 <label>To</label>
                 <select
                   value={WID}
@@ -74,10 +75,9 @@ const ReceiveDetails = () => {
             </form>
           </div>
         </div>
-         <div className="bottomPart">
+        <div className="bottomPart">
           <ReceiveTable WID={WID} />
-         </div> 
-        
+        </div>
       </div>
     </div>
   );

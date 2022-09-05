@@ -4,14 +4,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "ID", headerName: "ID",  width: 150},
-  { field: "WID", headerName: "Warehouse ID",  width: 150},
-  { field: "town", headerName: "Branch",  width: 200},
+  { field: "ID", headerName: "ID", width: 150 },
+  { field: "WID", headerName: "Warehouse ID", width: 150 },
+  { field: "town", headerName: "Branch", width: 200 },
   { field: "PID", headerName: "Product ID", width: 150 },
   { field: "PName", headerName: "Product Name", width: 200 },
   { field: "qualityLevel", headerName: "Quality Level", width: 200 },
   { field: "qty", headerName: "Quantity", width: 200 },
- 
 ];
 
 const AllStockTable = (props) => {
@@ -20,10 +19,13 @@ const AllStockTable = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/inventory/stockLevel/getAll/", {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/inventory/stockLevel/getAll/",
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
         let dt = res.data.map((d) => {
           return { id: d.ID, ...d };
@@ -33,9 +35,8 @@ const AllStockTable = (props) => {
       });
   }, [""]);
 
- 
   return (
-    <div className="datatable" style={{height:"78%"}}>
+    <div className="datatable" style={{ height: "78%" }}>
       <div className="dataTableTitle1">
         <h1>Stock Details</h1>
       </div>
@@ -53,7 +54,7 @@ const AllStockTable = (props) => {
           },
         }}
       />
-      </div>
+    </div>
   );
 };
 

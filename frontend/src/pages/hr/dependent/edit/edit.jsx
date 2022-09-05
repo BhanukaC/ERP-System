@@ -17,10 +17,13 @@ const EditDependent = () => {
   const { DID } = useParams();
   useEffect(() => {
     axios
-      .get("http://localhost:5000/hr/dependent/getSingle/" + DID, {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/hr/dependent/getSingle/" + DID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
         setDob(
           moment(res.data[0].DOB).add(1, "days").utc().format("YYYY-MM-DD")
@@ -58,10 +61,15 @@ const EditDependent = () => {
         };
 
         axios
-          .put("http://localhost:5000/hr/dependent/update/" + DID, data, {
-            withCredentials: true,
-            credentials: "include",
-          })
+          .put(
+            "https://erp-system-nexeyo.herokuapp.com/hr/dependent/update/" +
+              DID,
+            data,
+            {
+              withCredentials: true,
+              credentials: "include",
+            }
+          )
           .then((res) => {
             if (res.data === "Dependent details Updated") {
               alert("Dependent details Updated");

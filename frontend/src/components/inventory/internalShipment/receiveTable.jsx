@@ -6,55 +6,64 @@ import axios from "axios";
 import moment from "moment";
 
 const userColumns = [
-  { field: "internalShipmentID", headerName: "Internal Shipment ID",  width: 150},
+  {
+    field: "internalShipmentID",
+    headerName: "Internal Shipment ID",
+    width: 150,
+  },
   { field: "dates", headerName: "Order Date", width: 150 },
   { field: "FromWID", headerName: "From Warehouse ID", width: 150 },
   { field: "town", headerName: "From Branch", width: 150 },
   //{ field: "TOWID", headerName: "To", width: 100},
   { field: "statusMod", headerName: "Status", width: 150 },
-  { field: "finishDates", headerName: "Finish Date", width: 150},
- 
+  { field: "finishDates", headerName: "Finish Date", width: 150 },
 ];
 
 const ReceiveTable = (props) => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    let ToWID=props.WID
-    if(ToWID!==""){
+    let ToWID = props.WID;
+    if (ToWID !== "") {
       axios
-      .get("http://localhost:5000/inventory/internalShipment/getAllToReceive/"+ ToWID,{
-        withCredentials: true,
-        credentials: "include",
-      })
-      .then((res) => {
-        // console.log(res);
-        let dt = res.data.map((d) => {
-          let status;
-          switch (d.status) {
-            case "P":
-              status="Pending"
-              break;
-            case "D":
-              status="Delivered"
-              break;
+        .get(
+          "https://erp-system-nexeyo.herokuapp.com/inventory/internalShipment/getAllToReceive/" +
+            ToWID,
+          {
+            withCredentials: true,
+            credentials: "include",
           }
-          let ReceiveDate;
-          if(d.finishDate===null){
-            ReceiveDate=d.finishDate
-          }else{
-            ReceiveDate=moment(d.finishDate).utc().format("YYYY/MM/DD");
-          }
-          return { id: d.internalShipmentID,statusMod:status,
-            dates: moment(d.date).utc().format("YYYY/MM/DD"),
-            finishDates: ReceiveDate,
-            ...d };
+        )
+        .then((res) => {
+          // console.log(res);
+          let dt = res.data.map((d) => {
+            let status;
+            switch (d.status) {
+              case "P":
+                status = "Pending";
+                break;
+              case "D":
+                status = "Delivered";
+                break;
+            }
+            let ReceiveDate;
+            if (d.finishDate === null) {
+              ReceiveDate = d.finishDate;
+            } else {
+              ReceiveDate = moment(d.finishDate).utc().format("YYYY/MM/DD");
+            }
+            return {
+              id: d.internalShipmentID,
+              statusMod: status,
+              dates: moment(d.date).utc().format("YYYY/MM/DD"),
+              finishDates: ReceiveDate,
+              ...d,
+            };
+          });
+          setData(dt);
+          // console.log(dt);
         });
-        setData(dt);
-        // console.log(dt);
-      });
     }
-  
   }, [props.WID]);
 
   const actionColumn = [
@@ -62,7 +71,9 @@ const ReceiveTable = (props) => {
       headerName: "Action",
       width: 300,
       renderCell: (params) => {
-        const reLink2= "/inventory/internalShipments/ReceivedShipmentData/"+params.row.internalShipmentID;
+        const reLink2 =
+          "/inventory/internalShipments/ReceivedShipmentData/" +
+          params.row.internalShipmentID;
         return (
           <div className="cellAction">
             <Link to={reLink2} style={{ textDecoration: "none" }}>

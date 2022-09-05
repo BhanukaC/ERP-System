@@ -16,7 +16,7 @@ const EditUserDetails = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admin/getUserData/" + UID, {
+      .get("https://erp-system-nexeyo.herokuapp.com/admin/getUserData/" + UID, {
         withCredentials: true,
         credentials: "include",
       })
@@ -37,14 +37,18 @@ const EditUserDetails = () => {
         userName: userName,
         acessLevel: acessLevel,
         email: email,
-        town: town
+        town: town,
       };
 
       axios
-        .put("http://localhost:5000/admin/update/" + UID, data, {
-          withCredentials: true,
-          credentials: "include",
-        })
+        .put(
+          "https://erp-system-nexeyo.herokuapp.com/admin/update/" + UID,
+          data,
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
         .then((res) => {
           console.log(res.data);
           if (res.data === "User updated") {
@@ -67,9 +71,10 @@ const EditUserDetails = () => {
         <div className="bottomContainer">
           <div className="right">
             <form>
-            <div className="formInput">
+              <div className="formInput">
                 <label>User Name</label>
-                <input disabled
+                <input
+                  disabled
                   type="text"
                   value={userName}
                   onChange={(e) => {

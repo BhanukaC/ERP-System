@@ -22,7 +22,7 @@ const Datatable = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admin/Warehouse/getAll", {
+      .get("https://erp-system-nexeyo.herokuapp.com/admin/Warehouse/getAll", {
         withCredentials: true,
         credentials: "include",
       })
@@ -42,11 +42,13 @@ const Datatable = () => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
-        const link="/admin/editwarehouse/"+params.row.WID;
+        const link = "/admin/editwarehouse/" + params.row.WID;
         return (
           <div className="cellAction">
             <button>
-              <Link className="btn" to={link} >Edit Warehouse</Link>
+              <Link className="btn" to={link}>
+                Edit Warehouse
+              </Link>
             </button>
           </div>
         );
@@ -54,10 +56,10 @@ const Datatable = () => {
     },
   ];
   return (
-    <div className="datatable" style={{height:"78%"}}>
-    <div className="dataTableTitle1">
-       <h1> Warehouses</h1>
-        </div>
+    <div className="datatable" style={{ height: "78%" }}>
+      <div className="dataTableTitle1">
+        <h1> Warehouses</h1>
+      </div>
       <DataGrid
         className="datagrid"
         rows={data}

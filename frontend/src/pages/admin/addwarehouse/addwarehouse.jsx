@@ -14,19 +14,24 @@ const AddWarehouse = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (managerName === "" || no === "" || street === "" || town === "" || uid === "") {
+    if (
+      managerName === "" ||
+      no === "" ||
+      street === "" ||
+      town === "" ||
+      uid === ""
+    ) {
       alert("Please fill in all the required fields");
-    }
-    else {
+    } else {
       axios
         .post(
-          "http://localhost:5000/admin/Warehouse/add",
+          "https://erp-system-nexeyo.herokuapp.com/admin/Warehouse/add",
           {
             ManagerName: managerName,
             no: no,
             street: street,
             town: town,
-            UID: uid
+            UID: uid,
           },
           {
             withCredentials: true,
@@ -42,13 +47,12 @@ const AddWarehouse = () => {
           }
         });
     }
-    
   };
 
   const checkUser = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/admin/getUserData/"+ val,
+        "https://erp-system-nexeyo.herokuapp.com/admin/getUserData/" + val,
         {
           withCredentials: true,
           credentials: "include",
@@ -60,7 +64,7 @@ const AddWarehouse = () => {
       } else {
         setUIDStatus(true);
         setManagerName(res.data[0].userName);
-        console.log(res)
+        console.log(res);
       }
     }
   };
@@ -76,7 +80,7 @@ const AddWarehouse = () => {
         <div className="bottomContainer">
           <div className="right">
             <form>
-            <div className="formInput">
+              <div className="formInput">
                 <label>UID</label>
                 <input
                   type="text"

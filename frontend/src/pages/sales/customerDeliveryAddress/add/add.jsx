@@ -9,16 +9,10 @@ const AddCustomerDeliveryAddress = () => {
   const [no, setNo] = useState("");
   const [street, setStreet] = useState("");
   const [town, setTown] = useState("");
-  
+
   const submitForm = (e) => {
     e.preventDefault();
-    if (
-      CID === "" ||
-      no === "" ||
-      street === "" ||
-      town === "" 
-      
-    ) {
+    if (CID === "" || no === "" || street === "" || town === "") {
       alert("Please fill all required fields");
     } else {
       let data = {
@@ -26,14 +20,17 @@ const AddCustomerDeliveryAddress = () => {
         no: no,
         street: street,
         town: town,
-        
       };
 
       axios
-        .post("http://localhost:5000/sales/Customer/deliveryAddress/add", data, {
-          withCredentials: true,
-          credentials: "include",
-        })
+        .post(
+          "https://erp-system-nexeyo.herokuapp.com/sales/Customer/deliveryAddress/add",
+          data,
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
         .then((res) => {
           if (res.data === "Customer Delivery Address Added") {
             alert("Customer Delivery Address Added");
@@ -41,8 +38,6 @@ const AddCustomerDeliveryAddress = () => {
             setNo("");
             setStreet("");
             setTown("");
-            
-            
           } else {
             alert("Sorry,Try again");
           }
@@ -53,7 +48,8 @@ const AddCustomerDeliveryAddress = () => {
   const checkCustomer = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/sales/Customer/getSingle/" + val,
+        "https://erp-system-nexeyo.herokuapp.com/sales/Customer/getSingle/" +
+          val,
         {
           withCredentials: true,
           credentials: "include",
@@ -61,7 +57,7 @@ const AddCustomerDeliveryAddress = () => {
       );
       if (res.data.length === 0) {
         alert("CID not found");
-      } 
+      }
     }
   };
 
@@ -92,7 +88,6 @@ const AddCustomerDeliveryAddress = () => {
                 <label>No</label>
                 <input
                   type="text"
-                  
                   value={no}
                   onChange={(e) => {
                     setNo(e.target.value);
@@ -121,7 +116,6 @@ const AddCustomerDeliveryAddress = () => {
                 />
               </div>
 
-              
               <div className="break"></div>
               <button onClick={submitForm}>Add </button>
             </form>

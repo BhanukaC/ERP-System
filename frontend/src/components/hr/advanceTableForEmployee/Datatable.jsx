@@ -18,10 +18,14 @@ const Datatable = (params) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/hr/advance/getAllForEmployee/" + EID, {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/hr/advance/getAllForEmployee/" +
+          EID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {

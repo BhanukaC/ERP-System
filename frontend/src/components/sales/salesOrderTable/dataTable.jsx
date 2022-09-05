@@ -6,7 +6,9 @@ import axios from "axios";
 import moment from "moment";
 
 function getFullAddress(params) {
-  return `${params.row.no || ""} ${params.row.street || "" } ${ params.row.town || "" }`;
+  return `${params.row.no || ""} ${params.row.street || ""} ${
+    params.row.town || ""
+  }`;
 }
 
 const userColumns = [
@@ -15,12 +17,16 @@ const userColumns = [
   { field: "customerName", headerName: "Customer Name", width: 120 },
   { field: "orderDates", headerName: "Order Date", width: 120 },
   { field: "town", headerName: "Warehouse name", width: 120 },
-  { field: "CDAID", headerName: "Delivery Address", valueGetter: getFullAddress, width: 180 },
+  {
+    field: "CDAID",
+    headerName: "Delivery Address",
+    valueGetter: getFullAddress,
+    width: 180,
+  },
   { field: "contactNumber", headerName: "Contact Number", width: 150 },
   { field: "status", headerName: "Order Status", width: 120 },
   { field: "deliveredDates", headerName: "Deliver Date", width: 120 },
-  { field: "deliveryCharge", headerName: "Delivery Charge", width: 120  },
- 
+  { field: "deliveryCharge", headerName: "Delivery Charge", width: 120 },
 ];
 
 const DataTable1 = () => {
@@ -28,46 +34,51 @@ const DataTable1 = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/sales/salesOrder/getAll/", {
+      .get("https://erp-system-nexeyo.herokuapp.com/sales/salesOrder/getAll/", {
         withCredentials: true,
         credentials: "include",
       })
       .then((res) => {
-       
         let dt = res.data.map((d) => {
-          return { id: d.salesOrderID, 
-            orderDates: moment(d.orderDate).add(1, "days").utc().format("YYYY/MM/DD"),
-            deliveredDates: moment(d.deliveredDate).add(1, "days").utc().format("YYYY/MM/DD"),
-            ...d };
+          return {
+            id: d.salesOrderID,
+            orderDates: moment(d.orderDate)
+              .add(1, "days")
+              .utc()
+              .format("YYYY/MM/DD"),
+            deliveredDates: moment(d.deliveredDate)
+              .add(1, "days")
+              .utc()
+              .format("YYYY/MM/DD"),
+            ...d,
+          };
         });
         setData(dt);
-        
       });
   }, [""]);
 
   const actionColumn = [
     {
-        field: "action",
-        headerName: "Action",
-        width: 200,
-        renderCell: (params) => {
-          const upLink = "/sales/salesOrder/viewAll2/"+params.row.salesOrderID;
-          return (
-            <div className="cellAction">
-              <Link to= {upLink} style= {{textDecoration : "none"}}>
-                <div className="viewButton1">View Order Details</div>
-                </Link>
-              
-            </div>
-          );
-        },
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      renderCell: (params) => {
+        const upLink = "/sales/salesOrder/viewAll2/" + params.row.salesOrderID;
+        return (
+          <div className="cellAction">
+            <Link to={upLink} style={{ textDecoration: "none" }}>
+              <div className="viewButton1">View Order Details</div>
+            </Link>
+          </div>
+        );
       },
+    },
   ];
 
   return (
-    <div className="datatable" style={{height:"78%"}}>
+    <div className="datatable" style={{ height: "78%" }}>
       <div className="dataTableTitle1">
-       <h1>Sales Order</h1>
+        <h1>Sales Order</h1>
       </div>
       <DataGrid
         className="datagrid"

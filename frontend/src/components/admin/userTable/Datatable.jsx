@@ -12,9 +12,8 @@ const userColumns = [
 ];
 
 const Datatable = () => {
-
   const [data, setData] = useState({});
-  const[UID, setUID] =useState("");
+  const [UID, setUID] = useState("");
 
   const handleDelete = (CID) => {
     setData(data.filter((item) => item.id !== CID));
@@ -22,7 +21,7 @@ const Datatable = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admin/getAllUserData", {
+      .get("https://erp-system-nexeyo.herokuapp.com/admin/getAllUserData", {
         withCredentials: true,
         credentials: "include",
       })
@@ -38,26 +37,24 @@ const Datatable = () => {
   }, [""]);
 
   const reset = (val) => {
-    
-    
-      axios
-        .put(
-          "http://localhost:5000/admin/passwordReset/"+val,{},
-         
-          {
-            withCredentials: true,
-            credentials: "include",
-          }
-        )
-        .then((res) => {
-          console.log(res);
-          if (res.data === "Password Resseted") {
-            alert("Password was reset");
-          } else {
-            alert("Error");
-          }
-        });
-    
+    axios
+      .put(
+        "https://erp-system-nexeyo.herokuapp.com/admin/passwordReset/" + val,
+        {},
+
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.data === "Password Resseted") {
+          alert("Password was reset");
+        } else {
+          alert("Error");
+        }
+      });
   };
 
   const actionColumn = [
@@ -66,18 +63,24 @@ const Datatable = () => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
-        const link="/admin/edituser/"+params.row.id;
+        const link = "/admin/edituser/" + params.row.id;
         return (
           <div className="cellAction">
             <div>
               <button>
-                <Link className="btn" to={link} >Edit User</Link>
+                <Link className="btn" to={link}>
+                  Edit User
+                </Link>
               </button>
             </div>
             <div>
-              <button onClick={()=>{
-                reset(params.row.id);
-              }}>Reset Password</button>
+              <button
+                onClick={() => {
+                  reset(params.row.id);
+                }}
+              >
+                Reset Password
+              </button>
             </div>
           </div>
         );
@@ -85,9 +88,9 @@ const Datatable = () => {
     },
   ];
   return (
-    <div className="datatable" style={{height:"78%"}}>
-    <div className="dataTableTitle1">
-       <h1> Users</h1>
+    <div className="datatable" style={{ height: "78%" }}>
+      <div className="dataTableTitle1">
+        <h1> Users</h1>
       </div>
       <DataGrid
         className="datagrid"

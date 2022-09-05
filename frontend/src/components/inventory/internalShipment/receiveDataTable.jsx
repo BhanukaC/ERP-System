@@ -9,7 +9,6 @@ const userColumns = [
   { field: "PID", headerName: "Product ID", width: 200 },
   { field: "PName", headerName: "Product Name", width: 200 },
   { field: "qty", headerName: "Quantity", width: 100 },
-  
 ];
 
 const ShipmentDataTable = (props) => {
@@ -18,10 +17,14 @@ const ShipmentDataTable = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/inventory/internalShipmentData/get/"+ internalShipmentID,{
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/inventory/internalShipmentData/get/" +
+          internalShipmentID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {
@@ -33,9 +36,12 @@ const ShipmentDataTable = (props) => {
   }, [""]);
 
   return (
-    <div className="datatable" style={{height:"50%"}}>
+    <div className="datatable" style={{ height: "50%" }}>
       <div className="dataTableTitle1">
-        <h1>Internal Shipment Details of (Internal Shipment ID-{internalShipmentID})</h1>
+        <h1>
+          Internal Shipment Details of (Internal Shipment ID-
+          {internalShipmentID})
+        </h1>
       </div>
       <DataGrid
         className="datagrid"

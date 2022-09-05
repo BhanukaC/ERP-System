@@ -8,16 +8,15 @@ const userColumns = [
   { field: "CID", headerName: "CID", width: 50 },
   { field: "customerName", headerName: "Customer Name", width: 120 },
   { field: "paymentTerm", headerName: "Payment Term", width: 120 },
-  { field: "returnTerm", headerName: "Return Term" ,width:120},
-  { field: "deliveryTerm", headerName: "Delivery Term" , width: 120 },
-  { field: "no", headerName: "No" , width: 50},
+  { field: "returnTerm", headerName: "Return Term", width: 120 },
+  { field: "deliveryTerm", headerName: "Delivery Term", width: 120 },
+  { field: "no", headerName: "No", width: 50 },
   { field: "street", headerName: "Street", width: 100 },
   { field: "town", headerName: "Town", width: 80 },
   { field: "branchCode", headerName: "Branch Code" },
   { field: "accountNo", headerName: "Account No" },
   { field: "bankName", headerName: "Bank Name" },
-  { field: "email", headerName: "Email" , width:150},
-  
+  { field: "email", headerName: "Email", width: 150 },
 ];
 
 const Datatable = () => {
@@ -29,7 +28,7 @@ const Datatable = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/sales/Customer/getAll", {
+      .get("https://erp-system-nexeyo.herokuapp.com/sales/Customer/getAll", {
         withCredentials: true,
         credentials: "include",
       })
@@ -50,11 +49,13 @@ const Datatable = () => {
       width: 600,
       renderCell: (params) => {
         const reLink = "/sales/customer/edit/" + params.row.CID;
-        const reLink2 = "/sales/customerContactNumber/viewAll/" + params.row.CID;
-        const reLink3 = "/sales/customerDeliveryAddress/viewAll/" + params.row.CID;
+        const reLink2 =
+          "/sales/customerContactNumber/viewAll/" + params.row.CID;
+        const reLink3 =
+          "/sales/customerDeliveryAddress/viewAll/" + params.row.CID;
         return (
           <div className="cellAction">
-             <Link to={reLink} style={{ textDecoration: "none" }}>
+            <Link to={reLink} style={{ textDecoration: "none" }}>
               <div className="viewButton1">Edit</div>
             </Link>
             <Link to={reLink2} style={{ textDecoration: "none" }}>
@@ -69,11 +70,10 @@ const Datatable = () => {
     },
   ];
 
-  
   return (
-    <div className="datatable" style={{height:"78%"}}>
+    <div className="datatable" style={{ height: "78%" }}>
       <div className="dataTableTitle1">
-       <h1>Customer Details</h1> 
+        <h1>Customer Details</h1>
       </div>
       <DataGrid
         className="datagrid"
@@ -91,7 +91,6 @@ const Datatable = () => {
       />
     </div>
   );
-  
 };
 
 export default Datatable;

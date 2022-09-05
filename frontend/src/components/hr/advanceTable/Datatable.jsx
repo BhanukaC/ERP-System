@@ -21,7 +21,7 @@ const Datatable = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/hr/advance/getAll", {
+      .get("https://erp-system-nexeyo.herokuapp.com/hr/advance/getAll", {
         withCredentials: true,
         credentials: "include",
       })

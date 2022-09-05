@@ -6,19 +6,22 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const EditCustomerContactNumber = () => {
-    const [CID, setCID] = useState("");
-    const [contactNumber, setContactNumber] = useState("");
-    
+  const [CID, setCID] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
 
   const { CCID } = useParams();
   console.log(CCID);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/sales/Customer/contactNumber/getSingle/" + CCID, {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/sales/Customer/contactNumber/getSingle/" +
+          CCID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
         setCID(res.data[0].CID);
         setContactNumber(res.data[0].contactNumber);
@@ -27,25 +30,25 @@ const EditCustomerContactNumber = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (
-        contactNumber === "" ||
-        CID === ""
-     ) 
-     {
+    if (contactNumber === "" || CID === "") {
       alert("Please fill all required fields");
     } else {
       let data = {
-        contactNumber:contactNumber,
-        CID:CID,
-            
+        contactNumber: contactNumber,
+        CID: CID,
       };
       axios
-      .put("http://localhost:5000/sales/Customer/contactNumber/update/" + CID, data, {
-        withCredentials: true,
-        credentials: "include",
-      })
-      
-      .then((res) => {
+        .put(
+          "https://erp-system-nexeyo.herokuapp.com/sales/Customer/contactNumber/update/" +
+            CID,
+          data,
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
+
+        .then((res) => {
           if (res.data === "Customer Contact Number updated") {
             alert("Customer Contact Number updated");
           } else {
@@ -54,7 +57,6 @@ const EditCustomerContactNumber = () => {
         });
     }
   };
-
 
   return (
     <div className="new">
@@ -87,7 +89,6 @@ const EditCustomerContactNumber = () => {
                   }}
                 />
               </div>
-              
 
               <div className="break"></div>
               <button onClick={submitForm}>Update</button>

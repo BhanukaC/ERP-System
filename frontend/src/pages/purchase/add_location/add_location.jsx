@@ -1,5 +1,5 @@
 import "./add_location.scss";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
@@ -11,20 +11,15 @@ const AddStoreLocation = () => {
   const [street, setstreet] = useState("");
   const [town, settown] = useState("");
   const [country, setcountry] = useState("");
-  
-  
-  
-  
 
   const submitForm = (e) => {
     e.preventDefault();
     if (
       SID === "" ||
       no === "" ||
-      street===""||
-      town ===""||
-      country === "" 
-      
+      street === "" ||
+      town === "" ||
+      country === ""
     ) {
       alert("Please fill all required fields");
     } else {
@@ -34,14 +29,17 @@ const AddStoreLocation = () => {
         street: street,
         town: town,
         country: country,
-        
       };
 
       axios
-        .post("http://localhost:5000/purchase/supplier/storeLocation/add", data, {
-          withCredentials: true,
-          credentials: "include",
-        })
+        .post(
+          "https://erp-system-nexeyo.herokuapp.com/purchase/supplier/storeLocation/add",
+          data,
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
         .then((res) => {
           if (res.data === "supplier Store Location Added") {
             alert("supplier Store Location Added");
@@ -50,7 +48,6 @@ const AddStoreLocation = () => {
             setstreet("");
             settown("");
             setcountry("");
-            
           } else {
             alert("Sorry,Try again");
           }
@@ -61,7 +58,8 @@ const AddStoreLocation = () => {
   const checkSupplier = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/purchase/supplier/getSingle/" + val,
+        "https://erp-system-nexeyo.herokuapp.com/purchase/supplier/getSingle/" +
+          val,
         {
           withCredentials: true,
           credentials: "include",
@@ -69,10 +67,9 @@ const AddStoreLocation = () => {
       );
       if (res.data.length === 0) {
         alert("SID not found");
-      }
-      else{
+      } else {
         SetSname(res.data[0].sName);
-      } 
+      }
     }
   };
 
@@ -87,12 +84,10 @@ const AddStoreLocation = () => {
         <div className="bottomContainer">
           <div className="right">
             <form>
-
-            <div className="formInput">
+              <div className="formInput">
                 <label>Supplier ID*</label>
                 <input
                   type="text"
-                  
                   value={SID}
                   onChange={(e) => {
                     setSID(e.target.value);
@@ -117,7 +112,6 @@ const AddStoreLocation = () => {
                 <label>No*</label>
                 <input
                   type="text"
-                  
                   value={no}
                   onChange={(e) => {
                     setno(e.target.value);
@@ -156,10 +150,6 @@ const AddStoreLocation = () => {
                   }}
                 />
               </div>
-
-              
-
-              
 
               <div className="break"></div>
               <button onClick={submitForm}>Add</button>

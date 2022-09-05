@@ -17,22 +17,26 @@ const EditWarehouseDetailsAdmin = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admin/Warehouse/getSingle/" + WID, {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/admin/Warehouse/getSingle/" +
+          WID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
-        setManagerName(res.data[0].ManagerName)
+        setManagerName(res.data[0].ManagerName);
         setNo(res.data[0].no);
         setStreet(res.data[0].street);
         setTown(res.data[0].town);
-        setUID(res.data[0].UID)
+        setUID(res.data[0].UID);
       });
   }, [""]);
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (ManagerName=== "" || no === "" || street === "" || town === "") {
+    if (ManagerName === "" || no === "" || street === "" || town === "") {
       alert("Please fill in all the required fields");
     } else {
       let data = {
@@ -40,14 +44,19 @@ const EditWarehouseDetailsAdmin = () => {
         no: no,
         street: street,
         town: town,
-        UID: UID
+        UID: UID,
       };
 
       axios
-        .put("http://localhost:5000/admin/Warehouse/update/" + WID, data, {
-          withCredentials: true,
-          credentials: "include",
-        })
+        .put(
+          "https://erp-system-nexeyo.herokuapp.com/admin/Warehouse/update/" +
+            WID,
+          data,
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
         .then((res) => {
           console.log(res.data);
           if (res.data === "update Warehouse Details") {
@@ -70,9 +79,10 @@ const EditWarehouseDetailsAdmin = () => {
         <div className="bottomPartContainer">
           <div className="right">
             <form>
-            <div className="formInput">
+              <div className="formInput">
                 <label>Name of the Manager</label>
-                <input disabled
+                <input
+                  disabled
                   type="text"
                   value={ManagerName}
                   onChange={(e) => {

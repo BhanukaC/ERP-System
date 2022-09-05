@@ -41,10 +41,14 @@ const AddDependent = () => {
         };
 
         axios
-          .post("http://localhost:5000/hr/dependent/add", data, {
-            withCredentials: true,
-            credentials: "include",
-          })
+          .post(
+            "https://erp-system-nexeyo.herokuapp.com/hr/dependent/add",
+            data,
+            {
+              withCredentials: true,
+              credentials: "include",
+            }
+          )
           .then((res) => {
             if (res.data === "Dependent Added") {
               alert("Dependent Added");
@@ -66,7 +70,7 @@ const AddDependent = () => {
   const checkEmployee = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/hr/employee/getSingle/" + val,
+        "https://erp-system-nexeyo.herokuapp.com/hr/employee/getSingle/" + val,
         {
           withCredentials: true,
           credentials: "include",

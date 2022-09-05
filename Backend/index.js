@@ -10,11 +10,7 @@ const result = dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors({
-    origin: ["http://localhost:3000"],
-    method: ["GET", "POST", "DELETE", "PUT"],
-    credentials: true,
-}));
+app.use(cors());
 
 const purchaseRouter = require("./routes/purchase");
 const adminRouter = require('./routes/admin');
@@ -32,6 +28,10 @@ app.use("/sales", salesRouter);
 app.use("/purchase", purchaseRouter);
 app.use("/inventory", inventoryRouter);
 app.use("/account", accountRouter);
+
+app.get("/hi", async (req, res) => {
+    res.send("hi");
+});
 
 
 

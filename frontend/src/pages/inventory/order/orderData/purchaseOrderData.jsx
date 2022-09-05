@@ -8,48 +8,57 @@ import { useState } from "react";
 import axios from "axios";
 
 const PurchaseOrderData = () => {
-    const {id}=useParams();
-    console.log(id);
-    const [status,setStatus]=useState("");
-    const[WID,setWID]=useState(0);
+  const { id } = useParams();
+  console.log(id);
+  const [status, setStatus] = useState("");
+  const [WID, setWID] = useState(0);
 
-  useEffect(()=>{
-    axios.get("http://localhost:5000/inventory/purchaseOrder/getSingle/"+id,{
-      withCredentials: true,
-      credentials: "include",
+  useEffect(() => {
+    axios
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/inventory/purchaseOrder/getSingle/" +
+          id,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
+      .then((res) => {
+        setWID(res.data[0].WID);
+        setStatus(res.data[0].status);
+      });
+  }, [""]);
 
-    }).then((res)=>{
-      setWID(res.data[0].WID);
-      setStatus(res.data[0].status);
-    })
-  },[""]);
-
-  const submitButton=(e)=>{
+  const submitButton = (e) => {
     e.preventDefault();
-    window.location = "/inventory/order/purchaseOrders/changeStatus/"+id;
-  }
+    window.location = "/inventory/order/purchaseOrders/changeStatus/" + id;
+  };
 
-  
   return (
     <div className="list">
       <InventorySidebar />
       <div className="listContainer">
         <Navbar />
-        <PurchaseOrderDataTable id={id}/>
+        <PurchaseOrderDataTable id={id} />
 
-        {status ==="P" &&(<button style={{
-             width: "150px",
-             padding: "10px",
-             border: "none",
-             backgroundColor: "#0085cc",
-             color:" white",
-             fontWeight: "bold",
-             cursor:" pointer",
-             marginTop: "50px",
-             marginLeft:"40%",
-      
-        }} onClick={submitButton} >Change Status</button>)}
-
+        {status === "P" && (
+          <button
+            style={{
+              width: "150px",
+              padding: "10px",
+              border: "none",
+              backgroundColor: "#0085cc",
+              color: " white",
+              fontWeight: "bold",
+              cursor: " pointer",
+              marginTop: "50px",
+              marginLeft: "40%",
+            }}
+            onClick={submitButton}
+          >
+            Change Status
+          </button>
+        )}
       </div>
     </div>
   );

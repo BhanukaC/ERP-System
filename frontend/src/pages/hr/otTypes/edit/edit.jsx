@@ -13,10 +13,13 @@ const EditOtType = () => {
   const { otID } = useParams();
   useEffect(() => {
     axios
-      .get("http://localhost:5000/hr/otType/getSingle/" + otID, {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/hr/otType/getSingle/" + otID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setOtType(res.data[0].type);
@@ -35,10 +38,14 @@ const EditOtType = () => {
       };
 
       axios
-        .put("http://localhost:5000/hr/otType/update/" + otID, data, {
-          withCredentials: true,
-          credentials: "include",
-        })
+        .put(
+          "https://erp-system-nexeyo.herokuapp.com/hr/otType/update/" + otID,
+          data,
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
         .then((res) => {
           if (res.data === "OT Type Updated") {
             alert("OT Type Updated");

@@ -28,10 +28,14 @@ const AddAdvance = () => {
         };
 
         axios
-          .post("http://localhost:5000/hr/advance/add", data, {
-            withCredentials: true,
-            credentials: "include",
-          })
+          .post(
+            "https://erp-system-nexeyo.herokuapp.com/hr/advance/add",
+            data,
+            {
+              withCredentials: true,
+              credentials: "include",
+            }
+          )
           .then((res) => {
             console.log(res);
             if (res.data === "Give an advance") {
@@ -53,7 +57,7 @@ const AddAdvance = () => {
   const checkEmployee = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/hr/employee/getSingle/" + val,
+        "https://erp-system-nexeyo.herokuapp.com/hr/employee/getSingle/" + val,
         {
           withCredentials: true,
           credentials: "include",
@@ -74,7 +78,7 @@ const AddAdvance = () => {
 
   const checkBalance = async (EID) => {
     const res = await axios.get(
-      "http://localhost:5000/hr/advance/balance/" + EID,
+      "https://erp-system-nexeyo.herokuapp.com/hr/advance/balance/" + EID,
       {
         withCredentials: true,
         credentials: "include",

@@ -17,7 +17,7 @@ const AddSalesOrderPart1 = () => {
   useEffect(() => {
     const getWarehouse = async () => {
       const res = await axios.get(
-        "http://localhost:5000/sales/Warehouse/getAll",
+        "https://erp-system-nexeyo.herokuapp.com/sales/Warehouse/getAll",
         {
           withCredentials: true,
           credentials: "include",
@@ -30,7 +30,8 @@ const AddSalesOrderPart1 = () => {
 
   const getLocation = async (val) => {
     const res = await axios.get(
-      "http://localhost:5000/sales/Customer/deliveryAddress/getAll/" + val,
+      "https://erp-system-nexeyo.herokuapp.com/sales/Customer/deliveryAddress/getAll/" +
+        val,
       {
         withCredentials: true,
         credentials: "include",
@@ -41,7 +42,8 @@ const AddSalesOrderPart1 = () => {
 
   const getContactNumber = async (val) => {
     const res = await axios.get(
-      "http://localhost:5000/sales/Customer/contactNumber/getAll/" + val,
+      "https://erp-system-nexeyo.herokuapp.com/sales/Customer/contactNumber/getAll/" +
+        val,
       {
         withCredentials: true,
         credentials: "include",
@@ -53,25 +55,29 @@ const AddSalesOrderPart1 = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if(CID === "" || CDAID === "" || CCID === "" || WID === "" || distance === ""  )
-    {
+    if (
+      CID === "" ||
+      CDAID === "" ||
+      CCID === "" ||
+      WID === "" ||
+      distance === ""
+    ) {
       alert("Fill the required fields");
-    }
-
-    else{
-    localStorage.setItem("CID", CID);
-    localStorage.setItem("CDAID", CDAID);
-    localStorage.setItem("CCID", CCID);
-    localStorage.setItem("WID", WID);
-    localStorage.setItem("distance", distance);
-    window.location = "/sales/salesOrder/add2";
+    } else {
+      localStorage.setItem("CID", CID);
+      localStorage.setItem("CDAID", CDAID);
+      localStorage.setItem("CCID", CCID);
+      localStorage.setItem("WID", WID);
+      localStorage.setItem("distance", distance);
+      window.location = "/sales/salesOrder/add2";
     }
   };
 
   const checkCustomer = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/sales/Customer/getSingle/" + val,
+        "https://erp-system-nexeyo.herokuapp.com/sales/Customer/getSingle/" +
+          val,
         {
           withCredentials: true,
           credentials: "include",
@@ -113,7 +119,7 @@ const AddSalesOrderPart1 = () => {
                   }}
                 >
                   <option value="" disabled selected>
-                    Select Warehouse 
+                    Select Warehouse
                   </option>
                   {Array.isArray(warehouse)
                     ? warehouse.map((w) => (

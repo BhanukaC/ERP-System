@@ -7,10 +7,10 @@ import axios from "axios";
 const userColumns = [
   { field: "ID", headerName: "ID", width: 100 },
   { field: "IP", headerName: "IP", width: 100 },
-  { field: "userId", headerName: "User ID", width: 100},
+  { field: "userId", headerName: "User ID", width: 100 },
   { field: "userName", headerName: "User Name", width: 250 },
   { field: "time", headerName: "time", width: 250 },
-  { field: "log", headerName: "log", width: 250 }
+  { field: "log", headerName: "log", width: 250 },
 ];
 
 const Datatable = () => {
@@ -22,7 +22,7 @@ const Datatable = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admin/getAllActivityData", {
+      .get("https://erp-system-nexeyo.herokuapp.com/admin/getAllActivityData", {
         withCredentials: true,
         credentials: "include",
       })
@@ -36,12 +36,11 @@ const Datatable = () => {
       });
   }, [""]);
 
-  const actionColumn = [
-  ];
+  const actionColumn = [];
   return (
-    <div className="datatable" style={{height:"78%"}}>
+    <div className="datatable" style={{ height: "78%" }}>
       <div className="dataTableTitle1">
-       <h1>Activity Records</h1> 
+        <h1>Activity Records</h1>
       </div>
       <DataGrid
         className="datagrid"

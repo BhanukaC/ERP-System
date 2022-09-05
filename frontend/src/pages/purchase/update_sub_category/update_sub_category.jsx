@@ -13,56 +13,59 @@ const UpdatesubCategory = () => {
 
   useEffect(() => {
     const getcatId = async () => {
-      const res = await axios.get("http://localhost:5000/purchase/category/getAll", {
-        withCredentials: true,
-        credentials: "include",
-      });
+      const res = await axios.get(
+        "https://erp-system-nexeyo.herokuapp.com/purchase/category/getAll",
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
       setcatIds(res.data);
     };
     getcatId();
   }, [""]);
-
-
 
   const { SCID } = useParams();
   console.log(SCID);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/purchase/subCategory/getSingle/" + SCID, {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/purchase/subCategory/getSingle/" +
+          SCID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
         setcatID(res.data[0].catID);
         setsubCategoryName(res.data[0].subCategoryName);
         setdiscount(res.data[0].discount);
-        });
-        
-
+      });
   }, [""]);
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (
-        subCategoryName === ""
-      
-    ) {
+    if (subCategoryName === "") {
       alert("Please fill all required fields");
     } else {
       let data = {
         catID: catID,
         subCategoryName: subCategoryName,
-        discount : discount
-        
-        
+        discount: discount,
       };
 
       axios
-        .put("http://localhost:5000/purchase/subCategory/update/" + SCID, data, {
-          withCredentials: true,
-          credentials: "include",
-        })
+        .put(
+          "https://erp-system-nexeyo.herokuapp.com/purchase/subCategory/update/" +
+            SCID,
+          data,
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
         .then((res) => {
           if (res.data === "subCategory updated") {
             alert(" Sub Category Updated");
@@ -84,8 +87,7 @@ const UpdatesubCategory = () => {
         <div className="bottomContainer">
           <div className="right">
             <form>
-
-            <div className="formInput">
+              <div className="formInput">
                 <label>Sub Category Name*</label>
                 <input
                   type="text"
@@ -95,8 +97,6 @@ const UpdatesubCategory = () => {
                   }}
                 />
               </div>
-              
-               
 
               <div className="formInput">
                 <label>Category Name</label>
@@ -110,7 +110,7 @@ const UpdatesubCategory = () => {
                   <option value="" disabled selected>
                     select Category Name
                   </option>
-                  {Array.isArray(catIds) 
+                  {Array.isArray(catIds)
                     ? catIds.map((c) => (
                         <option value={c.catID} key={c.catID}>
                           {c.categoryName}
@@ -119,8 +119,6 @@ const UpdatesubCategory = () => {
                     : ""}
                 </select>
               </div>
-
-             
 
               <div className="formInput">
                 <label>Discount</label>
@@ -144,4 +142,4 @@ const UpdatesubCategory = () => {
   );
 };
 
-export default  UpdatesubCategory ;
+export default UpdatesubCategory;

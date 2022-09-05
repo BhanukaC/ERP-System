@@ -17,7 +17,7 @@ const AddAttendance = () => {
     } else {
       axios
         .post(
-          "http://localhost:5000/hr/attendance/add",
+          "https://erp-system-nexeyo.herokuapp.com/hr/attendance/add",
           { data: data },
           {
             withCredentials: true,
@@ -105,7 +105,7 @@ const AddAttendance = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/hr/employee/getAllEID", {
+      .get("https://erp-system-nexeyo.herokuapp.com/hr/employee/getAllEID", {
         withCredentials: true,
         credentials: "include",
       })

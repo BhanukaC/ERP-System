@@ -44,7 +44,7 @@ export default function Login() {
     const data = new FormData(event.currentTarget);
     axios
       .post(
-        "http://localhost:5000/auth/login",
+        "https://erp-system-nexeyo.herokuapp.com/auth/login",
         {
           username: data.get("username"),
           password: data.get("password"),

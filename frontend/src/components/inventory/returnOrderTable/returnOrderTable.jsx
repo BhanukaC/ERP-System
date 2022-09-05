@@ -6,13 +6,17 @@ import axios from "axios";
 import moment from "moment";
 
 const userColumns = [
-  { field: "salesReturnOrderID", headerName: "Sales Return Order ID",  width: 100},
-  { field: "WID", headerName: "Warehouse ID", width: 100},
-  { field: "CID", headerName: "Customer ID", width: 100},
+  {
+    field: "salesReturnOrderID",
+    headerName: "Sales Return Order ID",
+    width: 100,
+  },
+  { field: "WID", headerName: "Warehouse ID", width: 100 },
+  { field: "CID", headerName: "Customer ID", width: 100 },
   { field: "initiateDates", headerName: "Order Date", width: 150 },
   { field: "reason", headerName: "Reason for Returning", width: 200 },
-  { field: "total", headerName: "Net Total", width: 100},
-  { field: "salesOrderID", headerName: "Sales Order ID", width: 100},
+  { field: "total", headerName: "Net Total", width: 100 },
+  { field: "salesOrderID", headerName: "Sales Order ID", width: 100 },
   { field: "statusMod", headerName: "Status", width: 100 },
   { field: "finishDates", headerName: "Finish Date", width: 150 },
 ];
@@ -22,35 +26,39 @@ const ReturnOrderTable = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/inventory/salesReturnOrder/getAll/", {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/inventory/salesReturnOrder/getAll/",
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {
           let status;
           switch (d.status) {
             case "A":
-              status="Accepted"
+              status = "Accepted";
               break;
             case "D":
-              status="Delivered"
+              status = "Delivered";
               break;
           }
 
           let date;
-          if(d.finishDate===null){
-            date=d.finishDate
-          }else{
-            date=moment(d.finishDate).utc().format("YYYY/MM/DD");
+          if (d.finishDate === null) {
+            date = d.finishDate;
+          } else {
+            date = moment(d.finishDate).utc().format("YYYY/MM/DD");
           }
-          return { id: d.salesReturnOrderID,
-            statusMod:status,
+          return {
+            id: d.salesReturnOrderID,
+            statusMod: status,
             initiateDates: moment(d.initiateDate).utc().format("YYYY/MM/DD"),
             finishDates: date,
-            ...d };
-
+            ...d,
+          };
         });
         setData(dt);
         // console.log(dt);
@@ -62,7 +70,9 @@ const ReturnOrderTable = () => {
       headerName: "Action",
       width: 300,
       renderCell: (params) => {
-        const reLink2= "/inventory/order/returnOrders/orderData/"+params.row.salesReturnOrderID;
+        const reLink2 =
+          "/inventory/order/returnOrders/orderData/" +
+          params.row.salesReturnOrderID;
         return (
           <div className="cellAction">
             <Link to={reLink2} style={{ textDecoration: "none" }}>
@@ -74,7 +84,7 @@ const ReturnOrderTable = () => {
     },
   ];
   return (
-    <div className="datatable" style={{height:"78%"}}>
+    <div className="datatable" style={{ height: "78%" }}>
       <div className="dataTableTitle1">
         <h1>Sales Return Orders</h1>
       </div>

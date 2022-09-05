@@ -1,11 +1,10 @@
 import "./add_product.scss";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
 
 const AddProduct = () => {
-  
   const [pname, setpname] = useState("");
   const [sellp, setsellp] = useState(0);
   const [eancode, seteancode] = useState("");
@@ -27,7 +26,8 @@ const AddProduct = () => {
   const checkCategory = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/purchase/category/getSingle/" + val,
+        "https://erp-system-nexeyo.herokuapp.com/purchase/category/getSingle/" +
+          val,
         {
           withCredentials: true,
           credentials: "include",
@@ -45,7 +45,8 @@ const AddProduct = () => {
   const checksubCategory = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/purchase/subCategory/getSingle/" + val,
+        "https://erp-system-nexeyo.herokuapp.com/purchase/subCategory/getSingle/" +
+          val,
         {
           withCredentials: true,
           credentials: "include",
@@ -60,110 +61,91 @@ const AddProduct = () => {
   };
 
   const handlesellp = (value) => {
-    const numberAmount= Number(value).toFixed(2);
-    setsellp(numberAmount)
-  }
+    const numberAmount = Number(value).toFixed(2);
+    setsellp(numberAmount);
+  };
 
   const handlebuyp = (value) => {
-    const numberAmount= Number(value).toFixed(2);
-    setbuyingp(numberAmount)
-  }
-  
-  
-  
-const submitForm = (e) => {
+    const numberAmount = Number(value).toFixed(2);
+    setbuyingp(numberAmount);
+  };
+
+  const submitForm = (e) => {
     e.preventDefault();
-    if(
-      pname === ""||
-      sellp===""||
-      buyingp===""||
-      catid===""||
-      subcatid===""||
-      hsncode===""||
-      eancode===""
-      
-    )
-      
-    {
+    if (
+      pname === "" ||
+      sellp === "" ||
+      buyingp === "" ||
+      catid === "" ||
+      subcatid === "" ||
+      hsncode === "" ||
+      eancode === ""
+    ) {
       alert("Please  fill the required fields");
-    }
-    else if( sellp==0)
-    {
+    } else if (sellp == 0) {
       alert("Please  fill the correct selling price");
-    }
-    else if( hsncode.length!=6)
-    {
+    } else if (hsncode.length != 6) {
       alert("Please  fill a valid HSN Code");
-    }
-    else if( eancode.length!=13)
-    {
+    } else if (eancode.length != 13) {
       alert("Please  fill a valid EAN Code");
-    }
-     
-    
-    else{
+    } else {
       axios
-      .post(
-        "http://localhost:5000/purchase/product/add",
-        {
-          PName: pname,
-          sellingPrice: sellp,
-          EANCode: eancode,
-          UnitOfMeasure:unit ,
-          HSNCode: hsncode,
-          shortDescription: shortdep,
-          longDescription: longdep,
-          Height: height,
-          Length: length,
-          Weight: weight,
-          buyingPrice: buyingp,
-          NoOfItems:noitems ,
-          CatID:catid,
-          SubCatID:subcatid, 
+        .post(
+          "https://erp-system-nexeyo.herokuapp.com/purchase/product/add",
+          {
+            PName: pname,
+            sellingPrice: sellp,
+            EANCode: eancode,
+            UnitOfMeasure: unit,
+            HSNCode: hsncode,
+            shortDescription: shortdep,
+            longDescription: longdep,
+            Height: height,
+            Length: length,
+            Weight: weight,
+            buyingPrice: buyingp,
+            NoOfItems: noitems,
+            CatID: catid,
+            SubCatID: subcatid,
+          },
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          if (res.data == "product Added") {
+            alert("Product added");
 
-
-        },
-        {
-          withCredentials: true,
-          credentials: "include",
-        }
-      )
-      .then((res) => {
-        console.log(res);
-        if(res.data=="product Added"){
-          alert("Product added");
-
-          setpname ("");
-          setsellp (0);
-          seteancode ("");
-          setunit ("");
-          sethsncode ("");
-          setshortdep ("");
-          setlongdep ("");
-          setheight ("");
-          setlength ("");
-          setweight ("");
-          setbuyingp (0);
-          setnoitems ("");
-          setcatid ("");
-          setsubcatid ("");
-          setcatname ("");
-          setsubcatname("");
-  
-        }else{
-          alert("Error");
-        }
-        //
-        //console.log(res.data);
-      });
+            setpname("");
+            setsellp(0);
+            seteancode("");
+            setunit("");
+            sethsncode("");
+            setshortdep("");
+            setlongdep("");
+            setheight("");
+            setlength("");
+            setweight("");
+            setbuyingp(0);
+            setnoitems("");
+            setcatid("");
+            setsubcatid("");
+            setcatname("");
+            setsubcatname("");
+          } else {
+            alert("Error");
+          }
+          //
+          //console.log(res.data);
+        });
     }
-
-    
   };
 
   return (
     <div className="new">
-      <Sidebar/>
+      <Sidebar />
       <div className="newContainer">
         <Navbar />
         <div className="topContainer">
@@ -172,8 +154,6 @@ const submitForm = (e) => {
         <div className="bottomContainer">
           <div className="right">
             <form>
-
-              
               <div className="formInput">
                 <label>Product Name*</label>
                 <input
@@ -190,14 +170,11 @@ const submitForm = (e) => {
                 <input
                   type="number"
                   min={0}
-                  step='.01'
-                  onChange={(e) =>handlesellp(e.target.value)} 
+                  step=".01"
+                  onChange={(e) => handlesellp(e.target.value)}
                   value={sellp}
-                  
-                  
-                   
-                  />
-                 </div>
+                />
+              </div>
 
               <div className="formInput">
                 <label>EAN Code*</label>
@@ -300,14 +277,12 @@ const submitForm = (e) => {
                 <input
                   type="number"
                   min={0}
-                  step='.01'
-                  onChange={(e) =>handlebuyp(e.target.value)} 
+                  step=".01"
+                  onChange={(e) => handlebuyp(e.target.value)}
                   value={buyingp}
                   placeholder="0.00"
-                  
-                   
-                  />
-                 </div>
+                />
+              </div>
 
               <div className="formInput">
                 <label>No Of Items</label>
@@ -317,10 +292,14 @@ const submitForm = (e) => {
                   step="1"
                   pattern="[0-9]*"
                   value={noitems}
-                  onChange={(e) => setnoitems((v)=>(e.target.validity.valid?e.target.value:v))}
+                  onChange={(e) =>
+                    setnoitems((v) =>
+                      e.target.validity.valid ? e.target.value : v
+                    )
+                  }
                 />
               </div>
-                  
+
               <div className="formInput">
                 <label>Category ID*</label>
                 <input
@@ -328,18 +307,15 @@ const submitForm = (e) => {
                   value={catid}
                   onChange={(e) => {
                     setcatid(e.target.value);
-                    checkCategory(e.target.value)
+                    checkCategory(e.target.value);
                   }}
                 />
               </div>
 
               <div className="formInput">
                 <label>Category Name</label>
-                <input type="text" 
-                value={catname} disabled />
+                <input type="text" value={catname} disabled />
               </div>
-
-              
 
               <div className="formInput">
                 <label>Sub Category ID*</label>
@@ -348,18 +324,15 @@ const submitForm = (e) => {
                   value={subcatid}
                   onChange={(e) => {
                     setsubcatid(e.target.value);
-                    checksubCategory (e.target.value)
+                    checksubCategory(e.target.value);
                   }}
                 />
               </div>
 
               <div className="formInput">
                 <label>Sub Category Name</label>
-                <input type="text" 
-                value={subcatname} disabled />
+                <input type="text" value={subcatname} disabled />
               </div>
-
-              
 
               <div className="Break"></div>
               <button onClick={submitForm}>Add Product</button>

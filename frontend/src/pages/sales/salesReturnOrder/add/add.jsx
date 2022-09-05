@@ -1,9 +1,8 @@
 import "././add.scss";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../../../../components/navbar/Navbar";
 import Sidebar from "../../../../components/sales/sales-sidebar/sales-sidebar";
 import axios from "axios";
-
 
 const AddSalesReturnOrderPage1 = () => {
   // const [list, setList] = useState([]);
@@ -17,71 +16,85 @@ const AddSalesReturnOrderPage1 = () => {
   const [location, setLocation] = useState([]);
   const [contactNumber, setContactNumber] = useState([]);
   const [soid, setSOID] = useState([]);
-  
+
   useEffect(() => {
     const getWarehouse = async () => {
-      const res = await axios.get("http://localhost:5000/sales/Warehouse/getAll", {
-        withCredentials: true,
-        credentials: "include",
-      });
+      const res = await axios.get(
+        "https://erp-system-nexeyo.herokuapp.com/sales/Warehouse/getAll",
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
       setWarehouse(res.data);
     };
     getWarehouse();
-
-  
   }, [""]);
 
   const getLocation = async (val) => {
-    const res = await axios.get("http://localhost:5000/sales/Customer/deliveryAddress/getAll/" + val, {
-      withCredentials: true,
-      credentials: "include",
-    });
+    const res = await axios.get(
+      "https://erp-system-nexeyo.herokuapp.com/sales/Customer/deliveryAddress/getAll/" +
+        val,
+      {
+        withCredentials: true,
+        credentials: "include",
+      }
+    );
     setLocation(res.data);
   };
 
   const getSOID = async (val) => {
-    const res = await axios.get("http://localhost:5000/sales/salesOrder/getAllForCusomer/" + val, {
-      withCredentials: true,
-      credentials: "include",
-    });
+    const res = await axios.get(
+      "https://erp-system-nexeyo.herokuapp.com/sales/salesOrder/getAllForCusomer/" +
+        val,
+      {
+        withCredentials: true,
+        credentials: "include",
+      }
+    );
     setSOID(res.data);
   };
- 
 
   const getContactNumber = async (val) => {
-    const res = await axios.get("http://localhost:5000/sales/Customer/contactNumber/getAll/" + val, {
-      withCredentials: true,
-      credentials: "include",
-    });
-    
-    setContactNumber(res.data);
+    const res = await axios.get(
+      "https://erp-system-nexeyo.herokuapp.com/sales/Customer/contactNumber/getAll/" +
+        val,
+      {
+        withCredentials: true,
+        credentials: "include",
+      }
+    );
 
+    setContactNumber(res.data);
   };
 
   const submitForm = (e) => {
     e.preventDefault();
-    if(CID === "" || CDAID === "" || CCID === "" || WID === "" || reason === "" || salesOrderID === ""  )
-    {
+    if (
+      CID === "" ||
+      CDAID === "" ||
+      CCID === "" ||
+      WID === "" ||
+      reason === "" ||
+      salesOrderID === ""
+    ) {
       alert("Fill the required fields");
+    } else {
+      localStorage.setItem("CID", CID);
+      localStorage.setItem("CDAID", CDAID);
+      localStorage.setItem("CCID", CCID);
+      localStorage.setItem("WID", WID);
+      localStorage.setItem("reason", reason);
+      localStorage.setItem("salesOrderID", salesOrderID);
+      window.location = "/sales/salesReturnOrder/add2";
     }
-
-    else{
-
-    localStorage.setItem("CID",CID);
-    localStorage.setItem("CDAID",CDAID);
-    localStorage.setItem("CCID",CCID);
-    localStorage.setItem("WID",WID);
-    localStorage.setItem("reason",reason);
-    localStorage.setItem("salesOrderID",salesOrderID);
-    window.location = "/sales/salesReturnOrder/add2";
-    }
-   
   };
 
   const checkCustomer = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/sales/Customer/getSingle/" + val,
+        "https://erp-system-nexeyo.herokuapp.com/sales/Customer/getSingle/" +
+          val,
         {
           withCredentials: true,
           credentials: "include",
@@ -96,10 +109,10 @@ const AddSalesReturnOrderPage1 = () => {
         getLocation(val);
         getSOID(val);
       }
-    }else{
+    } else {
       setCCID("");
-        setCDAID("");
-        setSalesOrderID("");
+      setCDAID("");
+      setSalesOrderID("");
     }
   };
 
@@ -111,11 +124,11 @@ const AddSalesReturnOrderPage1 = () => {
         <div className="topPartContainer">
           <h1>Add Sales Return Order</h1>
         </div>
-       
+
         <div className="bottomPartContainer">
           <div className="right">
             <form>
-            <div className="formInput">
+              <div className="formInput">
                 <label>Customer ID</label>
                 <input
                   type="text"
@@ -167,7 +180,7 @@ const AddSalesReturnOrderPage1 = () => {
                   }}
                 >
                   <option value="" disabled selected>
-                    Select Warehouse 
+                    Select Warehouse
                   </option>
                   {Array.isArray(warehouse)
                     ? warehouse.map((w) => (
@@ -209,7 +222,7 @@ const AddSalesReturnOrderPage1 = () => {
                   }}
                 >
                   <option value="" disabled selected>
-                  Customer Contact Number
+                    Customer Contact Number
                   </option>
                   {Array.isArray(contactNumber)
                     ? contactNumber.map((l) => (
@@ -222,18 +235,21 @@ const AddSalesReturnOrderPage1 = () => {
               </div>
 
               <div className="break"></div>
-              <button 
-              style={{
-                width: "150px",
-              padding: "10px",
-              border: "none",
-              backgroundColor: "#0085cc",
-              color: "white",
-              fontWeight: "bold",
-              cursor: "pointer",
-              margintop: "10px",
-              }}
-              onClick={submitForm}>Add Sales Return Order</button>
+              <button
+                style={{
+                  width: "150px",
+                  padding: "10px",
+                  border: "none",
+                  backgroundColor: "#0085cc",
+                  color: "white",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  margintop: "10px",
+                }}
+                onClick={submitForm}
+              >
+                Add Sales Return Order
+              </button>
             </form>
           </div>
         </div>

@@ -13,15 +13,14 @@ const SetDiscount = () => {
     e.preventDefault();
     if (PID === "" || CID === "" || discount === "") {
       alert("Please fill in all the required fields");
-    }
-    else {
+    } else {
       axios
         .post(
-          "http://localhost:5000/admin/discount/customer",
+          "https://erp-system-nexeyo.herokuapp.com/admin/discount/customer",
           {
             PID: PID,
             CID: CID,
-            discount: discount
+            discount: discount,
           },
           {
             withCredentials: true,
@@ -50,7 +49,7 @@ const SetDiscount = () => {
         <div className="bottomContainer">
           <div className="right">
             <form>
-            <div className="formInput">
+              <div className="formInput">
                 <label>PID</label>
                 <input
                   type="number"
@@ -82,7 +81,6 @@ const SetDiscount = () => {
                   }}
                 />
               </div>
-              
 
               <div className="break"></div>
               <button onClick={submitForm}>Set</button>

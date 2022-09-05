@@ -11,12 +11,11 @@ const userColumns = [
   { field: "CDAID", headerName: "CDAID", width: 50 },
   { field: "CCID", headerName: "CCID", width: 50 },
   { field: "WID", headerName: "WID", width: 50 },
-  { field: "initiateDate1", headerName: "Initiate Date", width: 120  },
-  { field: "finishDates", headerName: "Finish Date", width: 120  },
-  { field: "reason", headerName: "reason", width: 200  },
+  { field: "initiateDate1", headerName: "Initiate Date", width: 120 },
+  { field: "finishDates", headerName: "Finish Date", width: 120 },
+  { field: "reason", headerName: "reason", width: 200 },
   { field: "status", headerName: "Order Status", width: 100 },
   { field: "salesOrderID", headerName: "salesOrderID", width: 120 },
- 
 ];
 
 const DataTable1 = () => {
@@ -24,94 +23,115 @@ const DataTable1 = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admin/salesReturnOrder/getAll", {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/admin/salesReturnOrder/getAll",
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
-       
         let dt = res.data.map((d) => {
-          return { id: d.salesReturnOrderID,
-            initiateDate1: moment(d.initiateDate).add(1, "days").utc().format("YYYY/MM/DD"),
-            finishDates: moment(d.finishDate).add(1, "days").utc().format("YYYY/MM/DD"), ...d };
+          return {
+            id: d.salesReturnOrderID,
+            initiateDate1: moment(d.initiateDate)
+              .add(1, "days")
+              .utc()
+              .format("YYYY/MM/DD"),
+            finishDates: moment(d.finishDate)
+              .add(1, "days")
+              .utc()
+              .format("YYYY/MM/DD"),
+            ...d,
+          };
         });
         setData(dt);
-
       });
   }, [""]);
 
   const actionColumn = [
     {
-        field: "action",
-        headerName: "Action",
-        width: 220,
-        renderCell: (params) => {
-          const upLink = ""+params.row.salesReturnOrderID;
-          return (
-            <div className="cellAction">
-              <div>
-                <button onClick={()=>{accept(params.row.salesReturnOrderID);}}>Accept</button>
-              </div>
-              <div>
-                <button onClick={()=>{reject(params.row.salesReturnOrderID);}}>Reject</button>
-              </div>
+      field: "action",
+      headerName: "Action",
+      width: 220,
+      renderCell: (params) => {
+        const upLink = "" + params.row.salesReturnOrderID;
+        return (
+          <div className="cellAction">
+            <div>
+              <button
+                onClick={() => {
+                  accept(params.row.salesReturnOrderID);
+                }}
+              >
+                Accept
+              </button>
             </div>
-          );
-        },
+            <div>
+              <button
+                onClick={() => {
+                  reject(params.row.salesReturnOrderID);
+                }}
+              >
+                Reject
+              </button>
+            </div>
+          </div>
+        );
       },
+    },
   ];
 
   const accept = (val) => {
-      axios
-        .post(
-          "http://localhost:5000/admin/salesReturnOrder/update",
-          {
-            salesReturnOrderID: val,
-            status: 'A',
-          },
-          {
-            withCredentials: true,
-            credentials: "include",
-          }
-        )
-        .then((res) => {
-          console.log(res);
-          if (res.data === "Sales Return Order Updated") {
-            alert("Sales Return Order Updated");
-          } else {
-            alert("Error");
-          }
-        });
-    };
+    axios
+      .post(
+        "https://erp-system-nexeyo.herokuapp.com/admin/salesReturnOrder/update",
+        {
+          salesReturnOrderID: val,
+          status: "A",
+        },
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.data === "Sales Return Order Updated") {
+          alert("Sales Return Order Updated");
+        } else {
+          alert("Error");
+        }
+      });
+  };
 
-    const reject = (val) => {
-      axios
-        .post(
-          "http://localhost:5000/admin/salesReturnOrder/update",
-          {
-            salesReturnOrderID: val,
-            status: 'R',
-          },
-          {
-            withCredentials: true,
-            credentials: "include",
-          }
-        )
-        .then((res) => {
-          console.log(res);
-          if (res.data === "Sales Return Order Updated") {
-            alert("Sales Return Order Updated");
-          } else {
-            alert("Error");
-          }
-        });
-    };
-
+  const reject = (val) => {
+    axios
+      .post(
+        "https://erp-system-nexeyo.herokuapp.com/admin/salesReturnOrder/update",
+        {
+          salesReturnOrderID: val,
+          status: "R",
+        },
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.data === "Sales Return Order Updated") {
+          alert("Sales Return Order Updated");
+        } else {
+          alert("Error");
+        }
+      });
+  };
 
   return (
-    <div className="datatable" style={{height:"78%"}}>
-    <div className="dataTableTitle1">
-      <h1>Sales Return Requests</h1> 
+    <div className="datatable" style={{ height: "78%" }}>
+      <div className="dataTableTitle1">
+        <h1>Sales Return Requests</h1>
       </div>
       <DataGrid
         className="datagrid"

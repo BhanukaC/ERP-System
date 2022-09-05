@@ -1,5 +1,5 @@
 import "./add_contactno.scss";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
@@ -9,47 +9,32 @@ const AddContactNo = () => {
   const [Sname, SetSname] = useState("");
   const [contactNumber, setcontactNumber] = useState("");
 
-  
-  
-  
-
   const submitForm = (e) => {
     e.preventDefault();
-    if(
-      SID === ""||
-      contactNumber===""
-      
-      
-    )
-      
-    {
+    if (SID === "" || contactNumber === "") {
       alert("Please  fill the required fields");
-    }
-    else if( contactNumber.length<10||contactNumber.length>15)
-    {
+    } else if (contactNumber.length < 10 || contactNumber.length > 15) {
       alert("Please enter a valid contact Number");
-    }
-
-  else {
+    } else {
       let data = {
         SID: SID,
-        contactNumber : contactNumber,
-        
-        
+        contactNumber: contactNumber,
       };
 
       axios
-        .post("http://localhost:5000/purchase/supplier/contactNumber/add", data, {
-          withCredentials: true,
-          credentials: "include",
-        })
+        .post(
+          "https://erp-system-nexeyo.herokuapp.com/purchase/supplier/contactNumber/add",
+          data,
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
         .then((res) => {
           if (res.data === "supplier Contact Number Added") {
             alert("Supplier Contact Number Added");
             setSID("");
             setcontactNumber("");
-            
-            
           } else {
             alert("Sorry,Try again");
           }
@@ -60,7 +45,8 @@ const AddContactNo = () => {
   const checkSupplier = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/purchase/supplier/getSingle/" + val,
+        "https://erp-system-nexeyo.herokuapp.com/purchase/supplier/getSingle/" +
+          val,
         {
           withCredentials: true,
           credentials: "include",
@@ -68,10 +54,9 @@ const AddContactNo = () => {
       );
       if (res.data.length === 0) {
         alert("SID not found");
-      }
-      else{
+      } else {
         SetSname(res.data[0].sName);
-      } 
+      }
     }
   };
 
@@ -86,12 +71,10 @@ const AddContactNo = () => {
         <div className="bottomContainer">
           <div className="right">
             <form>
-              
-            <div className="formInput">
+              <div className="formInput">
                 <label>Supplier ID*</label>
                 <input
                   type="text"
-                  
                   value={SID}
                   onChange={(e) => {
                     setSID(e.target.value);
@@ -112,10 +95,6 @@ const AddContactNo = () => {
                 />
               </div>
 
-
-
-
-
               <div className="formInput">
                 <label>Contact Number*</label>
                 <input
@@ -127,14 +106,6 @@ const AddContactNo = () => {
                   }}
                 />
               </div>
-              
-
-             
-
-             
-              
-
-              
 
               <div className="break"></div>
               <button onClick={submitForm}>Add </button>

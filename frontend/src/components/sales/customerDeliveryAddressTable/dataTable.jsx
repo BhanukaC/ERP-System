@@ -10,32 +10,31 @@ const userColumns = [
   { field: "no", headerName: "No" },
   { field: "street", headerName: "Street" },
   { field: "town", headerName: "Town" },
-  
 ];
 
 const Datatable = (props) => {
   const CID = props.CID;
   const [data, setData] = useState({});
 
- 
-
   useEffect(() => {
     axios
-      .get("http://localhost:5000/sales/Customer/deliveryAddress/getAll/" + CID, {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/sales/Customer/deliveryAddress/getAll/" +
+          CID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
-       
         let dt = res.data.map((d) => {
           return {
             id: d.CDAID,
-           
+
             ...d,
           };
         });
         setData(dt);
-        
       });
   }, [""]);
 
@@ -45,7 +44,8 @@ const Datatable = (props) => {
       headerName: "Action",
       width: 100,
       renderCell: (params) => {
-        const reLink2 = "/sales/customerDeliveryAddress/edit/" + params.row.CDAID;
+        const reLink2 =
+          "/sales/customerDeliveryAddress/edit/" + params.row.CDAID;
         return (
           <div className="cellAction">
             <Link to={reLink2} style={{ textDecoration: "none" }}>
@@ -58,7 +58,7 @@ const Datatable = (props) => {
   ];
 
   return (
-    <div className="datatable" style={{height:"78%"}}>
+    <div className="datatable" style={{ height: "78%" }}>
       <div className="dataTableTitle1">
         <h1>All Customer Delivery Addresses For Customer(CID-{CID})</h1>
       </div>
@@ -79,7 +79,5 @@ const Datatable = (props) => {
     </div>
   );
 };
-
-
 
 export default Datatable;

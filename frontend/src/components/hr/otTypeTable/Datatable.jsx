@@ -16,7 +16,7 @@ const Datatable = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/hr/otType/getAll", {
+      .get("https://erp-system-nexeyo.herokuapp.com/hr/otType/getAll", {
         withCredentials: true,
         credentials: "include",
       })
@@ -50,9 +50,10 @@ const Datatable = (props) => {
     },
   ];
   return (
-    <div className="datatable" style={{height:"78%"}}>
+    <div className="datatable" style={{ height: "78%" }}>
       <div className="dataTableTitle1">
-        <h1>All OT Types</h1></div>
+        <h1>All OT Types</h1>
+      </div>
       <DataGrid
         className="datagrid"
         rows={data}

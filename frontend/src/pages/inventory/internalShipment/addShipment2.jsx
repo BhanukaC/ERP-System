@@ -5,17 +5,19 @@ import InventorySidebar from "../../../components/inventory/inventorySidebar/inv
 import axios from "axios";
 
 const AddInternalShipmentsPart2 = () => {
-
   const [fromWID, setFromWID] = useState("");
   const [toWID, setToWID] = useState("");
   const [warehouse, setWarehouse] = useState({});
 
   useEffect(() => {
     const getWarehouse = async () => {
-      const res = await axios.get("http://localhost:5000/inventory/Warehouse/getAll", {
-        withCredentials: true,
-        credentials: "include",
-      });
+      const res = await axios.get(
+        "https://erp-system-nexeyo.herokuapp.com/inventory/Warehouse/getAll",
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
       setWarehouse(res.data);
     };
     getWarehouse();
@@ -23,21 +25,16 @@ const AddInternalShipmentsPart2 = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if(fromWID === "" || toWID === "" )
-    {
+    if (fromWID === "" || toWID === "") {
       alert("Fill the required fields");
-    }
-    else if(fromWID===toWID)
-    {
+    } else if (fromWID === toWID) {
       alert("Try Again");
-    }
-    else{
-      localStorage.setItem("FromWID",fromWID);
-      localStorage.setItem("TOWID",toWID);
+    } else {
+      localStorage.setItem("FromWID", fromWID);
+      localStorage.setItem("TOWID", toWID);
       window.location = "/inventory/internalShipments/add2";
     }
   };
-
 
   return (
     <div className="new">
@@ -47,11 +44,10 @@ const AddInternalShipmentsPart2 = () => {
         <div className="topContainer">
           <h1>Add Internal Shipment</h1>
         </div>
-       
+
         <div className="bottomContainer">
           <div className="right">
             <form>
-             
               <div className="formInput">
                 <label>From</label>
 
@@ -83,31 +79,36 @@ const AddInternalShipmentsPart2 = () => {
                     setToWID(e.target.value);
                   }}
                 >
-                  <option value="" disabled selected> Select Warehouse</option>
+                  <option value="" disabled selected>
+                    {" "}
+                    Select Warehouse
+                  </option>
                   {Array.isArray(warehouse)
                     ? warehouse.map((w) => (
                         <option value={w.WID} key={w.WID}>
-                         {w.WID}-{w.town}
+                          {w.WID}-{w.town}
                         </option>
                       ))
                     : ""}
                 </select>
               </div>
 
-
               <div className="break"></div>
-              <button 
-              style={{
-                width: "150px",
-              padding: "10px",
-              border: "none",
-              backgroundColor: "#0085cc",
-              color: "white",
-              fontWeight: "bold",
-              cursor: "pointer",
-              margintop: "10px",
-              }}
-              onClick={submitForm}>Issue</button>
+              <button
+                style={{
+                  width: "150px",
+                  padding: "10px",
+                  border: "none",
+                  backgroundColor: "#0085cc",
+                  color: "white",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  margintop: "10px",
+                }}
+                onClick={submitForm}
+              >
+                Issue
+              </button>
             </form>
           </div>
         </div>

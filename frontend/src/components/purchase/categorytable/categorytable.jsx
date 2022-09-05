@@ -5,19 +5,16 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const userColumns = [
-  { field: "catID", headerName: "Category ID",width:100 },
-  { field: "categoryName", headerName: "Category Name",width:150 },
-  
+  { field: "catID", headerName: "Category ID", width: 100 },
+  { field: "categoryName", headerName: "Category Name", width: 150 },
 ];
 
 const Categorytable = () => {
   const [data, setData] = useState({});
 
-  
-
   useEffect(() => {
     axios
-      .get("http://localhost:5000/purchase/category/getAll", {
+      .get("https://erp-system-nexeyo.herokuapp.com/purchase/category/getAll", {
         withCredentials: true,
         credentials: "include",
       })
@@ -37,23 +34,21 @@ const Categorytable = () => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
-        const upLink = "/purchase/product/updatecat/"+params.row.catID;
+        const upLink = "/purchase/product/updatecat/" + params.row.catID;
         return (
           <div className="cellAction">
-            <Link to= {upLink} style= {{textDecoration : "none"}}>
+            <Link to={upLink} style={{ textDecoration: "none" }}>
               <div className="editButtons">Edit</div>
-              </Link>
-            
+            </Link>
           </div>
         );
       },
     },
   ];
   return (
-    <div className="TableOfData" style={{height:"78%"}}>
+    <div className="TableOfData" style={{ height: "78%" }}>
       <div className="TableOfDataTitle1">
         <h1>Category</h1>
-        
       </div>
       <DataGrid
         className="datagrid"

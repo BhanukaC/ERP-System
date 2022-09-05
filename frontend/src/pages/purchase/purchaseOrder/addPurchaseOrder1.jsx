@@ -9,7 +9,7 @@ const AddPurchaseOrder1 = () => {
   const [qty, setQty] = useState(0);
   const [productName, setProductName] = useState("");
   const [discount, setdiscount] = useState(0);
-  
+
   const [list, setList] = useState([]);
 
   const submitForm = (e) => {
@@ -27,11 +27,23 @@ const AddPurchaseOrder1 = () => {
         if (!status) {
           setList([
             ...list,
-            { PID: PID, name: productName, qty: parseInt(qty),discount:parseFloat(discount) },
+            {
+              PID: PID,
+              name: productName,
+              qty: parseInt(qty),
+              discount: parseFloat(discount),
+            },
           ]);
         }
       } else {
-        setList([{ PID: PID, name: productName, qty: parseInt(qty),discount:parseFloat(discount) }]);
+        setList([
+          {
+            PID: PID,
+            name: productName,
+            qty: parseInt(qty),
+            discount: parseFloat(discount),
+          },
+        ]);
       }
 
       setProductName("");
@@ -47,7 +59,8 @@ const AddPurchaseOrder1 = () => {
   const checkProduct = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/purchase/product/getSingle/" + val,
+        "https://erp-system-nexeyo.herokuapp.com/purchase/product/getSingle/" +
+          val,
         {
           withCredentials: true,
           credentials: "include",
@@ -92,8 +105,7 @@ const AddPurchaseOrder1 = () => {
               </div>
               <div className="formInput">
                 <label>Product Name</label>
-                <input type="text" 
-                value={productName} disabled />
+                <input type="text" value={productName} disabled />
               </div>
               <div className="formInput">
                 <label>Quantity</label>
@@ -103,7 +115,11 @@ const AddPurchaseOrder1 = () => {
                   step="1"
                   pattern="[0-9]*"
                   value={qty}
-                  onChange={(e) => setQty((v)=>(e.target.validity.valid?e.target.value:v))}
+                  onChange={(e) =>
+                    setQty((v) =>
+                      e.target.validity.valid ? e.target.value : v
+                    )
+                  }
                 />
               </div>
               <div className="formInput">
@@ -133,7 +149,6 @@ const AddPurchaseOrder1 = () => {
                 <th>Product Name</th>
                 <th>Quantity</th>
                 <th>Discount</th>
-
               </tr>
               {list.map((item) => {
                 return (
@@ -142,7 +157,6 @@ const AddPurchaseOrder1 = () => {
                     <td> {item.name}</td>
                     <td>{item.qty}</td>
                     <td>{item.discount}</td>
-
                   </tr>
                 );
               })}
@@ -162,7 +176,7 @@ const AddPurchaseOrder1 = () => {
                 }}
                 onClick={addpurchaseOrder}
               >
-               Add Purchase Order
+                Add Purchase Order
               </button>
             )}
           </div>
