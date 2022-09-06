@@ -21,11 +21,13 @@ exports.loginController = async (req, res) => {
                     res.cookie("access-token", accessToken, {
                         maxAge: 60 * 60 * 24 * 30,
                         httpOnly: false,
+                        sameSite: 'none',
+                        secure: true,
                     });
                     db.query("insert into activity(IP,userId,userName,log) values(?,?,?,?)", [req.ip, result[0].UID, result[0].userName, "Logged into the system"], (err, response) => {
 
                     });
-                    res.json({ message: "Logged In", accessLevel: result[0].acessLevel });
+                    res.json({ message: "Logged In", accessLevel: result[0].acessLevel, token: accessToken });
                 }
             });
 

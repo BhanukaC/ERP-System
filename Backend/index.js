@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: ["https://erp-system-c9365.web.app", "http://localhost:3000"],
+    origin: ["http://localhost:3000", "https://erp-system-c9365.web.app", "https://erp-system-c9365.firebaseapp.com/"],
     method: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
 }));
