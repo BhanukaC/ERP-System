@@ -34,7 +34,7 @@ const Profile = () => {
       } else {
         axios
           .post(
-            "http://localhost:5000/auth/changePassword",
+            "https://erp-system-nexeyo.herokuapp.com/auth/changePassword",
             {
               oldPassword: currentPassword,
               newPassword: newPassword,
@@ -63,10 +63,13 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admin/getUserData/" + user.id, {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/admin/getUserData/" + user.id,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
         console.log(res);
         setEmail(res.data[0].email);

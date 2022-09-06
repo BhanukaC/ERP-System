@@ -1,7 +1,6 @@
 import "./update_supplier.scss";
 import { useState, useEffect } from "react";
 
-
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
@@ -21,15 +20,16 @@ const Updatesupplier = () => {
   const { SID } = useParams();
   console.log(SID);
 
-  
-
-
   useEffect(() => {
     axios
-      .get("http://localhost:5000/purchase/supplier/getSingle/" + SID, {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/purchase/supplier/getSingle/" +
+          SID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
         setsName(res.data[0].sName);
         setpaymentTerm(res.data[0].payemntTerm);
@@ -40,11 +40,7 @@ const Updatesupplier = () => {
         setreturnTerm(res.data[0].returnTerm);
         setdeliveryTerm(res.data[0].deliveryTerm);
         setemail(res.data[0].email);
-
-
-        });
-        
-
+      });
   }, [""]);
 
   function ValidateEmail(mail) {
@@ -57,44 +53,41 @@ const Updatesupplier = () => {
   const submitForm = (e) => {
     e.preventDefault();
     if (
-      sName === ""||
-      paymentTerm===""||
-      no===""||
-      town===""||
-      country===""||
-      returnTerm===""||
-      deliveryTerm===""||
-      email===""
-      
+      sName === "" ||
+      paymentTerm === "" ||
+      no === "" ||
+      town === "" ||
+      country === "" ||
+      returnTerm === "" ||
+      deliveryTerm === "" ||
+      email === ""
     ) {
       alert("Please fill all required fields");
-    }
-    else if(!(ValidateEmail(email)))
-    {
-        alert("Please enter a valid email")
-    }
-    
-    
-    else {
+    } else if (!ValidateEmail(email)) {
+      alert("Please enter a valid email");
+    } else {
       let data = {
         sName: sName,
         paymentTerm: paymentTerm,
-        no : no,
-        street:street,
+        no: no,
+        street: street,
         town: town,
         country: country,
         returnTerm: returnTerm,
         deliveryTerm: deliveryTerm,
         email: email,
-        
-        
       };
 
       axios
-        .put("http://localhost:5000/purchase/supplier/update/" + SID, data, {
-          withCredentials: true,
-          credentials: "include",
-        })
+        .put(
+          "https://erp-system-nexeyo.herokuapp.com/purchase/supplier/update/" +
+            SID,
+          data,
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
         .then((res) => {
           if (res.data === "supplier updated") {
             alert(" Supplier Updated");
@@ -116,9 +109,6 @@ const Updatesupplier = () => {
         <div className="bottomContainer">
           <div className="right">
             <form>
-              
-               
-
               <div className="formInput">
                 <label>Supplier Name*</label>
                 <input
@@ -152,7 +142,6 @@ const Updatesupplier = () => {
                 />
               </div>
 
-              
               <div className="formInput">
                 <label>Street</label>
                 <input
@@ -164,7 +153,6 @@ const Updatesupplier = () => {
                 />
               </div>
 
-              
               <div className="formInput">
                 <label>Town*</label>
                 <input
@@ -176,7 +164,6 @@ const Updatesupplier = () => {
                 />
               </div>
 
-              
               <div className="formInput">
                 <label>Country*</label>
                 <input
@@ -188,7 +175,6 @@ const Updatesupplier = () => {
                 />
               </div>
 
-              
               <div className="formInput">
                 <label>Return Term*</label>
                 <input
@@ -200,7 +186,6 @@ const Updatesupplier = () => {
                 />
               </div>
 
-              
               <div className="formInput">
                 <label>Delivery Term*</label>
                 <input
@@ -212,7 +197,6 @@ const Updatesupplier = () => {
                 />
               </div>
 
-              
               <div className="formInput">
                 <label>Email*</label>
                 <input
@@ -234,4 +218,4 @@ const Updatesupplier = () => {
   );
 };
 
-export default  Updatesupplier ;
+export default Updatesupplier;

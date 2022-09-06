@@ -21,7 +21,7 @@ const AddUser = () => {
     if (ValidateEmail(email)) {
       axios
         .post(
-          "http://localhost:5000/admin/register",
+          "https://erp-system-nexeyo.herokuapp.com/admin/register",
           {
             username: userName,
             acessLevel: acessLevel,
@@ -39,11 +39,9 @@ const AddUser = () => {
             alert("Error");
           }
         });
-    }
-    else if (userName === "" || email === "") {
+    } else if (userName === "" || email === "") {
       alert("Fill the required fields");
-    }
-    else {
+    } else {
       alert("Wrong Email");
     }
   };

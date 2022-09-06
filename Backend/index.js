@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000", "https://erp-system-c9365.web.app", "https://erp-system-c9365.firebaseapp.com/"],
     method: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
 }));
@@ -32,6 +32,10 @@ app.use("/sales", salesRouter);
 app.use("/purchase", purchaseRouter);
 app.use("/inventory", inventoryRouter);
 app.use("/account", accountRouter);
+
+app.get("/hi", async (req, res) => {
+    res.send("hi");
+});
 
 
 

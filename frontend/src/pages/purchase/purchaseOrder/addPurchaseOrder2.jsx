@@ -17,68 +17,75 @@ const AddPurchaseOrder2 = () => {
 
   useEffect(() => {
     const getWarehouse = async () => {
-      const res = await axios.get("http://localhost:5000/purchase/Warehouse/getAll", {
-        withCredentials: true,
-        credentials: "include",
-      });
+      const res = await axios.get(
+        "https://erp-system-nexeyo.herokuapp.com/purchase/Warehouse/getAll",
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
       setWarehouse(res.data);
       // console.log(res.data);
     };
     getWarehouse();
-
-  
   }, [""]);
 
   const getLocation = async (val) => {
-    const res = await axios.get("http://localhost:5000/purchase/supplier/storeLocation/getAll/" + val, {
-      withCredentials: true,
-      credentials: "include",
-    });
+    const res = await axios.get(
+      "https://erp-system-nexeyo.herokuapp.com/purchase/supplier/storeLocation/getAll/" +
+        val,
+      {
+        withCredentials: true,
+        credentials: "include",
+      }
+    );
     setLocation(res.data);
   };
-  
- 
 
   const getContactNumber = async (val) => {
-    const res = await axios.get("http://localhost:5000/purchase/supplier/contactNumber/getAll/" + val, {
-      withCredentials: true,
-      credentials: "include",
-    });
-    
+    const res = await axios.get(
+      "https://erp-system-nexeyo.herokuapp.com/purchase/supplier/contactNumber/getAll/" +
+        val,
+      {
+        withCredentials: true,
+        credentials: "include",
+      }
+    );
+
     setContactNumber(res.data);
-
   };
-  
-
-
 
   const submitForm = (e) => {
     e.preventDefault();
     let items = [];
     for (let i = 0; i < list.length; i++) {
-      items.push({ PID: list[i].PID, qty: list[i].qty,discount: list[i].discount });
+      items.push({
+        PID: list[i].PID,
+        qty: list[i].qty,
+        discount: list[i].discount,
+      });
     }
     axios
       .post(
-        "http://localhost:5000/purchase/purchaseOrder/add",
+        "https://erp-system-nexeyo.herokuapp.com/purchase/purchaseOrder/add",
         {
-            SID : SID,
-            SSLID: SSLID,
-            SCID: SCID,
-            WID:WID,
-            items: items,
+          SID: SID,
+          SSLID: SSLID,
+          SCID: SCID,
+          WID: WID,
+          items: items,
         },
         { withCredentials: true, credentials: "include" }
       )
       .then((res) => {
         console.log(res);
-        console.log( {
-          SID : SID,
+        console.log({
+          SID: SID,
           SSLID: SSLID,
           SCID: SCID,
-          WID:WID,
+          WID: WID,
           items: items,
-      });
+        });
         if (res.data === "purchase order added") {
           alert("purchase order added");
           localStorage.setItem("PurchaseOrderCart", JSON.stringify([]));
@@ -104,7 +111,8 @@ const AddPurchaseOrder2 = () => {
   const checkSupplier = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/purchase/supplier/getSingle/" + val,
+        "https://erp-system-nexeyo.herokuapp.com/purchase/supplier/getSingle/" +
+          val,
         {
           withCredentials: true,
           credentials: "include",
@@ -112,14 +120,14 @@ const AddPurchaseOrder2 = () => {
       );
       if (res.data.length === 0) {
         alert("SID not found");
-        setSID("")
+        setSID("");
         setSSLID("");
         setSCID("");
       } else {
         getContactNumber(val);
         getLocation(val);
       }
-    }else{
+    } else {
       setSSLID("");
       setSCID("");
     }
@@ -142,7 +150,6 @@ const AddPurchaseOrder2 = () => {
                 <th>Product Name</th>
                 <th>Quantity</th>
                 <th>Discount</th>
-
               </tr>
               {list.map((item) => {
                 return (
@@ -151,7 +158,6 @@ const AddPurchaseOrder2 = () => {
                     <td> {item.name}</td>
                     <td>{item.qty}</td>
                     <td>{item.discount}</td>
-
                   </tr>
                 );
               })}
@@ -168,14 +174,11 @@ const AddPurchaseOrder2 = () => {
                   value={SID}
                   onChange={(e) => {
                     setSID(e.target.value);
-                    checkSupplier(e.target.value)
-                    }}
+                    checkSupplier(e.target.value);
+                  }}
                 />
               </div>
 
-              
-
-              
               <div className="formInput">
                 <label>Supplier Store Location</label>
 
@@ -198,8 +201,6 @@ const AddPurchaseOrder2 = () => {
                 </select>
               </div>
 
-              
-
               <div className="formInput">
                 <label>Supplier Contact Number</label>
 
@@ -210,7 +211,7 @@ const AddPurchaseOrder2 = () => {
                   }}
                 >
                   <option value="" disabled selected>
-                  Select Supplier Contact Number
+                    Select Supplier Contact Number
                   </option>
                   {Array.isArray(contactNumber)
                     ? contactNumber.map((c) => (
@@ -222,7 +223,6 @@ const AddPurchaseOrder2 = () => {
                 </select>
               </div>
 
-              
               <div className="formInput">
                 <label>Warehouse </label>
 
@@ -233,7 +233,7 @@ const AddPurchaseOrder2 = () => {
                   }}
                 >
                   <option value="" disabled selected>
-                    Select Warehouse 
+                    Select Warehouse
                   </option>
                   {Array.isArray(warehouse)
                     ? warehouse.map((w) => (

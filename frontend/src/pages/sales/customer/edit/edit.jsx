@@ -6,29 +6,32 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const EditCustomer = () => {
-    const [customerName, setCustomerName] = useState("");
-    const [paymentTerm, setPaymentMethod] = useState("");
-    const [returnTerm, setReturnTerm] = useState("");
-    const [deliveryTerm, setDeliveryTerm] = useState("");
-    const [no, setNo] = useState("");
-    const [street, setStreet] = useState("");
-    const [town, setTown] = useState("");
-    const [branchCode, setBranchCode] = useState("");
-    const [accountNo, setAccountNumber] = useState("");
-    const [bankName, setBankName] = useState("");
-    const [email, setEmail] = useState("");
+  const [customerName, setCustomerName] = useState("");
+  const [paymentTerm, setPaymentMethod] = useState("");
+  const [returnTerm, setReturnTerm] = useState("");
+  const [deliveryTerm, setDeliveryTerm] = useState("");
+  const [no, setNo] = useState("");
+  const [street, setStreet] = useState("");
+  const [town, setTown] = useState("");
+  const [branchCode, setBranchCode] = useState("");
+  const [accountNo, setAccountNumber] = useState("");
+  const [bankName, setBankName] = useState("");
+  const [email, setEmail] = useState("");
 
   const { CID } = useParams();
   console.log(CID);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/sales/Customer/getSingle/" + CID, {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/sales/Customer/getSingle/" +
+          CID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
-    
         setCustomerName(res.data[0].customerName);
         setPaymentMethod(res.data[0].paymentTerm);
         setReturnTerm(res.data[0].returnTerm);
@@ -56,31 +59,35 @@ const EditCustomer = () => {
       branchCode === "" ||
       accountNo === "" ||
       bankName === "" ||
-      email === "" 
-     ) 
-     {
+      email === ""
+    ) {
       alert("Please fill all required fields");
     } else {
       let data = {
-            customerName:customerName,
-            paymentTerm:paymentTerm,
-            returnTerm:returnTerm,
-            deliveryTerm:deliveryTerm,
-            no:no,
-            street:street,
-            town:town,
-            branchCode:branchCode,
-            accountNo:accountNo,
-            bankName:bankName,
-            email:email,
+        customerName: customerName,
+        paymentTerm: paymentTerm,
+        returnTerm: returnTerm,
+        deliveryTerm: deliveryTerm,
+        no: no,
+        street: street,
+        town: town,
+        branchCode: branchCode,
+        accountNo: accountNo,
+        bankName: bankName,
+        email: email,
       };
       axios
-      .put("http://localhost:5000/sales/Customer/update/" + CID, data, {
-        withCredentials: true,
-        credentials: "include",
-      })
-      
-      .then((res) => {
+        .put(
+          "https://erp-system-nexeyo.herokuapp.com/sales/Customer/update/" +
+            CID,
+          data,
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
+
+        .then((res) => {
           if (res.data === "customer updated") {
             alert("customer updated");
           } else {
@@ -89,7 +96,6 @@ const EditCustomer = () => {
         });
     }
   };
-
 
   return (
     <div className="new">

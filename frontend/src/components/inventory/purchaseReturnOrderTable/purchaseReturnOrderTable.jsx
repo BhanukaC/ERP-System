@@ -6,14 +6,17 @@ import axios from "axios";
 import moment from "moment";
 
 const userColumns = [
-  { field: "purchaseReturnOrderID", headerName: "Purchase Return Order ID",  width: 200},
-  { field: "WID", headerName: "Warehouse ID", width: 150},
-  { field: "SID", headerName: "Supplier ID", width: 100},
+  {
+    field: "purchaseReturnOrderID",
+    headerName: "Purchase Return Order ID",
+    width: 200,
+  },
+  { field: "WID", headerName: "Warehouse ID", width: 150 },
+  { field: "SID", headerName: "Supplier ID", width: 100 },
   { field: "initiateDates", headerName: "Order Date", width: 150 },
   { field: "reason", headerName: "Reason for Returning", width: 200 },
-  { field: "total", headerName: "Net Total", width: 100},
-  { field: "purchaseOrderID", headerName: "Purchase Order ID", width: 150},
-
+  { field: "total", headerName: "Net Total", width: 100 },
+  { field: "purchaseOrderID", headerName: "Purchase Order ID", width: 150 },
 ];
 
 const PurchaseReturnOrderTable = () => {
@@ -21,16 +24,24 @@ const PurchaseReturnOrderTable = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/inventory/purchaseReturnOrder/getAll", {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/inventory/purchaseReturnOrder/getAll",
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {
-          return { id: d.purchaseReturnOrderID,
-            initiateDates: moment(d.initiateDate).add(1, "days").utc().format("YYYY/MM/DD"),
-            ...d };
+          return {
+            id: d.purchaseReturnOrderID,
+            initiateDates: moment(d.initiateDate)
+              .add(1, "days")
+              .utc()
+              .format("YYYY/MM/DD"),
+            ...d,
+          };
         });
         setData(dt);
         // console.log(dt);
@@ -42,7 +53,9 @@ const PurchaseReturnOrderTable = () => {
       headerName: "Action",
       width: 300,
       renderCell: (params) => {
-        const reLink2= "/inventory/order/purchaseReturnOrders/orderData/"+params.row.purchaseReturnOrderID;
+        const reLink2 =
+          "/inventory/order/purchaseReturnOrders/orderData/" +
+          params.row.purchaseReturnOrderID;
         return (
           <div className="cellAction">
             <Link to={reLink2} style={{ textDecoration: "none" }}>
@@ -54,7 +67,7 @@ const PurchaseReturnOrderTable = () => {
     },
   ];
   return (
-    <div className="datatable" style={{height:"78%"}}>
+    <div className="datatable" style={{ height: "78%" }}>
       <div className="dataTableTitle1">
         <h1>Purchase Return Orders</h1>
       </div>

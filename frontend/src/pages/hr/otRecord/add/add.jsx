@@ -14,10 +14,13 @@ const AddOtRecord = () => {
 
   useEffect(() => {
     const getOtTypes = async () => {
-      const res = await axios.get("http://localhost:5000/hr/otType/getAll", {
-        withCredentials: true,
-        credentials: "include",
-      });
+      const res = await axios.get(
+        "https://erp-system-nexeyo.herokuapp.com/hr/otType/getAll",
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
       setOtTypes(res.data);
     };
     getOtTypes();
@@ -38,7 +41,7 @@ const AddOtRecord = () => {
         };
 
         axios
-          .post("http://localhost:5000/hr/ot/add", data, {
+          .post("https://erp-system-nexeyo.herokuapp.com/hr/ot/add", data, {
             withCredentials: true,
             credentials: "include",
           })
@@ -61,7 +64,7 @@ const AddOtRecord = () => {
   const checkEmployee = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/hr/employee/getSingle/" + val,
+        "https://erp-system-nexeyo.herokuapp.com/hr/employee/getSingle/" + val,
         {
           withCredentials: true,
           credentials: "include",

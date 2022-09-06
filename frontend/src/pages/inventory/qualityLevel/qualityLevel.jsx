@@ -14,10 +14,13 @@ const ChangeQualityLevel = () => {
 
   useEffect(() => {
     const getWarehouse = async () => {
-      const res = await axios.get("http://localhost:5000/inventory/Warehouse/getAll", {
-        withCredentials: true,
-        credentials: "include",
-      });
+      const res = await axios.get(
+        "https://erp-system-nexeyo.herokuapp.com/inventory/Warehouse/getAll",
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
       setWarehouse(res.data);
     };
     getWarehouse();
@@ -25,74 +28,64 @@ const ChangeQualityLevel = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if(
-      PID === "" ||
-      WID === "" ||
-      qty <= 0 ||
-      qualityLevel === ""
-
-      )
-      {
-        alert("Fill the required fields");
+    if (PID === "" || WID === "" || qty <= 0 || qualityLevel === "") {
+      alert("Fill the required fields");
+    } else {
+      if (status === false) {
+        alert("Try Again");
+      } else {
+        axios
+          .post(
+            "https://erp-system-nexeyo.herokuapp.com/inventory/changeQualityLevel/add",
+            {
+              PID: PID,
+              WID: WID,
+              qty: parseFloat(qty),
+              qualityLevel: qualityLevel,
+            },
+            {
+              withCredentials: true,
+              credentials: "include",
+            }
+          )
+          .then((res) => {
+            if (res.data === "Changed Quality level of stocks") {
+              alert("Quality Level Changed");
+              setPID("");
+              setWID("");
+              setQty("");
+              setQualityLevel(0);
+              //console.log(res);
+            } else {
+              alert("Try again");
+            }
+          });
       }
-      else{
-        if(status===false){
-          alert("Try Again");
-        }
-        else{
-    axios
-      .post(
-        "http://localhost:5000/inventory/changeQualityLevel/add",
-        {
-          PID: PID,
-          WID: WID,
-          qty: parseFloat(qty),
-          qualityLevel: qualityLevel,
-        },
-        {
-          withCredentials: true,
-          credentials: "include",
-        }
-      )
-      .then((res) => {
-        if (res.data === "Changed Quality level of stocks") {
-          alert("Quality Level Changed");
-          setPID("");
-          setWID("");
-          setQty("");
-          setQualityLevel(0);
-          //console.log(res);
-        } else {
-          alert("Try again");
-        }
-      });
-    }
     }
   };
 
-  const checkQty=async (val)=>{
-    const res =  await axios.post(
-      "http://localhost:5000/inventory/productstockLevelForWarehouse/get/" + WID,{
-        PID:PID,
-        qty:val
-      },{
+  const checkQty = async (val) => {
+    const res = await axios.post(
+      "https://erp-system-nexeyo.herokuapp.com/inventory/productstockLevelForWarehouse/get/" +
+        WID,
+      {
+        PID: PID,
+        qty: val,
+      },
+      {
         withCredentials: true,
         credentials: "include",
       }
-      
     );
-  //  console.log(res);
+    //  console.log(res);
     if (res.data === "we don't have enough stocks") {
       alert("we don't have enough stocks");
       setStatus(false);
-      
     }
-    if(res.data ==="We have Stocks") {
+    if (res.data === "We have Stocks") {
       setStatus(true);
-      
     }
-  }
-
+  };
 
   return (
     <div className="new">
@@ -105,7 +98,6 @@ const ChangeQualityLevel = () => {
         <div className="bottomContainer">
           <div className="right">
             <form>
-          
               <div className="formInput">
                 <label>Warehouse ID</label>
 
@@ -115,7 +107,10 @@ const ChangeQualityLevel = () => {
                     setWID(e.target.value);
                   }}
                 >
-                  <option value="" disabled selected> Select Warehouse</option>
+                  <option value="" disabled selected>
+                    {" "}
+                    Select Warehouse
+                  </option>
                   {Array.isArray(warehouse)
                     ? warehouse.map((w) => (
                         <option value={w.WID} key={w.WID}>
@@ -150,12 +145,7 @@ const ChangeQualityLevel = () => {
               </div>
               <div className="formInput">
                 <label>New Quality Level</label>
-                <input
-                  type="text"
-                  disabled
-                  value={qualityLevel}
-
-                />
+                <input type="text" disabled value={qualityLevel} />
                 {/* <select
                   value={qualityLevel}
                   onChange={(e) => {

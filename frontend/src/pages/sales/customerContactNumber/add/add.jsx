@@ -4,34 +4,31 @@ import Navbar from "../../../../components/navbar/Navbar";
 import Sidebar from "../../../../components/sales/sales-sidebar/sales-sidebar";
 import axios from "axios";
 
-
 const AddCustomerContactNumber = () => {
   const [CID, setCID] = useState("");
   const [contactNumber, setContactNumber] = useState("");
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (
-        CID === "" ||
-        contactNumber === ""
-    ) {
+    if (CID === "" || contactNumber === "") {
       alert("Please fill all required fields");
-    }
-    else if( contactNumber.length!=10)
-    {
+    } else if (contactNumber.length != 10) {
       alert("Please Enter a Valid Contact Number");
-    }
-     else {
+    } else {
       let data = {
         CID: CID,
         contactNumber: contactNumber,
       };
 
       axios
-        .post("http://localhost:5000/sales/Customer/contactNumber/add", data, {
-          withCredentials: true,
-          credentials: "include",
-        })
+        .post(
+          "https://erp-system-nexeyo.herokuapp.com/sales/Customer/contactNumber/add",
+          data,
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
         .then((res) => {
           if (res.data === "Customer Contact Number Added") {
             alert("Customer Contact Number Added");
@@ -47,7 +44,8 @@ const AddCustomerContactNumber = () => {
   const checkCustomer = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/sales/Customer/getSingle/" + val,
+        "https://erp-system-nexeyo.herokuapp.com/sales/Customer/getSingle/" +
+          val,
         {
           withCredentials: true,
           credentials: "include",
@@ -55,7 +53,7 @@ const AddCustomerContactNumber = () => {
       );
       if (res.data.length === 0) {
         alert("CID not found");
-      } 
+      }
     }
   };
 

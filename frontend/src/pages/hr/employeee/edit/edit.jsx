@@ -33,10 +33,13 @@ const EditEmployee = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/hr/employee/getSingle/" + EID, {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/hr/employee/getSingle/" + EID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
         setDob(
           moment(res.data[0].DOB).add(1, "days").utc().format("YYYY-MM-DD")
@@ -130,10 +133,14 @@ const EditEmployee = () => {
         }
 
         axios
-          .put("http://localhost:5000/hr/employee/update/" + EID, data, {
-            withCredentials: true,
-            credentials: "include",
-          })
+          .put(
+            "https://erp-system-nexeyo.herokuapp.com/hr/employee/update/" + EID,
+            data,
+            {
+              withCredentials: true,
+              credentials: "include",
+            }
+          )
           .then((res) => {
             if (res.data === "Employee details Updated") {
               alert("Employee details Updated");

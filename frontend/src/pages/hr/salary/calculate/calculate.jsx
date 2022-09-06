@@ -14,7 +14,7 @@ const CalculateSalary = () => {
     e.preventDefault();
 
     axios
-      .get("http://localhost:5000/hr/salary/calculate", {
+      .get("https://erp-system-nexeyo.herokuapp.com/hr/salary/calculate", {
         withCredentials: true,
         credentials: "include",
       })

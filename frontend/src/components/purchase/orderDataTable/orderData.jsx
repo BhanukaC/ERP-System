@@ -6,13 +6,13 @@ import axios from "axios";
 import moment from "moment";
 
 const userColumns = [
-  { field: "ID", headerName: "ID",width:100 },
- 
-  { field: "PName", headerName: "Product Name",width:150 },
-  { field: "unitPrice", headerName: "Unit Price",width:100 },
-  { field: "qty", headerName: "Quantity",width:100 },
-  { field: "discount", headerName: "Discount",width:100 },
-  { field: "netTot", headerName: "Net Total",width:100 }, 
+  { field: "ID", headerName: "ID", width: 100 },
+
+  { field: "PName", headerName: "Product Name", width: 150 },
+  { field: "unitPrice", headerName: "Unit Price", width: 100 },
+  { field: "qty", headerName: "Quantity", width: 100 },
+  { field: "discount", headerName: "Discount", width: 100 },
+  { field: "netTot", headerName: "Net Total", width: 100 },
 ];
 
 const Datatable = (props) => {
@@ -22,7 +22,7 @@ const Datatable = (props) => {
   useEffect(() => {
     axios
       .get(
-        "http://localhost:5000/purchase/purchaseOrderData/get/" +
+        "https://erp-system-nexeyo.herokuapp.com/purchase/purchaseOrderData/get/" +
           purchaseOrderID,
         {
           withCredentials: true,
@@ -42,10 +42,9 @@ const Datatable = (props) => {
   }, [""]);
 
   return (
-    <div className="TableOfData" style={{height:"78%"}}>
+    <div className="TableOfData" style={{ height: "78%" }}>
       <div className="TableOfDataTitle1">
         <h1>Order Details (Purchase Order ID-{purchaseOrderID})</h1>
-        
       </div>
       <DataGrid
         className="datagrid"

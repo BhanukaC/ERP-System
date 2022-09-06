@@ -44,34 +44,40 @@ export default function Login() {
     const data = new FormData(event.currentTarget);
     axios
       .post(
-        "http://localhost:5000/auth/login",
+        "https://erp-system-nexeyo.herokuapp.com/auth/login",
         {
           username: data.get("username"),
           password: data.get("password"),
         },
-        { withCredentials: true, credentials: "include" }
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
       )
       .then((res) => {
         if (res.data.message === "Logged In") {
-          switch (res.data.accessLevel) {
-            case 0:
-              window.location = "/admin";
-              break;
-            case 1:
-              window.location = "/sales";
-              break;
-            case 2:
-              window.location = "/hr";
-              break;
-            case 3:
-              window.location = "/purchase";
-              break;
-            case 4:
-              window.location = "/inventory";
-              break;
-            case 5:
-              window.location = "/account";
-              break;
+          {
+            document.cookie = "access-token=" + res.data.token;
+            switch (res.data.accessLevel) {
+              case 0:
+                window.location = "/admin";
+                break;
+              case 1:
+                window.location = "/sales";
+                break;
+              case 2:
+                window.location = "/hr";
+                break;
+              case 3:
+                window.location = "/purchase";
+                break;
+              case 4:
+                window.location = "/inventory";
+                break;
+              case 5:
+                window.location = "/account";
+                break;
+            }
           }
         } else {
           alert("Please check your username and password");

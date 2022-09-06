@@ -17,86 +17,76 @@ const AddCustomer = () => {
   const [bankName, setBankName] = useState("");
   const [email, setEmail] = useState("");
 
-  function ValidateEmail(mail) 
-  {
-   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
-    {
+  function ValidateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
       return true;
     }
-      return false;
+    return false;
   }
- 
+
   const submitForm = (e) => {
     e.preventDefault();
-      if (
-        customerName === "" ||
-        paymentTerm === "" ||
-        returnTerm === "" ||
-        deliveryTerm === "" ||
-        no === "" ||
-        street === "" ||
-        town === "" ||
-        branchCode === "" ||
-        accountNo === "" ||
-        bankName === "" ||
-        email === "" 
-       ) 
-       {
-        alert("Please fill all required fields");
-      }
-      
-      else if(!(ValidateEmail(email)))
-    {
-        alert("Please enter a valid email")
-    }
-      else {
+    if (
+      customerName === "" ||
+      paymentTerm === "" ||
+      returnTerm === "" ||
+      deliveryTerm === "" ||
+      no === "" ||
+      street === "" ||
+      town === "" ||
+      branchCode === "" ||
+      accountNo === "" ||
+      bankName === "" ||
+      email === ""
+    ) {
+      alert("Please fill all required fields");
+    } else if (!ValidateEmail(email)) {
+      alert("Please enter a valid email");
+    } else {
       axios
-        .post("http://localhost:5000/sales/Customer/add",
+        .post(
+          "https://erp-system-nexeyo.herokuapp.com/sales/Customer/add",
           {
-            customerName:customerName,
-            paymentTerm:paymentTerm,
-            returnTerm:returnTerm,
-            deliveryTerm:deliveryTerm,
-            no:no,
-            street:street,
-            town:town,
-            branchCode:branchCode,
-            accountNo:accountNo,
-            bankName:bankName,
-            email:email,
+            customerName: customerName,
+            paymentTerm: paymentTerm,
+            returnTerm: returnTerm,
+            deliveryTerm: deliveryTerm,
+            no: no,
+            street: street,
+            town: town,
+            branchCode: branchCode,
+            accountNo: accountNo,
+            bankName: bankName,
+            email: email,
           },
-          
+
           {
             withCredentials: true,
             credentials: "include",
           }
-          
-          )
-          .then((res) => {
-            if(res.data=="Customer Added"){
-              alert("Customer added");
-              // setCustomerName("");
-              // setPaymentMethod("");
-              // setReturnTerm("");
-              // setDeliveryTerm();
-              // setNo();
-              // setStreet("");
-              // setTown("");
-              // setBranchCode();           
-              // setAccountNumber();
-              // setBankName("");
-              // setEmail("");
-          }
-        else{
+        )
+        .then((res) => {
+          if (res.data == "Customer Added") {
+            alert("Customer added");
+            // setCustomerName("");
+            // setPaymentMethod("");
+            // setReturnTerm("");
+            // setDeliveryTerm();
+            // setNo();
+            // setStreet("");
+            // setTown("");
+            // setBranchCode();
+            // setAccountNumber();
+            // setBankName("");
+            // setEmail("");
+          } else {
             alert("Error");
           }
           //
           //console.log(res.data);
         });
-      }
-    
+    }
   };
-
 
   return (
     <div className="new">
@@ -231,4 +221,3 @@ const AddCustomer = () => {
 };
 
 export default AddCustomer;
-

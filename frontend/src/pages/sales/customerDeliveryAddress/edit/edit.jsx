@@ -6,21 +6,24 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const EditCustomerDeliveryAddress = () => {
-    const [CID, setCID] = useState("");
-    const [no, setNo] = useState("");
-    const [street, setStreet] = useState("");
-    const [town, setTown] = useState("");
-    
+  const [CID, setCID] = useState("");
+  const [no, setNo] = useState("");
+  const [street, setStreet] = useState("");
+  const [town, setTown] = useState("");
 
   const { CDAID } = useParams();
   console.log(CDAID);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/sales/Customer/deliveryAddress/getSingle/" + CDAID, {
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/sales/Customer/deliveryAddress/getSingle/" +
+          CDAID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
         setCID(res.data[0].CID);
         setNo(res.data[0].no);
@@ -31,29 +34,27 @@ const EditCustomerDeliveryAddress = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (
-        CID === "" ||
-        no === "" ||
-        street === "" ||
-        town === "" 
-     ) 
-     {
+    if (CID === "" || no === "" || street === "" || town === "") {
       alert("Please fill all required fields");
     } else {
       let data = {
-        CID:CID,
-        no:no,
-        street:street,
-        town:town,
-            
+        CID: CID,
+        no: no,
+        street: street,
+        town: town,
       };
       axios
-      .put("http://localhost:5000/sales/Customer/deliveryAddress/update/" + CID, data, {
-        withCredentials: true,
-        credentials: "include",
-      })
-      
-      .then((res) => {
+        .put(
+          "https://erp-system-nexeyo.herokuapp.com/sales/Customer/deliveryAddress/update/" +
+            CID,
+          data,
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
+
+        .then((res) => {
           if (res.data === "Customer Delivery Address updated") {
             alert("Customer Delivery Address updated");
           } else {
@@ -62,7 +63,6 @@ const EditCustomerDeliveryAddress = () => {
         });
     }
   };
-
 
   return (
     <div className="new">

@@ -5,7 +5,6 @@ import Sidebar from "../../../components/purchase_sidebar/purchase_sidebar";
 import axios from "axios";
 
 const Addsupplier = () => {
-  
   const [sname, setsname] = useState("");
   const [payterm, setpayterm] = useState("");
   const [no, setno] = useState("");
@@ -15,8 +14,7 @@ const Addsupplier = () => {
   const [retterm, setretterm] = useState("");
   const [delterm, setdelterm] = useState("");
   const [email, setemail] = useState("");
-  
-  
+
   function ValidateEmail(mail) {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
       return true;
@@ -26,63 +24,54 @@ const Addsupplier = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if(
-      sname === ""||
-      payterm===""||
-      no===""||
-      town===""||
-      country===""||
-      retterm===""||
-      delterm===""||
-      email===""
-    )
-    {
+    if (
+      sname === "" ||
+      payterm === "" ||
+      no === "" ||
+      town === "" ||
+      country === "" ||
+      retterm === "" ||
+      delterm === "" ||
+      email === ""
+    ) {
       alert("Please fill the required fields");
-    }
-    else if(!(ValidateEmail(email)))
-    {
-        alert("Please enter a valid email")
-    }
-    else{
+    } else if (!ValidateEmail(email)) {
+      alert("Please enter a valid email");
+    } else {
       axios
-      .post(
-        "http://localhost:5000/purchase/supplier/add",
-        {
-         
-          sName: sname,
-          paymentTerm : payterm,
-          no : no,
-          street : street,
-          town : town,
-          country : country,
-          returnTerm : retterm,
-          deliveryTerm : delterm,
-          email : email,
-
-
-        },
-        {
-          withCredentials: true,
-          credentials: "include",
-        }
-      )
-      .then((res) => {
-        if(res.data== "supplier Added"){
-          alert("Supplier added");
-        }else{
-          alert("Error");
-        }
-        //
-        //console.log(res.data);
-      });
-
+        .post(
+          "https://erp-system-nexeyo.herokuapp.com/purchase/supplier/add",
+          {
+            sName: sname,
+            paymentTerm: payterm,
+            no: no,
+            street: street,
+            town: town,
+            country: country,
+            returnTerm: retterm,
+            deliveryTerm: delterm,
+            email: email,
+          },
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
+        .then((res) => {
+          if (res.data == "supplier Added") {
+            alert("Supplier added");
+          } else {
+            alert("Error");
+          }
+          //
+          //console.log(res.data);
+        });
     }
-    
   };
 
   return (
     <div className="new">
-      <Sidebar/>
+      <Sidebar />
       <div className="newContainer">
         <Navbar />
         <div className="topContainer">
@@ -91,8 +80,6 @@ const Addsupplier = () => {
         <div className="bottomContainer">
           <div className="right">
             <form>
-
-              
               <div className="formInput">
                 <label>Supplier Name*</label>
                 <input

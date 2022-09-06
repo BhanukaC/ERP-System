@@ -88,10 +88,14 @@ const AddEmployee = () => {
         }
 
         axios
-          .post("http://localhost:5000/hr/employee/add", data, {
-            withCredentials: true,
-            credentials: "include",
-          })
+          .post(
+            "https://erp-system-nexeyo.herokuapp.com/hr/employee/add",
+            data,
+            {
+              withCredentials: true,
+              credentials: "include",
+            }
+          )
           .then((res) => {
             console.log(res);
             console.log(data);

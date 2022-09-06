@@ -10,8 +10,8 @@ const userColumns = [
   { field: "PName", headerName: "Product Name", width: 200 },
   { field: "unitPrice", headerName: "Unit Price", width: 200 },
   { field: "qty", headerName: "Quantity", width: 100 },
-  { field: "discount", headerName: "Discount", width: 100},
-  { field: "netTot", headerName: "Net Total", width: 200},
+  { field: "discount", headerName: "Discount", width: 100 },
+  { field: "netTot", headerName: "Net Total", width: 200 },
 ];
 
 const PurchaseOrderDataTable = (props) => {
@@ -20,10 +20,14 @@ const PurchaseOrderDataTable = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/inventory/purchaseOrderData/get/"+ purchaseOrderID,{
-        withCredentials: true,
-        credentials: "include",
-      })
+      .get(
+        "https://erp-system-nexeyo.herokuapp.com/inventory/purchaseOrderData/get/" +
+          purchaseOrderID,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      )
       .then((res) => {
         // console.log(res);
         let dt = res.data.map((d) => {
@@ -35,7 +39,7 @@ const PurchaseOrderDataTable = (props) => {
   }, [""]);
 
   return (
-    <div className="datatable" style={{height:"50%"}}>
+    <div className="datatable" style={{ height: "50%" }}>
       <div className="dataTableTitle1">
         <h1>Purchase Order Details of (Purchase Order ID-{purchaseOrderID})</h1>
       </div>

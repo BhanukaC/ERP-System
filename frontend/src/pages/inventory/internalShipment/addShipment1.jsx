@@ -1,9 +1,8 @@
 import "../form.scss";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import InventorySidebar from "../../../components/inventory/inventorySidebar/inventorySidebar";
 import axios from "axios";
-
 
 const AddInternalShipmentsPart1 = () => {
   const [PID, setPID] = useState(0);
@@ -13,53 +12,50 @@ const AddInternalShipmentsPart1 = () => {
   const [fromWID, setFromWID] = useState("");
   const [toWID, setToWID] = useState("");
 
-  const submitForm = async(e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
-    let stat=false;
-  
+    let stat = false;
+
     setQty(parseInt(qty));
     if (qty > 0) {
       if (list.length !== 0) {
         let status = false;
         for (let i = 0; i < list.length; i++) {
           if (list[i].PID === PID) {
-           let stat2= await checkQty(parseInt(list[i].qty) + parseInt(qty));
-           
-            if(stat2){
+            let stat2 = await checkQty(parseInt(list[i].qty) + parseInt(qty));
+
+            if (stat2) {
               list[i].qty = parseInt(list[i].qty) + parseInt(qty);
-            
-            stat=true;
+
+              stat = true;
             }
             status = true;
-            
           }
         }
         if (!status) {
-          let stat2=await checkQty(parseInt(qty));
-         
-          if(stat2){
+          let stat2 = await checkQty(parseInt(qty));
+
+          if (stat2) {
             setList([
               ...list,
               { PID: PID, name: productName, qty: parseInt(qty) },
             ]);
-            stat=true;
+            stat = true;
           }
-         
         }
       } else {
-        let stat2=await checkQty(parseInt(qty));
-        if(stat2){
-        setList([{ PID: PID, name: productName, qty: parseInt(qty) }]);
-        stat=true;
+        let stat2 = await checkQty(parseInt(qty));
+        if (stat2) {
+          setList([{ PID: PID, name: productName, qty: parseInt(qty) }]);
+          stat = true;
         }
       }
-if(stat){
-  setProductName("");
-  setQty(0);
-  setPID(0);
-  alert("Product added to cart");
-}
-      
+      if (stat) {
+        setProductName("");
+        setQty(0);
+        setPID(0);
+        alert("Product added to cart");
+      }
     } else {
       alert("Enter valid quantity");
       setQty(0);
@@ -69,7 +65,8 @@ if(stat){
   const checkProduct = async (val) => {
     if (val !== "") {
       const res = await axios.get(
-        "http://localhost:5000/inventory/product/getSingle/" + val,
+        "https://erp-system-nexeyo.herokuapp.com/inventory/product/getSingle/" +
+          val,
         {
           withCredentials: true,
           credentials: "include",
@@ -86,69 +83,72 @@ if(stat){
     }
   };
 
-  const checkQty=async (val)=>{
-    const res =  await axios.post(
-      "http://localhost:5000/inventory/productstockLevelForWarehouse/get/" + fromWID,{
-        PID:PID,
-        qty:val
-      },{
+  const checkQty = async (val) => {
+    const res = await axios.post(
+      "https://erp-system-nexeyo.herokuapp.com/inventory/productstockLevelForWarehouse/get/" +
+        fromWID,
+      {
+        PID: PID,
+        qty: val,
+      },
+      {
         withCredentials: true,
         credentials: "include",
       }
-      
     );
-  //  console.log(res);
+    //  console.log(res);
     if (res.data === "we don't have enough stocks") {
       alert("we don't have enough stocks");
       setQty(0);
       return false;
     }
-    if(res.data ==="We have Stocks") {
+    if (res.data === "We have Stocks") {
       return true;
-    }
-  }
-
-  const addInternalShipment = () => {
-    if (list.length !== 0) {
-     let li=[];
-     for(let i=0;i<list.length;i++){
-      li.push({PID:list[i].PID,qty:list[i].qty});
-     }
-     axios
-     .post("http://localhost:5000/inventory/internalShipment/add/",
-     {
-      FromWID:fromWID,
-      TOWID:toWID,
-      items:li,
-     },
-     {
-      withCredentials:true,
-      credentials:"include"
-     }
-     )
-     .then((res)=>{
-      if(res.data==="Internal Shipment added"){
-        alert("Internal Shipment Issued");
-        localStorage.setItem("FromWID","");
-        localStorage.setItem("TOWID","");
-        window.location = "/inventory/internalShipments/add";
-      }else{
-        alert("Try Again");
-      } 
-     });
     }
   };
 
-  useEffect(()=>{
-    let from=localStorage.getItem("FromWID");
-    let to=localStorage.getItem("TOWID");
-    
-   if(from ===null || to===null){
-    window.location = "/inventory/internalShipments/add";
-   }
-   setFromWID(from);
-   setToWID(to);
-  },[""])
+  const addInternalShipment = () => {
+    if (list.length !== 0) {
+      let li = [];
+      for (let i = 0; i < list.length; i++) {
+        li.push({ PID: list[i].PID, qty: list[i].qty });
+      }
+      axios
+        .post(
+          "https://erp-system-nexeyo.herokuapp.com/inventory/internalShipment/add/",
+          {
+            FromWID: fromWID,
+            TOWID: toWID,
+            items: li,
+          },
+          {
+            withCredentials: true,
+            credentials: "include",
+          }
+        )
+        .then((res) => {
+          if (res.data === "Internal Shipment added") {
+            alert("Internal Shipment Issued");
+            localStorage.setItem("FromWID", "");
+            localStorage.setItem("TOWID", "");
+            window.location = "/inventory/internalShipments/add";
+          } else {
+            alert("Try Again");
+          }
+        });
+    }
+  };
+
+  useEffect(() => {
+    let from = localStorage.getItem("FromWID");
+    let to = localStorage.getItem("TOWID");
+
+    if (from === null || to === null) {
+      window.location = "/inventory/internalShipments/add";
+    }
+    setFromWID(from);
+    setToWID(to);
+  }, [""]);
 
   return (
     <div className="new">
@@ -156,7 +156,10 @@ if(stat){
       <div className="newContainer">
         <Navbar />
         <div className="topContainer">
-          <h1>Add Internal Shipment From Warehouse ID-{fromWID} To Warehouse  ID-{toWID}</h1>
+          <h1>
+            Add Internal Shipment From Warehouse ID-{fromWID} To Warehouse ID-
+            {toWID}
+          </h1>
         </div>
         <div className="bottomContainer">
           <div className="right">
@@ -174,8 +177,7 @@ if(stat){
               </div>
               <div className="formInput">
                 <label>Product Name</label>
-                <input type="text" 
-                value={productName} disabled />
+                <input type="text" value={productName} disabled />
               </div>
               <div className="formInput">
                 <label>Quantity</label>
